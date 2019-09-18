@@ -1,0 +1,4 @@
+Seq	Host	Starttime	JobRuntime	Send	Receive	Exitval	Signal	Command
+1	:	1568812154.606	    15.663	0	0	0	0	cd /home/guigzp/Computacao/Faculdade/Compiladores/tf/Benchs/ASC_Sequoia/AMGmk && timeout --signal=TERM 0 ./NO_SSA_AMGmk.exe  < /dev/null &> /dev/null
+2	:	1568812170.271	     8.269	0	0	0	0	cd /home/guigzp/Computacao/Faculdade/Compiladores/tf/Benchs/ASC_Sequoia/CrystalMk && timeout --signal=TERM 0 ./NO_SSA_CrystalMK.exe  < /dev/null &> /dev/null
+3	:	1568812178.541	     3.772	0	0	0	0	cd /home/guigzp/Computacao/Faculdade/Compiladores/tf/Benchs/ASC_Sequoia/IRSmk && timeout --signal=TERM 0 ./NO_SSA_IRSmk.exe  irsmk_input  < /dev/null &> /dev/null

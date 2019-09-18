@@ -1,0 +1,171 @@
+; ModuleID = 'main.c'
+source_filename = "main.c"
+target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-pc-linux-gnu"
+
+%struct.Domain_s = type { i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32 }
+%struct.RadiationData_t = type { double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double* }
+%struct.timeval = type { i64, i64 }
+
+@.str = private unnamed_addr constant [33 x i8] c"\0ASequoia Benchmark Version 1.0\0A\0A\00", align 1
+@.str.1 = private unnamed_addr constant [19 x i8] c"Usage: %s <input>\0A\00", align 1
+@i_ub = common global i32 0, align 4
+@x_size = common global i32 0, align 4
+@.str.2 = private unnamed_addr constant [16 x i8] c"***** results \0A\00", align 1
+@.str.3 = private unnamed_addr constant [26 x i8] c"i = %10d      b[i] = %e \0A\00", align 1
+@kmin = common global i32 0, align 4
+@kmax = common global i32 0, align 4
+@jmin = common global i32 0, align 4
+@jmax = common global i32 0, align 4
+@imin = common global i32 0, align 4
+@imax = common global i32 0, align 4
+@kp = common global i32 0, align 4
+@jp = common global i32 0, align 4
+@i_lb = common global i32 0, align 4
+
+; Function Attrs: noinline nounwind uwtable
+define i32 @main(i32, i8**) #0 {
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4
+  %5 = alloca i8**, align 8
+  %6 = alloca %struct.Domain_s, align 4
+  %7 = alloca %struct.Domain_s*, align 8
+  %8 = alloca %struct.RadiationData_t, align 8
+  %9 = alloca %struct.RadiationData_t*, align 8
+  %10 = alloca %struct.timeval, align 8
+  %11 = alloca %struct.timeval, align 8
+  %12 = alloca i64, align 8
+  %13 = alloca i64, align 8
+  %14 = alloca double*, align 8
+  %15 = alloca double*, align 8
+  %16 = alloca i32, align 4
+  %17 = alloca i32, align 4
+  store i32 0, i32* %3, align 4
+  store i32 %0, i32* %4, align 4
+  store i8** %1, i8*** %5, align 8
+  store %struct.Domain_s* %6, %struct.Domain_s** %7, align 8
+  store %struct.RadiationData_t* %8, %struct.RadiationData_t** %9, align 8
+  store i64 0, i64* %12, align 8
+  store i64 0, i64* %13, align 8
+  store i32 0, i32* %16, align 4
+  store i32 5000, i32* %17, align 4
+  %18 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([33 x i8], [33 x i8]* @.str, i32 0, i32 0))
+  %19 = load i32, i32* %4, align 4
+  %20 = icmp ne i32 %19, 2
+  br i1 %20, label %21, label %26
+
+; <label>:21:                                     ; preds = %2
+  %22 = load i8**, i8*** %5, align 8
+  %23 = getelementptr inbounds i8*, i8** %22, i64 0
+  %24 = load i8*, i8** %23, align 8
+  %25 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @.str.1, i32 0, i32 0), i8* %24)
+  store i32 1, i32* %3, align 4
+  br label %76
+
+; <label>:26:                                     ; preds = %2
+  %27 = load i8**, i8*** %5, align 8
+  %28 = getelementptr inbounds i8*, i8** %27, i64 1
+  %29 = load i8*, i8** %28, align 8
+  call void @readInput(i8* %29)
+  %30 = load i32, i32* @i_ub, align 4
+  %31 = sext i32 %30 to i64
+  %32 = mul i64 %31, 8
+  %33 = call noalias i8* @malloc(i64 %32) #3
+  %34 = bitcast i8* %33 to double*
+  store double* %34, double** %15, align 8
+  %35 = load i32, i32* @x_size, align 4
+  %36 = sext i32 %35 to i64
+  %37 = mul i64 %36, 8
+  %38 = call noalias i8* @malloc(i64 %37) #3
+  %39 = bitcast i8* %38 to double*
+  store double* %39, double** %14, align 8
+  %40 = load %struct.RadiationData_t*, %struct.RadiationData_t** %9, align 8
+  call void @allocMem(%struct.RadiationData_t* %40)
+  %41 = load %struct.Domain_s*, %struct.Domain_s** %7, align 8
+  %42 = load %struct.RadiationData_t*, %struct.RadiationData_t** %9, align 8
+  %43 = load double*, double** %14, align 8
+  %44 = load double*, double** %15, align 8
+  call void @init(%struct.Domain_s* %41, %struct.RadiationData_t* %42, double* %43, double* %44)
+  store i32 0, i32* %16, align 4
+  br label %45
+
+; <label>:45:                                     ; preds = %53, %26
+  %46 = load i32, i32* %16, align 4
+  %47 = icmp slt i32 %46, 5000
+  br i1 %47, label %48, label %56
+
+; <label>:48:                                     ; preds = %45
+  %49 = load %struct.Domain_s*, %struct.Domain_s** %7, align 8
+  %50 = load %struct.RadiationData_t*, %struct.RadiationData_t** %9, align 8
+  %51 = load double*, double** %14, align 8
+  %52 = load double*, double** %15, align 8
+  call void @rmatmult3(%struct.Domain_s* %49, %struct.RadiationData_t* %50, double* %51, double* %52)
+  br label %53
+
+; <label>:53:                                     ; preds = %48
+  %54 = load i32, i32* %16, align 4
+  %55 = add nsw i32 %54, 1
+  store i32 %55, i32* %16, align 4
+  br label %45
+
+; <label>:56:                                     ; preds = %45
+  %57 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([16 x i8], [16 x i8]* @.str.2, i32 0, i32 0))
+  store i32 0, i32* %16, align 4
+  br label %58
+
+; <label>:58:                                     ; preds = %70, %56
+  %59 = load i32, i32* %16, align 4
+  %60 = load i32, i32* @i_ub, align 4
+  %61 = icmp slt i32 %59, %60
+  br i1 %61, label %62, label %75
+
+; <label>:62:                                     ; preds = %58
+  %63 = load i32, i32* %16, align 4
+  %64 = load double*, double** %15, align 8
+  %65 = load i32, i32* %16, align 4
+  %66 = sext i32 %65 to i64
+  %67 = getelementptr inbounds double, double* %64, i64 %66
+  %68 = load double, double* %67, align 8
+  %69 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([26 x i8], [26 x i8]* @.str.3, i32 0, i32 0), i32 %63, double %68)
+  br label %70
+
+; <label>:70:                                     ; preds = %62
+  %71 = load i32, i32* @i_ub, align 4
+  %72 = sdiv i32 %71, 5
+  %73 = load i32, i32* %16, align 4
+  %74 = add nsw i32 %73, %72
+  store i32 %74, i32* %16, align 4
+  br label %58
+
+; <label>:75:                                     ; preds = %58
+  store i32 0, i32* %3, align 4
+  br label %76
+
+; <label>:76:                                     ; preds = %75, %21
+  %77 = load i32, i32* %3, align 4
+  ret i32 %77
+}
+
+declare i32 @printf(i8*, ...) #1
+
+declare void @readInput(i8*) #1
+
+; Function Attrs: nounwind
+declare noalias i8* @malloc(i64) #2
+
+declare void @allocMem(%struct.RadiationData_t*) #1
+
+declare void @init(%struct.Domain_s*, %struct.RadiationData_t*, double*, double*) #1
+
+declare void @rmatmult3(%struct.Domain_s*, %struct.RadiationData_t*, double*, double*) #1
+
+attributes #0 = { noinline nounwind uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #1 = { "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #2 = { nounwind "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #3 = { nounwind }
+
+!llvm.module.flags = !{!0}
+!llvm.ident = !{!1}
+
+!0 = !{i32 1, !"wchar_size", i32 4}
+!1 = !{!"clang version 6.0.0-1ubuntu2 (tags/RELEASE_600/final)"}
