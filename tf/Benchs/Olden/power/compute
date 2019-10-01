@@ -1,0 +1,2886 @@
+# mark_description "Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.5.281 Build 20190815";
+# mark_description "-lm -DTORONTO -S -c -o compute";
+	.file "compute.c"
+	.text
+..TXTST0:
+.L_2__routine_start_Compute_Tree_0:
+# -- Begin  Compute_Tree
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl Compute_Tree
+# --- Compute_Tree(Root)
+Compute_Tree:
+# parameter 1: %rdi
+..B1.1:                         # Preds ..B1.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_Compute_Tree.1:
+..L2:
+                                                          #36.27
+        pushq     %r12                                          #36.27
+	.cfi_def_cfa_offset 16
+	.cfi_offset 12, -16
+        pushq     %r13                                          #36.27
+	.cfi_def_cfa_offset 24
+	.cfi_offset 13, -24
+        pushq     %r14                                          #36.27
+	.cfi_def_cfa_offset 32
+	.cfi_offset 14, -32
+        pushq     %r15                                          #36.27
+	.cfi_def_cfa_offset 40
+	.cfi_offset 15, -40
+        pushq     %rbx                                          #36.27
+	.cfi_def_cfa_offset 48
+	.cfi_offset 3, -48
+        pushq     %rbp                                          #36.27
+	.cfi_def_cfa_offset 56
+	.cfi_offset 6, -56
+        subq      $184, %rsp                                    #36.27
+	.cfi_def_cfa_offset 240
+        xorl      %eax, %eax                                    #45.8
+        movq      $0xc014000000000000, %rdx                     #49.51
+        pxor      %xmm8, %xmm8                                  #43.3
+        movsd     .L_2il0floatpacket.19(%rip), %xmm5            #49.51
+        movaps    %xmm8, %xmm9                                  #43.3
+        movaps    %xmm5, %xmm2                                  #49.51
+        movaps    %xmm9, %xmm10                                 #44.3
+        movq      %rax, %r14                                    #49.51
+        movd      %rdx, %xmm0                                   #49.51
+        movq      %rdi, %rbx                                    #49.51
+        unpcklpd  %xmm0, %xmm2                                  #49.51
+        divpd     .L_2il0floatpacket.15(%rip), %xmm2            #49.51
+        movaps    %xmm2, %xmm1                                  #49.51
+        movaps    %xmm2, %xmm0                                  #49.51
+        unpckhpd  %xmm2, %xmm1                                  #49.51
+        movsd     %xmm1, 48(%rsp)                               #49.51[spill]
+        movsd     %xmm0, 56(%rsp)                               #49.51[spill]
+        movups    %xmm2, 32(%rsp)                               #49.51[spill]
+        movsd     %xmm10, 72(%rsp)                              #49.51[spill]
+        movsd     %xmm9, 64(%rsp)                               #49.51[spill]
+                                # LOE rbx r14
+..B1.2:                         # Preds ..B1.33 ..B1.1
+                                # Execution count [1.10e+01]
+        movq      64(%rbx,%r14,8), %r13                         #46.9
+        movsd     24(%rbx), %xmm3                               #48.15
+        movaps    %xmm3, %xmm0                                  #49.51
+        movsd     40(%r13), %xmm2                               #49.51
+        mulsd     %xmm2, %xmm0                                  #49.51
+        movsd     32(%r13), %xmm4                               #49.51
+        movsd     16(%rbx), %xmm1                               #47.15
+        divsd     %xmm4, %xmm0                                  #49.51
+        mulsd     %xmm1, %xmm4                                  #49.51
+        addsd     %xmm1, %xmm0                                  #49.51
+        divsd     %xmm2, %xmm4                                  #49.51
+        mulsd     16(%r13), %xmm0                               #49.51
+        addsd     %xmm3, %xmm4                                  #49.51
+        mulsd     24(%r13), %xmm4                               #49.51
+        addsd     %xmm1, %xmm0                                  #49.51
+        movq      48(%r13), %r12                                #49.51
+        addsd     %xmm3, %xmm4                                  #49.51
+        movsd     %xmm1, 80(%rsp)                               #47.15[spill]
+        movsd     %xmm3, 88(%rsp)                               #48.15[spill]
+        movsd     %xmm0, 96(%rsp)                               #49.51[spill]
+        movsd     %xmm4, 120(%rsp)                              #49.51[spill]
+        testq     %r12, %r12                                    #49.51
+        je        ..B1.4        # Prob 1%                       #49.51
+                                # LOE rbx r12 r13 r14 xmm1 xmm3 xmm4
+..B1.3:                         # Preds ..B1.2
+                                # Execution count [1.08e+01]
+        movaps    %xmm1, %xmm0                                  #49.51
+        movq      %r12, %rdi                                    #49.51
+        movaps    %xmm3, %xmm1                                  #49.51
+        movsd     96(%rsp), %xmm2                               #49.51[spill]
+        movaps    %xmm4, %xmm3                                  #49.51
+..___tag_value_Compute_Tree.26:
+#       Compute_Lateral(Lateral, double, double, double, double)
+        call      Compute_Lateral                               #49.51
+..___tag_value_Compute_Tree.27:
+                                # LOE rbx r12 r13 r14 xmm0 xmm1
+..B1.39:                        # Preds ..B1.3
+                                # Execution count [1.08e+01]
+        movsd     %xmm0, (%rsp)                                 #49.51
+        movsd     %xmm1, 8(%rsp)                                #49.51
+                                # LOE rbx r12 r13 r14
+..B1.4:                         # Preds ..B1.39 ..B1.2
+                                # Execution count [1.10e+01]
+        movq      56(%r13), %r15                                #49.51
+        movsd     88(%rsp), %xmm4                               #49.51[spill]
+        movaps    %xmm4, %xmm0                                  #49.51
+        movsd     40(%r15), %xmm3                               #49.51
+        mulsd     %xmm3, %xmm0                                  #49.51
+        movsd     32(%r15), %xmm5                               #49.51
+        movsd     80(%rsp), %xmm2                               #49.51[spill]
+        divsd     %xmm5, %xmm0                                  #49.51
+        mulsd     %xmm2, %xmm5                                  #49.51
+        addsd     %xmm2, %xmm0                                  #49.51
+        divsd     %xmm3, %xmm5                                  #49.51
+        mulsd     16(%r15), %xmm0                               #49.51
+        addsd     %xmm4, %xmm5                                  #49.51
+        mulsd     24(%r15), %xmm5                               #49.51
+        movsd     96(%rsp), %xmm1                               #49.51[spill]
+        movsd     120(%rsp), %xmm6                              #49.51[spill]
+        addsd     %xmm0, %xmm1                                  #49.51
+        addsd     %xmm5, %xmm6                                  #49.51
+        movq      48(%r15), %rbp                                #49.51
+        movsd     %xmm1, 96(%rsp)                               #49.51[spill]
+        movsd     %xmm6, 120(%rsp)                              #49.51[spill]
+        testq     %rbp, %rbp                                    #49.51
+        je        ..B1.6        # Prob 1%                       #49.51
+                                # LOE rbx rbp r12 r13 r14 r15 xmm2 xmm4 xmm6
+..B1.5:                         # Preds ..B1.4
+                                # Execution count [1.08e+01]
+        movaps    %xmm2, %xmm0                                  #49.51
+        movq      %rbp, %rdi                                    #49.51
+        movaps    %xmm4, %xmm1                                  #49.51
+        movsd     96(%rsp), %xmm2                               #49.51[spill]
+        movaps    %xmm6, %xmm3                                  #49.51
+..___tag_value_Compute_Tree.35:
+#       Compute_Branch(Branch, double, double, double, double)
+        call      Compute_Branch                                #49.51
+..___tag_value_Compute_Tree.36:
+                                # LOE rbx rbp r12 r13 r14 r15 xmm0 xmm1
+..B1.40:                        # Preds ..B1.5
+                                # Execution count [1.08e+01]
+        movsd     %xmm0, 16(%rsp)                               #49.51
+        movsd     %xmm1, 24(%rsp)                               #49.51
+                                # LOE rbx rbp r12 r13 r14 r15
+..B1.6:                         # Preds ..B1.40 ..B1.4
+                                # Execution count [1.10e+01]
+        movsd     96(%rsp), %xmm14                              #49.51[spill]
+        xorl      %edx, %edx                                    #49.51
+        pxor      %xmm0, %xmm0                                  #49.51
+        pxor      %xmm4, %xmm4                                  #49.51
+        movsd     48(%rsp), %xmm7                               #49.51[spill]
+        movaps    %xmm0, %xmm3                                  #49.51
+        movsd     56(%rsp), %xmm8                               #49.51[spill]
+        movups    32(%rsp), %xmm9                               #49.51[spill]
+        movsd     .L_2il0floatpacket.19(%rip), %xmm10           #49.51
+        movsd     .L_2il0floatpacket.10(%rip), %xmm11           #49.51
+        movsd     .L_2il0floatpacket.9(%rip), %xmm12            #49.51
+                                # LOE rdx rbx rbp r12 r13 r14 r15 xmm0 xmm3 xmm4 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm14
+..B1.7:                         # Preds ..B1.27 ..B1.6
+                                # Execution count [1.32e+02]
+        movq      56(%r15,%rdx,8), %rcx                         #49.51
+        movsd     .L_2il0floatpacket.8(%rip), %xmm1             #49.51
+        movsd     %xmm3, 112(%rsp)                              #49.51[spill]
+        movsd     8(%rcx), %xmm6                                #49.51
+        mulsd     %xmm6, %xmm1                                  #49.51
+        movsd     (%rcx), %xmm13                                #49.51
+        movaps    %xmm13, %xmm2                                 #49.51
+        movsd     %xmm0, 104(%rsp)                              #49.51[spill]
+        subsd     %xmm1, %xmm2                                  #49.51
+        movaps    %xmm2, %xmm1                                  #49.51
+        andps     .L_2il0floatpacket.18(%rip), %xmm1            #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.8:                         # Preds ..B1.23 ..B1.21 ..B1.20 ..B1.7
+                                # Execution count [1.18e+04]
+        comisd    %xmm12, %xmm1                                 #49.51
+        jbe       ..B1.10       # Prob 78%                      #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.9:                         # Preds ..B1.8
+                                # Execution count [2.61e+03]
+        divsd     .L_2il0floatpacket.16(%rip), %xmm2            #49.51
+        movaps    %xmm8, %xmm0                                  #49.51
+        mulsd     %xmm2, %xmm0                                  #49.51
+        mulsd     %xmm7, %xmm2                                  #49.51
+        subsd     %xmm0, %xmm13                                 #49.51
+        subsd     %xmm2, %xmm6                                  #49.51
+        movups    %xmm9, 128(%rsp)                              #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.10:                        # Preds ..B1.9 ..B1.8
+                                # Execution count [1.18e+04]
+        movaps    %xmm13, %xmm5                                 #49.51
+        movaps    %xmm6, %xmm0                                  #49.51
+        mulsd     %xmm13, %xmm5                                 #49.51
+        mulsd     %xmm6, %xmm0                                  #49.51
+        subsd     %xmm11, %xmm5                                 #49.51
+        addsd     %xmm0, %xmm5                                  #49.51
+        comisd    %xmm12, %xmm5                                 #49.51
+        jbe       ..B1.15       # Prob 78%                      #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.11:                        # Preds ..B1.10
+                                # Execution count [2.61e+03]
+        movaps    %xmm13, %xmm2                                 #49.51
+        movaps    %xmm6, %xmm1                                  #49.51
+        movups    %xmm9, 128(%rsp)                              #49.51
+        addsd     %xmm13, %xmm2                                 #49.51
+        addsd     %xmm6, %xmm1                                  #49.51
+        movaps    %xmm2, %xmm4                                  #49.51
+        movaps    %xmm1, %xmm15                                 #49.51
+        mulsd     %xmm2, %xmm4                                  #49.51
+        mulsd     %xmm1, %xmm15                                 #49.51
+        unpcklpd  %xmm1, %xmm2                                  #49.51
+        movaps    %xmm8, %xmm1                                  #49.51
+        addsd     %xmm15, %xmm4                                 #49.51
+        movaps    %xmm7, %xmm15                                 #49.51
+        sqrtsd    %xmm4, %xmm4                                  #49.51
+        movaps    %xmm4, %xmm0                                  #49.51
+        unpcklpd  %xmm0, %xmm0                                  #49.51
+        divpd     %xmm0, %xmm2                                  #49.51
+        movaps    %xmm2, %xmm3                                  #49.51
+        movaps    %xmm8, %xmm0                                  #49.51
+        unpckhpd  %xmm2, %xmm2                                  #49.51
+        mulsd     %xmm3, %xmm1                                  #49.51
+        mulsd     %xmm2, %xmm15                                 #49.51
+        addsd     %xmm15, %xmm1                                 #49.51
+        movaps    %xmm7, %xmm15                                 #49.51
+        mulsd     %xmm1, %xmm0                                  #49.51
+        mulsd     %xmm1, %xmm15                                 #49.51
+        mulsd     %xmm1, %xmm1                                  #49.51
+        subsd     %xmm0, %xmm3                                  #49.51
+        subsd     %xmm15, %xmm2                                 #49.51
+        movaps    %xmm3, %xmm0                                  #49.51
+        unpcklpd  %xmm2, %xmm0                                  #49.51
+        mulsd     %xmm3, %xmm3                                  #49.51
+        mulsd     %xmm2, %xmm2                                  #49.51
+        addsd     %xmm2, %xmm3                                  #49.51
+        sqrtsd    %xmm3, %xmm3                                  #49.51
+        unpcklpd  %xmm3, %xmm3                                  #49.51
+        divpd     %xmm3, %xmm0                                  #49.51
+        movaps    %xmm10, %xmm3                                 #49.51
+        movups    %xmm0, 144(%rsp)                              #49.51
+        subsd     %xmm1, %xmm3                                  #49.51
+        pxor      %xmm0, %xmm0                                  #49.51
+        comisd    %xmm3, %xmm0                                  #49.51
+        jbe       ..B1.13       # Prob 50%                      #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm3 xmm4 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.12:                        # Preds ..B1.11
+                                # Execution count [1.30e+03]
+        pxor      %xmm3, %xmm3                                  #49.51
+        jmp       ..B1.14       # Prob 100%                     #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm3 xmm4 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.13:                        # Preds ..B1.11
+                                # Execution count [1.30e+03]
+        sqrtsd    %xmm3, %xmm3                                  #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm3 xmm4 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.14:                        # Preds ..B1.12 ..B1.13
+                                # Execution count [2.61e+03]
+        mulsd     %xmm3, %xmm4                                  #49.51
+        divsd     %xmm4, %xmm5                                  #49.51
+        movsd     144(%rsp), %xmm0                              #49.51
+        movsd     152(%rsp), %xmm1                              #49.51
+        mulsd     %xmm5, %xmm0                                  #49.51
+        mulsd     %xmm5, %xmm1                                  #49.51
+        subsd     %xmm0, %xmm13                                 #49.51
+        subsd     %xmm1, %xmm6                                  #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.15:                        # Preds ..B1.14 ..B1.10
+                                # Execution count [1.18e+04]
+        movaps    %xmm10, %xmm15                                #49.51
+        movaps    %xmm10, %xmm3                                 #49.51
+        movaps    %xmm10, %xmm4                                 #49.51
+        movaps    %xmm10, %xmm2                                 #49.51
+        movups    %xmm9, 128(%rsp)                              #49.51
+        addsd     %xmm13, %xmm15                                #49.51
+        addsd     %xmm6, %xmm3                                  #49.51
+        divsd     %xmm15, %xmm4                                 #49.51
+        divsd     %xmm3, %xmm2                                  #49.51
+        movaps    %xmm4, %xmm0                                  #49.51
+        movaps    %xmm2, %xmm1                                  #49.51
+        mulsd     %xmm4, %xmm4                                  #49.51
+        subsd     %xmm14, %xmm0                                 #49.51
+        subsd     120(%rsp), %xmm1                              #49.51[spill]
+        mulsd     %xmm2, %xmm2                                  #49.51
+        movaps    %xmm0, %xmm15                                 #49.51
+        movaps    %xmm1, %xmm5                                  #49.51
+        mulsd     %xmm0, %xmm15                                 #49.51
+        mulsd     %xmm1, %xmm5                                  #49.51
+        xorps     .L_2il0floatpacket.17(%rip), %xmm4            #49.51
+        addsd     %xmm5, %xmm15                                 #49.51
+        mulsd     %xmm0, %xmm4                                  #49.51
+        sqrtsd    %xmm15, %xmm15                                #49.51
+        movaps    %xmm0, %xmm5                                  #49.51
+        movaps    %xmm15, %xmm3                                 #49.51
+        unpcklpd  %xmm1, %xmm5                                  #49.51
+        unpcklpd  %xmm3, %xmm3                                  #49.51
+        divpd     %xmm3, %xmm5                                  #49.51
+        xorps     .L_2il0floatpacket.17(%rip), %xmm2            #49.51
+        movaps    %xmm5, %xmm3                                  #49.51
+        mulsd     %xmm1, %xmm2                                  #49.51
+        movaps    %xmm8, %xmm1                                  #49.51
+        divsd     %xmm15, %xmm4                                 #49.51
+        divsd     %xmm15, %xmm2                                 #49.51
+        unpckhpd  %xmm5, %xmm5                                  #49.51
+        mulsd     %xmm3, %xmm4                                  #49.51
+        movaps    %xmm5, %xmm0                                  #49.51
+        mulsd     %xmm5, %xmm2                                  #49.51
+        mulsd     %xmm7, %xmm0                                  #49.51
+        addsd     %xmm2, %xmm4                                  #49.51
+        movaps    %xmm3, %xmm2                                  #49.51
+        mulsd     %xmm8, %xmm2                                  #49.51
+        addsd     %xmm0, %xmm2                                  #49.51
+        movaps    %xmm7, %xmm0                                  #49.51
+        mulsd     %xmm2, %xmm1                                  #49.51
+        mulsd     %xmm2, %xmm0                                  #49.51
+        mulsd     %xmm2, %xmm2                                  #49.51
+        subsd     %xmm1, %xmm3                                  #49.51
+        subsd     %xmm0, %xmm5                                  #49.51
+        movaps    %xmm3, %xmm0                                  #49.51
+        movaps    %xmm10, %xmm1                                 #49.51
+        unpcklpd  %xmm5, %xmm0                                  #49.51
+        subsd     %xmm2, %xmm1                                  #49.51
+        mulsd     %xmm3, %xmm3                                  #49.51
+        mulsd     %xmm5, %xmm5                                  #49.51
+        addsd     %xmm5, %xmm3                                  #49.51
+        sqrtsd    %xmm3, %xmm3                                  #49.51
+        unpcklpd  %xmm3, %xmm3                                  #49.51
+        divpd     %xmm3, %xmm0                                  #49.51
+        movups    %xmm0, 160(%rsp)                              #49.51
+        pxor      %xmm0, %xmm0                                  #49.51
+        comisd    %xmm1, %xmm0                                  #49.51
+        jbe       ..B1.17       # Prob 50%                      #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm1 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B1.16:                        # Preds ..B1.15
+                                # Execution count [5.92e+03]
+        pxor      %xmm1, %xmm1                                  #49.51
+        jmp       ..B1.18       # Prob 100%                     #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm1 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B1.17:                        # Preds ..B1.15
+                                # Execution count [5.92e+03]
+        sqrtsd    %xmm1, %xmm1                                  #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm1 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B1.18:                        # Preds ..B1.16 ..B1.17
+                                # Execution count [1.18e+04]
+        andps     .L_2il0floatpacket.18(%rip), %xmm4            #49.51
+        movaps    %xmm6, %xmm0                                  #49.51
+        divsd     %xmm4, %xmm15                                 #49.51
+        mulsd     %xmm1, %xmm15                                 #49.51
+        movaps    %xmm13, %xmm1                                 #49.51
+        addsd     %xmm13, %xmm1                                 #49.51
+        addsd     %xmm6, %xmm0                                  #49.51
+        movaps    %xmm1, %xmm3                                  #49.51
+        pxor      %xmm4, %xmm4                                  #49.51
+        unpcklpd  %xmm0, %xmm3                                  #49.51
+        mulsd     %xmm1, %xmm1                                  #49.51
+        mulsd     %xmm0, %xmm0                                  #49.51
+        addsd     %xmm0, %xmm1                                  #49.51
+        movsd     168(%rsp), %xmm0                              #49.51
+        sqrtsd    %xmm1, %xmm1                                  #49.51
+        unpcklpd  %xmm1, %xmm1                                  #49.51
+        divpd     %xmm1, %xmm3                                  #49.51
+        movups    %xmm3, 144(%rsp)                              #49.51
+        movaps    %xmm3, %xmm2                                  #49.51
+        unpckhpd  %xmm3, %xmm3                                  #49.51
+        movsd     160(%rsp), %xmm1                              #49.51
+        mulsd     %xmm1, %xmm2                                  #49.51
+        mulsd     %xmm0, %xmm3                                  #49.51
+        addsd     %xmm3, %xmm2                                  #49.51
+        comisd    %xmm4, %xmm2                                  #49.51
+        jbe       ..B1.20       # Prob 78%                      #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B1.19:                        # Preds ..B1.18
+                                # Execution count [2.61e+03]
+        movaps    %xmm13, %xmm4                                 #49.51
+        movaps    %xmm6, %xmm3                                  #49.51
+        mulsd     %xmm13, %xmm4                                 #49.51
+        movaps    %xmm15, %xmm5                                 #49.51
+        mulsd     %xmm6, %xmm3                                  #49.51
+        addsd     %xmm3, %xmm4                                  #49.51
+        xorps     .L_2il0floatpacket.17(%rip), %xmm4            #49.51
+        subsd     .L_2il0floatpacket.14(%rip), %xmm4            #49.51
+        divsd     %xmm2, %xmm4                                  #49.51
+        movaps    %xmm4, %xmm15                                 #49.51
+        minsd     %xmm5, %xmm15                                 #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm0 xmm1 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B1.20:                        # Preds ..B1.19 ..B1.18
+                                # Execution count [1.18e+04]
+        mulsd     %xmm15, %xmm1                                 #49.51
+        movaps    %xmm10, %xmm3                                 #49.51
+        mulsd     %xmm0, %xmm15                                 #49.51
+        addsd     %xmm1, %xmm13                                 #49.51
+        addsd     %xmm15, %xmm6                                 #49.51
+        addsd     %xmm13, %xmm3                                 #49.51
+        movaps    %xmm10, %xmm4                                 #49.51
+        movaps    %xmm10, %xmm15                                #49.51
+        movaps    %xmm10, %xmm5                                 #49.51
+        movaps    %xmm13, %xmm0                                 #49.51
+        divsd     %xmm3, %xmm15                                 #49.51
+        mulsd     %xmm13, %xmm0                                 #49.51
+        addsd     %xmm6, %xmm4                                  #49.51
+        subsd     %xmm14, %xmm15                                #49.51
+        divsd     %xmm4, %xmm5                                  #49.51
+        movaps    %xmm6, %xmm1                                  #49.51
+        movaps    %xmm13, %xmm2                                 #49.51
+        mulsd     %xmm6, %xmm1                                  #49.51
+        subsd     %xmm11, %xmm0                                 #49.51
+        subsd     120(%rsp), %xmm5                              #49.51[spill]
+        addsd     %xmm1, %xmm0                                  #49.51
+        movaps    %xmm15, %xmm1                                 #49.51
+        unpcklpd  %xmm5, %xmm1                                  #49.51
+        mulsd     %xmm15, %xmm15                                #49.51
+        mulsd     %xmm5, %xmm5                                  #49.51
+        movsd     .L_2il0floatpacket.8(%rip), %xmm3             #49.51
+        addsd     %xmm5, %xmm15                                 #49.51
+        mulsd     %xmm6, %xmm3                                  #49.51
+        sqrtsd    %xmm15, %xmm15                                #49.51
+        subsd     %xmm3, %xmm2                                  #49.51
+        unpcklpd  %xmm15, %xmm15                                #49.51
+        divpd     %xmm15, %xmm1                                 #49.51
+        movups    %xmm1, 160(%rsp)                              #49.51
+        movaps    %xmm2, %xmm1                                  #49.51
+        andps     .L_2il0floatpacket.18(%rip), %xmm1            #49.51
+        movups    %xmm9, 128(%rsp)                              #49.51
+        comisd    %xmm12, %xmm1                                 #49.51
+        ja        ..B1.8        # Prob 82%                      #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.21:                        # Preds ..B1.20
+                                # Execution count [2.13e+03]: Infreq
+        comisd    %xmm12, %xmm0                                 #49.51
+        ja        ..B1.8        # Prob 82%                      #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.22:                        # Preds ..B1.21
+                                # Execution count [3.84e+02]: Infreq
+        andps     .L_2il0floatpacket.18(%rip), %xmm0            #49.51
+        comisd    %xmm12, %xmm0                                 #49.51
+        jbe       ..B1.24       # Prob 20%                      #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.23:                        # Preds ..B1.22
+                                # Execution count [3.07e+02]: Infreq
+        movsd     160(%rsp), %xmm3                              #49.51
+        movsd     168(%rsp), %xmm0                              #49.51
+        mulsd     136(%rsp), %xmm3                              #49.51
+        mulsd     128(%rsp), %xmm0                              #49.51
+        subsd     %xmm0, %xmm3                                  #49.51
+        andps     .L_2il0floatpacket.18(%rip), %xmm3            #49.51
+        comisd    %xmm12, %xmm3                                 #49.51
+        ja        ..B1.8        # Prob 82%                      #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.24:                        # Preds ..B1.22 ..B1.23
+                                # Execution count [5.53e+01]: Infreq
+        movsd     112(%rsp), %xmm3                              #[spill]
+        movsd     104(%rsp), %xmm0                              #[spill]
+        pxor      %xmm4, %xmm4                                  #
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm0 xmm3 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.25:                        # Preds ..B1.24
+                                # Execution count [1.32e+02]: Infreq
+        comisd    %xmm13, %xmm4                                 #49.51
+        jbe       ..B1.27       # Prob 38%                      #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm0 xmm3 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.26:                        # Preds ..B1.25
+                                # Execution count [8.18e+01]: Infreq
+        movaps    %xmm4, %xmm13                                 #49.51
+        movaps    %xmm13, %xmm6                                 #49.51
+                                # LOE rdx rcx rbx rbp r12 r13 r14 r15 xmm0 xmm3 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.27:                        # Preds ..B1.26 ..B1.25
+                                # Execution count [1.32e+02]: Infreq
+        movaps    %xmm13, %xmm1                                 #49.51
+        incq      %rdx                                          #49.51
+        unpcklpd  %xmm6, %xmm1                                  #49.51
+        movaps    %xmm6, %xmm2                                  #49.51
+        movups    %xmm1, (%rcx)                                 #49.51
+        addsd     %xmm1, %xmm0                                  #49.51
+        addsd     %xmm2, %xmm3                                  #49.51
+        cmpq      $12, %rdx                                     #49.51
+        jl        ..B1.7        # Prob 91%                      #49.51
+                                # LOE rdx rbx rbp r12 r13 r14 r15 xmm0 xmm3 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.28:                        # Preds ..B1.27
+                                # Execution count [1.10e+01]: Infreq
+        movsd     %xmm6, Q(%rip)                                #49.51
+        movsd     %xmm13, P(%rip)                               #49.51
+        testq     %rbp, %rbp                                    #49.51
+        je        ..B1.35       # Prob 12%                      #49.51
+                                # LOE rbx r12 r13 r14 r15 xmm0 xmm3
+..B1.29:                        # Preds ..B1.28
+                                # Execution count [9.68e+00]: Infreq
+        movsd     16(%rsp), %xmm1                               #49.51
+        addsd     %xmm0, %xmm1                                  #49.51
+        movsd     24(%rsp), %xmm0                               #49.51
+        addsd     %xmm3, %xmm0                                  #49.51
+        unpcklpd  %xmm0, %xmm1                                  #49.51
+        movups    %xmm1, (%r15)                                 #49.51
+                                # LOE rbx r12 r13 r14 r15
+..B1.30:                        # Preds ..B1.29 ..B1.35
+                                # Execution count [1.10e+01]: Infreq
+        movsd     40(%r15), %xmm1                               #49.51
+        movsd     32(%r15), %xmm2                               #49.51
+        movaps    %xmm1, %xmm4                                  #49.51
+        movsd     8(%r15), %xmm14                               #49.51
+        movaps    %xmm2, %xmm7                                  #49.51
+        movsd     (%r15), %xmm11                                #49.51
+        movaps    %xmm1, %xmm10                                 #49.51
+        mulsd     %xmm14, %xmm7                                 #49.51
+        movaps    %xmm2, %xmm3                                  #49.51
+        mulsd     %xmm11, %xmm4                                 #49.51
+        mulsd     %xmm1, %xmm10                                 #49.51
+        mulsd     %xmm2, %xmm3                                  #49.51
+        subsd     %xmm4, %xmm7                                  #49.51
+        addsd     %xmm3, %xmm10                                 #49.51
+        movaps    %xmm1, %xmm9                                  #49.51
+        movaps    %xmm2, %xmm6                                  #49.51
+        mulsd     %xmm7, %xmm9                                  #49.51
+        movaps    %xmm2, %xmm5                                  #49.51
+        mulsd     %xmm7, %xmm7                                  #49.51
+        mulsd     %xmm11, %xmm6                                 #49.51
+        movsd     .L_2il0floatpacket.12(%rip), %xmm0            #49.51
+        addsd     %xmm6, %xmm7                                  #49.51
+        mulsd     %xmm0, %xmm9                                  #49.51
+        xorps     .L_2il0floatpacket.17(%rip), %xmm5            #49.51
+        movsd     .L_2il0floatpacket.13(%rip), %xmm8            #49.51
+        addsd     %xmm5, %xmm9                                  #49.51
+        mulsd     %xmm10, %xmm8                                 #49.51
+        addsd     %xmm10, %xmm10                                #49.51
+        mulsd     %xmm7, %xmm8                                  #49.51
+        movaps    %xmm9, %xmm13                                 #49.51
+        mulsd     %xmm9, %xmm9                                  #49.51
+        xorps     .L_2il0floatpacket.17(%rip), %xmm13           #49.51
+        subsd     %xmm8, %xmm9                                  #49.51
+        sqrtsd    %xmm9, %xmm9                                  #49.51
+        subsd     %xmm9, %xmm13                                 #49.51
+        divsd     %xmm10, %xmm13                                #49.51
+        movaps    %xmm13, %xmm12                                #49.51
+        subsd     %xmm11, %xmm12                                #49.51
+        mulsd     %xmm1, %xmm12                                 #49.51
+        mulsd     %xmm0, %xmm1                                  #49.51
+        divsd     %xmm2, %xmm12                                 #49.51
+        mulsd     %xmm0, %xmm2                                  #49.51
+        addsd     %xmm12, %xmm14                                #49.51
+        unpcklpd  %xmm14, %xmm13                                #49.51
+        movups    %xmm13, (%r15)                                #49.51
+        mulsd     %xmm13, %xmm2                                 #49.51
+        movaps    %xmm13, %xmm15                                #49.51
+        unpckhpd  %xmm13, %xmm15                                #49.51
+        movsd     .L_2il0floatpacket.19(%rip), %xmm0            #49.51
+        mulsd     %xmm15, %xmm1                                 #49.51
+        subsd     %xmm2, %xmm0                                  #49.51
+        subsd     %xmm1, %xmm0                                  #49.51
+        divsd     %xmm0, %xmm2                                  #49.51
+        divsd     %xmm0, %xmm1                                  #49.51
+        movsd     %xmm2, 16(%r15)                               #49.51
+        movsd     %xmm1, 24(%r15)                               #49.51
+        testq     %r12, %r12                                    #49.51
+        je        ..B1.32       # Prob 12%                      #49.51
+                                # LOE rbx r13 r14 xmm13
+..B1.31:                        # Preds ..B1.30
+                                # Execution count [9.68e+00]: Infreq
+        movups    (%rsp), %xmm0                                 #49.51
+        addpd     %xmm13, %xmm0                                 #49.51
+        movups    %xmm0, (%r13)                                 #49.51
+        jmp       ..B1.33       # Prob 100%                     #49.51
+                                # LOE rbx r13 r14
+..B1.32:                        # Preds ..B1.30
+                                # Execution count [1.32e+00]: Infreq
+        movups    %xmm13, (%r13)                                #49.51
+                                # LOE rbx r13 r14
+..B1.33:                        # Preds ..B1.31 ..B1.32
+                                # Execution count [1.10e+01]: Infreq
+        movsd     40(%r13), %xmm1                               #49.51
+        incq      %r14                                          #45.28
+        movsd     32(%r13), %xmm2                               #49.51
+        movaps    %xmm1, %xmm4                                  #49.51
+        movsd     8(%r13), %xmm14                               #49.51
+        movaps    %xmm2, %xmm7                                  #49.51
+        movsd     (%r13), %xmm11                                #49.51
+        movaps    %xmm1, %xmm10                                 #49.51
+        mulsd     %xmm14, %xmm7                                 #49.51
+        movaps    %xmm2, %xmm3                                  #49.51
+        mulsd     %xmm11, %xmm4                                 #49.51
+        mulsd     %xmm1, %xmm10                                 #49.51
+        mulsd     %xmm2, %xmm3                                  #49.51
+        subsd     %xmm4, %xmm7                                  #49.51
+        addsd     %xmm3, %xmm10                                 #49.51
+        movaps    %xmm1, %xmm9                                  #49.51
+        movaps    %xmm2, %xmm6                                  #49.51
+        mulsd     %xmm7, %xmm9                                  #49.51
+        movaps    %xmm2, %xmm5                                  #49.51
+        mulsd     %xmm7, %xmm7                                  #49.51
+        mulsd     %xmm11, %xmm6                                 #49.51
+        movsd     .L_2il0floatpacket.12(%rip), %xmm0            #49.51
+        addsd     %xmm6, %xmm7                                  #49.51
+        mulsd     %xmm0, %xmm9                                  #49.51
+        xorps     .L_2il0floatpacket.17(%rip), %xmm5            #49.51
+        movsd     .L_2il0floatpacket.13(%rip), %xmm8            #49.51
+        addsd     %xmm5, %xmm9                                  #49.51
+        mulsd     %xmm10, %xmm8                                 #49.51
+        addsd     %xmm10, %xmm10                                #49.51
+        mulsd     %xmm7, %xmm8                                  #49.51
+        movaps    %xmm9, %xmm13                                 #49.51
+        mulsd     %xmm9, %xmm9                                  #49.51
+        xorps     .L_2il0floatpacket.17(%rip), %xmm13           #49.51
+        subsd     %xmm8, %xmm9                                  #49.51
+        sqrtsd    %xmm9, %xmm9                                  #49.51
+        movsd     .L_2il0floatpacket.19(%rip), %xmm15           #49.51
+        subsd     %xmm9, %xmm13                                 #49.51
+        divsd     %xmm10, %xmm13                                #49.51
+        movaps    %xmm13, %xmm12                                #49.51
+        subsd     %xmm11, %xmm12                                #49.51
+        mulsd     %xmm1, %xmm12                                 #49.51
+        mulsd     %xmm0, %xmm1                                  #49.51
+        divsd     %xmm2, %xmm12                                 #49.51
+        mulsd     %xmm0, %xmm2                                  #49.51
+        addsd     %xmm12, %xmm14                                #49.51
+        unpcklpd  %xmm14, %xmm13                                #49.51
+        movaps    %xmm13, %xmm3                                 #49.51
+        mulsd     %xmm3, %xmm2                                  #49.51
+        movups    %xmm13, (%r13)                                #49.51
+        subsd     %xmm2, %xmm15                                 #49.51
+        unpckhpd  %xmm13, %xmm13                                #49.51
+        mulsd     %xmm13, %xmm1                                 #49.51
+        movsd     64(%rsp), %xmm0                               #50.5[spill]
+        subsd     %xmm1, %xmm15                                 #49.51
+        addsd     %xmm3, %xmm0                                  #50.5
+        divsd     %xmm15, %xmm1                                 #49.51
+        divsd     %xmm15, %xmm2                                 #49.51
+        movsd     %xmm1, 24(%r13)                               #49.51
+        movsd     72(%rsp), %xmm1                               #51.5[spill]
+        movsd     %xmm2, 16(%r13)                               #49.51
+        addsd     %xmm14, %xmm1                                 #51.5
+        movsd     %xmm0, 64(%rsp)                               #50.5[spill]
+        movsd     %xmm1, 72(%rsp)                               #51.5[spill]
+        cmpq      $11, %r14                                     #45.15
+        jl        ..B1.2        # Prob 90%                      #45.15
+                                # LOE rbx r14 xmm0 xmm1
+..B1.34:                        # Preds ..B1.33
+                                # Execution count [1.00e+00]: Infreq
+        movaps    %xmm1, %xmm10                                 #
+        movq      %rbx, %rdi                                    #
+        movaps    %xmm0, %xmm9                                  #
+        unpcklpd  %xmm10, %xmm9                                 #54.3
+        movups    %xmm9, (%rdi)                                 #54.3
+        addq      $184, %rsp                                    #55.1
+	.cfi_def_cfa_offset 56
+	.cfi_restore 6
+        popq      %rbp                                          #55.1
+	.cfi_def_cfa_offset 48
+	.cfi_restore 3
+        popq      %rbx                                          #55.1
+	.cfi_def_cfa_offset 40
+	.cfi_restore 15
+        popq      %r15                                          #55.1
+	.cfi_def_cfa_offset 32
+	.cfi_restore 14
+        popq      %r14                                          #55.1
+	.cfi_def_cfa_offset 24
+	.cfi_restore 13
+        popq      %r13                                          #55.1
+	.cfi_def_cfa_offset 16
+	.cfi_restore 12
+        popq      %r12                                          #55.1
+	.cfi_def_cfa_offset 8
+        ret                                                     #55.1
+	.cfi_def_cfa_offset 240
+	.cfi_offset 3, -48
+	.cfi_offset 6, -56
+	.cfi_offset 12, -16
+	.cfi_offset 13, -24
+	.cfi_offset 14, -32
+	.cfi_offset 15, -40
+                                # LOE
+..B1.35:                        # Preds ..B1.28
+                                # Execution count [1.32e+00]: Infreq
+        unpcklpd  %xmm3, %xmm0                                  #49.51
+        movups    %xmm0, (%r15)                                 #49.51
+        jmp       ..B1.30       # Prob 100%                     #49.51
+        .align    16,0x90
+                                # LOE rbx r12 r13 r14 r15
+	.cfi_endproc
+# mark_end;
+	.type	Compute_Tree,@function
+	.size	Compute_Tree,.-Compute_Tree
+..LNCompute_Tree.0:
+	.data
+# -- End  Compute_Tree
+	.text
+.L_2__routine_start_Compute_Branch_1:
+# -- Begin  Compute_Branch
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl Compute_Branch
+# --- Compute_Branch(Branch, double, double, double, double)
+Compute_Branch:
+# parameter 1: %rdi
+# parameter 2: %xmm0
+# parameter 3: %xmm1
+# parameter 4: %xmm2
+# parameter 5: %xmm3
+..B2.1:                         # Preds ..B2.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_Compute_Branch.72:
+..L73:
+                                                         #102.50
+        pushq     %r14                                          #102.50
+	.cfi_def_cfa_offset 16
+	.cfi_offset 14, -16
+        pushq     %rbx                                          #102.50
+	.cfi_def_cfa_offset 24
+	.cfi_offset 3, -24
+        subq      $88, %rsp                                     #102.50
+	.cfi_def_cfa_offset 112
+        movq      %rdi, %r14                                    #102.50
+        movsd     40(%r14), %xmm5                               #111.49
+        movaps    %xmm5, %xmm4                                  #111.49
+        mulsd     %xmm1, %xmm4                                  #111.49
+        movsd     32(%r14), %xmm6                               #111.56
+        divsd     %xmm6, %xmm4                                  #111.56
+        mulsd     %xmm0, %xmm6                                  #112.48
+        addsd     %xmm0, %xmm4                                  #111.56
+        divsd     %xmm5, %xmm6                                  #112.55
+        mulsd     16(%r14), %xmm4                               #111.56
+        addsd     %xmm1, %xmm6                                  #112.55
+        mulsd     24(%r14), %xmm6                               #112.55
+        addsd     %xmm4, %xmm2                                  #111.56
+        movq      48(%r14), %rbx                                #114.10
+        addsd     %xmm6, %xmm3                                  #112.55
+        movsd     %xmm2, 24(%rsp)                               #111.56[spill]
+        movsd     %xmm3, 16(%rsp)                               #112.55[spill]
+        testq     %rbx, %rbx                                    #115.15
+        je        ..B2.3        # Prob 1%                       #115.15
+                                # LOE rbx rbp r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm3
+..B2.2:                         # Preds ..B2.1
+                                # Execution count [9.82e-01]
+        movq      %rbx, %rdi                                    #116.55
+..___tag_value_Compute_Branch.81:
+#       Compute_Branch(Branch, double, double, double, double)
+        call      Compute_Branch                                #116.55
+..___tag_value_Compute_Branch.82:
+                                # LOE rbx rbp r12 r13 r14 r15 xmm0 xmm1
+..B2.32:                        # Preds ..B2.2
+                                # Execution count [9.82e-01]
+        movsd     %xmm0, (%rsp)                                 #116.55
+        movsd     %xmm1, 8(%rsp)                                #116.55
+                                # LOE rbx rbp r12 r13 r14 r15
+..B2.3:                         # Preds ..B2.32 ..B2.1
+                                # Execution count [1.00e+00]
+        movq      $0xc014000000000000, %rdx                     #124.34
+        xorl      %eax, %eax                                    #122.8
+        movsd     .L_2il0floatpacket.19(%rip), %xmm15           #124.34
+        pxor      %xmm3, %xmm3                                  #120.3
+        movaps    %xmm15, %xmm7                                 #124.34
+        movaps    %xmm3, %xmm4                                  #120.3
+        movsd     .L_2il0floatpacket.9(%rip), %xmm8             #124.34
+        movaps    %xmm4, %xmm0                                  #120.16
+        movd      %rdx, %xmm12                                  #124.34
+        unpcklpd  %xmm12, %xmm7                                 #124.34
+        divpd     .L_2il0floatpacket.15(%rip), %xmm7            #124.34
+        movaps    %xmm7, %xmm6                                  #124.34
+        movaps    %xmm7, %xmm12                                 #124.34
+        unpckhpd  %xmm7, %xmm6                                  #124.34
+        movsd     16(%rsp), %xmm11                              #124.34[spill]
+        movsd     24(%rsp), %xmm13                              #124.34[spill]
+                                # LOE rax rbx rbp r12 r13 r14 r15 xmm0 xmm3 xmm4 xmm6 xmm7 xmm8 xmm11 xmm12 xmm13 xmm15
+..B2.4:                         # Preds ..B2.24 ..B2.3
+                                # Execution count [1.20e+01]
+        movq      56(%r14,%rax,8), %rdx                         #123.9
+        movsd     .L_2il0floatpacket.8(%rip), %xmm1             #124.34
+        movsd     %xmm0, 24(%rsp)                               #124.34[spill]
+        movsd     8(%rdx), %xmm10                               #124.34
+        mulsd     %xmm10, %xmm1                                 #124.34
+        movsd     (%rdx), %xmm9                                 #124.34
+        movaps    %xmm9, %xmm2                                  #124.34
+        movsd     %xmm4, 16(%rsp)                               #124.34[spill]
+        subsd     %xmm1, %xmm2                                  #124.34
+        movaps    %xmm2, %xmm1                                  #124.34
+        andps     .L_2il0floatpacket.18(%rip), %xmm1            #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.5:                         # Preds ..B2.20 ..B2.18 ..B2.17 ..B2.4
+                                # Execution count [1.08e+03]
+        comisd    %xmm8, %xmm1                                  #124.34
+        jbe       ..B2.7        # Prob 78%                      #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.6:                         # Preds ..B2.5
+                                # Execution count [2.37e+02]
+        divsd     .L_2il0floatpacket.16(%rip), %xmm2            #124.34
+        movaps    %xmm12, %xmm0                                 #124.34
+        mulsd     %xmm2, %xmm0                                  #124.34
+        mulsd     %xmm6, %xmm2                                  #124.34
+        subsd     %xmm0, %xmm9                                  #124.34
+        subsd     %xmm2, %xmm10                                 #124.34
+        movups    %xmm7, 32(%rsp)                               #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.7:                         # Preds ..B2.6 ..B2.5
+                                # Execution count [1.08e+03]
+        movaps    %xmm9, %xmm5                                  #124.34
+        movaps    %xmm10, %xmm0                                 #124.34
+        mulsd     %xmm9, %xmm5                                  #124.34
+        mulsd     %xmm10, %xmm0                                 #124.34
+        subsd     .L_2il0floatpacket.10(%rip), %xmm5            #124.34
+        addsd     %xmm0, %xmm5                                  #124.34
+        comisd    %xmm8, %xmm5                                  #124.34
+        jbe       ..B2.12       # Prob 78%                      #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.8:                         # Preds ..B2.7
+                                # Execution count [2.37e+02]
+        movaps    %xmm9, %xmm2                                  #124.34
+        movaps    %xmm10, %xmm1                                 #124.34
+        movups    %xmm7, 32(%rsp)                               #124.34
+        addsd     %xmm9, %xmm2                                  #124.34
+        addsd     %xmm10, %xmm1                                 #124.34
+        movaps    %xmm2, %xmm4                                  #124.34
+        movaps    %xmm1, %xmm14                                 #124.34
+        mulsd     %xmm2, %xmm4                                  #124.34
+        mulsd     %xmm1, %xmm14                                 #124.34
+        unpcklpd  %xmm1, %xmm2                                  #124.34
+        movaps    %xmm12, %xmm1                                 #124.34
+        addsd     %xmm14, %xmm4                                 #124.34
+        movaps    %xmm6, %xmm14                                 #124.34
+        sqrtsd    %xmm4, %xmm4                                  #124.34
+        movaps    %xmm4, %xmm0                                  #124.34
+        unpcklpd  %xmm0, %xmm0                                  #124.34
+        divpd     %xmm0, %xmm2                                  #124.34
+        movaps    %xmm2, %xmm3                                  #124.34
+        movaps    %xmm12, %xmm0                                 #124.34
+        unpckhpd  %xmm2, %xmm2                                  #124.34
+        mulsd     %xmm3, %xmm1                                  #124.34
+        mulsd     %xmm2, %xmm14                                 #124.34
+        addsd     %xmm14, %xmm1                                 #124.34
+        movaps    %xmm6, %xmm14                                 #124.34
+        mulsd     %xmm1, %xmm0                                  #124.34
+        mulsd     %xmm1, %xmm14                                 #124.34
+        mulsd     %xmm1, %xmm1                                  #124.34
+        subsd     %xmm0, %xmm3                                  #124.34
+        subsd     %xmm14, %xmm2                                 #124.34
+        movaps    %xmm3, %xmm0                                  #124.34
+        unpcklpd  %xmm2, %xmm0                                  #124.34
+        mulsd     %xmm3, %xmm3                                  #124.34
+        mulsd     %xmm2, %xmm2                                  #124.34
+        addsd     %xmm2, %xmm3                                  #124.34
+        sqrtsd    %xmm3, %xmm3                                  #124.34
+        unpcklpd  %xmm3, %xmm3                                  #124.34
+        divpd     %xmm3, %xmm0                                  #124.34
+        movaps    %xmm15, %xmm3                                 #124.34
+        movups    %xmm0, 48(%rsp)                               #124.34
+        subsd     %xmm1, %xmm3                                  #124.34
+        pxor      %xmm0, %xmm0                                  #124.34
+        comisd    %xmm3, %xmm0                                  #124.34
+        jbe       ..B2.10       # Prob 50%                      #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm3 xmm4 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.9:                         # Preds ..B2.8
+                                # Execution count [1.18e+02]
+        pxor      %xmm3, %xmm3                                  #124.34
+        jmp       ..B2.11       # Prob 100%                     #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm3 xmm4 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.10:                        # Preds ..B2.8
+                                # Execution count [1.18e+02]
+        sqrtsd    %xmm3, %xmm3                                  #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm3 xmm4 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.11:                        # Preds ..B2.9 ..B2.10
+                                # Execution count [2.37e+02]
+        mulsd     %xmm3, %xmm4                                  #124.34
+        divsd     %xmm4, %xmm5                                  #124.34
+        movsd     48(%rsp), %xmm0                               #124.34
+        movsd     56(%rsp), %xmm1                               #124.34
+        mulsd     %xmm5, %xmm0                                  #124.34
+        mulsd     %xmm5, %xmm1                                  #124.34
+        subsd     %xmm0, %xmm9                                  #124.34
+        subsd     %xmm1, %xmm10                                 #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.12:                        # Preds ..B2.11 ..B2.7
+                                # Execution count [1.08e+03]
+        movaps    %xmm15, %xmm14                                #124.34
+        movaps    %xmm15, %xmm3                                 #124.34
+        movaps    %xmm15, %xmm4                                 #124.34
+        movaps    %xmm15, %xmm2                                 #124.34
+        movups    %xmm7, 32(%rsp)                               #124.34
+        addsd     %xmm9, %xmm14                                 #124.34
+        addsd     %xmm10, %xmm3                                 #124.34
+        divsd     %xmm14, %xmm4                                 #124.34
+        divsd     %xmm3, %xmm2                                  #124.34
+        movaps    %xmm4, %xmm0                                  #124.34
+        movaps    %xmm2, %xmm1                                  #124.34
+        mulsd     %xmm4, %xmm4                                  #124.34
+        subsd     %xmm13, %xmm0                                 #124.34
+        subsd     %xmm11, %xmm1                                 #124.34
+        mulsd     %xmm2, %xmm2                                  #124.34
+        movaps    %xmm0, %xmm14                                 #124.34
+        movaps    %xmm1, %xmm5                                  #124.34
+        mulsd     %xmm0, %xmm14                                 #124.34
+        mulsd     %xmm1, %xmm5                                  #124.34
+        xorps     .L_2il0floatpacket.17(%rip), %xmm4            #124.34
+        addsd     %xmm5, %xmm14                                 #124.34
+        mulsd     %xmm0, %xmm4                                  #124.34
+        sqrtsd    %xmm14, %xmm14                                #124.34
+        movaps    %xmm0, %xmm5                                  #124.34
+        movaps    %xmm14, %xmm3                                 #124.34
+        unpcklpd  %xmm1, %xmm5                                  #124.34
+        unpcklpd  %xmm3, %xmm3                                  #124.34
+        divpd     %xmm3, %xmm5                                  #124.34
+        xorps     .L_2il0floatpacket.17(%rip), %xmm2            #124.34
+        movaps    %xmm5, %xmm3                                  #124.34
+        mulsd     %xmm1, %xmm2                                  #124.34
+        movaps    %xmm12, %xmm1                                 #124.34
+        divsd     %xmm14, %xmm4                                 #124.34
+        divsd     %xmm14, %xmm2                                 #124.34
+        unpckhpd  %xmm5, %xmm5                                  #124.34
+        mulsd     %xmm3, %xmm4                                  #124.34
+        movaps    %xmm5, %xmm0                                  #124.34
+        mulsd     %xmm5, %xmm2                                  #124.34
+        mulsd     %xmm6, %xmm0                                  #124.34
+        addsd     %xmm2, %xmm4                                  #124.34
+        movaps    %xmm3, %xmm2                                  #124.34
+        mulsd     %xmm12, %xmm2                                 #124.34
+        addsd     %xmm0, %xmm2                                  #124.34
+        movaps    %xmm6, %xmm0                                  #124.34
+        mulsd     %xmm2, %xmm1                                  #124.34
+        mulsd     %xmm2, %xmm0                                  #124.34
+        mulsd     %xmm2, %xmm2                                  #124.34
+        subsd     %xmm1, %xmm3                                  #124.34
+        subsd     %xmm0, %xmm5                                  #124.34
+        movaps    %xmm3, %xmm0                                  #124.34
+        movaps    %xmm15, %xmm1                                 #124.34
+        unpcklpd  %xmm5, %xmm0                                  #124.34
+        subsd     %xmm2, %xmm1                                  #124.34
+        mulsd     %xmm3, %xmm3                                  #124.34
+        mulsd     %xmm5, %xmm5                                  #124.34
+        addsd     %xmm5, %xmm3                                  #124.34
+        sqrtsd    %xmm3, %xmm3                                  #124.34
+        unpcklpd  %xmm3, %xmm3                                  #124.34
+        divpd     %xmm3, %xmm0                                  #124.34
+        movups    %xmm0, 64(%rsp)                               #124.34
+        pxor      %xmm0, %xmm0                                  #124.34
+        comisd    %xmm1, %xmm0                                  #124.34
+        jbe       ..B2.14       # Prob 50%                      #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm1 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B2.13:                        # Preds ..B2.12
+                                # Execution count [5.38e+02]
+        pxor      %xmm1, %xmm1                                  #124.34
+        jmp       ..B2.15       # Prob 100%                     #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm1 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B2.14:                        # Preds ..B2.12
+                                # Execution count [5.38e+02]
+        sqrtsd    %xmm1, %xmm1                                  #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm1 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B2.15:                        # Preds ..B2.13 ..B2.14
+                                # Execution count [1.08e+03]
+        andps     .L_2il0floatpacket.18(%rip), %xmm4            #124.34
+        movaps    %xmm10, %xmm0                                 #124.34
+        divsd     %xmm4, %xmm14                                 #124.34
+        mulsd     %xmm1, %xmm14                                 #124.34
+        movaps    %xmm9, %xmm1                                  #124.34
+        addsd     %xmm9, %xmm1                                  #124.34
+        addsd     %xmm10, %xmm0                                 #124.34
+        movaps    %xmm1, %xmm3                                  #124.34
+        pxor      %xmm4, %xmm4                                  #124.34
+        unpcklpd  %xmm0, %xmm3                                  #124.34
+        mulsd     %xmm1, %xmm1                                  #124.34
+        mulsd     %xmm0, %xmm0                                  #124.34
+        addsd     %xmm0, %xmm1                                  #124.34
+        movsd     72(%rsp), %xmm0                               #124.34
+        sqrtsd    %xmm1, %xmm1                                  #124.34
+        unpcklpd  %xmm1, %xmm1                                  #124.34
+        divpd     %xmm1, %xmm3                                  #124.34
+        movups    %xmm3, 48(%rsp)                               #124.34
+        movaps    %xmm3, %xmm2                                  #124.34
+        unpckhpd  %xmm3, %xmm3                                  #124.34
+        movsd     64(%rsp), %xmm1                               #124.34
+        mulsd     %xmm1, %xmm2                                  #124.34
+        mulsd     %xmm0, %xmm3                                  #124.34
+        addsd     %xmm3, %xmm2                                  #124.34
+        comisd    %xmm4, %xmm2                                  #124.34
+        jbe       ..B2.17       # Prob 78%                      #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B2.16:                        # Preds ..B2.15
+                                # Execution count [2.37e+02]
+        movaps    %xmm9, %xmm4                                  #124.34
+        movaps    %xmm10, %xmm3                                 #124.34
+        mulsd     %xmm9, %xmm4                                  #124.34
+        movaps    %xmm14, %xmm5                                 #124.34
+        mulsd     %xmm10, %xmm3                                 #124.34
+        addsd     %xmm3, %xmm4                                  #124.34
+        xorps     .L_2il0floatpacket.17(%rip), %xmm4            #124.34
+        subsd     .L_2il0floatpacket.14(%rip), %xmm4            #124.34
+        divsd     %xmm2, %xmm4                                  #124.34
+        movaps    %xmm4, %xmm14                                 #124.34
+        minsd     %xmm5, %xmm14                                 #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm0 xmm1 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B2.17:                        # Preds ..B2.16 ..B2.15
+                                # Execution count [1.08e+03]
+        mulsd     %xmm14, %xmm1                                 #124.34
+        movaps    %xmm15, %xmm3                                 #124.34
+        mulsd     %xmm0, %xmm14                                 #124.34
+        addsd     %xmm1, %xmm9                                  #124.34
+        addsd     %xmm14, %xmm10                                #124.34
+        addsd     %xmm9, %xmm3                                  #124.34
+        movaps    %xmm15, %xmm4                                 #124.34
+        movaps    %xmm15, %xmm14                                #124.34
+        movaps    %xmm15, %xmm5                                 #124.34
+        movaps    %xmm9, %xmm0                                  #124.34
+        divsd     %xmm3, %xmm14                                 #124.34
+        mulsd     %xmm9, %xmm0                                  #124.34
+        addsd     %xmm10, %xmm4                                 #124.34
+        subsd     %xmm13, %xmm14                                #124.34
+        divsd     %xmm4, %xmm5                                  #124.34
+        movaps    %xmm10, %xmm1                                 #124.34
+        movaps    %xmm9, %xmm2                                  #124.34
+        mulsd     %xmm10, %xmm1                                 #124.34
+        subsd     .L_2il0floatpacket.10(%rip), %xmm0            #124.34
+        subsd     %xmm11, %xmm5                                 #124.34
+        addsd     %xmm1, %xmm0                                  #124.34
+        movaps    %xmm14, %xmm1                                 #124.34
+        unpcklpd  %xmm5, %xmm1                                  #124.34
+        mulsd     %xmm14, %xmm14                                #124.34
+        mulsd     %xmm5, %xmm5                                  #124.34
+        movsd     .L_2il0floatpacket.8(%rip), %xmm3             #124.34
+        addsd     %xmm5, %xmm14                                 #124.34
+        mulsd     %xmm10, %xmm3                                 #124.34
+        sqrtsd    %xmm14, %xmm14                                #124.34
+        subsd     %xmm3, %xmm2                                  #124.34
+        unpcklpd  %xmm14, %xmm14                                #124.34
+        divpd     %xmm14, %xmm1                                 #124.34
+        movups    %xmm1, 64(%rsp)                               #124.34
+        movaps    %xmm2, %xmm1                                  #124.34
+        andps     .L_2il0floatpacket.18(%rip), %xmm1            #124.34
+        movups    %xmm7, 32(%rsp)                               #124.34
+        comisd    %xmm8, %xmm1                                  #124.34
+        ja        ..B2.5        # Prob 82%                      #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.18:                        # Preds ..B2.17
+                                # Execution count [1.94e+02]: Infreq
+        comisd    %xmm8, %xmm0                                  #124.34
+        ja        ..B2.5        # Prob 82%                      #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.19:                        # Preds ..B2.18
+                                # Execution count [3.49e+01]: Infreq
+        andps     .L_2il0floatpacket.18(%rip), %xmm0            #124.34
+        comisd    %xmm8, %xmm0                                  #124.34
+        jbe       ..B2.21       # Prob 20%                      #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.20:                        # Preds ..B2.19
+                                # Execution count [2.79e+01]: Infreq
+        movsd     64(%rsp), %xmm3                               #124.34
+        movsd     72(%rsp), %xmm0                               #124.34
+        mulsd     40(%rsp), %xmm3                               #124.34
+        mulsd     32(%rsp), %xmm0                               #124.34
+        subsd     %xmm0, %xmm3                                  #124.34
+        andps     .L_2il0floatpacket.18(%rip), %xmm3            #124.34
+        comisd    %xmm8, %xmm3                                  #124.34
+        ja        ..B2.5        # Prob 82%                      #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.21:                        # Preds ..B2.19 ..B2.20
+                                # Execution count [5.02e+00]: Infreq
+        movsd     24(%rsp), %xmm0                               #[spill]
+        movsd     16(%rsp), %xmm4                               #[spill]
+        pxor      %xmm3, %xmm3                                  #
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm0 xmm3 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.22:                        # Preds ..B2.21
+                                # Execution count [1.20e+01]: Infreq
+        comisd    %xmm9, %xmm3                                  #124.34
+        jbe       ..B2.24       # Prob 38%                      #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm0 xmm3 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.23:                        # Preds ..B2.22
+                                # Execution count [7.44e+00]: Infreq
+        movaps    %xmm3, %xmm9                                  #124.34
+        movaps    %xmm9, %xmm10                                 #124.34
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm0 xmm3 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.24:                        # Preds ..B2.23 ..B2.22
+                                # Execution count [1.20e+01]: Infreq
+        movaps    %xmm9, %xmm1                                  #124.34
+        incq      %rax                                          #122.34
+        unpcklpd  %xmm10, %xmm1                                 #124.34
+        movaps    %xmm10, %xmm2                                 #124.34
+        movups    %xmm1, (%rdx)                                 #124.34
+        addsd     %xmm1, %xmm4                                  #125.5
+        addsd     %xmm2, %xmm0                                  #126.5
+        cmpq      $12, %rax                                     #122.15
+        jl        ..B2.4        # Prob 91%                      #122.15
+                                # LOE rax rbx rbp r12 r13 r14 r15 xmm0 xmm3 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B2.25:                        # Preds ..B2.24
+                                # Execution count [1.00e+00]: Infreq
+        movsd     %xmm10, Q(%rip)                               #124.34
+        movsd     %xmm9, P(%rip)                                #124.34
+        testq     %rbx, %rbx                                    #128.15
+        je        ..B2.28       # Prob 12%                      #128.15
+                                # LOE rbp r12 r13 r14 r15 xmm0 xmm4 xmm15
+..B2.26:                        # Preds ..B2.25
+                                # Execution count [8.80e-01]: Infreq
+        movsd     (%rsp), %xmm1                                 #129.15
+        movsd     8(%rsp), %xmm2                                #130.15
+        addsd     %xmm4, %xmm1                                  #129.22
+        addsd     %xmm0, %xmm2                                  #130.22
+        unpcklpd  %xmm2, %xmm1                                  #130.5
+        movups    %xmm1, (%r14)                                 #130.5
+                                # LOE rbp r12 r13 r14 r15 xmm15
+..B2.27:                        # Preds ..B2.26 ..B2.28
+                                # Execution count [1.00e+00]: Infreq
+        movsd     40(%r14), %xmm4                               #137.21
+        movsd     32(%r14), %xmm3                               #137.7
+        movaps    %xmm4, %xmm6                                  #138.45
+        movsd     8(%r14), %xmm2                                #138.21
+        movaps    %xmm3, %xmm9                                  #138.21
+        movsd     (%r14), %xmm13                                #138.45
+        movaps    %xmm4, %xmm12                                 #137.27
+        mulsd     %xmm2, %xmm9                                  #138.21
+        movaps    %xmm3, %xmm5                                  #137.13
+        mulsd     %xmm13, %xmm6                                 #138.45
+        mulsd     %xmm4, %xmm12                                 #137.27
+        mulsd     %xmm3, %xmm5                                  #137.13
+        subsd     %xmm6, %xmm9                                  #138.45
+        addsd     %xmm5, %xmm12                                 #137.27
+        movaps    %xmm4, %xmm11                                 #138.45
+        movaps    %xmm3, %xmm8                                  #140.19
+        mulsd     %xmm9, %xmm11                                 #138.45
+        movaps    %xmm3, %xmm7                                  #138.55
+        mulsd     %xmm9, %xmm9                                  #140.9
+        mulsd     %xmm13, %xmm8                                 #140.19
+        movsd     .L_2il0floatpacket.12(%rip), %xmm1            #138.7
+        addsd     %xmm8, %xmm9                                  #140.19
+        mulsd     %xmm1, %xmm11                                 #138.45
+        xorps     .L_2il0floatpacket.17(%rip), %xmm7            #138.55
+        movsd     .L_2il0floatpacket.13(%rip), %xmm10           #141.23
+        addsd     %xmm7, %xmm11                                 #138.45
+        mulsd     %xmm12, %xmm10                                #141.25
+        addsd     %xmm12, %xmm12                                #141.34
+        mulsd     %xmm9, %xmm10                                 #141.27
+        movaps    %xmm11, %xmm5                                 #141.12
+        mulsd     %xmm11, %xmm11                                #141.21
+        xorps     .L_2il0floatpacket.17(%rip), %xmm5            #141.12
+        subsd     %xmm10, %xmm11                                #141.27
+        sqrtsd    %xmm11, %xmm11                                #141.14
+        subsd     %xmm11, %xmm5                                 #141.14
+        divsd     %xmm12, %xmm5                                 #141.34
+        movaps    %xmm5, %xmm14                                 #142.30
+        subsd     %xmm13, %xmm14                                #142.30
+        mulsd     %xmm4, %xmm14                                 #142.39
+        mulsd     %xmm1, %xmm4                                  #146.9
+        divsd     %xmm3, %xmm14                                 #142.46
+        mulsd     %xmm1, %xmm3                                  #145.9
+        addsd     %xmm14, %xmm2                                 #142.46
+        unpcklpd  %xmm2, %xmm5                                  #143.3
+        movaps    %xmm5, %xmm0                                  #143.3
+        movaps    %xmm2, %xmm1                                  #150.10
+        mulsd     %xmm0, %xmm3                                  #145.15
+        movups    %xmm5, (%r14)                                 #143.3
+        subsd     %xmm3, %xmm15                                 #147.20
+        unpckhpd  %xmm5, %xmm5                                  #146.15
+        mulsd     %xmm5, %xmm4                                  #146.15
+        subsd     %xmm4, %xmm15                                 #147.22
+        divsd     %xmm15, %xmm3                                 #147.22
+        divsd     %xmm15, %xmm4                                 #148.21
+        movsd     %xmm3, 16(%r14)                               #147.3
+        movsd     %xmm4, 24(%r14)                               #148.3
+        addq      $88, %rsp                                     #150.10
+	.cfi_def_cfa_offset 24
+	.cfi_restore 3
+        popq      %rbx                                          #150.10
+	.cfi_def_cfa_offset 16
+	.cfi_restore 14
+        popq      %r14                                          #150.10
+	.cfi_def_cfa_offset 8
+        ret                                                     #150.10
+	.cfi_def_cfa_offset 112
+	.cfi_offset 3, -24
+	.cfi_offset 14, -16
+                                # LOE
+..B2.28:                        # Preds ..B2.25
+                                # Execution count [1.20e-01]: Infreq
+        unpcklpd  %xmm0, %xmm4                                  #133.5
+        movups    %xmm4, (%r14)                                 #133.5
+        jmp       ..B2.27       # Prob 100%                     #133.5
+        .align    16,0x90
+                                # LOE rbp r12 r13 r14 r15 xmm15
+	.cfi_endproc
+# mark_end;
+	.type	Compute_Branch,@function
+	.size	Compute_Branch,.-Compute_Branch
+..LNCompute_Branch.1:
+	.data
+# -- End  Compute_Branch
+	.text
+.L_2__routine_start_Compute_Lateral_2:
+# -- Begin  Compute_Lateral
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl Compute_Lateral
+# --- Compute_Lateral(Lateral, double, double, double, double)
+Compute_Lateral:
+# parameter 1: %rdi
+# parameter 2: %xmm0
+# parameter 3: %xmm1
+# parameter 4: %xmm2
+# parameter 5: %xmm3
+..B3.1:                         # Preds ..B3.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_Compute_Lateral.98:
+..L99:
+                                                         #58.50
+        pushq     %r13                                          #58.50
+	.cfi_def_cfa_offset 16
+	.cfi_offset 13, -16
+        pushq     %r14                                          #58.50
+	.cfi_def_cfa_offset 24
+	.cfi_offset 14, -24
+        pushq     %r15                                          #58.50
+	.cfi_def_cfa_offset 32
+	.cfi_offset 15, -32
+        pushq     %rbx                                          #58.50
+	.cfi_def_cfa_offset 40
+	.cfi_offset 3, -40
+        subq      $104, %rsp                                    #58.50
+	.cfi_def_cfa_offset 144
+        movq      %rdi, %r14                                    #58.50
+        movsd     %xmm1, 24(%rsp)                               #58.50[spill]
+        movsd     %xmm0, 16(%rsp)                               #58.50[spill]
+        movsd     40(%r14), %xmm5                               #66.48
+        movaps    %xmm5, %xmm4                                  #66.48
+        mulsd     %xmm1, %xmm4                                  #66.48
+        movsd     32(%r14), %xmm6                               #66.54
+        divsd     %xmm6, %xmm4                                  #66.54
+        mulsd     %xmm0, %xmm6                                  #67.47
+        addsd     %xmm0, %xmm4                                  #66.54
+        divsd     %xmm5, %xmm6                                  #67.53
+        mulsd     16(%r14), %xmm4                               #66.54
+        addsd     %xmm1, %xmm6                                  #67.53
+        mulsd     24(%r14), %xmm6                               #67.53
+        addsd     %xmm4, %xmm2                                  #66.54
+        movq      48(%r14), %r13                                #69.10
+        addsd     %xmm6, %xmm3                                  #67.53
+        movsd     %xmm2, 32(%rsp)                               #66.54[spill]
+        movsd     %xmm3, 40(%rsp)                               #67.53[spill]
+        testq     %r13, %r13                                    #70.15
+        je        ..B3.3        # Prob 1%                       #70.15
+                                # LOE rbp r12 r13 r14 xmm0 xmm1 xmm2 xmm3
+..B3.2:                         # Preds ..B3.1
+                                # Execution count [9.82e-01]
+        movq      %r13, %rdi                                    #71.56
+..___tag_value_Compute_Lateral.113:
+#       Compute_Lateral(Lateral, double, double, double, double)
+        call      Compute_Lateral                               #71.56
+..___tag_value_Compute_Lateral.114:
+                                # LOE rbp r12 r13 r14 xmm0 xmm1
+..B3.37:                        # Preds ..B3.2
+                                # Execution count [9.82e-01]
+        movsd     %xmm0, (%rsp)                                 #71.56
+        movsd     %xmm1, 8(%rsp)                                #71.56
+                                # LOE rbp r12 r13 r14
+..B3.3:                         # Preds ..B3.37 ..B3.1
+                                # Execution count [1.00e+00]
+        movq      56(%r14), %r15                                #73.8
+        movsd     24(%rsp), %xmm4                               #74.51[spill]
+        movaps    %xmm4, %xmm0                                  #74.51
+        movsd     40(%r15), %xmm3                               #74.51
+        mulsd     %xmm3, %xmm0                                  #74.51
+        movsd     32(%r15), %xmm5                               #74.51
+        movsd     16(%rsp), %xmm2                               #74.51[spill]
+        divsd     %xmm5, %xmm0                                  #74.51
+        mulsd     %xmm2, %xmm5                                  #74.51
+        addsd     %xmm2, %xmm0                                  #74.51
+        divsd     %xmm3, %xmm5                                  #74.51
+        mulsd     16(%r15), %xmm0                               #74.51
+        addsd     %xmm4, %xmm5                                  #74.51
+        mulsd     24(%r15), %xmm5                               #74.51
+        movsd     32(%rsp), %xmm1                               #74.51[spill]
+        movsd     40(%rsp), %xmm6                               #74.51[spill]
+        addsd     %xmm0, %xmm1                                  #74.51
+        addsd     %xmm5, %xmm6                                  #74.51
+        movq      48(%r15), %rbx                                #74.51
+        movsd     %xmm1, 32(%rsp)                               #74.51[spill]
+        movsd     %xmm6, 40(%rsp)                               #74.51[spill]
+        testq     %rbx, %rbx                                    #74.51
+        je        ..B3.5        # Prob 1%                       #74.51
+                                # LOE rbx rbp r12 r13 r14 r15 xmm2 xmm4 xmm6
+..B3.4:                         # Preds ..B3.3
+                                # Execution count [9.82e-01]
+        movaps    %xmm2, %xmm0                                  #74.51
+        movq      %rbx, %rdi                                    #74.51
+        movaps    %xmm4, %xmm1                                  #74.51
+        movsd     32(%rsp), %xmm2                               #74.51[spill]
+        movaps    %xmm6, %xmm3                                  #74.51
+..___tag_value_Compute_Lateral.122:
+#       Compute_Branch(Branch, double, double, double, double)
+        call      Compute_Branch                                #74.51
+..___tag_value_Compute_Lateral.123:
+                                # LOE rbx rbp r12 r13 r14 r15 xmm0 xmm1
+..B3.38:                        # Preds ..B3.4
+                                # Execution count [9.82e-01]
+        movsd     %xmm0, 16(%rsp)                               #74.51
+        movsd     %xmm1, 24(%rsp)                               #74.51
+                                # LOE rbx rbp r12 r13 r14 r15
+..B3.5:                         # Preds ..B3.38 ..B3.3
+                                # Execution count [1.00e+00]
+        movq      $0xc014000000000000, %rdx                     #74.51
+        xorl      %eax, %eax                                    #74.51
+        movsd     .L_2il0floatpacket.19(%rip), %xmm15           #74.51
+        pxor      %xmm3, %xmm3                                  #74.51
+        movaps    %xmm15, %xmm7                                 #74.51
+        movaps    %xmm3, %xmm4                                  #74.51
+        movsd     .L_2il0floatpacket.9(%rip), %xmm8             #74.51
+        movaps    %xmm4, %xmm0                                  #74.51
+        movd      %rdx, %xmm12                                  #74.51
+        unpcklpd  %xmm12, %xmm7                                 #74.51
+        divpd     .L_2il0floatpacket.15(%rip), %xmm7            #74.51
+        movaps    %xmm7, %xmm6                                  #74.51
+        movaps    %xmm7, %xmm12                                 #74.51
+        unpckhpd  %xmm7, %xmm6                                  #74.51
+        movsd     40(%rsp), %xmm11                              #74.51[spill]
+        movsd     32(%rsp), %xmm13                              #74.51[spill]
+                                # LOE rax rbx rbp r12 r13 r14 r15 xmm0 xmm3 xmm4 xmm6 xmm7 xmm8 xmm11 xmm12 xmm13 xmm15
+..B3.6:                         # Preds ..B3.26 ..B3.5
+                                # Execution count [1.20e+01]
+        movq      56(%r15,%rax,8), %rdx                         #74.51
+        movsd     .L_2il0floatpacket.8(%rip), %xmm1             #74.51
+        movsd     %xmm0, 40(%rsp)                               #74.51[spill]
+        movsd     8(%rdx), %xmm10                               #74.51
+        mulsd     %xmm10, %xmm1                                 #74.51
+        movsd     (%rdx), %xmm9                                 #74.51
+        movaps    %xmm9, %xmm2                                  #74.51
+        movsd     %xmm4, 32(%rsp)                               #74.51[spill]
+        subsd     %xmm1, %xmm2                                  #74.51
+        movaps    %xmm2, %xmm1                                  #74.51
+        andps     .L_2il0floatpacket.18(%rip), %xmm1            #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.7:                         # Preds ..B3.22 ..B3.20 ..B3.19 ..B3.6
+                                # Execution count [1.08e+03]
+        comisd    %xmm8, %xmm1                                  #74.51
+        jbe       ..B3.9        # Prob 78%                      #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.8:                         # Preds ..B3.7
+                                # Execution count [2.37e+02]
+        divsd     .L_2il0floatpacket.16(%rip), %xmm2            #74.51
+        movaps    %xmm12, %xmm0                                 #74.51
+        mulsd     %xmm2, %xmm0                                  #74.51
+        mulsd     %xmm6, %xmm2                                  #74.51
+        subsd     %xmm0, %xmm9                                  #74.51
+        subsd     %xmm2, %xmm10                                 #74.51
+        movups    %xmm7, 48(%rsp)                               #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.9:                         # Preds ..B3.8 ..B3.7
+                                # Execution count [1.08e+03]
+        movaps    %xmm9, %xmm5                                  #74.51
+        movaps    %xmm10, %xmm0                                 #74.51
+        mulsd     %xmm9, %xmm5                                  #74.51
+        mulsd     %xmm10, %xmm0                                 #74.51
+        subsd     .L_2il0floatpacket.10(%rip), %xmm5            #74.51
+        addsd     %xmm0, %xmm5                                  #74.51
+        comisd    %xmm8, %xmm5                                  #74.51
+        jbe       ..B3.14       # Prob 78%                      #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.10:                        # Preds ..B3.9
+                                # Execution count [2.37e+02]
+        movaps    %xmm9, %xmm2                                  #74.51
+        movaps    %xmm10, %xmm1                                 #74.51
+        movups    %xmm7, 48(%rsp)                               #74.51
+        addsd     %xmm9, %xmm2                                  #74.51
+        addsd     %xmm10, %xmm1                                 #74.51
+        movaps    %xmm2, %xmm4                                  #74.51
+        movaps    %xmm1, %xmm14                                 #74.51
+        mulsd     %xmm2, %xmm4                                  #74.51
+        mulsd     %xmm1, %xmm14                                 #74.51
+        unpcklpd  %xmm1, %xmm2                                  #74.51
+        movaps    %xmm12, %xmm1                                 #74.51
+        addsd     %xmm14, %xmm4                                 #74.51
+        movaps    %xmm6, %xmm14                                 #74.51
+        sqrtsd    %xmm4, %xmm4                                  #74.51
+        movaps    %xmm4, %xmm0                                  #74.51
+        unpcklpd  %xmm0, %xmm0                                  #74.51
+        divpd     %xmm0, %xmm2                                  #74.51
+        movaps    %xmm2, %xmm3                                  #74.51
+        movaps    %xmm12, %xmm0                                 #74.51
+        unpckhpd  %xmm2, %xmm2                                  #74.51
+        mulsd     %xmm3, %xmm1                                  #74.51
+        mulsd     %xmm2, %xmm14                                 #74.51
+        addsd     %xmm14, %xmm1                                 #74.51
+        movaps    %xmm6, %xmm14                                 #74.51
+        mulsd     %xmm1, %xmm0                                  #74.51
+        mulsd     %xmm1, %xmm14                                 #74.51
+        mulsd     %xmm1, %xmm1                                  #74.51
+        subsd     %xmm0, %xmm3                                  #74.51
+        subsd     %xmm14, %xmm2                                 #74.51
+        movaps    %xmm3, %xmm0                                  #74.51
+        unpcklpd  %xmm2, %xmm0                                  #74.51
+        mulsd     %xmm3, %xmm3                                  #74.51
+        mulsd     %xmm2, %xmm2                                  #74.51
+        addsd     %xmm2, %xmm3                                  #74.51
+        sqrtsd    %xmm3, %xmm3                                  #74.51
+        unpcklpd  %xmm3, %xmm3                                  #74.51
+        divpd     %xmm3, %xmm0                                  #74.51
+        movaps    %xmm15, %xmm3                                 #74.51
+        movups    %xmm0, 64(%rsp)                               #74.51
+        subsd     %xmm1, %xmm3                                  #74.51
+        pxor      %xmm0, %xmm0                                  #74.51
+        comisd    %xmm3, %xmm0                                  #74.51
+        jbe       ..B3.12       # Prob 50%                      #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm3 xmm4 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.11:                        # Preds ..B3.10
+                                # Execution count [1.18e+02]
+        pxor      %xmm3, %xmm3                                  #74.51
+        jmp       ..B3.13       # Prob 100%                     #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm3 xmm4 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.12:                        # Preds ..B3.10
+                                # Execution count [1.18e+02]
+        sqrtsd    %xmm3, %xmm3                                  #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm3 xmm4 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.13:                        # Preds ..B3.11 ..B3.12
+                                # Execution count [2.37e+02]
+        mulsd     %xmm3, %xmm4                                  #74.51
+        divsd     %xmm4, %xmm5                                  #74.51
+        movsd     64(%rsp), %xmm0                               #74.51
+        movsd     72(%rsp), %xmm1                               #74.51
+        mulsd     %xmm5, %xmm0                                  #74.51
+        mulsd     %xmm5, %xmm1                                  #74.51
+        subsd     %xmm0, %xmm9                                  #74.51
+        subsd     %xmm1, %xmm10                                 #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.14:                        # Preds ..B3.13 ..B3.9
+                                # Execution count [1.08e+03]
+        movaps    %xmm15, %xmm14                                #74.51
+        movaps    %xmm15, %xmm3                                 #74.51
+        movaps    %xmm15, %xmm4                                 #74.51
+        movaps    %xmm15, %xmm2                                 #74.51
+        movups    %xmm7, 48(%rsp)                               #74.51
+        addsd     %xmm9, %xmm14                                 #74.51
+        addsd     %xmm10, %xmm3                                 #74.51
+        divsd     %xmm14, %xmm4                                 #74.51
+        divsd     %xmm3, %xmm2                                  #74.51
+        movaps    %xmm4, %xmm0                                  #74.51
+        movaps    %xmm2, %xmm1                                  #74.51
+        mulsd     %xmm4, %xmm4                                  #74.51
+        subsd     %xmm13, %xmm0                                 #74.51
+        subsd     %xmm11, %xmm1                                 #74.51
+        mulsd     %xmm2, %xmm2                                  #74.51
+        movaps    %xmm0, %xmm14                                 #74.51
+        movaps    %xmm1, %xmm5                                  #74.51
+        mulsd     %xmm0, %xmm14                                 #74.51
+        mulsd     %xmm1, %xmm5                                  #74.51
+        xorps     .L_2il0floatpacket.17(%rip), %xmm4            #74.51
+        addsd     %xmm5, %xmm14                                 #74.51
+        mulsd     %xmm0, %xmm4                                  #74.51
+        sqrtsd    %xmm14, %xmm14                                #74.51
+        movaps    %xmm0, %xmm5                                  #74.51
+        movaps    %xmm14, %xmm3                                 #74.51
+        unpcklpd  %xmm1, %xmm5                                  #74.51
+        unpcklpd  %xmm3, %xmm3                                  #74.51
+        divpd     %xmm3, %xmm5                                  #74.51
+        xorps     .L_2il0floatpacket.17(%rip), %xmm2            #74.51
+        movaps    %xmm5, %xmm3                                  #74.51
+        mulsd     %xmm1, %xmm2                                  #74.51
+        movaps    %xmm12, %xmm1                                 #74.51
+        divsd     %xmm14, %xmm4                                 #74.51
+        divsd     %xmm14, %xmm2                                 #74.51
+        unpckhpd  %xmm5, %xmm5                                  #74.51
+        mulsd     %xmm3, %xmm4                                  #74.51
+        movaps    %xmm5, %xmm0                                  #74.51
+        mulsd     %xmm5, %xmm2                                  #74.51
+        mulsd     %xmm6, %xmm0                                  #74.51
+        addsd     %xmm2, %xmm4                                  #74.51
+        movaps    %xmm3, %xmm2                                  #74.51
+        mulsd     %xmm12, %xmm2                                 #74.51
+        addsd     %xmm0, %xmm2                                  #74.51
+        movaps    %xmm6, %xmm0                                  #74.51
+        mulsd     %xmm2, %xmm1                                  #74.51
+        mulsd     %xmm2, %xmm0                                  #74.51
+        mulsd     %xmm2, %xmm2                                  #74.51
+        subsd     %xmm1, %xmm3                                  #74.51
+        subsd     %xmm0, %xmm5                                  #74.51
+        movaps    %xmm3, %xmm0                                  #74.51
+        movaps    %xmm15, %xmm1                                 #74.51
+        unpcklpd  %xmm5, %xmm0                                  #74.51
+        subsd     %xmm2, %xmm1                                  #74.51
+        mulsd     %xmm3, %xmm3                                  #74.51
+        mulsd     %xmm5, %xmm5                                  #74.51
+        addsd     %xmm5, %xmm3                                  #74.51
+        sqrtsd    %xmm3, %xmm3                                  #74.51
+        unpcklpd  %xmm3, %xmm3                                  #74.51
+        divpd     %xmm3, %xmm0                                  #74.51
+        movups    %xmm0, 80(%rsp)                               #74.51
+        pxor      %xmm0, %xmm0                                  #74.51
+        comisd    %xmm1, %xmm0                                  #74.51
+        jbe       ..B3.16       # Prob 50%                      #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm1 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B3.15:                        # Preds ..B3.14
+                                # Execution count [5.38e+02]
+        pxor      %xmm1, %xmm1                                  #74.51
+        jmp       ..B3.17       # Prob 100%                     #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm1 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B3.16:                        # Preds ..B3.14
+                                # Execution count [5.38e+02]
+        sqrtsd    %xmm1, %xmm1                                  #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm1 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B3.17:                        # Preds ..B3.15 ..B3.16
+                                # Execution count [1.08e+03]
+        andps     .L_2il0floatpacket.18(%rip), %xmm4            #74.51
+        movaps    %xmm10, %xmm0                                 #74.51
+        divsd     %xmm4, %xmm14                                 #74.51
+        mulsd     %xmm1, %xmm14                                 #74.51
+        movaps    %xmm9, %xmm1                                  #74.51
+        addsd     %xmm9, %xmm1                                  #74.51
+        addsd     %xmm10, %xmm0                                 #74.51
+        movaps    %xmm1, %xmm3                                  #74.51
+        pxor      %xmm4, %xmm4                                  #74.51
+        unpcklpd  %xmm0, %xmm3                                  #74.51
+        mulsd     %xmm1, %xmm1                                  #74.51
+        mulsd     %xmm0, %xmm0                                  #74.51
+        addsd     %xmm0, %xmm1                                  #74.51
+        movsd     88(%rsp), %xmm0                               #74.51
+        sqrtsd    %xmm1, %xmm1                                  #74.51
+        unpcklpd  %xmm1, %xmm1                                  #74.51
+        divpd     %xmm1, %xmm3                                  #74.51
+        movups    %xmm3, 64(%rsp)                               #74.51
+        movaps    %xmm3, %xmm2                                  #74.51
+        unpckhpd  %xmm3, %xmm3                                  #74.51
+        movsd     80(%rsp), %xmm1                               #74.51
+        mulsd     %xmm1, %xmm2                                  #74.51
+        mulsd     %xmm0, %xmm3                                  #74.51
+        addsd     %xmm3, %xmm2                                  #74.51
+        comisd    %xmm4, %xmm2                                  #74.51
+        jbe       ..B3.19       # Prob 78%                      #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B3.18:                        # Preds ..B3.17
+                                # Execution count [2.37e+02]
+        movaps    %xmm9, %xmm4                                  #74.51
+        movaps    %xmm10, %xmm3                                 #74.51
+        mulsd     %xmm9, %xmm4                                  #74.51
+        movaps    %xmm14, %xmm5                                 #74.51
+        mulsd     %xmm10, %xmm3                                 #74.51
+        addsd     %xmm3, %xmm4                                  #74.51
+        xorps     .L_2il0floatpacket.17(%rip), %xmm4            #74.51
+        subsd     .L_2il0floatpacket.14(%rip), %xmm4            #74.51
+        divsd     %xmm2, %xmm4                                  #74.51
+        movaps    %xmm4, %xmm14                                 #74.51
+        minsd     %xmm5, %xmm14                                 #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm0 xmm1 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B3.19:                        # Preds ..B3.18 ..B3.17
+                                # Execution count [1.08e+03]
+        mulsd     %xmm14, %xmm1                                 #74.51
+        movaps    %xmm15, %xmm3                                 #74.51
+        mulsd     %xmm0, %xmm14                                 #74.51
+        addsd     %xmm1, %xmm9                                  #74.51
+        addsd     %xmm14, %xmm10                                #74.51
+        addsd     %xmm9, %xmm3                                  #74.51
+        movaps    %xmm15, %xmm4                                 #74.51
+        movaps    %xmm15, %xmm14                                #74.51
+        movaps    %xmm15, %xmm5                                 #74.51
+        movaps    %xmm9, %xmm0                                  #74.51
+        divsd     %xmm3, %xmm14                                 #74.51
+        mulsd     %xmm9, %xmm0                                  #74.51
+        addsd     %xmm10, %xmm4                                 #74.51
+        subsd     %xmm13, %xmm14                                #74.51
+        divsd     %xmm4, %xmm5                                  #74.51
+        movaps    %xmm10, %xmm1                                 #74.51
+        movaps    %xmm9, %xmm2                                  #74.51
+        mulsd     %xmm10, %xmm1                                 #74.51
+        subsd     .L_2il0floatpacket.10(%rip), %xmm0            #74.51
+        subsd     %xmm11, %xmm5                                 #74.51
+        addsd     %xmm1, %xmm0                                  #74.51
+        movaps    %xmm14, %xmm1                                 #74.51
+        unpcklpd  %xmm5, %xmm1                                  #74.51
+        mulsd     %xmm14, %xmm14                                #74.51
+        mulsd     %xmm5, %xmm5                                  #74.51
+        movsd     .L_2il0floatpacket.8(%rip), %xmm3             #74.51
+        addsd     %xmm5, %xmm14                                 #74.51
+        mulsd     %xmm10, %xmm3                                 #74.51
+        sqrtsd    %xmm14, %xmm14                                #74.51
+        subsd     %xmm3, %xmm2                                  #74.51
+        unpcklpd  %xmm14, %xmm14                                #74.51
+        divpd     %xmm14, %xmm1                                 #74.51
+        movups    %xmm1, 80(%rsp)                               #74.51
+        movaps    %xmm2, %xmm1                                  #74.51
+        andps     .L_2il0floatpacket.18(%rip), %xmm1            #74.51
+        movups    %xmm7, 48(%rsp)                               #74.51
+        comisd    %xmm8, %xmm1                                  #74.51
+        ja        ..B3.7        # Prob 82%                      #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.20:                        # Preds ..B3.19
+                                # Execution count [1.94e+02]: Infreq
+        comisd    %xmm8, %xmm0                                  #74.51
+        ja        ..B3.7        # Prob 82%                      #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.21:                        # Preds ..B3.20
+                                # Execution count [3.49e+01]: Infreq
+        andps     .L_2il0floatpacket.18(%rip), %xmm0            #74.51
+        comisd    %xmm8, %xmm0                                  #74.51
+        jbe       ..B3.23       # Prob 20%                      #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.22:                        # Preds ..B3.21
+                                # Execution count [2.79e+01]: Infreq
+        movsd     80(%rsp), %xmm3                               #74.51
+        movsd     88(%rsp), %xmm0                               #74.51
+        mulsd     56(%rsp), %xmm3                               #74.51
+        mulsd     48(%rsp), %xmm0                               #74.51
+        subsd     %xmm0, %xmm3                                  #74.51
+        andps     .L_2il0floatpacket.18(%rip), %xmm3            #74.51
+        comisd    %xmm8, %xmm3                                  #74.51
+        ja        ..B3.7        # Prob 82%                      #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.23:                        # Preds ..B3.21 ..B3.22
+                                # Execution count [5.02e+00]: Infreq
+        movsd     40(%rsp), %xmm0                               #[spill]
+        movsd     32(%rsp), %xmm4                               #[spill]
+        pxor      %xmm3, %xmm3                                  #
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm0 xmm3 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.24:                        # Preds ..B3.23
+                                # Execution count [1.20e+01]: Infreq
+        comisd    %xmm9, %xmm3                                  #74.51
+        jbe       ..B3.26       # Prob 38%                      #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm0 xmm3 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.25:                        # Preds ..B3.24
+                                # Execution count [7.44e+00]: Infreq
+        movaps    %xmm3, %xmm9                                  #74.51
+        movaps    %xmm9, %xmm10                                 #74.51
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15 xmm0 xmm3 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.26:                        # Preds ..B3.25 ..B3.24
+                                # Execution count [1.20e+01]: Infreq
+        movaps    %xmm9, %xmm1                                  #74.51
+        incq      %rax                                          #74.51
+        unpcklpd  %xmm10, %xmm1                                 #74.51
+        movaps    %xmm10, %xmm2                                 #74.51
+        movups    %xmm1, (%rdx)                                 #74.51
+        addsd     %xmm1, %xmm4                                  #74.51
+        addsd     %xmm2, %xmm0                                  #74.51
+        cmpq      $12, %rax                                     #74.51
+        jl        ..B3.6        # Prob 91%                      #74.51
+                                # LOE rax rbx rbp r12 r13 r14 r15 xmm0 xmm3 xmm4 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm15
+..B3.27:                        # Preds ..B3.26
+                                # Execution count [1.00e+00]: Infreq
+        movsd     %xmm10, Q(%rip)                               #74.51
+        movsd     %xmm9, P(%rip)                                #74.51
+        testq     %rbx, %rbx                                    #74.51
+        je        ..B3.33       # Prob 12%                      #74.51
+                                # LOE rbp r12 r13 r14 r15 xmm0 xmm4 xmm15
+..B3.28:                        # Preds ..B3.27
+                                # Execution count [8.80e-01]: Infreq
+        movsd     16(%rsp), %xmm1                               #74.51
+        movsd     24(%rsp), %xmm2                               #74.51
+        addsd     %xmm4, %xmm1                                  #74.51
+        addsd     %xmm0, %xmm2                                  #74.51
+        unpcklpd  %xmm2, %xmm1                                  #74.51
+        movups    %xmm1, (%r15)                                 #74.51
+                                # LOE rbp r12 r13 r14 r15 xmm15
+..B3.29:                        # Preds ..B3.28 ..B3.33
+                                # Execution count [1.00e+00]: Infreq
+        movsd     40(%r15), %xmm1                               #74.51
+        movsd     32(%r15), %xmm2                               #74.51
+        movaps    %xmm1, %xmm3                                  #74.51
+        movsd     8(%r15), %xmm0                                #74.51
+        movaps    %xmm2, %xmm7                                  #74.51
+        movsd     (%r15), %xmm11                                #74.51
+        movaps    %xmm1, %xmm10                                 #74.51
+        mulsd     %xmm0, %xmm7                                  #74.51
+        movaps    %xmm2, %xmm4                                  #74.51
+        mulsd     %xmm11, %xmm3                                 #74.51
+        mulsd     %xmm1, %xmm10                                 #74.51
+        mulsd     %xmm2, %xmm4                                  #74.51
+        subsd     %xmm3, %xmm7                                  #74.51
+        addsd     %xmm4, %xmm10                                 #74.51
+        movaps    %xmm1, %xmm9                                  #74.51
+        movaps    %xmm2, %xmm6                                  #74.51
+        mulsd     %xmm7, %xmm9                                  #74.51
+        movaps    %xmm2, %xmm5                                  #74.51
+        mulsd     %xmm7, %xmm7                                  #74.51
+        mulsd     %xmm11, %xmm6                                 #74.51
+        movsd     .L_2il0floatpacket.12(%rip), %xmm4            #74.51
+        addsd     %xmm6, %xmm7                                  #74.51
+        mulsd     %xmm4, %xmm9                                  #74.51
+        xorps     .L_2il0floatpacket.17(%rip), %xmm5            #74.51
+        movsd     .L_2il0floatpacket.13(%rip), %xmm8            #74.51
+        addsd     %xmm5, %xmm9                                  #74.51
+        mulsd     %xmm10, %xmm8                                 #74.51
+        addsd     %xmm10, %xmm10                                #74.51
+        mulsd     %xmm7, %xmm8                                  #74.51
+        movaps    %xmm9, %xmm13                                 #74.51
+        mulsd     %xmm9, %xmm9                                  #74.51
+        xorps     .L_2il0floatpacket.17(%rip), %xmm13           #74.51
+        subsd     %xmm8, %xmm9                                  #74.51
+        sqrtsd    %xmm9, %xmm9                                  #74.51
+        subsd     %xmm9, %xmm13                                 #74.51
+        divsd     %xmm10, %xmm13                                #74.51
+        movaps    %xmm13, %xmm12                                #74.51
+        subsd     %xmm11, %xmm12                                #74.51
+        mulsd     %xmm1, %xmm12                                 #74.51
+        mulsd     %xmm4, %xmm1                                  #74.51
+        divsd     %xmm2, %xmm12                                 #74.51
+        mulsd     %xmm4, %xmm2                                  #74.51
+        addsd     %xmm12, %xmm0                                 #74.51
+        unpcklpd  %xmm0, %xmm13                                 #74.51
+        movups    %xmm13, (%r15)                                #74.51
+        mulsd     %xmm13, %xmm2                                 #74.51
+        movaps    %xmm13, %xmm14                                #74.51
+        movaps    %xmm15, %xmm0                                 #74.51
+        unpckhpd  %xmm13, %xmm14                                #74.51
+        subsd     %xmm2, %xmm0                                  #74.51
+        mulsd     %xmm14, %xmm1                                 #74.51
+        subsd     %xmm1, %xmm0                                  #74.51
+        divsd     %xmm0, %xmm2                                  #74.51
+        divsd     %xmm0, %xmm1                                  #74.51
+        movsd     %xmm2, 16(%r15)                               #74.51
+        movsd     %xmm1, 24(%r15)                               #74.51
+        testq     %r13, %r13                                    #76.15
+        je        ..B3.31       # Prob 12%                      #76.15
+                                # LOE rbp r12 r14 xmm4 xmm13 xmm15
+..B3.30:                        # Preds ..B3.29
+                                # Execution count [8.80e-01]: Infreq
+        movups    (%rsp), %xmm0                                 #78.5
+        addpd     %xmm13, %xmm0                                 #78.5
+        movups    %xmm0, (%r14)                                 #78.5
+        jmp       ..B3.32       # Prob 100%                     #78.5
+                                # LOE rbp r12 r14 xmm4 xmm15
+..B3.31:                        # Preds ..B3.29
+                                # Execution count [1.20e-01]: Infreq
+        movups    %xmm13, (%r14)                                #81.5
+                                # LOE rbp r12 r14 xmm4 xmm15
+..B3.32:                        # Preds ..B3.30 ..B3.31
+                                # Execution count [1.00e+00]: Infreq
+        movsd     40(%r14), %xmm3                               #85.19
+        movsd     32(%r14), %xmm2                               #85.7
+        movaps    %xmm3, %xmm6                                  #86.40
+        movsd     8(%r14), %xmm1                                #86.19
+        movaps    %xmm2, %xmm9                                  #86.19
+        movsd     (%r14), %xmm13                                #86.40
+        movaps    %xmm3, %xmm12                                 #85.24
+        mulsd     %xmm1, %xmm9                                  #86.19
+        movaps    %xmm2, %xmm5                                  #85.12
+        mulsd     %xmm13, %xmm6                                 #86.40
+        mulsd     %xmm3, %xmm12                                 #85.24
+        mulsd     %xmm2, %xmm5                                  #85.12
+        subsd     %xmm6, %xmm9                                  #86.40
+        addsd     %xmm5, %xmm12                                 #85.24
+        movaps    %xmm3, %xmm11                                 #86.40
+        movaps    %xmm2, %xmm8                                  #88.18
+        mulsd     %xmm9, %xmm11                                 #86.40
+        movaps    %xmm2, %xmm7                                  #86.49
+        mulsd     %xmm9, %xmm9                                  #88.9
+        mulsd     %xmm13, %xmm8                                 #88.18
+        mulsd     %xmm4, %xmm11                                 #86.40
+        addsd     %xmm8, %xmm9                                  #88.18
+        xorps     .L_2il0floatpacket.17(%rip), %xmm7            #86.49
+        movsd     .L_2il0floatpacket.13(%rip), %xmm10           #89.25
+        addsd     %xmm7, %xmm11                                 #86.40
+        mulsd     %xmm12, %xmm10                                #89.25
+        addsd     %xmm12, %xmm12                                #89.34
+        mulsd     %xmm9, %xmm10                                 #89.27
+        movaps    %xmm11, %xmm5                                 #89.12
+        mulsd     %xmm11, %xmm11                                #89.21
+        xorps     .L_2il0floatpacket.17(%rip), %xmm5            #89.12
+        subsd     %xmm10, %xmm11                                #89.27
+        sqrtsd    %xmm11, %xmm11                                #89.14
+        subsd     %xmm11, %xmm5                                 #89.14
+        divsd     %xmm12, %xmm5                                 #89.34
+        movaps    %xmm5, %xmm14                                 #90.28
+        subsd     %xmm13, %xmm14                                #90.28
+        mulsd     %xmm3, %xmm14                                 #90.36
+        mulsd     %xmm4, %xmm3                                  #95.9
+        divsd     %xmm2, %xmm14                                 #90.42
+        mulsd     %xmm4, %xmm2                                  #94.9
+        addsd     %xmm14, %xmm1                                 #90.42
+        unpcklpd  %xmm1, %xmm5                                  #91.3
+        movaps    %xmm5, %xmm0                                  #91.3
+        mulsd     %xmm0, %xmm2                                  #94.14
+        movups    %xmm5, (%r14)                                 #91.3
+        subsd     %xmm2, %xmm15                                 #96.19
+        unpckhpd  %xmm5, %xmm5                                  #95.14
+        mulsd     %xmm5, %xmm3                                  #95.14
+        subsd     %xmm3, %xmm15                                 #96.21
+        divsd     %xmm15, %xmm2                                 #96.21
+        divsd     %xmm15, %xmm3                                 #97.20
+        movsd     %xmm2, 16(%r14)                               #96.3
+        movsd     %xmm3, 24(%r14)                               #97.3
+        addq      $104, %rsp                                    #98.10
+	.cfi_def_cfa_offset 40
+	.cfi_restore 3
+        popq      %rbx                                          #98.10
+	.cfi_def_cfa_offset 32
+	.cfi_restore 15
+        popq      %r15                                          #98.10
+	.cfi_def_cfa_offset 24
+	.cfi_restore 14
+        popq      %r14                                          #98.10
+	.cfi_def_cfa_offset 16
+	.cfi_restore 13
+        popq      %r13                                          #98.10
+	.cfi_def_cfa_offset 8
+        ret                                                     #98.10
+	.cfi_def_cfa_offset 144
+	.cfi_offset 3, -40
+	.cfi_offset 13, -16
+	.cfi_offset 14, -24
+	.cfi_offset 15, -32
+                                # LOE
+..B3.33:                        # Preds ..B3.27
+                                # Execution count [1.20e-01]: Infreq
+        unpcklpd  %xmm0, %xmm4                                  #74.51
+        movups    %xmm4, (%r15)                                 #74.51
+        jmp       ..B3.29       # Prob 100%                     #74.51
+        .align    16,0x90
+                                # LOE rbp r12 r13 r14 r15 xmm15
+	.cfi_endproc
+# mark_end;
+	.type	Compute_Lateral,@function
+	.size	Compute_Lateral,.-Compute_Lateral
+..LNCompute_Lateral.2:
+	.data
+# -- End  Compute_Lateral
+	.text
+.L_2__routine_start_Compute_Leaf_3:
+# -- Begin  Compute_Leaf
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl Compute_Leaf
+# --- Compute_Leaf(Leaf, double, double)
+Compute_Leaf:
+# parameter 1: %rdi
+# parameter 2: %xmm0
+# parameter 3: %xmm1
+..B4.1:                         # Preds ..B4.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_Compute_Leaf.145:
+..L146:
+                                                        #153.55
+        pushq     %rbp                                          #153.55
+	.cfi_def_cfa_offset 16
+        movq      %rsp, %rbp                                    #153.55
+	.cfi_def_cfa 6, 16
+	.cfi_offset 6, -16
+        movaps    %xmm1, %xmm3                                  #153.55
+        movsd     8(%rdi), %xmm13                               #155.7
+        movaps    %xmm0, %xmm15                                 #153.55
+        movsd     .L_2il0floatpacket.8(%rip), %xmm9             #157.3
+        mulsd     %xmm13, %xmm9                                 #157.3
+        movq      $0xc014000000000000, %rax                     #157.3
+        movsd     (%rdi), %xmm14                                #154.7
+        movd      %rax, %xmm8                                   #157.3
+        movsd     .L_2il0floatpacket.19(%rip), %xmm10           #157.3
+        movaps    %xmm14, %xmm2                                 #157.3
+        movsd     .L_2il0floatpacket.9(%rip), %xmm12            #157.3
+        subsd     %xmm9, %xmm2                                  #157.3
+        movaps    %xmm10, %xmm9                                 #157.3
+        movaps    %xmm2, %xmm1                                  #157.3
+        unpcklpd  %xmm8, %xmm9                                  #157.3
+        divpd     .L_2il0floatpacket.15(%rip), %xmm9            #157.3
+        movaps    %xmm9, %xmm6                                  #157.3
+        movaps    %xmm9, %xmm8                                  #157.3
+        unpckhpd  %xmm9, %xmm6                                  #157.3
+        andps     .L_2il0floatpacket.18(%rip), %xmm1            #157.3
+        movsd     .L_2il0floatpacket.10(%rip), %xmm11           #157.3
+        movsd     %xmm3, -16(%rbp)                              #157.3[spill]
+                                # LOE rbx rdi r12 r13 r14 r15 xmm1 xmm2 xmm6 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.2:                         # Preds ..B4.17 ..B4.15 ..B4.14 ..B4.1
+                                # Execution count [8.97e+01]
+        comisd    %xmm12, %xmm1                                 #157.3
+        jbe       ..B4.4        # Prob 78%                      #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm2 xmm6 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.3:                         # Preds ..B4.2
+                                # Execution count [1.97e+01]
+        divsd     .L_2il0floatpacket.16(%rip), %xmm2            #157.3
+        movaps    %xmm8, %xmm0                                  #157.3
+        mulsd     %xmm2, %xmm0                                  #157.3
+        mulsd     %xmm6, %xmm2                                  #157.3
+        subsd     %xmm0, %xmm14                                 #157.3
+        subsd     %xmm2, %xmm13                                 #157.3
+        movups    %xmm9, -64(%rbp)                              #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm6 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.4:                         # Preds ..B4.3 ..B4.2
+                                # Execution count [8.97e+01]
+        movaps    %xmm14, %xmm5                                 #157.3
+        movaps    %xmm13, %xmm0                                 #157.3
+        mulsd     %xmm14, %xmm5                                 #157.3
+        mulsd     %xmm13, %xmm0                                 #157.3
+        subsd     %xmm11, %xmm5                                 #157.3
+        addsd     %xmm0, %xmm5                                  #157.3
+        comisd    %xmm12, %xmm5                                 #157.3
+        jbe       ..B4.9        # Prob 78%                      #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm5 xmm6 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.5:                         # Preds ..B4.4
+                                # Execution count [1.97e+01]
+        movaps    %xmm14, %xmm2                                 #157.3
+        movaps    %xmm13, %xmm1                                 #157.3
+        movups    %xmm9, -64(%rbp)                              #157.3
+        addsd     %xmm14, %xmm2                                 #157.3
+        addsd     %xmm13, %xmm1                                 #157.3
+        movaps    %xmm2, %xmm4                                  #157.3
+        movaps    %xmm1, %xmm7                                  #157.3
+        mulsd     %xmm2, %xmm4                                  #157.3
+        mulsd     %xmm1, %xmm7                                  #157.3
+        unpcklpd  %xmm1, %xmm2                                  #157.3
+        movaps    %xmm8, %xmm1                                  #157.3
+        addsd     %xmm7, %xmm4                                  #157.3
+        movaps    %xmm6, %xmm7                                  #157.3
+        sqrtsd    %xmm4, %xmm4                                  #157.3
+        movaps    %xmm4, %xmm0                                  #157.3
+        unpcklpd  %xmm0, %xmm0                                  #157.3
+        divpd     %xmm0, %xmm2                                  #157.3
+        movaps    %xmm2, %xmm3                                  #157.3
+        movaps    %xmm8, %xmm0                                  #157.3
+        unpckhpd  %xmm2, %xmm2                                  #157.3
+        mulsd     %xmm3, %xmm1                                  #157.3
+        mulsd     %xmm2, %xmm7                                  #157.3
+        addsd     %xmm7, %xmm1                                  #157.3
+        movaps    %xmm6, %xmm7                                  #157.3
+        mulsd     %xmm1, %xmm0                                  #157.3
+        mulsd     %xmm1, %xmm7                                  #157.3
+        mulsd     %xmm1, %xmm1                                  #157.3
+        subsd     %xmm0, %xmm3                                  #157.3
+        subsd     %xmm7, %xmm2                                  #157.3
+        movaps    %xmm3, %xmm0                                  #157.3
+        unpcklpd  %xmm2, %xmm0                                  #157.3
+        mulsd     %xmm3, %xmm3                                  #157.3
+        mulsd     %xmm2, %xmm2                                  #157.3
+        addsd     %xmm2, %xmm3                                  #157.3
+        movaps    %xmm10, %xmm2                                 #157.3
+        subsd     %xmm1, %xmm2                                  #157.3
+        sqrtsd    %xmm3, %xmm3                                  #157.3
+        unpcklpd  %xmm3, %xmm3                                  #157.3
+        divpd     %xmm3, %xmm0                                  #157.3
+        movups    %xmm0, -48(%rbp)                              #157.3
+        pxor      %xmm0, %xmm0                                  #157.3
+        comisd    %xmm2, %xmm0                                  #157.3
+        jbe       ..B4.7        # Prob 50%                      #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm2 xmm4 xmm5 xmm6 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.6:                         # Preds ..B4.5
+                                # Execution count [9.87e+00]
+        pxor      %xmm2, %xmm2                                  #157.3
+        jmp       ..B4.8        # Prob 100%                     #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm2 xmm4 xmm5 xmm6 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.7:                         # Preds ..B4.5
+                                # Execution count [9.87e+00]
+        sqrtsd    %xmm2, %xmm2                                  #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm2 xmm4 xmm5 xmm6 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.8:                         # Preds ..B4.6 ..B4.7
+                                # Execution count [1.97e+01]
+        mulsd     %xmm2, %xmm4                                  #157.3
+        divsd     %xmm4, %xmm5                                  #157.3
+        movsd     -48(%rbp), %xmm0                              #157.3
+        movsd     -40(%rbp), %xmm1                              #157.3
+        mulsd     %xmm5, %xmm0                                  #157.3
+        mulsd     %xmm5, %xmm1                                  #157.3
+        subsd     %xmm0, %xmm14                                 #157.3
+        subsd     %xmm1, %xmm13                                 #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm6 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.9:                         # Preds ..B4.8 ..B4.4
+                                # Execution count [8.97e+01]
+        movaps    %xmm10, %xmm7                                 #157.3
+        movaps    %xmm10, %xmm4                                 #157.3
+        movaps    %xmm10, %xmm5                                 #157.3
+        movaps    %xmm10, %xmm2                                 #157.3
+        movups    %xmm9, -64(%rbp)                              #157.3
+        addsd     %xmm14, %xmm7                                 #157.3
+        addsd     %xmm13, %xmm4                                 #157.3
+        divsd     %xmm7, %xmm5                                  #157.3
+        divsd     %xmm4, %xmm2                                  #157.3
+        movaps    %xmm5, %xmm0                                  #157.3
+        movaps    %xmm2, %xmm1                                  #157.3
+        mulsd     %xmm5, %xmm5                                  #157.3
+        subsd     %xmm15, %xmm0                                 #157.3
+        subsd     -16(%rbp), %xmm1                              #157.3[spill]
+        mulsd     %xmm2, %xmm2                                  #157.3
+        movaps    %xmm0, %xmm7                                  #157.3
+        movaps    %xmm1, %xmm3                                  #157.3
+        mulsd     %xmm0, %xmm7                                  #157.3
+        mulsd     %xmm1, %xmm3                                  #157.3
+        xorps     .L_2il0floatpacket.17(%rip), %xmm5            #157.3
+        addsd     %xmm3, %xmm7                                  #157.3
+        mulsd     %xmm0, %xmm5                                  #157.3
+        sqrtsd    %xmm7, %xmm7                                  #157.3
+        movaps    %xmm0, %xmm3                                  #157.3
+        movaps    %xmm7, %xmm4                                  #157.3
+        unpcklpd  %xmm1, %xmm3                                  #157.3
+        unpcklpd  %xmm4, %xmm4                                  #157.3
+        divpd     %xmm4, %xmm3                                  #157.3
+        xorps     .L_2il0floatpacket.17(%rip), %xmm2            #157.3
+        movaps    %xmm3, %xmm4                                  #157.3
+        mulsd     %xmm1, %xmm2                                  #157.3
+        movaps    %xmm8, %xmm1                                  #157.3
+        divsd     %xmm7, %xmm5                                  #157.3
+        divsd     %xmm7, %xmm2                                  #157.3
+        unpckhpd  %xmm3, %xmm3                                  #157.3
+        mulsd     %xmm4, %xmm5                                  #157.3
+        movaps    %xmm3, %xmm0                                  #157.3
+        mulsd     %xmm3, %xmm2                                  #157.3
+        mulsd     %xmm6, %xmm0                                  #157.3
+        addsd     %xmm2, %xmm5                                  #157.3
+        movaps    %xmm4, %xmm2                                  #157.3
+        mulsd     %xmm8, %xmm2                                  #157.3
+        addsd     %xmm0, %xmm2                                  #157.3
+        movaps    %xmm6, %xmm0                                  #157.3
+        mulsd     %xmm2, %xmm1                                  #157.3
+        mulsd     %xmm2, %xmm0                                  #157.3
+        mulsd     %xmm2, %xmm2                                  #157.3
+        subsd     %xmm1, %xmm4                                  #157.3
+        subsd     %xmm0, %xmm3                                  #157.3
+        movaps    %xmm4, %xmm0                                  #157.3
+        unpcklpd  %xmm3, %xmm0                                  #157.3
+        mulsd     %xmm4, %xmm4                                  #157.3
+        mulsd     %xmm3, %xmm3                                  #157.3
+        addsd     %xmm3, %xmm4                                  #157.3
+        sqrtsd    %xmm4, %xmm4                                  #157.3
+        unpcklpd  %xmm4, %xmm4                                  #157.3
+        divpd     %xmm4, %xmm0                                  #157.3
+        movups    %xmm0, -32(%rbp)                              #157.3
+        movaps    %xmm10, %xmm0                                 #157.3
+        subsd     %xmm2, %xmm0                                  #157.3
+        pxor      %xmm2, %xmm2                                  #157.3
+        comisd    %xmm0, %xmm2                                  #157.3
+        jbe       ..B4.11       # Prob 50%                      #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm0 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.10:                        # Preds ..B4.9
+                                # Execution count [4.49e+01]
+        pxor      %xmm0, %xmm0                                  #157.3
+        jmp       ..B4.12       # Prob 100%                     #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm0 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.11:                        # Preds ..B4.9
+                                # Execution count [4.49e+01]
+        sqrtsd    %xmm0, %xmm0                                  #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm0 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.12:                        # Preds ..B4.10 ..B4.11
+                                # Execution count [8.97e+01]
+        andps     .L_2il0floatpacket.18(%rip), %xmm5            #157.3
+        movaps    %xmm14, %xmm1                                 #157.3
+        divsd     %xmm5, %xmm7                                  #157.3
+        mulsd     %xmm0, %xmm7                                  #157.3
+        movaps    %xmm13, %xmm0                                 #157.3
+        addsd     %xmm14, %xmm1                                 #157.3
+        addsd     %xmm13, %xmm0                                 #157.3
+        movaps    %xmm1, %xmm3                                  #157.3
+        pxor      %xmm4, %xmm4                                  #157.3
+        unpcklpd  %xmm0, %xmm3                                  #157.3
+        mulsd     %xmm1, %xmm1                                  #157.3
+        mulsd     %xmm0, %xmm0                                  #157.3
+        movsd     -24(%rbp), %xmm2                              #157.3
+        addsd     %xmm0, %xmm1                                  #157.3
+        sqrtsd    %xmm1, %xmm1                                  #157.3
+        unpcklpd  %xmm1, %xmm1                                  #157.3
+        divpd     %xmm1, %xmm3                                  #157.3
+        movups    %xmm3, -48(%rbp)                              #157.3
+        movaps    %xmm3, %xmm0                                  #157.3
+        unpckhpd  %xmm3, %xmm3                                  #157.3
+        movsd     -32(%rbp), %xmm1                              #157.3
+        mulsd     %xmm1, %xmm0                                  #157.3
+        mulsd     %xmm2, %xmm3                                  #157.3
+        addsd     %xmm3, %xmm0                                  #157.3
+        comisd    %xmm4, %xmm0                                  #157.3
+        jbe       ..B4.14       # Prob 78%                      #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.13:                        # Preds ..B4.12
+                                # Execution count [1.97e+01]
+        movaps    %xmm14, %xmm4                                 #157.3
+        movaps    %xmm13, %xmm3                                 #157.3
+        mulsd     %xmm14, %xmm4                                 #157.3
+        mulsd     %xmm13, %xmm3                                 #157.3
+        addsd     %xmm3, %xmm4                                  #157.3
+        xorps     .L_2il0floatpacket.17(%rip), %xmm4            #157.3
+        subsd     .L_2il0floatpacket.14(%rip), %xmm4            #157.3
+        divsd     %xmm0, %xmm4                                  #157.3
+        movaps    %xmm7, %xmm0                                  #157.3
+        movaps    %xmm4, %xmm7                                  #157.3
+        minsd     %xmm0, %xmm7                                  #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm1 xmm2 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.14:                        # Preds ..B4.13 ..B4.12
+                                # Execution count [8.97e+01]
+        mulsd     %xmm7, %xmm1                                  #157.3
+        movaps    %xmm10, %xmm3                                 #157.3
+        mulsd     %xmm2, %xmm7                                  #157.3
+        addsd     %xmm1, %xmm14                                 #157.3
+        addsd     %xmm7, %xmm13                                 #157.3
+        movaps    %xmm10, %xmm1                                 #157.3
+        movaps    %xmm10, %xmm5                                 #157.3
+        movaps    %xmm10, %xmm4                                 #157.3
+        movaps    %xmm14, %xmm0                                 #157.3
+        mulsd     %xmm14, %xmm0                                 #157.3
+        addsd     %xmm14, %xmm1                                 #157.3
+        addsd     %xmm13, %xmm3                                 #157.3
+        divsd     %xmm1, %xmm5                                  #157.3
+        divsd     %xmm3, %xmm4                                  #157.3
+        movaps    %xmm13, %xmm2                                 #157.3
+        subsd     %xmm15, %xmm5                                 #157.3
+        mulsd     %xmm13, %xmm2                                 #157.3
+        subsd     -16(%rbp), %xmm4                              #157.3[spill]
+        subsd     %xmm11, %xmm0                                 #157.3
+        movaps    %xmm5, %xmm7                                  #157.3
+        addsd     %xmm2, %xmm0                                  #157.3
+        mulsd     %xmm5, %xmm5                                  #157.3
+        unpcklpd  %xmm4, %xmm7                                  #157.3
+        movaps    %xmm14, %xmm2                                 #157.3
+        mulsd     %xmm4, %xmm4                                  #157.3
+        movsd     .L_2il0floatpacket.8(%rip), %xmm1             #157.3
+        addsd     %xmm4, %xmm5                                  #157.3
+        mulsd     %xmm13, %xmm1                                 #157.3
+        sqrtsd    %xmm5, %xmm5                                  #157.3
+        subsd     %xmm1, %xmm2                                  #157.3
+        unpcklpd  %xmm5, %xmm5                                  #157.3
+        movaps    %xmm2, %xmm1                                  #157.3
+        divpd     %xmm5, %xmm7                                  #157.3
+        andps     .L_2il0floatpacket.18(%rip), %xmm1            #157.3
+        movups    %xmm7, -32(%rbp)                              #157.3
+        movups    %xmm9, -64(%rbp)                              #157.3
+        comisd    %xmm12, %xmm1                                 #157.3
+        ja        ..B4.2        # Prob 82%                      #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm6 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.15:                        # Preds ..B4.14
+                                # Execution count [1.61e+01]: Infreq
+        comisd    %xmm12, %xmm0                                 #157.3
+        ja        ..B4.2        # Prob 82%                      #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm6 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.16:                        # Preds ..B4.15
+                                # Execution count [2.91e+00]: Infreq
+        andps     .L_2il0floatpacket.18(%rip), %xmm0            #157.3
+        comisd    %xmm12, %xmm0                                 #157.3
+        jbe       ..B4.18       # Prob 20%                      #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm1 xmm2 xmm6 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.17:                        # Preds ..B4.16
+                                # Execution count [2.33e+00]: Infreq
+        movsd     -32(%rbp), %xmm3                              #157.3
+        movsd     -24(%rbp), %xmm0                              #157.3
+        mulsd     -56(%rbp), %xmm3                              #157.3
+        mulsd     -64(%rbp), %xmm0                              #157.3
+        subsd     %xmm0, %xmm3                                  #157.3
+        andps     .L_2il0floatpacket.18(%rip), %xmm3            #157.3
+        comisd    %xmm12, %xmm3                                 #157.3
+        ja        ..B4.2        # Prob 82%                      #157.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm1 xmm2 xmm6 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B4.18:                        # Preds ..B4.16 ..B4.17
+                                # Execution count [4.19e-01]: Infreq
+        pxor      %xmm4, %xmm4                                  #
+                                # LOE rbx rdi r12 r13 r14 r15 xmm4 xmm13 xmm14
+..B4.19:                        # Preds ..B4.18
+                                # Execution count [1.00e+00]: Infreq
+        comisd    %xmm14, %xmm4                                 #159.9
+        jbe       ..B4.21       # Prob 38%                      #159.9
+                                # LOE rbx rdi r12 r13 r14 r15 xmm4 xmm13 xmm14
+..B4.20:                        # Preds ..B4.19
+                                # Execution count [6.20e-01]: Infreq
+        movaps    %xmm4, %xmm14                                 #160.5
+        movsd     %xmm4, P(%rip)                                #160.5
+        movaps    %xmm14, %xmm13                                #161.5
+        movsd     %xmm4, Q(%rip)                                #161.5
+        jmp       ..B4.22       # Prob 100%                     #161.5
+                                # LOE rbx rdi r12 r13 r14 r15 xmm13 xmm14
+..B4.21:                        # Preds ..B4.19
+                                # Execution count [3.80e-01]: Infreq
+        movsd     %xmm13, Q(%rip)                               #155.3
+        movsd     %xmm14, P(%rip)                               #154.3
+                                # LOE rbx rdi r12 r13 r14 r15 xmm13 xmm14
+..B4.22:                        # Preds ..B4.20 ..B4.21
+                                # Execution count [1.00e+00]: Infreq
+        unpcklpd  %xmm13, %xmm14                                #164.3
+        movaps    %xmm13, %xmm1                                 #165.10
+        movups    %xmm14, (%rdi)                                #164.3
+        movaps    %xmm14, %xmm0                                 #165.10
+        movq      %rbp, %rsp                                    #165.10
+        popq      %rbp                                          #165.10
+	.cfi_restore 6
+        ret                                                     #165.10
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	Compute_Leaf,@function
+	.size	Compute_Leaf,.-Compute_Leaf
+..LNCompute_Leaf.3:
+	.data
+# -- End  Compute_Leaf
+	.text
+.L_2__routine_start_optimize_node_4:
+# -- Begin  optimize_node
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl optimize_node
+# --- optimize_node(double, double)
+optimize_node:
+# parameter 1: %xmm0
+# parameter 2: %xmm1
+..B5.1:                         # Preds ..B5.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_optimize_node.155:
+..L156:
+                                                        #171.1
+        pushq     %rbp                                          #171.1
+	.cfi_def_cfa_offset 16
+        movq      %rsp, %rbp                                    #171.1
+	.cfi_def_cfa 6, 16
+	.cfi_offset 6, -16
+        movq      $0xc014000000000000, %rax                     #189.16
+        movsd     .L_2il0floatpacket.19(%rip), %xmm11           #189.16
+        movaps    %xmm11, %xmm10                                #220.16
+        movsd     Q(%rip), %xmm14                               #187.4
+        movd      %rax, %xmm9                                   #220.16
+        unpcklpd  %xmm9, %xmm10                                 #220.16
+        divpd     .L_2il0floatpacket.15(%rip), %xmm10           #220.16
+        movsd     .L_2il0floatpacket.8(%rip), %xmm3             #187.4
+        movaps    %xmm10, %xmm7                                 #220.16
+        mulsd     %xmm14, %xmm3                                 #187.4
+        movaps    %xmm10, %xmm9                                 #220.16
+        movsd     P(%rip), %xmm15                               #187.4
+        movaps    %xmm15, %xmm4                                 #187.4
+        unpckhpd  %xmm10, %xmm7                                 #220.16
+        subsd     %xmm3, %xmm4                                  #187.4
+        movaps    %xmm4, %xmm3                                  #188.6
+        andps     .L_2il0floatpacket.18(%rip), %xmm3            #188.6
+        movsd     .L_2il0floatpacket.9(%rip), %xmm13            #188.15
+        movsd     .L_2il0floatpacket.10(%rip), %xmm12           #196.4
+        movsd     %xmm0, -16(%rbp)                              #220.16[spill]
+                                # LOE rax rbx r12 r13 r14 r15 xmm1 xmm3 xmm4 xmm7 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.2:                         # Preds ..B5.19 ..B5.15 ..B5.1
+                                # Execution count [8.97e+01]
+        comisd    %xmm13, %xmm3                                 #188.15
+        jbe       ..B5.4        # Prob 78%                      #188.15
+                                # LOE rax rbx r12 r13 r14 r15 xmm1 xmm4 xmm7 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.3:                         # Preds ..B5.2
+                                # Execution count [1.97e+01]
+        divsd     .L_2il0floatpacket.16(%rip), %xmm4            #190.14
+        movaps    %xmm9, %xmm0                                  #191.15
+        mulsd     %xmm4, %xmm0                                  #191.15
+        mulsd     %xmm7, %xmm4                                  #192.15
+        subsd     %xmm0, %xmm15                                 #191.6
+        subsd     %xmm4, %xmm14                                 #192.6
+                                # LOE rax rbx r12 r13 r14 r15 xmm1 xmm7 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.4:                         # Preds ..B5.3 ..B5.2
+                                # Execution count [8.97e+01]
+        movaps    %xmm15, %xmm6                                 #196.4
+        movaps    %xmm14, %xmm0                                 #196.4
+        mulsd     %xmm15, %xmm6                                 #196.4
+        mulsd     %xmm14, %xmm0                                 #196.4
+        subsd     %xmm12, %xmm6                                 #196.4
+        addsd     %xmm0, %xmm6                                  #196.4
+        comisd    %xmm13, %xmm6                                 #197.8
+        jbe       ..B5.9        # Prob 78%                      #197.8
+                                # LOE rax rbx r12 r13 r14 r15 xmm1 xmm6 xmm7 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.5:                         # Preds ..B5.4
+                                # Execution count [1.97e+01]
+        movaps    %xmm15, %xmm3                                 #198.16
+        movaps    %xmm14, %xmm2                                 #198.16
+        addsd     %xmm15, %xmm3                                 #198.16
+        addsd     %xmm14, %xmm2                                 #198.16
+        movaps    %xmm3, %xmm5                                  #198.16
+        movaps    %xmm2, %xmm8                                  #198.16
+        mulsd     %xmm3, %xmm5                                  #198.16
+        mulsd     %xmm2, %xmm8                                  #198.16
+        unpcklpd  %xmm2, %xmm3                                  #198.33
+        movaps    %xmm9, %xmm2                                  #200.17
+        addsd     %xmm8, %xmm5                                  #198.16
+        movaps    %xmm7, %xmm8                                  #200.17
+        sqrtsd    %xmm5, %xmm5                                  #198.16
+        movaps    %xmm5, %xmm0                                  #198.16
+        unpcklpd  %xmm0, %xmm0                                  #198.16
+        divpd     %xmm0, %xmm3                                  #198.16
+        movaps    %xmm3, %xmm4                                  #198.33
+        movaps    %xmm9, %xmm0                                  #200.17
+        unpckhpd  %xmm3, %xmm3                                  #200.34
+        mulsd     %xmm4, %xmm2                                  #200.17
+        mulsd     %xmm3, %xmm8                                  #200.17
+        addsd     %xmm8, %xmm2                                  #200.17
+        movaps    %xmm7, %xmm8                                  #200.17
+        mulsd     %xmm2, %xmm0                                  #200.17
+        mulsd     %xmm2, %xmm8                                  #200.17
+        mulsd     %xmm2, %xmm2                                  #200.17
+        subsd     %xmm0, %xmm4                                  #200.17
+        subsd     %xmm8, %xmm3                                  #200.17
+        movaps    %xmm4, %xmm0                                  #200.34
+        unpcklpd  %xmm3, %xmm0                                  #200.34
+        mulsd     %xmm4, %xmm4                                  #200.17
+        mulsd     %xmm3, %xmm3                                  #200.17
+        addsd     %xmm3, %xmm4                                  #200.17
+        movaps    %xmm11, %xmm3                                 #200.17
+        subsd     %xmm2, %xmm3                                  #200.17
+        sqrtsd    %xmm4, %xmm4                                  #200.17
+        unpcklpd  %xmm4, %xmm4                                  #200.17
+        divpd     %xmm4, %xmm0                                  #200.17
+        movups    %xmm0, -48(%rbp)                              #200.34
+        pxor      %xmm0, %xmm0                                  #200.17
+        comisd    %xmm3, %xmm0                                  #200.17
+        jbe       ..B5.7        # Prob 50%                      #200.17
+                                # LOE rax rbx r12 r13 r14 r15 xmm1 xmm3 xmm5 xmm6 xmm7 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.6:                         # Preds ..B5.5
+                                # Execution count [9.87e+00]
+        pxor      %xmm3, %xmm3                                  #200.17
+        jmp       ..B5.8        # Prob 100%                     #200.17
+                                # LOE rax rbx r12 r13 r14 r15 xmm1 xmm3 xmm5 xmm6 xmm7 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.7:                         # Preds ..B5.5
+                                # Execution count [9.87e+00]
+        sqrtsd    %xmm3, %xmm3                                  #200.17
+                                # LOE rax rbx r12 r13 r14 r15 xmm1 xmm3 xmm5 xmm6 xmm7 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.8:                         # Preds ..B5.6 ..B5.7
+                                # Execution count [1.97e+01]
+        mulsd     %xmm3, %xmm5                                  #200.6
+        divsd     %xmm5, %xmm6                                  #201.14
+        movsd     -48(%rbp), %xmm0                              #202.15
+        movsd     -40(%rbp), %xmm2                              #203.15
+        mulsd     %xmm6, %xmm0                                  #202.15
+        mulsd     %xmm6, %xmm2                                  #203.15
+        subsd     %xmm0, %xmm15                                 #202.6
+        subsd     %xmm2, %xmm14                                 #203.6
+                                # LOE rax rbx r12 r13 r14 r15 xmm1 xmm7 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.9:                         # Preds ..B5.8 ..B5.4
+                                # Execution count [8.97e+01]
+        movaps    %xmm11, %xmm8                                 #207.12
+        movaps    %xmm11, %xmm5                                 #207.12
+        movaps    %xmm11, %xmm6                                 #207.12
+        movaps    %xmm11, %xmm3                                 #207.12
+        addsd     %xmm15, %xmm8                                 #207.12
+        addsd     %xmm14, %xmm5                                 #207.12
+        divsd     %xmm8, %xmm6                                  #207.12
+        divsd     %xmm5, %xmm3                                  #207.12
+        movaps    %xmm6, %xmm0                                  #207.12
+        movaps    %xmm3, %xmm2                                  #207.12
+        mulsd     %xmm6, %xmm6                                  #208.2
+        subsd     -16(%rbp), %xmm0                              #207.12[spill]
+        subsd     %xmm1, %xmm2                                  #207.12
+        mulsd     %xmm3, %xmm3                                  #208.2
+        movaps    %xmm0, %xmm8                                  #207.12
+        movaps    %xmm2, %xmm4                                  #207.12
+        mulsd     %xmm0, %xmm8                                  #207.12
+        mulsd     %xmm2, %xmm4                                  #207.12
+        xorps     .L_2il0floatpacket.17(%rip), %xmm6            #208.2
+        addsd     %xmm4, %xmm8                                  #207.12
+        mulsd     %xmm0, %xmm6                                  #208.2
+        sqrtsd    %xmm8, %xmm8                                  #207.12
+        movaps    %xmm0, %xmm4                                  #207.39
+        movaps    %xmm8, %xmm5                                  #207.12
+        unpcklpd  %xmm2, %xmm4                                  #207.39
+        unpcklpd  %xmm5, %xmm5                                  #207.12
+        divpd     %xmm5, %xmm4                                  #207.12
+        xorps     .L_2il0floatpacket.17(%rip), %xmm3            #208.2
+        movaps    %xmm4, %xmm5                                  #207.39
+        mulsd     %xmm2, %xmm3                                  #208.2
+        movaps    %xmm9, %xmm2                                  #214.13
+        divsd     %xmm8, %xmm6                                  #208.2
+        divsd     %xmm8, %xmm3                                  #208.2
+        unpckhpd  %xmm4, %xmm4                                  #211.13
+        mulsd     %xmm5, %xmm6                                  #211.23
+        movaps    %xmm4, %xmm0                                  #214.13
+        mulsd     %xmm4, %xmm3                                  #211.23
+        mulsd     %xmm7, %xmm0                                  #214.13
+        addsd     %xmm3, %xmm6                                  #211.6
+        movaps    %xmm5, %xmm3                                  #214.13
+        mulsd     %xmm9, %xmm3                                  #214.13
+        addsd     %xmm0, %xmm3                                  #214.13
+        movaps    %xmm7, %xmm0                                  #214.13
+        mulsd     %xmm3, %xmm2                                  #214.13
+        mulsd     %xmm3, %xmm0                                  #214.13
+        mulsd     %xmm3, %xmm3                                  #214.13
+        subsd     %xmm2, %xmm5                                  #214.13
+        subsd     %xmm0, %xmm4                                  #214.13
+        movaps    %xmm5, %xmm0                                  #214.30
+        unpcklpd  %xmm4, %xmm0                                  #214.30
+        mulsd     %xmm5, %xmm5                                  #214.13
+        mulsd     %xmm4, %xmm4                                  #214.13
+        addsd     %xmm4, %xmm5                                  #214.13
+        sqrtsd    %xmm5, %xmm5                                  #214.13
+        unpcklpd  %xmm5, %xmm5                                  #214.13
+        divpd     %xmm5, %xmm0                                  #214.13
+        movups    %xmm0, -32(%rbp)                              #214.30
+        movaps    %xmm11, %xmm0                                 #214.13
+        subsd     %xmm3, %xmm0                                  #214.13
+        pxor      %xmm3, %xmm3                                  #214.13
+        comisd    %xmm0, %xmm3                                  #214.13
+        jbe       ..B5.11       # Prob 50%                      #214.13
+                                # LOE rax rbx r12 r13 r14 r15 xmm0 xmm1 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.10:                        # Preds ..B5.9
+                                # Execution count [4.49e+01]
+        pxor      %xmm0, %xmm0                                  #214.13
+        jmp       ..B5.12       # Prob 100%                     #214.13
+                                # LOE rax rbx r12 r13 r14 r15 xmm0 xmm1 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.11:                        # Preds ..B5.9
+                                # Execution count [4.49e+01]
+        sqrtsd    %xmm0, %xmm0                                  #214.13
+                                # LOE rax rbx r12 r13 r14 r15 xmm0 xmm1 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.12:                        # Preds ..B5.10 ..B5.11
+                                # Execution count [8.97e+01]
+        andps     .L_2il0floatpacket.18(%rip), %xmm6            #212.13
+        movaps    %xmm15, %xmm2                                 #215.2
+        divsd     %xmm6, %xmm8                                  #212.2
+        mulsd     %xmm0, %xmm8                                  #214.2
+        movaps    %xmm14, %xmm0                                 #215.2
+        addsd     %xmm15, %xmm2                                 #215.2
+        addsd     %xmm14, %xmm0                                 #215.2
+        movaps    %xmm2, %xmm4                                  #215.19
+        pxor      %xmm5, %xmm5                                  #219.12
+        unpcklpd  %xmm0, %xmm4                                  #215.19
+        mulsd     %xmm2, %xmm2                                  #215.2
+        mulsd     %xmm0, %xmm0                                  #215.2
+        movsd     -24(%rbp), %xmm3                              #218.13
+        addsd     %xmm0, %xmm2                                  #215.2
+        sqrtsd    %xmm2, %xmm2                                  #215.2
+        unpcklpd  %xmm2, %xmm2                                  #215.2
+        divpd     %xmm2, %xmm4                                  #215.2
+        movups    %xmm4, -48(%rbp)                              #215.19
+        movaps    %xmm4, %xmm0                                  #215.19
+        unpckhpd  %xmm4, %xmm4                                  #218.23
+        movsd     -32(%rbp), %xmm2                              #218.13
+        mulsd     %xmm2, %xmm0                                  #218.23
+        mulsd     %xmm3, %xmm4                                  #218.23
+        addsd     %xmm4, %xmm0                                  #218.6
+        comisd    %xmm5, %xmm0                                  #219.12
+        jbe       ..B5.14       # Prob 78%                      #219.12
+                                # LOE rax rbx r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm3 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.13:                        # Preds ..B5.12
+                                # Execution count [1.97e+01]
+        movaps    %xmm15, %xmm5                                 #220.16
+        movaps    %xmm14, %xmm4                                 #220.16
+        mulsd     %xmm15, %xmm5                                 #220.16
+        mulsd     %xmm14, %xmm4                                 #220.16
+        addsd     %xmm4, %xmm5                                  #220.16
+        xorps     .L_2il0floatpacket.17(%rip), %xmm5            #220.16
+        subsd     .L_2il0floatpacket.14(%rip), %xmm5            #220.16
+        divsd     %xmm0, %xmm5                                  #220.26
+        movaps    %xmm8, %xmm0                                  #221.6
+        movaps    %xmm5, %xmm8                                  #221.6
+        minsd     %xmm0, %xmm8                                  #221.6
+                                # LOE rax rbx r12 r13 r14 r15 xmm1 xmm2 xmm3 xmm7 xmm8 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.14:                        # Preds ..B5.13 ..B5.12
+                                # Execution count [8.97e+01]
+        mulsd     %xmm8, %xmm2                                  #224.15
+        movaps    %xmm11, %xmm4                                 #229.2
+        mulsd     %xmm3, %xmm8                                  #225.15
+        addsd     %xmm2, %xmm15                                 #224.2
+        addsd     %xmm8, %xmm14                                 #225.2
+        addsd     %xmm15, %xmm4                                 #229.2
+        movaps    %xmm11, %xmm3                                 #229.2
+        movaps    %xmm11, %xmm6                                 #229.2
+        movaps    %xmm11, %xmm5                                 #229.2
+        movaps    %xmm15, %xmm0                                 #228.4
+        divsd     %xmm4, %xmm6                                  #229.2
+        mulsd     %xmm15, %xmm0                                 #228.4
+        addsd     %xmm14, %xmm3                                 #229.2
+        subsd     -16(%rbp), %xmm6                              #229.2[spill]
+        divsd     %xmm3, %xmm5                                  #229.2
+        movaps    %xmm14, %xmm2                                 #228.4
+        movaps    %xmm15, %xmm4                                 #227.4
+        mulsd     %xmm14, %xmm2                                 #228.4
+        subsd     %xmm12, %xmm0                                 #228.4
+        subsd     %xmm1, %xmm5                                  #229.2
+        addsd     %xmm2, %xmm0                                  #228.4
+        movaps    %xmm6, %xmm2                                  #229.29
+        movsd     %xmm5, -24(%rbp)                              #229.29
+        movsd     %xmm6, -32(%rbp)                              #229.29
+        unpcklpd  %xmm5, %xmm2                                  #229.29
+        mulsd     %xmm6, %xmm6                                  #229.2
+        mulsd     %xmm5, %xmm5                                  #229.2
+        movsd     .L_2il0floatpacket.8(%rip), %xmm8             #227.4
+        addsd     %xmm5, %xmm6                                  #229.2
+        mulsd     %xmm14, %xmm8                                 #227.4
+        sqrtsd    %xmm6, %xmm6                                  #229.2
+        subsd     %xmm8, %xmm4                                  #227.4
+        movaps    %xmm4, %xmm3                                  #232.14
+        andps     .L_2il0floatpacket.18(%rip), %xmm3            #232.14
+        unpcklpd  %xmm6, %xmm6                                  #229.2
+        divpd     %xmm6, %xmm2                                  #229.2
+        comisd    %xmm13, %xmm3                                 #232.23
+        jbe       ..B5.16       # Prob 18%                      #232.23
+                                # LOE rax rbx r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm3 xmm4 xmm7 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.15:                        # Preds ..B5.16 ..B5.14
+                                # Execution count [7.36e+01]
+        movups    %xmm2, -32(%rbp)                              #229.29
+        jmp       ..B5.2        # Prob 100%                     #229.29
+                                # LOE rax rbx r12 r13 r14 r15 xmm1 xmm3 xmm4 xmm7 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.16:                        # Preds ..B5.14
+                                # Execution count [1.61e+01]: Infreq
+        comisd    %xmm13, %xmm0                                 #232.38
+        ja        ..B5.15       # Prob 82%                      #232.38
+                                # LOE rax rbx r12 r13 r14 r15 xmm0 xmm1 xmm2 xmm3 xmm4 xmm7 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.18:                        # Preds ..B5.16
+                                # Execution count [2.91e+00]: Infreq
+        andps     .L_2il0floatpacket.18(%rip), %xmm0            #233.7
+        comisd    %xmm13, %xmm0                                 #233.16
+        jbe       ..B5.20       # Prob 20%                      #233.16
+                                # LOE rax rbx r12 r13 r14 r15 xmm1 xmm2 xmm3 xmm4 xmm7 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.19:                        # Preds ..B5.18
+                                # Execution count [2.33e+00]: Infreq
+        movaps    %xmm10, %xmm5                                 #234.19
+        movups    %xmm2, -32(%rbp)                              #229.29
+        movaps    %xmm2, %xmm0                                  #229.29
+        unpckhpd  %xmm10, %xmm5                                 #234.19
+        unpckhpd  %xmm2, %xmm2                                  #234.29
+        mulsd     %xmm5, %xmm0                                  #234.19
+        mulsd     %xmm10, %xmm2                                 #234.39
+        subsd     %xmm2, %xmm0                                  #234.39
+        andps     .L_2il0floatpacket.18(%rip), %xmm0            #234.3
+        comisd    %xmm13, %xmm0                                 #234.50
+        ja        ..B5.2        # Prob 82%                      #234.50
+                                # LOE rax rbx r12 r13 r14 r15 xmm1 xmm3 xmm4 xmm7 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14 xmm15
+..B5.20:                        # Preds ..B5.18 ..B5.19
+                                # Execution count [4.19e-01]: Infreq
+        movsd     %xmm14, Q(%rip)                               #192.6
+        movsd     %xmm15, P(%rip)                               #191.6
+                                # LOE rbx r12 r13 r14 r15
+..B5.21:                        # Preds ..B5.20
+                                # Execution count [1.00e+00]: Infreq
+        movq      %rbp, %rsp                                    #235.1
+        popq      %rbp                                          #235.1
+	.cfi_restore 6
+        ret                                                     #235.1
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	optimize_node,@function
+	.size	optimize_node,.-optimize_node
+..LNoptimize_node.4:
+	.data
+# -- End  optimize_node
+	.text
+.L_2__routine_start_find_g_5:
+# -- Begin  find_g
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl find_g
+# --- find_g()
+find_g:
+..B6.1:                         # Preds ..B6.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_find_g.165:
+..L166:
+                                                        #238.1
+        movsd     P(%rip), %xmm0                                #239.13
+        mulsd     %xmm0, %xmm0                                  #239.15
+        movsd     Q(%rip), %xmm1                                #239.17
+        mulsd     %xmm1, %xmm1                                  #239.19
+        subsd     .L_2il0floatpacket.10(%rip), %xmm0            #239.21
+        addsd     %xmm1, %xmm0                                  #239.19
+        ret                                                     #239.21
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	find_g,@function
+	.size	find_g,.-find_g
+..LNfind_g.5:
+	.data
+# -- End  find_g
+	.text
+.L_2__routine_start_find_h_6:
+# -- Begin  find_h
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl find_h
+# --- find_h()
+find_h:
+..B7.1:                         # Preds ..B7.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_find_h.168:
+..L169:
+                                                        #243.1
+        movsd     .L_2il0floatpacket.8(%rip), %xmm1             #244.15
+        mulsd     Q(%rip), %xmm1                                #244.17
+        movsd     P(%rip), %xmm0                                #244.13
+        subsd     %xmm1, %xmm0                                  #244.17
+        ret                                                     #244.17
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	find_h,@function
+	.size	find_h,.-find_h
+..LNfind_h.6:
+	.data
+# -- End  find_h
+	.text
+.L_2__routine_start_find_gradient_f_7:
+# -- Begin  find_gradient_f
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl find_gradient_f
+# --- find_gradient_f(double, double, double *)
+find_gradient_f:
+# parameter 1: %xmm0
+# parameter 2: %xmm1
+# parameter 3: %rdi
+..B8.1:                         # Preds ..B8.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_find_gradient_f.171:
+..L172:
+                                                        #248.1
+        movsd     .L_2il0floatpacket.19(%rip), %xmm6            #252.5
+        movsd     P(%rip), %xmm2                                #252.22
+        movaps    %xmm6, %xmm5                                  #252.22
+        movsd     Q(%rip), %xmm3                                #253.22
+        addsd     %xmm6, %xmm2                                  #252.22
+        addsd     %xmm6, %xmm3                                  #253.22
+        divsd     %xmm2, %xmm5                                  #252.22
+        divsd     %xmm3, %xmm6                                  #253.22
+        subsd     %xmm0, %xmm5                                  #252.25
+        subsd     %xmm1, %xmm6                                  #253.25
+        movaps    %xmm5, %xmm0                                  #255.25
+        movaps    %xmm6, %xmm4                                  #255.25
+        mulsd     %xmm5, %xmm0                                  #255.25
+        mulsd     %xmm6, %xmm4                                  #255.25
+        unpcklpd  %xmm6, %xmm5                                  #258.2
+        addsd     %xmm4, %xmm0                                  #255.2
+        sqrtsd    %xmm0, %xmm0                                  #256.15
+        movaps    %xmm0, %xmm7                                  #250.25
+        unpcklpd  %xmm7, %xmm7                                  #250.25
+        divpd     %xmm7, %xmm5                                  #258.2
+        movups    %xmm5, (%rdi)                                 #258.2
+        ret                                                     #260.12
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	find_gradient_f,@function
+	.size	find_gradient_f,.-find_gradient_f
+..LNfind_gradient_f.7:
+	.data
+# -- End  find_gradient_f
+	.text
+.L_2__routine_start_find_gradient_g_8:
+# -- Begin  find_gradient_g
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl find_gradient_g
+# --- find_gradient_g(double *)
+find_gradient_g:
+# parameter 1: %rdi
+..B9.1:                         # Preds ..B9.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_find_gradient_g.174:
+..L175:
+                                                        #264.1
+        movsd     P(%rip), %xmm2                                #268.19
+        movsd     Q(%rip), %xmm3                                #269.19
+        addsd     %xmm2, %xmm2                                  #268.19
+        addsd     %xmm3, %xmm3                                  #269.19
+        movaps    %xmm2, %xmm1                                  #271.25
+        movaps    %xmm3, %xmm0                                  #271.25
+        mulsd     %xmm2, %xmm1                                  #271.25
+        mulsd     %xmm3, %xmm0                                  #271.25
+        unpcklpd  %xmm3, %xmm2                                  #274.2
+        addsd     %xmm0, %xmm1                                  #271.2
+        sqrtsd    %xmm1, %xmm1                                  #272.15
+        movaps    %xmm1, %xmm4                                  #266.25
+        movaps    %xmm1, %xmm0                                  #276.12
+        unpcklpd  %xmm4, %xmm4                                  #266.25
+        divpd     %xmm4, %xmm2                                  #274.2
+        movups    %xmm2, (%rdi)                                 #274.2
+        ret                                                     #276.12
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	find_gradient_g,@function
+	.size	find_gradient_g,.-find_gradient_g
+..LNfind_gradient_g.8:
+	.data
+# -- End  find_gradient_g
+	.text
+.L_2__routine_start_find_gradient_h_9:
+# -- Begin  find_gradient_h
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl find_gradient_h
+# --- find_gradient_h(double *)
+find_gradient_h:
+# parameter 1: %rdi
+..B10.1:                        # Preds ..B10.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_find_gradient_h.177:
+..L178:
+                                                        #280.1
+        movq      $0x3ff0000000000000, %rax                     #284.5
+        movq      $0xc014000000000000, %rdx                     #285.17
+        movq      %rax, (%rdi)                                  #284.5
+        movq      %rdx, 8(%rdi)                                 #285.5
+        movups    (%rdi), %xmm0                                 #290.2
+        divpd     .L_2il0floatpacket.15(%rip), %xmm0            #290.2
+        movups    %xmm0, (%rdi)                                 #290.2
+        movsd     .L_2il0floatpacket.16(%rip), %xmm0            #292.12
+        ret                                                     #292.12
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	find_gradient_h,@function
+	.size	find_gradient_h,.-find_gradient_h
+..LNfind_gradient_h.9:
+	.data
+# -- End  find_gradient_h
+	.text
+.L_2__routine_start_find_dd_grad_f_10:
+# -- Begin  find_dd_grad_f
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl find_dd_grad_f
+# --- find_dd_grad_f(double, double, double *)
+find_dd_grad_f:
+# parameter 1: %xmm0
+# parameter 2: %xmm1
+# parameter 3: %rdi
+..B11.1:                        # Preds ..B11.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_find_dd_grad_f.180:
+..L181:
+                                                        #296.1
+        movsd     .L_2il0floatpacket.19(%rip), %xmm3            #297.34
+        movsd     P(%rip), %xmm2                                #297.32
+        movaps    %xmm3, %xmm8                                  #297.34
+        movsd     Q(%rip), %xmm4                                #298.32
+        addsd     %xmm3, %xmm2                                  #297.34
+        addsd     %xmm3, %xmm4                                  #298.34
+        divsd     %xmm2, %xmm8                                  #297.34
+        divsd     %xmm4, %xmm3                                  #298.34
+        movaps    %xmm8, %xmm7                                  #299.41
+        movaps    %xmm3, %xmm9                                  #300.41
+        mulsd     %xmm8, %xmm8                                  #305.30
+        subsd     %xmm0, %xmm7                                  #299.41
+        subsd     %xmm1, %xmm9                                  #300.41
+        mulsd     %xmm3, %xmm3                                  #306.30
+        movaps    %xmm7, %xmm6                                  #303.32
+        movaps    %xmm9, %xmm5                                  #303.56
+        mulsd     %xmm7, %xmm6                                  #303.32
+        mulsd     %xmm9, %xmm5                                  #303.56
+        xorps     .L_2il0floatpacket.17(%rip), %xmm8            #305.30
+        addsd     %xmm5, %xmm6                                  #303.56
+        mulsd     %xmm7, %xmm8                                  #305.43
+        sqrtsd    %xmm6, %xmm6                                  #303.14
+        xorps     .L_2il0floatpacket.17(%rip), %xmm3            #306.30
+        mulsd     %xmm9, %xmm3                                  #306.43
+        divsd     %xmm6, %xmm8                                  #305.55
+        divsd     %xmm6, %xmm3                                  #306.55
+        movsd     %xmm8, (%rdi)                                 #305.5
+        movsd     %xmm3, 8(%rdi)                                #306.5
+        ret                                                     #307.1
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	find_dd_grad_f,@function
+	.size	find_dd_grad_f,.-find_dd_grad_f
+..LNfind_dd_grad_f.10:
+	.data
+# -- End  find_dd_grad_f
+	.text
+.L_2__routine_start_make_orthogonal_11:
+# -- Begin  make_orthogonal
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl make_orthogonal
+# --- make_orthogonal(double *, double *)
+make_orthogonal:
+# parameter 1: %rdi
+# parameter 2: %rsi
+..B12.1:                        # Preds ..B12.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_make_orthogonal.183:
+..L184:
+                                                        #310.1
+        movsd     (%rdi), %xmm4                                 #316.9
+        movsd     8(%rdi), %xmm3                                #316.9
+        movaps    %xmm4, %xmm6                                  #316.18
+        movsd     (%rsi), %xmm1                                 #316.18
+        movsd     8(%rsi), %xmm0                                #316.18
+        mulsd     %xmm1, %xmm6                                  #316.18
+        mulsd     %xmm3, %xmm0                                  #316.18
+        addsd     %xmm0, %xmm6                                  #316.2
+        mulsd     %xmm6, %xmm1                                  #318.18
+        pxor      %xmm0, %xmm0                                  #325.5
+        subsd     %xmm1, %xmm4                                  #318.2
+        movsd     .L_2il0floatpacket.19(%rip), %xmm1            #325.5
+        movsd     %xmm4, (%rdi)                                 #318.2
+        movaps    %xmm4, %xmm5                                  #323.2
+        movsd     8(%rsi), %xmm2                                #318.18
+        mulsd     %xmm6, %xmm2                                  #318.18
+        mulsd     %xmm4, %xmm4                                  #319.19
+        mulsd     %xmm6, %xmm6                                  #325.17
+        subsd     %xmm2, %xmm3                                  #318.2
+        subsd     %xmm6, %xmm1                                  #325.17
+        unpcklpd  %xmm3, %xmm5                                  #323.2
+        mulsd     %xmm3, %xmm3                                  #319.19
+        comisd    %xmm1, %xmm0                                  #325.23
+        addsd     %xmm3, %xmm4                                  #319.2
+        sqrtsd    %xmm4, %xmm4                                  #321.12
+        unpcklpd  %xmm4, %xmm4                                  #313.22
+        divpd     %xmm4, %xmm5                                  #323.2
+        movups    %xmm5, (%rdi)                                 #323.2
+        ja        ..B12.4       # Prob 50%                      #325.23
+                                # LOE rbx rbp r12 r13 r14 r15 xmm0 xmm1
+..B12.3:                        # Preds ..B12.1
+                                # Execution count [5.00e-01]
+        pxor      %xmm0, %xmm0                                  #328.12
+        sqrtsd    %xmm1, %xmm0                                  #328.12
+                                # LOE rbx rbp r12 r13 r14 r15 xmm0
+..B12.4:                        # Preds ..B12.1 ..B12.3
+                                # Execution count [1.00e+00]
+        ret                                                     #326.9
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	make_orthogonal,@function
+	.size	make_orthogonal,.-make_orthogonal
+..LNmake_orthogonal.11:
+	.data
+# -- End  make_orthogonal
+	.data
+	.align 8
+	.align 8
+Q:
+	.long	0x00000000,0x3ff00000
+	.type	Q,@object
+	.size	Q,8
+	.align 8
+P:
+	.long	0x00000000,0x3ff00000
+	.type	P,@object
+	.size	P,8
+	.section .rodata, "a"
+	.align 16
+	.align 16
+.L_2il0floatpacket.15:
+	.long	0x5f122ff6,0x40146565,0x5f122ff6,0x40146565
+	.type	.L_2il0floatpacket.15,@object
+	.size	.L_2il0floatpacket.15,16
+	.align 16
+.L_2il0floatpacket.17:
+	.long	0x00000000,0x80000000,0x00000000,0x00000000
+	.type	.L_2il0floatpacket.17,@object
+	.size	.L_2il0floatpacket.17,16
+	.align 16
+.L_2il0floatpacket.18:
+	.long	0xffffffff,0x7fffffff,0x00000000,0x00000000
+	.type	.L_2il0floatpacket.18,@object
+	.size	.L_2il0floatpacket.18,16
+	.align 8
+.L_2il0floatpacket.8:
+	.long	0x00000000,0x40140000
+	.type	.L_2il0floatpacket.8,@object
+	.size	.L_2il0floatpacket.8,8
+	.align 8
+.L_2il0floatpacket.9:
+	.long	0xa0b5ed8d,0x3eb0c6f7
+	.type	.L_2il0floatpacket.9,@object
+	.size	.L_2il0floatpacket.9,8
+	.align 8
+.L_2il0floatpacket.10:
+	.long	0x9999999a,0x3fe99999
+	.type	.L_2il0floatpacket.10,@object
+	.size	.L_2il0floatpacket.10,8
+	.align 8
+.L_2il0floatpacket.11:
+	.long	0x00000000,0xc0140000
+	.type	.L_2il0floatpacket.11,@object
+	.size	.L_2il0floatpacket.11,8
+	.align 8
+.L_2il0floatpacket.12:
+	.long	0x00000000,0x40000000
+	.type	.L_2il0floatpacket.12,@object
+	.size	.L_2il0floatpacket.12,8
+	.align 8
+.L_2il0floatpacket.13:
+	.long	0x00000000,0x40100000
+	.type	.L_2il0floatpacket.13,@object
+	.size	.L_2il0floatpacket.13,8
+	.align 8
+.L_2il0floatpacket.14:
+	.long	0x9999999a,0xbfe99999
+	.type	.L_2il0floatpacket.14,@object
+	.size	.L_2il0floatpacket.14,8
+	.align 8
+.L_2il0floatpacket.16:
+	.long	0x5f122ff6,0x40146565
+	.type	.L_2il0floatpacket.16,@object
+	.size	.L_2il0floatpacket.16,8
+	.align 8
+.L_2il0floatpacket.19:
+	.long	0x00000000,0x3ff00000
+	.type	.L_2il0floatpacket.19,@object
+	.size	.L_2il0floatpacket.19,8
+	.data
+	.section .note.GNU-stack, ""
+# End

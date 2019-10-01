@@ -1,0 +1,643 @@
+# mark_description "Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.5.281 Build 20190815";
+# mark_description "-S -c -o crc32";
+	.file "crc32.c"
+	.text
+..TXTST0:
+.L_2__routine_start_main_0:
+# -- Begin  main
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl main
+# --- main(int, char **)
+main:
+# parameter 1: %edi
+# parameter 2: %rsi
+..B1.1:                         # Preds ..B1.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_main.1:
+..L2:
+                                                          #122.1
+        pushq     %rbp                                          #122.1
+	.cfi_def_cfa_offset 16
+        movq      %rsp, %rbp                                    #122.1
+	.cfi_def_cfa 6, 16
+	.cfi_offset 6, -16
+        andq      $-128, %rsp                                   #122.1
+        pushq     %r12                                          #122.1
+        pushq     %r13                                          #122.1
+        pushq     %r14                                          #122.1
+        pushq     %r15                                          #122.1
+        subq      $96, %rsp                                     #122.1
+	.cfi_escape 0x10, 0x0c, 0x0e, 0x38, 0x1c, 0x0d, 0x80, 0xff, 0xff, 0xff, 0x1a, 0x0d, 0xf8, 0xff, 0xff, 0xff, 0x22
+	.cfi_escape 0x10, 0x0d, 0x0e, 0x38, 0x1c, 0x0d, 0x80, 0xff, 0xff, 0xff, 0x1a, 0x0d, 0xf0, 0xff, 0xff, 0xff, 0x22
+	.cfi_escape 0x10, 0x0e, 0x0e, 0x38, 0x1c, 0x0d, 0x80, 0xff, 0xff, 0xff, 0x1a, 0x0d, 0xe8, 0xff, 0xff, 0xff, 0x22
+	.cfi_escape 0x10, 0x0f, 0x0e, 0x38, 0x1c, 0x0d, 0x80, 0xff, 0xff, 0xff, 0x1a, 0x0d, 0xe0, 0xff, 0xff, 0xff, 0x22
+        movq      %rsi, %r15                                    #122.1
+        movl      %edi, %r13d                                   #122.1
+        xorl      %esi, %esi                                    #122.1
+        movl      $3, %edi                                      #122.1
+        call      __intel_new_feature_proc_init                 #122.1
+                                # LOE rbx r15 r13d
+..B1.25:                        # Preds ..B1.1
+                                # Execution count [1.00e+00]
+        stmxcsr   (%rsp)                                        #122.1
+        xorl      %r12d, %r12d                                  #124.9
+        orl       $32832, (%rsp)                                #122.1
+        ldmxcsr   (%rsp)                                        #122.1
+        cmpl      $2, %r13d                                     #127.15
+        jne       ..B1.21       # Prob 21%                      #127.15
+                                # LOE rbx r14 r15 r12d
+..B1.2:                         # Preds ..B1.25
+                                # Execution count [7.84e-01]
+        movq      8(%r15), %rdi                                 #133.18
+        call      atol                                          #133.18
+                                # LOE rax rbx r14 r12d
+..B1.3:                         # Preds ..B1.2
+                                # Execution count [7.84e-01]
+        movq      $0x100000000, %rcx                            #135.3
+        movl      %eax, %r15d                                   #133.18
+        movdqu    .L_2il0floatpacket.0(%rip), %xmm2             #135.3
+        pxor      %xmm4, %xmm4                                  #135.3
+        movdqu    .L_2il0floatpacket.1(%rip), %xmm6             #135.3
+        pcmpeqd   %xmm0, %xmm0                                  #135.3
+        movdqu    .L_2il0floatpacket.2(%rip), %xmm5             #135.3
+        xorl      %eax, %eax                                    #135.3
+        movdqu    .L_2il0floatpacket.3(%rip), %xmm3             #135.3
+        movd      %rcx, %xmm7                                   #135.3
+        movdqu    .L_2il0floatpacket.4(%rip), %xmm8             #135.3
+        xorl      %ecx, %ecx                                    #135.3
+                                # LOE rax rbx r14 ecx r12d r15d xmm0 xmm2 xmm3 xmm4 xmm5 xmm6 xmm7 xmm8
+..B1.4:                         # Preds ..B1.4 ..B1.3
+                                # Execution count [2.01e+02]
+        movdqa    %xmm7, %xmm9                                  #135.3
+        movdqa    %xmm3, %xmm11                                 #135.3
+        punpckldq %xmm7, %xmm9                                  #135.3
+        movdqa    %xmm3, %xmm14                                 #135.3
+        movdqa    %xmm9, %xmm1                                  #135.3
+        pand      %xmm5, %xmm9                                  #135.3
+        psrad     $31, %xmm1                                    #135.3
+        addl      $2, %ecx                                      #135.3
+        pand      %xmm6, %xmm1                                  #135.3
+        paddd     %xmm2, %xmm7                                  #135.3
+        por       %xmm9, %xmm1                                  #135.3
+        psllq     $24, %xmm1                                    #135.3
+        pand      %xmm1, %xmm11                                 #135.3
+        psllq     $1, %xmm1                                     #135.3
+        pcmpeqd   %xmm4, %xmm11                                 #135.3
+        pshufd    $177, %xmm11, %xmm10                          #135.3
+        pand      %xmm10, %xmm11                                #135.3
+        movdqa    %xmm3, %xmm10                                 #135.3
+        pxor      %xmm0, %xmm11                                 #135.3
+        movdqa    %xmm11, %xmm12                                #135.3
+        pandn     %xmm1, %xmm12                                 #135.3
+        pxor      %xmm8, %xmm1                                  #135.3
+        pand      %xmm11, %xmm1                                 #135.3
+        por       %xmm12, %xmm1                                 #135.3
+        pand      %xmm1, %xmm14                                 #135.3
+        psllq     $1, %xmm1                                     #135.3
+        pcmpeqd   %xmm4, %xmm14                                 #135.3
+        pshufd    $177, %xmm14, %xmm13                          #135.3
+        pand      %xmm13, %xmm14                                #135.3
+        movdqa    %xmm3, %xmm13                                 #135.3
+        pxor      %xmm0, %xmm14                                 #135.3
+        movdqa    %xmm14, %xmm15                                #135.3
+        pandn     %xmm1, %xmm15                                 #135.3
+        pxor      %xmm8, %xmm1                                  #135.3
+        pand      %xmm14, %xmm1                                 #135.3
+        por       %xmm15, %xmm1                                 #135.3
+        pand      %xmm1, %xmm10                                 #135.3
+        psllq     $1, %xmm1                                     #135.3
+        pcmpeqd   %xmm4, %xmm10                                 #135.3
+        pshufd    $177, %xmm10, %xmm9                           #135.3
+        pand      %xmm9, %xmm10                                 #135.3
+        movdqa    %xmm3, %xmm9                                  #135.3
+        pxor      %xmm0, %xmm10                                 #135.3
+        movdqa    %xmm10, %xmm11                                #135.3
+        pandn     %xmm1, %xmm11                                 #135.3
+        pxor      %xmm8, %xmm1                                  #135.3
+        pand      %xmm10, %xmm1                                 #135.3
+        por       %xmm11, %xmm1                                 #135.3
+        pand      %xmm1, %xmm13                                 #135.3
+        psllq     $1, %xmm1                                     #135.3
+        pcmpeqd   %xmm4, %xmm13                                 #135.3
+        pshufd    $177, %xmm13, %xmm12                          #135.3
+        pand      %xmm12, %xmm13                                #135.3
+        movdqa    %xmm3, %xmm12                                 #135.3
+        pxor      %xmm0, %xmm13                                 #135.3
+        movdqa    %xmm13, %xmm14                                #135.3
+        pandn     %xmm1, %xmm14                                 #135.3
+        pxor      %xmm8, %xmm1                                  #135.3
+        pand      %xmm13, %xmm1                                 #135.3
+        por       %xmm14, %xmm1                                 #135.3
+        pand      %xmm1, %xmm9                                  #135.3
+        psllq     $1, %xmm1                                     #135.3
+        pcmpeqd   %xmm4, %xmm9                                  #135.3
+        pshufd    $177, %xmm9, %xmm15                           #135.3
+        pand      %xmm15, %xmm9                                 #135.3
+        pxor      %xmm0, %xmm9                                  #135.3
+        movdqa    %xmm9, %xmm10                                 #135.3
+        pandn     %xmm1, %xmm10                                 #135.3
+        pxor      %xmm8, %xmm1                                  #135.3
+        pand      %xmm9, %xmm1                                  #135.3
+        movdqa    %xmm3, %xmm9                                  #135.3
+        por       %xmm10, %xmm1                                 #135.3
+        pand      %xmm1, %xmm12                                 #135.3
+        psllq     $1, %xmm1                                     #135.3
+        pcmpeqd   %xmm4, %xmm12                                 #135.3
+        pshufd    $177, %xmm12, %xmm11                          #135.3
+        pand      %xmm11, %xmm12                                #135.3
+        movdqa    %xmm3, %xmm11                                 #135.3
+        pxor      %xmm0, %xmm12                                 #135.3
+        movdqa    %xmm12, %xmm13                                #135.3
+        pandn     %xmm1, %xmm13                                 #135.3
+        pxor      %xmm8, %xmm1                                  #135.3
+        pand      %xmm12, %xmm1                                 #135.3
+        por       %xmm13, %xmm1                                 #135.3
+        pand      %xmm1, %xmm9                                  #135.3
+        psllq     $1, %xmm1                                     #135.3
+        pcmpeqd   %xmm4, %xmm9                                  #135.3
+        pshufd    $177, %xmm9, %xmm14                           #135.3
+        pand      %xmm14, %xmm9                                 #135.3
+        pxor      %xmm0, %xmm9                                  #135.3
+        movdqa    %xmm9, %xmm10                                 #135.3
+        pandn     %xmm1, %xmm10                                 #135.3
+        pxor      %xmm8, %xmm1                                  #135.3
+        pand      %xmm9, %xmm1                                  #135.3
+        por       %xmm10, %xmm1                                 #135.3
+        pand      %xmm1, %xmm11                                 #135.3
+        psllq     $1, %xmm1                                     #135.3
+        pcmpeqd   %xmm4, %xmm11                                 #135.3
+        pshufd    $177, %xmm11, %xmm15                          #135.3
+        pand      %xmm15, %xmm11                                #135.3
+        pxor      %xmm0, %xmm11                                 #135.3
+        movdqa    %xmm11, %xmm12                                #135.3
+        pandn     %xmm1, %xmm12                                 #135.3
+        pxor      %xmm8, %xmm1                                  #135.3
+        pand      %xmm11, %xmm1                                 #135.3
+        por       %xmm12, %xmm1                                 #135.3
+        movdqu    %xmm1, crc_table(,%rax,8)                     #135.3
+        addq      $2, %rax                                      #135.3
+        cmpl      $256, %ecx                                    #135.3
+        jb        ..B1.4        # Prob 99%                      #135.3
+                                # LOE rax rbx r14 ecx r12d r15d xmm0 xmm2 xmm3 xmm4 xmm5 xmm6 xmm7 xmm8
+..B1.5:                         # Preds ..B1.4
+                                # Execution count [7.84e-01]
+        testl     %r15d, %r15d                                  #137.14
+        jle       ..B1.18       # Prob 10%                      #137.14
+                                # LOE rbx r14 r12d r15d
+..B1.7:                         # Preds ..B1.5 ..B1.16
+                                # Execution count [3.92e+00]
+        movl      %r12d, %edi                                   #139.16
+        xorl      %eax, %eax                                    #139.16
+..___tag_value_main.10:
+#       get_next_packet()
+        call      get_next_packet                               #139.16
+..___tag_value_main.11:
+                                # LOE rax rbx r12d r15d
+..B1.27:                        # Preds ..B1.7
+                                # Execution count [3.92e+00]
+        movq      %rax, %r13                                    #139.16
+                                # LOE rbx r13 r12d r15d
+..B1.8:                         # Preds ..B1.27
+                                # Execution count [3.92e+00]
+        movl      %r12d, %edi                                   #140.42
+..___tag_value_main.12:
+#       packet_size(unsigned int)
+        call      packet_size                                   #140.42
+..___tag_value_main.13:
+                                # LOE rbx r13 eax r12d r15d
+..B1.28:                        # Preds ..B1.8
+                                # Execution count [3.92e+00]
+        movl      %eax, %esi                                    #140.42
+                                # LOE rbx r13 esi r12d r15d
+..B1.9:                         # Preds ..B1.28
+                                # Execution count [3.92e+00]
+        xorl      %r14d, %r14d                                  #140.19
+        testl     %esi, %esi                                    #140.19
+        jle       ..B1.16       # Prob 50%                      #140.19
+                                # LOE rbx r13 r14 esi r12d r15d
+..B1.10:                        # Preds ..B1.9
+                                # Execution count [3.92e+00]
+        movl      %esi, %ecx                                    #140.42
+        movl      $1, %r8d                                      #140.19
+        xorl      %eax, %eax                                    #140.19
+        shrl      $1, %ecx                                      #140.42
+        je        ..B1.14       # Prob 9%                       #140.19
+                                # LOE rax rcx rbx r13 r14 esi r8d r12d r15d
+..B1.12:                        # Preds ..B1.10 ..B1.12
+                                # Execution count [9.79e+00]
+        movq      %r14, %r9                                     #140.19
+        shrq      $24, %r14                                     #140.19
+        shlq      $8, %r9                                       #140.19
+        xorb      (%r13,%rax,2), %r14b                          #140.19
+        movzbl    %r14b, %r8d                                   #140.19
+        xorq      crc_table(,%r8,8), %r9                        #140.19
+        movq      %r9, %r14                                     #140.19
+        shrq      $24, %r9                                      #140.19
+        shlq      $8, %r14                                      #140.19
+        xorb      1(%r13,%rax,2), %r9b                          #140.19
+        incq      %rax                                          #140.19
+        movzbl    %r9b, %r10d                                   #140.19
+        xorq      crc_table(,%r10,8), %r14                      #140.19
+        cmpq      %rcx, %rax                                    #140.19
+        jb        ..B1.12       # Prob 63%                      #140.19
+                                # LOE rax rcx rbx r13 r14 esi r12d r15d
+..B1.13:                        # Preds ..B1.12
+                                # Execution count [3.53e+00]
+        lea       1(%rax,%rax), %r8d                            #140.19
+                                # LOE rbx r13 r14 esi r8d r12d r15d
+..B1.14:                        # Preds ..B1.13 ..B1.10
+                                # Execution count [3.92e+00]
+        lea       -1(%r8), %eax                                 #140.19
+        cmpl      %esi, %eax                                    #140.19
+        jae       ..B1.16       # Prob 9%                       #140.19
+                                # LOE rbx r13 r14 r8d r12d r15d
+..B1.15:                        # Preds ..B1.14
+                                # Execution count [3.53e+00]
+        movslq    %r8d, %r8                                     #140.19
+        movq      %r14, %rax                                    #140.19
+        shrq      $24, %r14                                     #140.19
+        shlq      $8, %rax                                      #140.19
+        xorb      -1(%r8,%r13), %r14b                           #140.19
+        movzbl    %r14b, %ecx                                   #140.19
+        movq      %rax, %r14                                    #140.19
+        xorq      crc_table(,%rcx,8), %r14                      #140.19
+                                # LOE rbx r14 r12d r15d
+..B1.16:                        # Preds ..B1.15 ..B1.14 ..B1.9
+                                # Execution count [3.92e+00]
+        incl      %r12d                                         #141.7
+        cmpl      %r15d, %r12d                                  #137.14
+        jl        ..B1.7        # Prob 82%                      #137.14
+                                # LOE rbx r14 r12d r15d
+..B1.18:                        # Preds ..B1.16 ..B1.5
+                                # Execution count [7.84e-01]
+        movl      $.L_2__STRING.1, %esi                         #144.3
+        movl      %r15d, %edx                                   #144.3
+        xorl      %eax, %eax                                    #144.3
+        movq      stdout(%rip), %rdi                            #144.3
+#       fprintf(FILE *__restrict__, const char *__restrict__, ...)
+        call      fprintf                                       #144.3
+                                # LOE rbx r14
+..B1.19:                        # Preds ..B1.18
+                                # Execution count [7.84e-01]
+        movl      $.L_2__STRING.2, %esi                         #145.3
+        movl      %r14d, %edx                                   #145.3
+        xorl      %eax, %eax                                    #145.3
+        movq      stdout(%rip), %rdi                            #145.3
+#       fprintf(FILE *__restrict__, const char *__restrict__, ...)
+        call      fprintf                                       #145.3
+                                # LOE rbx
+..B1.20:                        # Preds ..B1.19
+                                # Execution count [7.84e-01]
+        xorl      %eax, %eax                                    #147.10
+        addq      $96, %rsp                                     #147.10
+	.cfi_restore 15
+        popq      %r15                                          #147.10
+	.cfi_restore 14
+        popq      %r14                                          #147.10
+	.cfi_restore 13
+        popq      %r13                                          #147.10
+	.cfi_restore 12
+        popq      %r12                                          #147.10
+        movq      %rbp, %rsp                                    #147.10
+        popq      %rbp                                          #147.10
+	.cfi_def_cfa 7, 8
+	.cfi_restore 6
+        ret                                                     #147.10
+	.cfi_def_cfa 6, 16
+	.cfi_offset 6, -16
+	.cfi_escape 0x10, 0x0c, 0x0e, 0x38, 0x1c, 0x0d, 0x80, 0xff, 0xff, 0xff, 0x1a, 0x0d, 0xf8, 0xff, 0xff, 0xff, 0x22
+	.cfi_escape 0x10, 0x0d, 0x0e, 0x38, 0x1c, 0x0d, 0x80, 0xff, 0xff, 0xff, 0x1a, 0x0d, 0xf0, 0xff, 0xff, 0xff, 0x22
+	.cfi_escape 0x10, 0x0e, 0x0e, 0x38, 0x1c, 0x0d, 0x80, 0xff, 0xff, 0xff, 0x1a, 0x0d, 0xe8, 0xff, 0xff, 0xff, 0x22
+	.cfi_escape 0x10, 0x0f, 0x0e, 0x38, 0x1c, 0x0d, 0x80, 0xff, 0xff, 0xff, 0x1a, 0x0d, 0xe0, 0xff, 0xff, 0xff, 0x22
+                                # LOE
+..B1.21:                        # Preds ..B1.25
+                                # Execution count [2.16e-01]
+        movl      $il0_peep_printf_format_0, %edi               #129.7
+        movq      stderr(%rip), %rsi                            #129.7
+        call      fputs                                         #129.7
+                                # LOE
+..B1.22:                        # Preds ..B1.21
+                                # Execution count [2.16e-01]
+        xorl      %edi, %edi                                    #130.7
+#       exit(int)
+        call      exit                                          #130.7
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	main,@function
+	.size	main,.-main
+..LNmain.0:
+	.section .rodata.str1.4, "aMS",@progbits,1
+	.align 4
+	.align 4
+il0_peep_printf_format_0:
+	.long	1734439765
+	.long	1663056485
+	.long	589325170
+	.long	1886221678
+	.long	1701536609
+	.word	29556
+	.byte	0
+	.data
+# -- End  main
+	.text
+.L_2__routine_start_gen_crc_table_1:
+# -- Begin  gen_crc_table
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl gen_crc_table
+# --- gen_crc_table()
+gen_crc_table:
+..B2.1:                         # Preds ..B2.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_gen_crc_table.27:
+..L28:
+                                                         #87.1
+        movq      $0x100000000, %rax                            #101.7
+        movdqu    .L_2il0floatpacket.0(%rip), %xmm2             #101.7
+        xorl      %edx, %edx                                    #91.3
+        movdqu    .L_2il0floatpacket.1(%rip), %xmm6             #93.36
+        pxor      %xmm4, %xmm4                                  #96.20
+        movdqu    .L_2il0floatpacket.2(%rip), %xmm5             #93.36
+        pcmpeqd   %xmm0, %xmm0                                  #96.20
+        movdqu    .L_2il0floatpacket.3(%rip), %xmm3             #96.20
+        movd      %rax, %xmm7                                   #101.7
+        movdqu    .L_2il0floatpacket.4(%rip), %xmm8             #97.37
+        xorl      %eax, %eax                                    #91.3
+                                # LOE rax rbx rbp r12 r13 r14 r15 edx xmm0 xmm2 xmm3 xmm4 xmm5 xmm6 xmm7 xmm8
+..B2.2:                         # Preds ..B2.2 ..B2.1
+                                # Execution count [2.56e+02]
+        movdqa    %xmm7, %xmm9                                  #93.36
+        movdqa    %xmm3, %xmm11                                 #96.20
+        punpckldq %xmm7, %xmm9                                  #93.36
+        movdqa    %xmm3, %xmm14                                 #96.20
+        movdqa    %xmm9, %xmm1                                  #93.36
+        pand      %xmm5, %xmm9                                  #93.36
+        psrad     $31, %xmm1                                    #93.36
+        addl      $2, %edx                                      #91.3
+        pand      %xmm6, %xmm1                                  #93.36
+        paddd     %xmm2, %xmm7                                  #101.7
+        por       %xmm9, %xmm1                                  #93.36
+        psllq     $24, %xmm1                                    #93.41
+        pand      %xmm1, %xmm11                                 #96.20
+        psllq     $1, %xmm1                                     #97.32
+        pcmpeqd   %xmm4, %xmm11                                 #96.20
+        pshufd    $177, %xmm11, %xmm10                          #96.20
+        pand      %xmm10, %xmm11                                #96.20
+        movdqa    %xmm3, %xmm10                                 #96.20
+        pxor      %xmm0, %xmm11                                 #96.20
+        movdqa    %xmm11, %xmm12                                #99.32
+        pandn     %xmm1, %xmm12                                 #99.32
+        pxor      %xmm8, %xmm1                                  #97.37
+        pand      %xmm11, %xmm1                                 #97.37
+        por       %xmm12, %xmm1                                 #99.32
+        pand      %xmm1, %xmm14                                 #96.20
+        psllq     $1, %xmm1                                     #97.32
+        pcmpeqd   %xmm4, %xmm14                                 #96.20
+        pshufd    $177, %xmm14, %xmm13                          #96.20
+        pand      %xmm13, %xmm14                                #96.20
+        movdqa    %xmm3, %xmm13                                 #96.20
+        pxor      %xmm0, %xmm14                                 #96.20
+        movdqa    %xmm14, %xmm15                                #99.32
+        pandn     %xmm1, %xmm15                                 #99.32
+        pxor      %xmm8, %xmm1                                  #97.37
+        pand      %xmm14, %xmm1                                 #97.37
+        por       %xmm15, %xmm1                                 #99.32
+        pand      %xmm1, %xmm10                                 #96.20
+        psllq     $1, %xmm1                                     #97.32
+        pcmpeqd   %xmm4, %xmm10                                 #96.20
+        pshufd    $177, %xmm10, %xmm9                           #96.20
+        pand      %xmm9, %xmm10                                 #96.20
+        movdqa    %xmm3, %xmm9                                  #96.20
+        pxor      %xmm0, %xmm10                                 #96.20
+        movdqa    %xmm10, %xmm11                                #99.32
+        pandn     %xmm1, %xmm11                                 #99.32
+        pxor      %xmm8, %xmm1                                  #97.37
+        pand      %xmm10, %xmm1                                 #97.37
+        por       %xmm11, %xmm1                                 #99.32
+        pand      %xmm1, %xmm13                                 #96.20
+        psllq     $1, %xmm1                                     #97.32
+        pcmpeqd   %xmm4, %xmm13                                 #96.20
+        pshufd    $177, %xmm13, %xmm12                          #96.20
+        pand      %xmm12, %xmm13                                #96.20
+        movdqa    %xmm3, %xmm12                                 #96.20
+        pxor      %xmm0, %xmm13                                 #96.20
+        movdqa    %xmm13, %xmm14                                #99.32
+        pandn     %xmm1, %xmm14                                 #99.32
+        pxor      %xmm8, %xmm1                                  #97.37
+        pand      %xmm13, %xmm1                                 #97.37
+        por       %xmm14, %xmm1                                 #99.32
+        pand      %xmm1, %xmm9                                  #96.20
+        psllq     $1, %xmm1                                     #97.32
+        pcmpeqd   %xmm4, %xmm9                                  #96.20
+        pshufd    $177, %xmm9, %xmm15                           #96.20
+        pand      %xmm15, %xmm9                                 #96.20
+        pxor      %xmm0, %xmm9                                  #96.20
+        movdqa    %xmm9, %xmm10                                 #99.32
+        pandn     %xmm1, %xmm10                                 #99.32
+        pxor      %xmm8, %xmm1                                  #97.37
+        pand      %xmm9, %xmm1                                  #97.37
+        movdqa    %xmm3, %xmm9                                  #96.20
+        por       %xmm10, %xmm1                                 #99.32
+        pand      %xmm1, %xmm12                                 #96.20
+        psllq     $1, %xmm1                                     #97.32
+        pcmpeqd   %xmm4, %xmm12                                 #96.20
+        pshufd    $177, %xmm12, %xmm11                          #96.20
+        pand      %xmm11, %xmm12                                #96.20
+        movdqa    %xmm3, %xmm11                                 #96.20
+        pxor      %xmm0, %xmm12                                 #96.20
+        movdqa    %xmm12, %xmm13                                #99.32
+        pandn     %xmm1, %xmm13                                 #99.32
+        pxor      %xmm8, %xmm1                                  #97.37
+        pand      %xmm12, %xmm1                                 #97.37
+        por       %xmm13, %xmm1                                 #99.32
+        pand      %xmm1, %xmm9                                  #96.20
+        psllq     $1, %xmm1                                     #97.32
+        pcmpeqd   %xmm4, %xmm9                                  #96.20
+        pshufd    $177, %xmm9, %xmm14                           #96.20
+        pand      %xmm14, %xmm9                                 #96.20
+        pxor      %xmm0, %xmm9                                  #96.20
+        movdqa    %xmm9, %xmm10                                 #99.32
+        pandn     %xmm1, %xmm10                                 #99.32
+        pxor      %xmm8, %xmm1                                  #97.37
+        pand      %xmm9, %xmm1                                  #97.37
+        por       %xmm10, %xmm1                                 #99.32
+        pand      %xmm1, %xmm11                                 #96.20
+        psllq     $1, %xmm1                                     #99.32
+        pcmpeqd   %xmm4, %xmm11                                 #96.20
+        pshufd    $177, %xmm11, %xmm15                          #96.20
+        pand      %xmm15, %xmm11                                #96.20
+        pxor      %xmm0, %xmm11                                 #96.20
+        movdqa    %xmm11, %xmm12                                #99.32
+        pandn     %xmm1, %xmm12                                 #99.32
+        pxor      %xmm8, %xmm1                                  #97.37
+        pand      %xmm11, %xmm1                                 #97.37
+        por       %xmm12, %xmm1                                 #99.32
+        movdqu    %xmm1, crc_table(,%rax,8)                     #101.7
+        addq      $2, %rax                                      #91.3
+        cmpl      $256, %edx                                    #91.3
+        jb        ..B2.2        # Prob 99%                      #91.3
+                                # LOE rax rbx rbp r12 r13 r14 r15 edx xmm0 xmm2 xmm3 xmm4 xmm5 xmm6 xmm7 xmm8
+..B2.3:                         # Preds ..B2.2
+                                # Execution count [1.00e+00]
+        ret                                                     #103.3
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	gen_crc_table,@function
+	.size	gen_crc_table,.-gen_crc_table
+..LNgen_crc_table.1:
+	.data
+# -- End  gen_crc_table
+	.text
+.L_2__routine_start_update_crc_2:
+# -- Begin  update_crc
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl update_crc
+# --- update_crc(unsigned long, char *, int)
+update_crc:
+# parameter 1: %rdi
+# parameter 2: %rsi
+# parameter 3: %edx
+..B3.1:                         # Preds ..B3.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_update_crc.30:
+..L31:
+                                                         #111.1
+        movl      %edx, %r9d                                    #111.1
+        movq      %rsi, %r8                                     #111.1
+        testl     %r9d, %r9d                                    #113.20
+        jle       ..B3.8        # Prob 50%                      #113.20
+                                # LOE rbx rbp rdi r8 r12 r13 r14 r15 r9d
+..B3.2:                         # Preds ..B3.1
+                                # Execution count [1.00e+00]
+        movl      %r9d, %ecx                                    #113.3
+        movl      $1, %edx                                      #113.3
+        xorl      %esi, %esi                                    #113.3
+        shrl      $1, %ecx                                      #113.3
+        je        ..B3.6        # Prob 9%                       #113.3
+                                # LOE rcx rbx rbp rsi rdi r8 r12 r13 r14 r15 edx r9d
+..B3.4:                         # Preds ..B3.2 ..B3.4
+                                # Execution count [2.50e+00]
+        movq      %rdi, %rdx                                    #116.33
+        shrq      $24, %rdi                                     #115.31
+        shlq      $8, %rdx                                      #116.33
+        xorb      (%r8,%rsi,2), %dil                            #115.38
+        movzbl    %dil, %eax                                    #115.7
+        xorq      crc_table(,%rax,8), %rdx                      #116.38
+        movq      %rdx, %rdi                                    #116.33
+        shrq      $24, %rdx                                     #115.31
+        shlq      $8, %rdi                                      #116.33
+        xorb      1(%r8,%rsi,2), %dl                            #115.38
+        incq      %rsi                                          #113.3
+        movzbl    %dl, %r10d                                    #115.7
+        xorq      crc_table(,%r10,8), %rdi                      #116.38
+        cmpq      %rcx, %rsi                                    #113.3
+        jb        ..B3.4        # Prob 63%                      #113.3
+                                # LOE rcx rbx rbp rsi rdi r8 r12 r13 r14 r15 r9d
+..B3.5:                         # Preds ..B3.4
+                                # Execution count [9.00e-01]
+        lea       1(%rsi,%rsi), %edx                            #115.7
+                                # LOE rbx rbp rdi r8 r12 r13 r14 r15 edx r9d
+..B3.6:                         # Preds ..B3.5 ..B3.2
+                                # Execution count [1.00e+00]
+        lea       -1(%rdx), %ecx                                #113.3
+        cmpl      %r9d, %ecx                                    #113.3
+        jae       ..B3.8        # Prob 9%                       #113.3
+                                # LOE rbx rbp rdi r8 r12 r13 r14 r15 edx
+..B3.7:                         # Preds ..B3.6
+                                # Execution count [9.00e-01]
+        movslq    %edx, %rdx                                    #115.38
+        movq      %rdi, %rcx                                    #116.33
+        shrq      $24, %rdi                                     #115.31
+        shlq      $8, %rcx                                      #116.33
+        xorb      -1(%rdx,%r8), %dil                            #115.38
+        movzbl    %dil, %esi                                    #115.7
+        movq      %rcx, %rdi                                    #116.38
+        xorq      crc_table(,%rsi,8), %rdi                      #116.38
+                                # LOE rbx rbp rdi r12 r13 r14 r15
+..B3.8:                         # Preds ..B3.7 ..B3.6 ..B3.1
+                                # Execution count [1.00e+00]
+        movq      %rdi, %rax                                    #118.10
+        ret                                                     #118.10
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	update_crc,@function
+	.size	update_crc,.-update_crc
+..LNupdate_crc.2:
+	.data
+# -- End  update_crc
+	.bss
+	.align 32
+	.align 32
+crc_table:
+	.type	crc_table,@object
+	.size	crc_table,2048
+	.space 2048	# pad
+	.section .rodata, "a"
+	.align 16
+	.align 16
+.L_2il0floatpacket.0:
+	.long	0x00000002,0x00000002,0x00000002,0x00000002
+	.type	.L_2il0floatpacket.0,@object
+	.size	.L_2il0floatpacket.0,16
+	.align 16
+.L_2il0floatpacket.1:
+	.long	0x00000000,0xffffffff,0x00000000,0xffffffff
+	.type	.L_2il0floatpacket.1,@object
+	.size	.L_2il0floatpacket.1,16
+	.align 16
+.L_2il0floatpacket.2:
+	.long	0xffffffff,0x00000000,0xffffffff,0x00000000
+	.type	.L_2il0floatpacket.2,@object
+	.size	.L_2il0floatpacket.2,16
+	.align 16
+.L_2il0floatpacket.3:
+	.long	0x80000000,0x00000000,0x80000000,0x00000000
+	.type	.L_2il0floatpacket.3,@object
+	.size	.L_2il0floatpacket.3,16
+	.align 16
+.L_2il0floatpacket.4:
+	.long	0x04c11db7,0x00000000,0x04c11db7,0x00000000
+	.type	.L_2il0floatpacket.4,@object
+	.size	.L_2il0floatpacket.4,16
+	.section .rodata.str1.4, "aMS",@progbits,1
+	.space 1, 0x00 	# pad
+	.align 4
+.L_2__STRING.1:
+	.long	541282883
+	.long	1886220131
+	.long	1702126956
+	.long	1868963940
+	.long	1680154738
+	.long	1667330080
+	.long	1937007979
+	.word	2592
+	.byte	0
+	.type	.L_2__STRING.1,@object
+	.size	.L_2__STRING.1,31
+	.space 1, 0x00 	# pad
+	.align 4
+.L_2__STRING.2:
+	.long	1600352867
+	.long	1969447777
+	.long	1936269421
+	.long	175449376
+	.byte	0
+	.type	.L_2__STRING.2,@object
+	.size	.L_2__STRING.2,17
+	.data
+	.section .note.GNU-stack, ""
+# End

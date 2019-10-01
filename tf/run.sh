@@ -36,6 +36,7 @@ function set_vars(){
 
   # sometimes we need to use clang++
   [[ -n $COMPILER ]] || COMPILER=clang
+  # COMPILER=icc
   # We can specify STDIN to something other than /dev/stdin
   [[ -n $STDIN ]] || STDIN=/dev/null
   # And STDOUT default is /dev/null. 
@@ -97,7 +98,7 @@ function walk() {
     cd "$parent_dir"/"$dir" ;
 
     d=$(basename $(pwd))
-    echo "Sourcing info.sh from $(pwd)" ;
+    # echo "Sourcing info.sh from $(pwd)" ;
 
     if [[ -n $CLEAN && $CLEAN -eq 1 ]]; then
       cleanup_all ;
@@ -115,9 +116,9 @@ function walk() {
 
     unset_vars ;
     
-    echo 
-    echo "###############"
-    echo
+    # echo 
+    # echo "###############"
+    # echo
 
     cd "$parent_dir"
 
@@ -183,7 +184,7 @@ if [[ "$#" -ne 0 ]]; then
 else
   for bench in "${benchs[@]}"; do
     cd $BENCHSDIR
-    echo "Starting $bench" ;
+    # echo "Starting $bench" ;
     cd $bench ;
     $bench ;
   done

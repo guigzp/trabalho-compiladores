@@ -1,0 +1,430 @@
+# mark_description "Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.5.281 Build 20190815";
+# mark_description "-lm -DTORONTO -S -c -o main";
+	.file "main.c"
+	.text
+..TXTST0:
+.L_2__routine_start_main_0:
+# -- Begin  main
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl main
+# --- main(int, char **)
+main:
+# parameter 1: %edi
+# parameter 2: %rsi
+..B1.1:                         # Preds ..B1.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_main.1:
+..L2:
+                                                          #56.1
+        pushq     %rbp                                          #56.1
+	.cfi_def_cfa_offset 16
+        movq      %rsp, %rbp                                    #56.1
+	.cfi_def_cfa 6, 16
+	.cfi_offset 6, -16
+        andq      $-128, %rsp                                   #56.1
+        pushq     %r12                                          #56.1
+        pushq     %r13                                          #56.1
+        subq      $112, %rsp                                    #56.1
+        xorl      %esi, %esi                                    #56.1
+        movl      $3, %edi                                      #56.1
+        call      __intel_new_feature_proc_init                 #56.1
+	.cfi_escape 0x10, 0x0c, 0x0e, 0x38, 0x1c, 0x0d, 0x80, 0xff, 0xff, 0xff, 0x1a, 0x0d, 0xf8, 0xff, 0xff, 0xff, 0x22
+	.cfi_escape 0x10, 0x0d, 0x0e, 0x38, 0x1c, 0x0d, 0x80, 0xff, 0xff, 0xff, 0x1a, 0x0d, 0xf0, 0xff, 0xff, 0xff, 0x22
+                                # LOE rbx r13 r14 r15
+..B1.17:                        # Preds ..B1.1
+                                # Execution count [1.00e+00]
+        stmxcsr   (%rsp)                                        #56.1
+        movl      $il0_peep_printf_format_0, %edi               #61.3
+        orl       $32832, (%rsp)                                #56.1
+        ldmxcsr   (%rsp)                                        #56.1
+        call      puts                                          #61.3
+                                # LOE rbx r13 r14 r15
+..B1.2:                         # Preds ..B1.17
+                                # Execution count [1.00e+00]
+..___tag_value_main.8:
+#       build_tree(void)
+        call      build_tree                                    #64.7
+..___tag_value_main.9:
+                                # LOE rax rbx r13 r14 r15
+..B1.18:                        # Preds ..B1.2
+                                # Execution count [1.00e+00]
+        movq      %rax, %r12                                    #64.7
+                                # LOE rbx r12 r13 r14 r15
+..B1.3:                         # Preds ..B1.18
+                                # Execution count [1.00e+00]
+        movl      $il0_peep_printf_format_1, %edi               #65.3
+        call      puts                                          #65.3
+                                # LOE rbx r12 r13 r14 r15
+..B1.4:                         # Preds ..B1.3
+                                # Execution count [1.00e+00]
+        movq      %r12, %rdi                                    #66.3
+..___tag_value_main.10:
+#       Compute_Tree(Root)
+        call      Compute_Tree                                  #66.3
+..___tag_value_main.11:
+                                # LOE rbx r12 r13 r14 r15
+..B1.5:                         # Preds ..B1.4
+                                # Execution count [1.00e+00]
+        movl      $il0_peep_printf_format_2, %edi               #67.3
+        call      puts                                          #67.3
+                                # LOE rbx r12 r13 r14 r15
+..B1.6:                         # Preds ..B1.5
+                                # Execution count [1.95e+00]
+        movups    (%r12), %xmm0                                 #68.15
+        movups    16(%r12), %xmm1                               #68.15
+        movups    %xmm0, 32(%r12)                               #68.3
+        movups    %xmm1, 48(%r12)                               #68.3
+        movq      $0x3fe6666666666666, %rax                     #72.16
+        movq      $0x3fc1eb851eb851ec, %rdx                     #73.16
+        movq      %rax, 16(%r12)                                #72.3
+        movl      $35, %eax                                     #77.5
+        movq      %rdx, 24(%r12)                                #73.3
+        movq      %r12, %r13                                    #77.5
+        movsd     .L_2il0floatpacket.6(%rip), %xmm7             #79.21
+        movl      %eax, %r12d                                   #77.5
+        movsd     .L_2il0floatpacket.7(%rip), %xmm6             #79.45
+                                # LOE rbx r13 r14 r15 r12d
+..B1.7:                         # Preds ..B1.14 ..B1.6
+                                # Execution count [5.00e+00]
+        movq      %r13, %rdi                                    #76.5
+..___tag_value_main.12:
+#       Compute_Tree(Root)
+        call      Compute_Tree                                  #76.5
+..___tag_value_main.13:
+                                # LOE rbx r13 r14 r15 r12d
+..B1.8:                         # Preds ..B1.7
+                                # Execution count [5.00e+00]
+        movsd     16(%r13), %xmm0                               #77.5
+        movl      $.L_2__STRING.3, %edi                         #77.5
+        movsd     24(%r13), %xmm1                               #77.5
+        movl      $4, %eax                                      #77.5
+        movsd     (%r13), %xmm2                                 #77.5
+        movsd     8(%r13), %xmm3                                #77.5
+..___tag_value_main.14:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #77.5
+..___tag_value_main.15:
+                                # LOE rbx r13 r14 r15 r12d
+..B1.9:                         # Preds ..B1.8
+                                # Execution count [5.00e+00]
+        movsd     (%r13), %xmm0                                 #79.14
+        divsd     .L_2il0floatpacket.6(%rip), %xmm0             #79.21
+        movsd     16(%r13), %xmm4                               #79.31
+        movsd     .L_2il0floatpacket.7(%rip), %xmm1             #79.45
+        subsd     %xmm4, %xmm0                                  #79.31
+        movaps    %xmm0, %xmm2                                  #79.9
+        andps     .L_2il0floatpacket.16(%rip), %xmm2            #79.9
+        movsd     24(%r13), %xmm5                               #80.31
+        movsd     8(%r13), %xmm3                                #80.14
+        comisd    %xmm2, %xmm1                                  #79.45
+        jbe       ..B1.12       # Prob 50%                      #79.45
+                                # LOE rbx r13 r14 r15 r12d xmm0 xmm3 xmm4 xmm5
+..B1.10:                        # Preds ..B1.9
+                                # Execution count [2.50e+00]
+        divsd     .L_2il0floatpacket.6(%rip), %xmm3             #80.21
+        movaps    %xmm5, %xmm1                                  #80.31
+        movsd     .L_2il0floatpacket.7(%rip), %xmm2             #80.45
+        subsd     %xmm3, %xmm1                                  #80.31
+        xorps     .L_2il0floatpacket.14(%rip), %xmm1            #80.31
+        movaps    %xmm1, %xmm3                                  #80.9
+        andps     .L_2il0floatpacket.16(%rip), %xmm3            #80.9
+        comisd    %xmm3, %xmm2                                  #80.45
+        jbe       ..B1.13       # Prob 22%                      #80.45
+                                # LOE rbx r13 r14 r15 r12d xmm0 xmm1 xmm4 xmm5
+..B1.11:                        # Preds ..B1.10
+                                # Execution count [1.95e+00]
+        xorl      %eax, %eax                                    #105.10
+        addq      $112, %rsp                                    #105.10
+	.cfi_restore 13
+        popq      %r13                                          #105.10
+	.cfi_restore 12
+        popq      %r12                                          #105.10
+        movq      %rbp, %rsp                                    #105.10
+        popq      %rbp                                          #105.10
+	.cfi_def_cfa 7, 8
+	.cfi_restore 6
+        ret                                                     #105.10
+	.cfi_def_cfa 6, 16
+	.cfi_offset 6, -16
+	.cfi_escape 0x10, 0x0c, 0x0e, 0x38, 0x1c, 0x0d, 0x80, 0xff, 0xff, 0xff, 0x1a, 0x0d, 0xf8, 0xff, 0xff, 0xff, 0x22
+	.cfi_escape 0x10, 0x0d, 0x0e, 0x38, 0x1c, 0x0d, 0x80, 0xff, 0xff, 0xff, 0x1a, 0x0d, 0xf0, 0xff, 0xff, 0xff, 0x22
+                                # LOE
+..B1.12:                        # Preds ..B1.9
+                                # Execution count [2.50e+00]
+        divsd     .L_2il0floatpacket.6(%rip), %xmm3             #92.41
+        movaps    %xmm5, %xmm1                                  #92.41
+        subsd     %xmm3, %xmm1                                  #92.41
+        xorps     .L_2il0floatpacket.14(%rip), %xmm1            #92.41
+                                # LOE rbx r13 r14 r15 r12d xmm0 xmm1 xmm4 xmm5
+..B1.13:                        # Preds ..B1.12 ..B1.10
+                                # Execution count [3.05e+00]
+        movsd     .L_2il0floatpacket.15(%rip), %xmm3            #87.40
+        movl      $.L_2__STRING.4, %edi                         #95.7
+        movl      $2, %eax                                      #95.7
+        subsd     .L_2il0floatpacket.8(%rip), %xmm4             #83.31
+        subsd     .L_2il0floatpacket.11(%rip), %xmm5            #89.31
+        divsd     .L_2il0floatpacket.9(%rip), %xmm4             #83.46
+        divsd     .L_2il0floatpacket.12(%rip), %xmm5            #89.46
+        cvttsd2si %xmm4, %edx                                   #83.46
+        cvttsd2si %xmm5, %esi                                   #89.46
+        movl      %edx, %ecx                                    #86.7
+        movl      %esi, %r8d                                    #92.7
+        sarl      $31, %ecx                                     #86.7
+        notl      %ecx                                          #86.7
+        sarl      $31, %r8d                                     #92.7
+        andl      %edx, %ecx                                    #86.7
+        notl      %r8d                                          #92.7
+        cmpl      $35, %ecx                                     #86.7
+        movsd     .L_2il0floatpacket.15(%rip), %xmm5            #93.40
+        cmovge    %r12d, %ecx                                   #86.7
+        andl      %esi, %r8d                                    #92.7
+        cmpl      $35, %r8d                                     #92.7
+        movslq    %ecx, %rcx                                    #85.7
+        cmovge    %r12d, %r8d                                   #92.7
+        movslq    %r8d, %r8                                     #91.7
+        movsd     8+map_P(,%rcx,8), %xmm2                       #87.15
+        subsd     map_P(,%rcx,8), %xmm2                         #87.28
+        movsd     8+map_Q(,%r8,8), %xmm4                        #93.15
+        divsd     .L_2il0floatpacket.10(%rip), %xmm2            #87.40
+        subsd     map_Q(,%r8,8), %xmm4                          #93.28
+        subsd     %xmm2, %xmm3                                  #87.40
+        divsd     .L_2il0floatpacket.13(%rip), %xmm4            #93.40
+        divsd     %xmm3, %xmm0                                  #87.40
+        movsd     %xmm0, (%rsp)                                 #95.7[spill]
+        subsd     %xmm4, %xmm5                                  #93.40
+        divsd     %xmm5, %xmm1                                  #93.40
+        movsd     %xmm1, 8(%rsp)                                #95.7[spill]
+..___tag_value_main.25:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #95.7
+..___tag_value_main.26:
+                                # LOE rbx r13 r14 r15 r12d
+..B1.14:                        # Preds ..B1.13
+                                # Execution count [3.05e+00]
+        movsd     (%rsp), %xmm0                                 #[spill]
+        movsd     16(%r13), %xmm4                               #100.20
+        movups    16(%r13), %xmm3                               #96.19
+        movups    (%r13), %xmm2                                 #96.19
+        movups    %xmm3, 48(%r13)                               #96.7
+        movups    %xmm2, 32(%r13)                               #96.7
+        addsd     %xmm4, %xmm0                                  #100.33
+        movsd     %xmm0, 16(%r13)                               #100.7
+        movsd     8(%rsp), %xmm1                                #[spill]
+        movsd     24(%r13), %xmm0                               #101.20
+        addsd     %xmm0, %xmm1                                  #101.33
+        movsd     %xmm1, 24(%r13)                               #101.7
+        jmp       ..B1.7        # Prob 100%                     #101.7
+        .align    16,0x90
+                                # LOE rbx r13 r14 r15 r12d
+	.cfi_endproc
+# mark_end;
+	.type	main,@function
+	.size	main,.-main
+..LNmain.0:
+	.section .rodata.str1.4, "aMS",@progbits,1
+	.align 4
+	.align 4
+il0_peep_printf_format_0:
+	.long	1953718608
+	.long	1768843552
+	.long	1818323316
+	.long	1952545385
+	.long	7237481
+	.align 4
+il0_peep_printf_format_1:
+	.long	1818850626
+	.long	1920213108
+	.word	25957
+	.byte	0
+	.space 1, 0x00 	# pad
+	.align 4
+il0_peep_printf_format_2:
+	.long	1347243843
+	.long	1145394261
+	.long	1163023392
+	.word	69
+	.data
+# -- End  main
+	.data
+	.align 32
+	.align 32
+	.globl map_P
+map_P:
+	.long	0xea684f5b,0x40c1181b
+	.long	0xa7604e16,0x40c07f0d
+	.long	0x9d391847,0x40bfabfd
+	.long	0x0b0328d4,0x40be6031
+	.long	0xa71e5a92,0x40bd1feb
+	.long	0x288e9d1a,0x40bbea9a
+	.long	0x82c7fdd2,0x40babfb5
+	.long	0xf4cb7fac,0x40b99ebb
+	.long	0xa038c964,0x40b88736
+	.long	0xc360d71f,0x40b778b3
+	.long	0x4328f04a,0x40b672c9
+	.long	0x089e1eb9,0x40b57514
+	.long	0xd23eefb3,0x40b47f34
+	.long	0xfc5a7b6e,0x40b390d3
+	.long	0xa6100e5a,0x40b2a99d
+	.long	0x3c8414cd,0x40b1c942
+	.long	0x52126044,0x40b0ef78
+	.long	0xb737f64d,0x40b01bf8
+	.long	0xfe3cb161,0x40ae9d00
+	.long	0x9ee5a2a0,0x40ad0da2
+	.long	0x04336b67,0x40ab895e
+	.long	0xce2e9912,0x40aa0fc0
+	.long	0x94dadcca,0x40a8a060
+	.long	0xc3fb86b8,0x40a73ad7
+	.long	0xc0d24b44,0x40a5dec3
+	.long	0xfb588c9a,0x40a48bc8
+	.long	0xcf0e1aa0,0x40a34190
+	.long	0x2f2042da,0x40a1ffc7
+	.long	0xd86709cf,0x40a0c61b
+	.long	0xf539c232,0x409f2887
+	.long	0xfee2d225,0x409cd3f0
+	.long	0x7460b634,0x409a8de6
+	.long	0x6564bc4b,0x409855e5
+	.long	0x216b1250,0x40962b71
+	.long	0x9c150531,0x40940e14
+	.long	0x1dc6f685,0x4091fd5a
+	.type	map_P,@object
+	.size	map_P,288
+	.align 32
+	.globl map_Q
+map_Q:
+	.long	0xe889eca8,0x409ba362
+	.long	0xff70494f,0x409aa8ea
+	.long	0xf74dee8f,0x40999503
+	.long	0xc01e4645,0x4098868c
+	.long	0x980668f2,0x409781ad
+	.long	0x623ce107,0x409685e9
+	.long	0x79ee94af,0x409592cd
+	.long	0xf8969061,0x4094a7eb
+	.long	0x3cdebece,0x4093c4e0
+	.long	0x29af0c2e,0x4092e94a
+	.long	0x2f7efc3d,0x409214d0
+	.long	0xbfb3e82d,0x4091471e
+	.long	0xae0bd2ad,0x40907fe5
+	.long	0x7c259dfd,0x408f7db6
+	.long	0xf56a7ac8,0x408e0771
+	.long	0x43a661c3,0x408c9c78
+	.long	0x3be519b1,0x408b3c4e
+	.long	0xafb4857b,0x4089e67c
+	.long	0xa84b632b,0x40889a93
+	.long	0xe34a4551,0x4087582a
+	.long	0xf459365b,0x40861edd
+	.long	0x79ade34a,0x4084ee4d
+	.long	0xbe304940,0x4083c620
+	.long	0x2a5b597e,0x4082a603
+	.long	0xbf63b63b,0x40818da2
+	.long	0x5d7322b7,0x40807cb3
+	.long	0x1130eea4,0x407ee5da
+	.long	0x0842de66,0x407ce014
+	.long	0x8d1d2340,0x407ae78f
+	.long	0x9b21f3b5,0x4078fbd0
+	.long	0x6f19e935,0x40771c61
+	.long	0xf9e28d31,0x407548cd
+	.long	0xf7cf2efd,0x407380a9
+	.long	0x61319e33,0x4071c38e
+	.long	0x83829227,0x4070111a
+	.long	0xa162d57c,0x406cd1da
+	.type	map_Q,@object
+	.size	map_Q,288
+	.section .rodata, "a"
+	.align 16
+	.align 16
+.L_2il0floatpacket.14:
+	.long	0x00000000,0x80000000,0x00000000,0x00000000
+	.type	.L_2il0floatpacket.14,@object
+	.size	.L_2il0floatpacket.14,16
+	.align 16
+.L_2il0floatpacket.16:
+	.long	0xffffffff,0x7fffffff,0x00000000,0x00000000
+	.type	.L_2il0floatpacket.16,@object
+	.size	.L_2il0floatpacket.16,16
+	.align 8
+.L_2il0floatpacket.4:
+	.long	0x66666666,0x3fe66666
+	.type	.L_2il0floatpacket.4,@object
+	.size	.L_2il0floatpacket.4,8
+	.align 8
+.L_2il0floatpacket.5:
+	.long	0x1eb851ec,0x3fc1eb85
+	.type	.L_2il0floatpacket.5,@object
+	.size	.L_2il0floatpacket.5,8
+	.align 8
+.L_2il0floatpacket.6:
+	.long	0x00000000,0x40c38800
+	.type	.L_2il0floatpacket.6,@object
+	.size	.L_2il0floatpacket.6,8
+	.align 8
+.L_2il0floatpacket.7:
+	.long	0x88e368f1,0x3ee4f8b5
+	.type	.L_2il0floatpacket.7,@object
+	.size	.L_2il0floatpacket.7,8
+	.align 8
+.L_2il0floatpacket.8:
+	.long	0xcccccccd,0x3fe4cccc
+	.type	.L_2il0floatpacket.8,@object
+	.size	.L_2il0floatpacket.8,8
+	.align 8
+.L_2il0floatpacket.9:
+	.long	0x47ae147b,0x3f847ae1
+	.type	.L_2il0floatpacket.9,@object
+	.size	.L_2il0floatpacket.9,8
+	.align 8
+.L_2il0floatpacket.10:
+	.long	0x00000000,0x40590000
+	.type	.L_2il0floatpacket.10,@object
+	.size	.L_2il0floatpacket.10,8
+	.align 8
+.L_2il0floatpacket.11:
+	.long	0x0a3d70a4,0x3fc0a3d7
+	.type	.L_2il0floatpacket.11,@object
+	.size	.L_2il0floatpacket.11,8
+	.align 8
+.L_2il0floatpacket.12:
+	.long	0xd2f1a9fc,0x3f60624d
+	.type	.L_2il0floatpacket.12,@object
+	.size	.L_2il0floatpacket.12,8
+	.align 8
+.L_2il0floatpacket.13:
+	.long	0x00000000,0x40340000
+	.type	.L_2il0floatpacket.13,@object
+	.size	.L_2il0floatpacket.13,8
+	.align 8
+.L_2il0floatpacket.15:
+	.long	0x00000000,0x3ff00000
+	.type	.L_2il0floatpacket.15,@object
+	.size	.L_2il0floatpacket.15,8
+	.section .rodata.str1.4, "aMS",@progbits,1
+	.space 2, 0x00 	# pad
+	.align 4
+.L_2__STRING.3:
+	.long	624775764
+	.long	1714564660
+	.long	1230250028
+	.long	775169341
+	.long	539780658
+	.long	624767056
+	.long	1714564660
+	.long	810623020
+	.long	775169341
+	.long	681522
+	.type	.L_2__STRING.3,@object
+	.size	.L_2__STRING.3,40
+	.align 4
+.L_2__STRING.4:
+	.long	1381244996
+	.long	775169325
+	.long	539780658
+	.long	624773460
+	.long	1714564660
+	.word	10
+	.type	.L_2__STRING.4,@object
+	.size	.L_2__STRING.4,22
+	.data
+	.section .note.GNU-stack, ""
+# End

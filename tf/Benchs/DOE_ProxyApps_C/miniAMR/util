@@ -1,0 +1,276 @@
+# mark_description "Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.5.281 Build 20190815";
+# mark_description "-lm -S -c -o util";
+	.file "util.c"
+	.text
+..TXTST0:
+.L_2__routine_start_timer_0:
+# -- Begin  timer
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl timer
+# --- timer(void)
+timer:
+..B1.1:                         # Preds ..B1.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_timer.1:
+..L2:
+                                                          #36.1
+        pushq     %rsi                                          #36.1
+	.cfi_def_cfa_offset 16
+#       clock(void)
+        call      clock                                         #37.22
+                                # LOE rax rbx rbp r12 r13 r14 r15
+..B1.2:                         # Preds ..B1.1
+                                # Execution count [1.00e+00]
+        pxor      %xmm0, %xmm0                                  #37.22
+        cvtsi2sdq %rax, %xmm0                                   #37.22
+        divsd     .L_2il0floatpacket.0(%rip), %xmm0             #37.31
+        popq      %rcx                                          #37.31
+	.cfi_def_cfa_offset 8
+        ret                                                     #37.31
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	timer,@function
+	.size	timer,.-timer
+..LNtimer.0:
+	.data
+# -- End  timer
+	.text
+.L_2__routine_start_ma_malloc_1:
+# -- Begin  ma_malloc
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl ma_malloc
+# --- ma_malloc(size_t, char *, int)
+ma_malloc:
+# parameter 1: %rdi
+# parameter 2: %rsi
+# parameter 3: %edx
+..B2.1:                         # Preds ..B2.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_ma_malloc.6:
+..L7:
+                                                          #41.1
+        pushq     %r13                                          #41.1
+	.cfi_def_cfa_offset 16
+	.cfi_offset 13, -16
+        pushq     %r14                                          #41.1
+	.cfi_def_cfa_offset 24
+	.cfi_offset 14, -24
+        pushq     %r15                                          #41.1
+	.cfi_def_cfa_offset 32
+	.cfi_offset 15, -32
+        movl      %edx, %r14d                                   #41.1
+        movq      %rsi, %r13                                    #41.1
+        movq      %rdi, %r15                                    #41.1
+#       malloc(size_t)
+        call      malloc                                        #44.19
+                                # LOE rax rbx rbp r12 r13 r15 r14d
+..B2.2:                         # Preds ..B2.1
+                                # Execution count [1.00e+00]
+        testq     %rax, %rax                                    #46.15
+        je        ..B2.4        # Prob 1%                       #46.15
+                                # LOE rax rbx rbp r12 r13 r15 r14d
+..B2.3:                         # Preds ..B2.2
+                                # Execution count [9.82e-01]
+        pxor      %xmm0, %xmm0                                  #52.28
+        incl      counter_malloc(%rip)                          #51.4
+        cvtsi2sdq %r15, %xmm0                                   #52.28
+        testq     %r15, %r15                                    #52.28
+        jge       ..B2.8        # Prob 70%                      #52.28
+                                # LOE rax rbx rbp r12 r15 xmm0
+..B2.9:                         # Preds ..B2.3
+                                # Execution count [2.95e-01]
+        movq      %r15, %rdx                                    #52.28
+        pxor      %xmm0, %xmm0                                  #52.28
+        shrq      $1, %r15                                      #52.28
+        andq      $1, %rdx                                      #52.28
+        orq       %r15, %rdx                                    #52.28
+        cvtsi2sdq %rdx, %xmm0                                   #52.28
+        addsd     %xmm0, %xmm0                                  #52.28
+                                # LOE rax rbx rbp r12 xmm0
+..B2.8:                         # Preds ..B2.9 ..B2.3
+                                # Execution count [9.82e-01]
+        addsd     size_malloc(%rip), %xmm0                      #52.4
+        movsd     %xmm0, size_malloc(%rip)                      #52.4
+	.cfi_restore 15
+        popq      %r15                                          #54.10
+	.cfi_def_cfa_offset 24
+	.cfi_restore 14
+        popq      %r14                                          #54.10
+	.cfi_def_cfa_offset 16
+	.cfi_restore 13
+        popq      %r13                                          #54.10
+	.cfi_def_cfa_offset 8
+        ret                                                     #54.10
+	.cfi_def_cfa_offset 32
+	.cfi_offset 13, -16
+	.cfi_offset 14, -24
+	.cfi_offset 15, -32
+                                # LOE
+..B2.4:                         # Preds ..B2.2
+                                # Execution count [1.81e-02]: Infreq
+        movl      $.L_2__STRING.0, %edi                         #47.7
+        movq      %r13, %rsi                                    #47.7
+        movl      %r14d, %edx                                   #47.7
+        xorl      %eax, %eax                                    #47.7
+..___tag_value_ma_malloc.24:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #47.7
+..___tag_value_ma_malloc.25:
+                                # LOE
+..B2.5:                         # Preds ..B2.4
+                                # Execution count [1.81e-02]: Infreq
+        movl      $-1, %edi                                     #48.7
+#       exit(int)
+        call      exit                                          #48.7
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	ma_malloc,@function
+	.size	ma_malloc,.-ma_malloc
+..LNma_malloc.1:
+	.data
+# -- End  ma_malloc
+	.section .rodata, "a"
+	.align 8
+	.align 8
+.L_2il0floatpacket.0:
+	.long	0x00000000,0x412e8480
+	.type	.L_2il0floatpacket.0,@object
+	.size	.L_2il0floatpacket.0,8
+	.section .rodata.str1.4, "aMS",@progbits,1
+	.align 4
+	.align 4
+.L_2__STRING.0:
+	.long	1280070990
+	.long	1768910880
+	.long	1919251566
+	.long	1869768224
+	.long	1634541677
+	.long	1668246636
+	.long	1818321696
+	.long	1852383340
+	.long	544417056
+	.long	622883937
+	.word	2660
+	.byte	0
+	.type	.L_2__STRING.0,@object
+	.size	.L_2__STRING.0,43
+	.data
+	.comm blocks,8,8
+	.comm parents,8,8
+	.comm sorted_list,8,8
+	.comm sorted_index,8,8
+	.comm my_pe,4,4
+	.comm num_pes,4,4
+	.comm max_num_blocks,4,4
+	.comm target_active,4,4
+	.comm target_max,4,4
+	.comm target_min,4,4
+	.comm num_refine,4,4
+	.comm uniform_refine,4,4
+	.comm x_block_size,4,4
+	.comm y_block_size,4,4
+	.comm z_block_size,4,4
+	.comm num_vars,4,4
+	.comm comm_vars,4,4
+	.comm init_block_x,4,4
+	.comm init_block_y,4,4
+	.comm init_block_z,4,4
+	.comm reorder,4,4
+	.comm npx,4,4
+	.comm npy,4,4
+	.comm npz,4,4
+	.comm inbalance,4,4
+	.comm refine_freq,4,4
+	.comm report_diffusion,4,4
+	.comm checksum_freq,4,4
+	.comm stages_per_ts,4,4
+	.comm error_tol,4,4
+	.comm num_tsteps,4,4
+	.comm stencil,4,4
+	.comm report_perf,4,4
+	.comm plot_freq,4,4
+	.comm lb_opt,4,4
+	.comm block_change,4,4
+	.comm code,4,4
+	.comm permute,4,4
+	.comm nonblocking,4,4
+	.comm refine_ghost,4,4
+	.comm max_num_parents,4,4
+	.comm num_parents,4,4
+	.comm max_active_parent,4,4
+	.comm cur_max_level,4,4
+	.comm num_blocks,8,8
+	.comm block_start,8,8
+	.comm num_active,4,4
+	.comm max_active_block,4,4
+	.comm global_active,4,4
+	.comm x_block_half,4,4
+	.comm y_block_half,4,4
+	.comm z_block_half,4,4
+	.comm tol,8,8
+	.comm grid_sum,8,8
+	.comm p8,8,8
+	.comm p2,8,8
+	.comm mesh_size,12,4
+	.comm max_mesh_size,4,4
+	.comm from,8,8
+	.comm to,8,8
+	.comm msg_len,48,4
+	.comm local_max_b,4,4
+	.comm global_max_b,4,4
+	.comm num_objects,4,4
+	.comm objects,8,8
+	.comm average,1024,32
+	.comm stddev,1024,32
+	.comm minimum,1024,32
+	.comm maximum,1024,32
+	.comm timer_all,8,8
+	.comm timer_comm_all,8,8
+	.comm timer_comm_dir,24,8
+	.comm timer_comm_same,24,8
+	.comm timer_comm_diff,24,8
+	.comm timer_comm_bc,24,8
+	.comm timer_calc_all,8,8
+	.comm timer_cs_all,8,8
+	.comm timer_cs_calc,8,8
+	.comm timer_refine_all,8,8
+	.comm timer_refine_co,8,8
+	.comm timer_refine_mr,8,8
+	.comm timer_refine_sb,8,8
+	.comm timer_refine_cc,8,8
+	.comm timer_cb_all,8,8
+	.comm timer_target_all,8,8
+	.comm timer_target_rb,8,8
+	.comm timer_target_dc,8,8
+	.comm timer_target_cb,8,8
+	.comm timer_target_ab,8,8
+	.comm timer_target_da,8,8
+	.comm timer_target_sb,8,8
+	.comm timer_plot,8,8
+	.comm total_blocks,8,8
+	.comm nb_min,4,4
+	.comm nb_max,4,4
+	.comm nrs,4,4
+	.comm nps,4,4
+	.comm num_refined,4,4
+	.comm num_reformed,4,4
+	.comm counter_bc,12,4
+	.comm counter_same,12,4
+	.comm counter_diff,12,4
+	.comm counter_malloc,4,4
+	.comm size_malloc,8,8
+	.comm counter_malloc_init,4,4
+	.comm size_malloc_init,8,8
+	.comm total_red,4,4
+	.section .note.GNU-stack, ""
+# End

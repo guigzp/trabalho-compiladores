@@ -1,0 +1,3125 @@
+; ModuleID = 'block.c'
+source_filename = "block.c"
+target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-pc-linux-gnu"
+
+%struct.block = type { i32, i32, i32, i32, i32, i32, i32, [6 x i32], [6 x i32], [6 x [2 x [2 x i32]]], [3 x i32], double**** }
+%struct.parent = type { i32, i32, i32, i32, i32, i32, [8 x i32], [8 x i32], [3 x i32] }
+%struct.sorted_block = type { i32, i32 }
+%struct.object = type { i32, i32, [3 x double], [3 x double], [3 x double], [3 x double], [3 x double], [3 x double], [3 x double] }
+
+@split_blocks.side = internal global [6 x [2 x [2 x i32]]] [[2 x [2 x i32]] [[2 x i32] [i32 0, i32 2], [2 x i32] [i32 4, i32 6]], [2 x [2 x i32]] [[2 x i32] [i32 1, i32 3], [2 x i32] [i32 5, i32 7]], [2 x [2 x i32]] [[2 x i32] [i32 0, i32 1], [2 x i32] [i32 4, i32 5]], [2 x [2 x i32]] [[2 x i32] [i32 2, i32 3], [2 x i32] [i32 6, i32 7]], [2 x [2 x i32]] [[2 x i32] [i32 0, i32 1], [2 x i32] [i32 2, i32 3]], [2 x [2 x i32]] [[2 x i32] [i32 4, i32 5], [2 x i32] [i32 6, i32 7]]], align 16
+@split_blocks.off = internal global [6 x i32] [i32 1, i32 -1, i32 2, i32 -2, i32 4, i32 -4], align 16
+@cur_max_level = common global i32 0, align 4
+@max_active_block = common global i32 0, align 4
+@blocks = common global %struct.block* null, align 8
+@block_start = common global i32* null, align 8
+@p2 = common global i32* null, align 8
+@npx = common global i32 0, align 4
+@init_block_x = common global i32 0, align 4
+@npy = common global i32 0, align 4
+@init_block_y = common global i32 0, align 4
+@num_active = common global i32 0, align 4
+@max_num_blocks = common global i32 0, align 4
+@.str = private unnamed_addr constant [37 x i8] c"ERROR: Need more blocks %d %d on %d\0A\00", align 1
+@my_pe = common global i32 0, align 4
+@local_max_b = common global i32 0, align 4
+@num_blocks = common global i32* null, align 8
+@max_active_parent = common global i32 0, align 4
+@parents = common global %struct.parent* null, align 8
+@max_num_parents = common global i32 0, align 4
+@.str.1 = private unnamed_addr constant [26 x i8] c"ERROR: Need more parents\0A\00", align 1
+@num_parents = common global i32 0, align 4
+@num_refined = common global i32 0, align 4
+@.str.2 = private unnamed_addr constant [46 x i8] c"Error: No inactive blocks available %d %d %d\0A\00", align 1
+@num_refine = common global i32 0, align 4
+@x_block_half = common global i32 0, align 4
+@y_block_half = common global i32 0, align 4
+@z_block_half = common global i32 0, align 4
+@num_vars = common global i32 0, align 4
+@.str.3 = private unnamed_addr constant [55 x i8] c"%d ERROR: internal misconnect block %d num %d c %d %d\0A\00", align 1
+@.str.4 = private unnamed_addr constant [48 x i8] c"%d ERROR: misconnected b %d %d l %d nei[%d] %d\0A\00", align 1
+@consolidate_blocks.side = internal global [6 x [2 x [2 x i32]]] [[2 x [2 x i32]] [[2 x i32] [i32 0, i32 2], [2 x i32] [i32 4, i32 6]], [2 x [2 x i32]] [[2 x i32] [i32 1, i32 3], [2 x i32] [i32 5, i32 7]], [2 x [2 x i32]] [[2 x i32] [i32 0, i32 1], [2 x i32] [i32 4, i32 5]], [2 x [2 x i32]] [[2 x i32] [i32 2, i32 3], [2 x i32] [i32 6, i32 7]], [2 x [2 x i32]] [[2 x i32] [i32 0, i32 1], [2 x i32] [i32 2, i32 3]], [2 x [2 x i32]] [[2 x i32] [i32 4, i32 5], [2 x i32] [i32 6, i32 7]]], align 16
+@stencil = common global i32 0, align 4
+@.str.5 = private unnamed_addr constant [45 x i8] c"Out of free blocks in consolidate_blocks %d\0A\00", align 1
+@num_reformed = common global i32 0, align 4
+@.str.6 = private unnamed_addr constant [50 x i8] c"%d ERROR: %d con %d block %d c %d wrong level %d\0A\00", align 1
+@sorted_index = common global i32* null, align 8
+@sorted_list = common global %struct.sorted_block* null, align 8
+@.str.7 = private unnamed_addr constant [52 x i8] c"ERROR: del_sorted_list on %d - number %d not found\0A\00", align 1
+@.str.8 = private unnamed_addr constant [53 x i8] c"ERROR: find_sorted_list on %d - number %d not found\0A\00", align 1
+@num_pes = common global i32 0, align 4
+@target_active = common global i32 0, align 4
+@target_max = common global i32 0, align 4
+@target_min = common global i32 0, align 4
+@uniform_refine = common global i32 0, align 4
+@x_block_size = common global i32 0, align 4
+@y_block_size = common global i32 0, align 4
+@z_block_size = common global i32 0, align 4
+@comm_vars = common global i32 0, align 4
+@init_block_z = common global i32 0, align 4
+@reorder = common global i32 0, align 4
+@npz = common global i32 0, align 4
+@inbalance = common global i32 0, align 4
+@refine_freq = common global i32 0, align 4
+@report_diffusion = common global i32 0, align 4
+@checksum_freq = common global i32 0, align 4
+@stages_per_ts = common global i32 0, align 4
+@error_tol = common global i32 0, align 4
+@num_tsteps = common global i32 0, align 4
+@report_perf = common global i32 0, align 4
+@plot_freq = common global i32 0, align 4
+@lb_opt = common global i32 0, align 4
+@block_change = common global i32 0, align 4
+@code = common global i32 0, align 4
+@permute = common global i32 0, align 4
+@nonblocking = common global i32 0, align 4
+@refine_ghost = common global i32 0, align 4
+@global_active = common global i32 0, align 4
+@tol = common global double 0.000000e+00, align 8
+@grid_sum = common global double* null, align 8
+@p8 = common global i32* null, align 8
+@mesh_size = common global [3 x i32] zeroinitializer, align 4
+@max_mesh_size = common global i32 0, align 4
+@from = common global i32* null, align 8
+@to = common global i32* null, align 8
+@msg_len = common global [3 x [4 x i32]] zeroinitializer, align 16
+@global_max_b = common global i32 0, align 4
+@num_objects = common global i32 0, align 4
+@objects = common global %struct.object* null, align 8
+@average = common global [128 x double] zeroinitializer, align 16
+@stddev = common global [128 x double] zeroinitializer, align 16
+@minimum = common global [128 x double] zeroinitializer, align 16
+@maximum = common global [128 x double] zeroinitializer, align 16
+@timer_all = common global double 0.000000e+00, align 8
+@timer_comm_all = common global double 0.000000e+00, align 8
+@timer_comm_dir = common global [3 x double] zeroinitializer, align 16
+@timer_comm_same = common global [3 x double] zeroinitializer, align 16
+@timer_comm_diff = common global [3 x double] zeroinitializer, align 16
+@timer_comm_bc = common global [3 x double] zeroinitializer, align 16
+@timer_calc_all = common global double 0.000000e+00, align 8
+@timer_cs_all = common global double 0.000000e+00, align 8
+@timer_cs_calc = common global double 0.000000e+00, align 8
+@timer_refine_all = common global double 0.000000e+00, align 8
+@timer_refine_co = common global double 0.000000e+00, align 8
+@timer_refine_mr = common global double 0.000000e+00, align 8
+@timer_refine_sb = common global double 0.000000e+00, align 8
+@timer_refine_cc = common global double 0.000000e+00, align 8
+@timer_cb_all = common global double 0.000000e+00, align 8
+@timer_target_all = common global double 0.000000e+00, align 8
+@timer_target_rb = common global double 0.000000e+00, align 8
+@timer_target_dc = common global double 0.000000e+00, align 8
+@timer_target_cb = common global double 0.000000e+00, align 8
+@timer_target_ab = common global double 0.000000e+00, align 8
+@timer_target_da = common global double 0.000000e+00, align 8
+@timer_target_sb = common global double 0.000000e+00, align 8
+@timer_plot = common global double 0.000000e+00, align 8
+@total_blocks = common global i64 0, align 8
+@nb_min = common global i32 0, align 4
+@nb_max = common global i32 0, align 4
+@nrs = common global i32 0, align 4
+@nps = common global i32 0, align 4
+@counter_bc = common global [3 x i32] zeroinitializer, align 4
+@counter_same = common global [3 x i32] zeroinitializer, align 4
+@counter_diff = common global [3 x i32] zeroinitializer, align 4
+@counter_malloc = common global i32 0, align 4
+@size_malloc = common global double 0.000000e+00, align 8
+@counter_malloc_init = common global i32 0, align 4
+@size_malloc_init = common global double 0.000000e+00, align 8
+@total_red = common global i32 0, align 4
+
+; Function Attrs: noinline nounwind uwtable
+define void @split_blocks() #0 {
+  %1 = alloca i32, align 4
+  %2 = alloca i32, align 4
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4
+  %5 = alloca i32, align 4
+  %6 = alloca i32, align 4
+  %7 = alloca i32, align 4
+  %8 = alloca i32, align 4
+  %9 = alloca i32, align 4
+  %10 = alloca i32, align 4
+  %11 = alloca i32, align 4
+  %12 = alloca i32, align 4
+  %13 = alloca i32, align 4
+  %14 = alloca i32, align 4
+  %15 = alloca i32, align 4
+  %16 = alloca i32, align 4
+  %17 = alloca i32, align 4
+  %18 = alloca i32, align 4
+  %19 = alloca i32, align 4
+  %20 = alloca i32, align 4
+  %21 = alloca i32, align 4
+  %22 = alloca i32, align 4
+  %23 = alloca i32, align 4
+  %24 = alloca i32, align 4
+  %25 = alloca i32, align 4
+  %26 = alloca i32, align 4
+  %27 = alloca [8 x i32], align 16
+  %28 = alloca i32, align 4
+  %29 = alloca i32, align 4
+  %30 = alloca i32, align 4
+  %31 = alloca %struct.block*, align 8
+  %32 = alloca %struct.block*, align 8
+  %33 = alloca %struct.parent*, align 8
+  store i32 0, i32* %26, align 4
+  store i32 0, i32* %4, align 4
+  br label %34
+
+; <label>:34:                                     ; preds = %1201, %0
+  %35 = load i32, i32* %26, align 4
+  %36 = load i32, i32* @cur_max_level, align 4
+  %37 = icmp sle i32 %35, %36
+  br i1 %37, label %38, label %1204
+
+; <label>:38:                                     ; preds = %34
+  store i32 0, i32* %5, align 4
+  br label %39
+
+; <label>:39:                                     ; preds = %1197, %38
+  %40 = load i32, i32* %5, align 4
+  %41 = load i32, i32* @max_active_block, align 4
+  %42 = icmp slt i32 %40, %41
+  br i1 %42, label %43, label %1200
+
+; <label>:43:                                     ; preds = %39
+  %44 = load %struct.block*, %struct.block** @blocks, align 8
+  %45 = load i32, i32* %5, align 4
+  %46 = sext i32 %45 to i64
+  %47 = getelementptr inbounds %struct.block, %struct.block* %44, i64 %46
+  %48 = getelementptr inbounds %struct.block, %struct.block* %47, i32 0, i32 0
+  %49 = load i32, i32* %48, align 8
+  %50 = icmp sge i32 %49, 0
+  br i1 %50, label %51, label %1196
+
+; <label>:51:                                     ; preds = %43
+  %52 = load %struct.block*, %struct.block** @blocks, align 8
+  %53 = load i32, i32* %5, align 4
+  %54 = sext i32 %53 to i64
+  %55 = getelementptr inbounds %struct.block, %struct.block* %52, i64 %54
+  %56 = getelementptr inbounds %struct.block, %struct.block* %55, i32 0, i32 1
+  %57 = load i32, i32* %56, align 4
+  %58 = load i32, i32* %26, align 4
+  %59 = icmp eq i32 %57, %58
+  br i1 %59, label %60, label %1196
+
+; <label>:60:                                     ; preds = %51
+  %61 = load %struct.block*, %struct.block** @blocks, align 8
+  %62 = load i32, i32* %5, align 4
+  %63 = sext i32 %62 to i64
+  %64 = getelementptr inbounds %struct.block, %struct.block* %61, i64 %63
+  store %struct.block* %64, %struct.block** %31, align 8
+  %65 = load %struct.block*, %struct.block** %31, align 8
+  %66 = getelementptr inbounds %struct.block, %struct.block* %65, i32 0, i32 2
+  %67 = load i32, i32* %66, align 8
+  %68 = icmp eq i32 %67, 1
+  br i1 %68, label %69, label %1195
+
+; <label>:69:                                     ; preds = %60
+  %70 = load %struct.block*, %struct.block** %31, align 8
+  %71 = getelementptr inbounds %struct.block, %struct.block* %70, i32 0, i32 0
+  %72 = load i32, i32* %71, align 8
+  %73 = load i32*, i32** @block_start, align 8
+  %74 = load i32, i32* %26, align 4
+  %75 = sext i32 %74 to i64
+  %76 = getelementptr inbounds i32, i32* %73, i64 %75
+  %77 = load i32, i32* %76, align 4
+  %78 = sub nsw i32 %72, %77
+  store i32 %78, i32* %8, align 4
+  %79 = load i32, i32* %8, align 4
+  %80 = load i32*, i32** @p2, align 8
+  %81 = load i32, i32* %26, align 4
+  %82 = sext i32 %81 to i64
+  %83 = getelementptr inbounds i32, i32* %80, i64 %82
+  %84 = load i32, i32* %83, align 4
+  %85 = load i32, i32* @npx, align 4
+  %86 = mul nsw i32 %84, %85
+  %87 = load i32, i32* @init_block_x, align 4
+  %88 = mul nsw i32 %86, %87
+  %89 = load i32*, i32** @p2, align 8
+  %90 = load i32, i32* %26, align 4
+  %91 = sext i32 %90 to i64
+  %92 = getelementptr inbounds i32, i32* %89, i64 %91
+  %93 = load i32, i32* %92, align 4
+  %94 = load i32, i32* @npy, align 4
+  %95 = mul nsw i32 %93, %94
+  %96 = load i32, i32* @init_block_y, align 4
+  %97 = mul nsw i32 %95, %96
+  %98 = mul nsw i32 %88, %97
+  %99 = sdiv i32 %79, %98
+  store i32 %99, i32* %11, align 4
+  %100 = load i32, i32* %8, align 4
+  %101 = load i32*, i32** @p2, align 8
+  %102 = load i32, i32* %26, align 4
+  %103 = sext i32 %102 to i64
+  %104 = getelementptr inbounds i32, i32* %101, i64 %103
+  %105 = load i32, i32* %104, align 4
+  %106 = load i32, i32* @npx, align 4
+  %107 = mul nsw i32 %105, %106
+  %108 = load i32, i32* @init_block_x, align 4
+  %109 = mul nsw i32 %107, %108
+  %110 = load i32*, i32** @p2, align 8
+  %111 = load i32, i32* %26, align 4
+  %112 = sext i32 %111 to i64
+  %113 = getelementptr inbounds i32, i32* %110, i64 %112
+  %114 = load i32, i32* %113, align 4
+  %115 = load i32, i32* @npy, align 4
+  %116 = mul nsw i32 %114, %115
+  %117 = load i32, i32* @init_block_y, align 4
+  %118 = mul nsw i32 %116, %117
+  %119 = mul nsw i32 %109, %118
+  %120 = srem i32 %100, %119
+  %121 = load i32*, i32** @p2, align 8
+  %122 = load i32, i32* %26, align 4
+  %123 = sext i32 %122 to i64
+  %124 = getelementptr inbounds i32, i32* %121, i64 %123
+  %125 = load i32, i32* %124, align 4
+  %126 = load i32, i32* @npx, align 4
+  %127 = mul nsw i32 %125, %126
+  %128 = load i32, i32* @init_block_x, align 4
+  %129 = mul nsw i32 %127, %128
+  %130 = sdiv i32 %120, %129
+  store i32 %130, i32* %10, align 4
+  %131 = load i32, i32* %8, align 4
+  %132 = load i32*, i32** @p2, align 8
+  %133 = load i32, i32* %26, align 4
+  %134 = sext i32 %133 to i64
+  %135 = getelementptr inbounds i32, i32* %132, i64 %134
+  %136 = load i32, i32* %135, align 4
+  %137 = load i32, i32* @npx, align 4
+  %138 = mul nsw i32 %136, %137
+  %139 = load i32, i32* @init_block_x, align 4
+  %140 = mul nsw i32 %138, %139
+  %141 = srem i32 %131, %140
+  store i32 %141, i32* %9, align 4
+  %142 = load i32, i32* @num_active, align 4
+  %143 = add nsw i32 %142, 8
+  %144 = load i32, i32* @max_num_blocks, align 4
+  %145 = icmp sgt i32 %143, %144
+  br i1 %145, label %146, label %151
+
+; <label>:146:                                    ; preds = %69
+  %147 = load i32, i32* @num_active, align 4
+  %148 = load i32, i32* @max_num_blocks, align 4
+  %149 = load i32, i32* @my_pe, align 4
+  %150 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([37 x i8], [37 x i8]* @.str, i32 0, i32 0), i32 %147, i32 %148, i32 %149)
+  call void @exit(i32 -1) #3
+  unreachable
+
+; <label>:151:                                    ; preds = %69
+  %152 = load i32, i32* @num_active, align 4
+  %153 = add nsw i32 %152, 8
+  %154 = load i32, i32* @local_max_b, align 4
+  %155 = icmp sgt i32 %153, %154
+  br i1 %155, label %156, label %159
+
+; <label>:156:                                    ; preds = %151
+  %157 = load i32, i32* @num_active, align 4
+  %158 = add nsw i32 %157, 8
+  store i32 %158, i32* @local_max_b, align 4
+  br label %159
+
+; <label>:159:                                    ; preds = %156, %151
+  %160 = load %struct.block*, %struct.block** %31, align 8
+  %161 = getelementptr inbounds %struct.block, %struct.block* %160, i32 0, i32 0
+  %162 = load i32, i32* %161, align 8
+  %163 = load i32, i32* %26, align 4
+  call void @del_sorted_list(i32 %162, i32 %163)
+  %164 = load i32, i32* @num_active, align 4
+  %165 = add nsw i32 %164, 7
+  store i32 %165, i32* @num_active, align 4
+  %166 = load i32*, i32** @num_blocks, align 8
+  %167 = load i32, i32* %26, align 4
+  %168 = sext i32 %167 to i64
+  %169 = getelementptr inbounds i32, i32* %166, i64 %168
+  %170 = load i32, i32* %169, align 4
+  %171 = add nsw i32 %170, -1
+  store i32 %171, i32* %169, align 4
+  %172 = load i32*, i32** @num_blocks, align 8
+  %173 = load i32, i32* %26, align 4
+  %174 = add nsw i32 %173, 1
+  %175 = sext i32 %174 to i64
+  %176 = getelementptr inbounds i32, i32* %172, i64 %175
+  %177 = load i32, i32* %176, align 4
+  %178 = add nsw i32 %177, 8
+  store i32 %178, i32* %176, align 4
+  store i32 0, i32* %25, align 4
+  br label %179
+
+; <label>:179:                                    ; preds = %193, %159
+  %180 = load i32, i32* %25, align 4
+  %181 = load i32, i32* @max_active_parent, align 4
+  %182 = icmp slt i32 %180, %181
+  br i1 %182, label %183, label %196
+
+; <label>:183:                                    ; preds = %179
+  %184 = load %struct.parent*, %struct.parent** @parents, align 8
+  %185 = load i32, i32* %25, align 4
+  %186 = sext i32 %185 to i64
+  %187 = getelementptr inbounds %struct.parent, %struct.parent* %184, i64 %186
+  %188 = getelementptr inbounds %struct.parent, %struct.parent* %187, i32 0, i32 0
+  %189 = load i32, i32* %188, align 4
+  %190 = icmp slt i32 %189, 0
+  br i1 %190, label %191, label %192
+
+; <label>:191:                                    ; preds = %183
+  br label %196
+
+; <label>:192:                                    ; preds = %183
+  br label %193
+
+; <label>:193:                                    ; preds = %192
+  %194 = load i32, i32* %25, align 4
+  %195 = add nsw i32 %194, 1
+  store i32 %195, i32* %25, align 4
+  br label %179
+
+; <label>:196:                                    ; preds = %191, %179
+  %197 = load i32, i32* %25, align 4
+  %198 = load i32, i32* @max_num_parents, align 4
+  %199 = icmp eq i32 %197, %198
+  br i1 %199, label %200, label %202
+
+; <label>:200:                                    ; preds = %196
+  %201 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([26 x i8], [26 x i8]* @.str.1, i32 0, i32 0))
+  call void @exit(i32 -1) #3
+  unreachable
+
+; <label>:202:                                    ; preds = %196
+  %203 = load i32, i32* %25, align 4
+  %204 = load i32, i32* @max_active_parent, align 4
+  %205 = icmp eq i32 %203, %204
+  br i1 %205, label %206, label %209
+
+; <label>:206:                                    ; preds = %202
+  %207 = load i32, i32* @max_active_parent, align 4
+  %208 = add nsw i32 %207, 1
+  store i32 %208, i32* @max_active_parent, align 4
+  br label %209
+
+; <label>:209:                                    ; preds = %206, %202
+  %210 = load i32, i32* @num_parents, align 4
+  %211 = add nsw i32 %210, 1
+  store i32 %211, i32* @num_parents, align 4
+  %212 = load i32, i32* @num_refined, align 4
+  %213 = add nsw i32 %212, 1
+  store i32 %213, i32* @num_refined, align 4
+  %214 = load %struct.parent*, %struct.parent** @parents, align 8
+  %215 = load i32, i32* %25, align 4
+  %216 = sext i32 %215 to i64
+  %217 = getelementptr inbounds %struct.parent, %struct.parent* %214, i64 %216
+  store %struct.parent* %217, %struct.parent** %33, align 8
+  %218 = load %struct.block*, %struct.block** %31, align 8
+  %219 = getelementptr inbounds %struct.block, %struct.block* %218, i32 0, i32 0
+  %220 = load i32, i32* %219, align 8
+  %221 = load %struct.parent*, %struct.parent** %33, align 8
+  %222 = getelementptr inbounds %struct.parent, %struct.parent* %221, i32 0, i32 0
+  store i32 %220, i32* %222, align 4
+  %223 = load %struct.block*, %struct.block** %31, align 8
+  %224 = getelementptr inbounds %struct.block, %struct.block* %223, i32 0, i32 1
+  %225 = load i32, i32* %224, align 4
+  %226 = load %struct.parent*, %struct.parent** %33, align 8
+  %227 = getelementptr inbounds %struct.parent, %struct.parent* %226, i32 0, i32 1
+  store i32 %225, i32* %227, align 4
+  %228 = load %struct.block*, %struct.block** %31, align 8
+  %229 = getelementptr inbounds %struct.block, %struct.block* %228, i32 0, i32 4
+  %230 = load i32, i32* %229, align 8
+  %231 = load %struct.parent*, %struct.parent** %33, align 8
+  %232 = getelementptr inbounds %struct.parent, %struct.parent* %231, i32 0, i32 2
+  store i32 %230, i32* %232, align 4
+  %233 = load %struct.block*, %struct.block** %31, align 8
+  %234 = getelementptr inbounds %struct.block, %struct.block* %233, i32 0, i32 5
+  %235 = load i32, i32* %234, align 4
+  %236 = load %struct.parent*, %struct.parent** %33, align 8
+  %237 = getelementptr inbounds %struct.parent, %struct.parent* %236, i32 0, i32 3
+  store i32 %235, i32* %237, align 4
+  %238 = load %struct.block*, %struct.block** %31, align 8
+  %239 = getelementptr inbounds %struct.block, %struct.block* %238, i32 0, i32 6
+  %240 = load i32, i32* %239, align 8
+  %241 = load %struct.parent*, %struct.parent** %33, align 8
+  %242 = getelementptr inbounds %struct.parent, %struct.parent* %241, i32 0, i32 4
+  store i32 %240, i32* %242, align 4
+  %243 = load i32, i32* %25, align 4
+  %244 = sub nsw i32 -1, %243
+  %245 = load %struct.parent*, %struct.parent** @parents, align 8
+  %246 = load %struct.parent*, %struct.parent** %33, align 8
+  %247 = getelementptr inbounds %struct.parent, %struct.parent* %246, i32 0, i32 2
+  %248 = load i32, i32* %247, align 4
+  %249 = sext i32 %248 to i64
+  %250 = getelementptr inbounds %struct.parent, %struct.parent* %245, i64 %249
+  %251 = getelementptr inbounds %struct.parent, %struct.parent* %250, i32 0, i32 6
+  %252 = load %struct.parent*, %struct.parent** %33, align 8
+  %253 = getelementptr inbounds %struct.parent, %struct.parent* %252, i32 0, i32 4
+  %254 = load i32, i32* %253, align 4
+  %255 = sext i32 %254 to i64
+  %256 = getelementptr inbounds [8 x i32], [8 x i32]* %251, i64 0, i64 %255
+  store i32 %244, i32* %256, align 4
+  %257 = load %struct.parent*, %struct.parent** %33, align 8
+  %258 = getelementptr inbounds %struct.parent, %struct.parent* %257, i32 0, i32 5
+  store i32 0, i32* %258, align 4
+  %259 = load %struct.block*, %struct.block** %31, align 8
+  %260 = getelementptr inbounds %struct.block, %struct.block* %259, i32 0, i32 10
+  %261 = getelementptr inbounds [3 x i32], [3 x i32]* %260, i64 0, i64 0
+  %262 = load i32, i32* %261, align 4
+  %263 = load %struct.parent*, %struct.parent** %33, align 8
+  %264 = getelementptr inbounds %struct.parent, %struct.parent* %263, i32 0, i32 8
+  %265 = getelementptr inbounds [3 x i32], [3 x i32]* %264, i64 0, i64 0
+  store i32 %262, i32* %265, align 4
+  %266 = load %struct.block*, %struct.block** %31, align 8
+  %267 = getelementptr inbounds %struct.block, %struct.block* %266, i32 0, i32 10
+  %268 = getelementptr inbounds [3 x i32], [3 x i32]* %267, i64 0, i64 1
+  %269 = load i32, i32* %268, align 4
+  %270 = load %struct.parent*, %struct.parent** %33, align 8
+  %271 = getelementptr inbounds %struct.parent, %struct.parent* %270, i32 0, i32 8
+  %272 = getelementptr inbounds [3 x i32], [3 x i32]* %271, i64 0, i64 1
+  store i32 %269, i32* %272, align 4
+  %273 = load %struct.block*, %struct.block** %31, align 8
+  %274 = getelementptr inbounds %struct.block, %struct.block* %273, i32 0, i32 10
+  %275 = getelementptr inbounds [3 x i32], [3 x i32]* %274, i64 0, i64 2
+  %276 = load i32, i32* %275, align 4
+  %277 = load %struct.parent*, %struct.parent** %33, align 8
+  %278 = getelementptr inbounds %struct.parent, %struct.parent* %277, i32 0, i32 8
+  %279 = getelementptr inbounds [3 x i32], [3 x i32]* %278, i64 0, i64 2
+  store i32 %276, i32* %279, align 4
+  store i32 0, i32* %6, align 4
+  br label %280
+
+; <label>:280:                                    ; preds = %713, %209
+  %281 = load i32, i32* %6, align 4
+  %282 = icmp slt i32 %281, 8
+  br i1 %282, label %283, label %716
+
+; <label>:283:                                    ; preds = %280
+  br label %284
+
+; <label>:284:                                    ; preds = %298, %283
+  %285 = load i32, i32* %4, align 4
+  %286 = load i32, i32* @max_num_blocks, align 4
+  %287 = icmp slt i32 %285, %286
+  br i1 %287, label %288, label %301
+
+; <label>:288:                                    ; preds = %284
+  %289 = load %struct.block*, %struct.block** @blocks, align 8
+  %290 = load i32, i32* %4, align 4
+  %291 = sext i32 %290 to i64
+  %292 = getelementptr inbounds %struct.block, %struct.block* %289, i64 %291
+  %293 = getelementptr inbounds %struct.block, %struct.block* %292, i32 0, i32 0
+  %294 = load i32, i32* %293, align 8
+  %295 = icmp slt i32 %294, 0
+  br i1 %295, label %296, label %297
+
+; <label>:296:                                    ; preds = %288
+  br label %301
+
+; <label>:297:                                    ; preds = %288
+  br label %298
+
+; <label>:298:                                    ; preds = %297
+  %299 = load i32, i32* %4, align 4
+  %300 = add nsw i32 %299, 1
+  store i32 %300, i32* %4, align 4
+  br label %284
+
+; <label>:301:                                    ; preds = %296, %284
+  %302 = load i32, i32* %4, align 4
+  %303 = load i32, i32* @max_num_blocks, align 4
+  %304 = icmp eq i32 %302, %303
+  br i1 %304, label %305, label %310
+
+; <label>:305:                                    ; preds = %301
+  %306 = load i32, i32* %4, align 4
+  %307 = load i32, i32* @num_active, align 4
+  %308 = load i32, i32* @max_num_blocks, align 4
+  %309 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([46 x i8], [46 x i8]* @.str.2, i32 0, i32 0), i32 %306, i32 %307, i32 %308)
+  call void @exit(i32 -1) #3
+  unreachable
+
+; <label>:310:                                    ; preds = %301
+  %311 = load i32, i32* %4, align 4
+  %312 = add nsw i32 %311, 1
+  %313 = load i32, i32* @max_active_block, align 4
+  %314 = icmp sgt i32 %312, %313
+  br i1 %314, label %315, label %318
+
+; <label>:315:                                    ; preds = %310
+  %316 = load i32, i32* %4, align 4
+  %317 = add nsw i32 %316, 1
+  store i32 %317, i32* @max_active_block, align 4
+  br label %318
+
+; <label>:318:                                    ; preds = %315, %310
+  %319 = load %struct.block*, %struct.block** @blocks, align 8
+  %320 = load i32, i32* %4, align 4
+  %321 = sext i32 %320 to i64
+  %322 = getelementptr inbounds %struct.block, %struct.block* %319, i64 %321
+  store %struct.block* %322, %struct.block** %32, align 8
+  %323 = load i32, i32* %4, align 4
+  %324 = load i32, i32* %6, align 4
+  %325 = sext i32 %324 to i64
+  %326 = getelementptr inbounds [8 x i32], [8 x i32]* %27, i64 0, i64 %325
+  store i32 %323, i32* %326, align 4
+  %327 = load i32, i32* %4, align 4
+  %328 = load %struct.parent*, %struct.parent** %33, align 8
+  %329 = getelementptr inbounds %struct.parent, %struct.parent* %328, i32 0, i32 6
+  %330 = load i32, i32* %6, align 4
+  %331 = sext i32 %330 to i64
+  %332 = getelementptr inbounds [8 x i32], [8 x i32]* %329, i64 0, i64 %331
+  store i32 %327, i32* %332, align 4
+  %333 = load i32, i32* @my_pe, align 4
+  %334 = load %struct.parent*, %struct.parent** %33, align 8
+  %335 = getelementptr inbounds %struct.parent, %struct.parent* %334, i32 0, i32 7
+  %336 = load i32, i32* %6, align 4
+  %337 = sext i32 %336 to i64
+  %338 = getelementptr inbounds [8 x i32], [8 x i32]* %335, i64 0, i64 %337
+  store i32 %333, i32* %338, align 4
+  %339 = load %struct.block*, %struct.block** %32, align 8
+  %340 = getelementptr inbounds %struct.block, %struct.block* %339, i32 0, i32 2
+  store i32 0, i32* %340, align 8
+  %341 = load i32, i32* %26, align 4
+  %342 = add nsw i32 %341, 1
+  %343 = load %struct.block*, %struct.block** %32, align 8
+  %344 = getelementptr inbounds %struct.block, %struct.block* %343, i32 0, i32 1
+  store i32 %342, i32* %344, align 4
+  %345 = load i32, i32* %25, align 4
+  %346 = load %struct.block*, %struct.block** %32, align 8
+  %347 = getelementptr inbounds %struct.block, %struct.block* %346, i32 0, i32 4
+  store i32 %345, i32* %347, align 8
+  %348 = load i32, i32* @my_pe, align 4
+  %349 = load %struct.block*, %struct.block** %32, align 8
+  %350 = getelementptr inbounds %struct.block, %struct.block* %349, i32 0, i32 5
+  store i32 %348, i32* %350, align 4
+  %351 = load i32, i32* %6, align 4
+  %352 = load %struct.block*, %struct.block** %32, align 8
+  %353 = getelementptr inbounds %struct.block, %struct.block* %352, i32 0, i32 6
+  store i32 %351, i32* %353, align 8
+  %354 = load i32, i32* %6, align 4
+  %355 = srem i32 %354, 2
+  store i32 %355, i32* %15, align 4
+  %356 = load i32, i32* %6, align 4
+  %357 = sdiv i32 %356, 2
+  %358 = srem i32 %357, 2
+  store i32 %358, i32* %17, align 4
+  %359 = load i32, i32* %6, align 4
+  %360 = sdiv i32 %359, 4
+  store i32 %360, i32* %19, align 4
+  %361 = load i32, i32* %11, align 4
+  %362 = mul nsw i32 2, %361
+  %363 = load i32, i32* %19, align 4
+  %364 = add nsw i32 %362, %363
+  %365 = load i32*, i32** @p2, align 8
+  %366 = load i32, i32* %26, align 4
+  %367 = add nsw i32 %366, 1
+  %368 = sext i32 %367 to i64
+  %369 = getelementptr inbounds i32, i32* %365, i64 %368
+  %370 = load i32, i32* %369, align 4
+  %371 = load i32, i32* @npy, align 4
+  %372 = mul nsw i32 %370, %371
+  %373 = load i32, i32* @init_block_y, align 4
+  %374 = mul nsw i32 %372, %373
+  %375 = mul nsw i32 %364, %374
+  %376 = load i32, i32* %10, align 4
+  %377 = mul nsw i32 2, %376
+  %378 = load i32, i32* %17, align 4
+  %379 = add nsw i32 %377, %378
+  %380 = add nsw i32 %375, %379
+  %381 = load i32*, i32** @p2, align 8
+  %382 = load i32, i32* %26, align 4
+  %383 = add nsw i32 %382, 1
+  %384 = sext i32 %383 to i64
+  %385 = getelementptr inbounds i32, i32* %381, i64 %384
+  %386 = load i32, i32* %385, align 4
+  %387 = load i32, i32* @npx, align 4
+  %388 = mul nsw i32 %386, %387
+  %389 = load i32, i32* @init_block_x, align 4
+  %390 = mul nsw i32 %388, %389
+  %391 = mul nsw i32 %380, %390
+  %392 = load i32, i32* %9, align 4
+  %393 = mul nsw i32 2, %392
+  %394 = add nsw i32 %391, %393
+  %395 = load i32, i32* %15, align 4
+  %396 = add nsw i32 %394, %395
+  %397 = load i32*, i32** @block_start, align 8
+  %398 = load i32, i32* %26, align 4
+  %399 = add nsw i32 %398, 1
+  %400 = sext i32 %399 to i64
+  %401 = getelementptr inbounds i32, i32* %397, i64 %400
+  %402 = load i32, i32* %401, align 4
+  %403 = add nsw i32 %396, %402
+  %404 = load %struct.block*, %struct.block** %32, align 8
+  %405 = getelementptr inbounds %struct.block, %struct.block* %404, i32 0, i32 0
+  store i32 %403, i32* %405, align 8
+  %406 = load i32, i32* %4, align 4
+  %407 = load %struct.block*, %struct.block** %32, align 8
+  %408 = getelementptr inbounds %struct.block, %struct.block* %407, i32 0, i32 0
+  %409 = load i32, i32* %408, align 8
+  %410 = load i32, i32* %26, align 4
+  %411 = add nsw i32 %410, 1
+  call void @add_sorted_list(i32 %406, i32 %409, i32 %411)
+  %412 = load %struct.block*, %struct.block** %31, align 8
+  %413 = getelementptr inbounds %struct.block, %struct.block* %412, i32 0, i32 10
+  %414 = getelementptr inbounds [3 x i32], [3 x i32]* %413, i64 0, i64 0
+  %415 = load i32, i32* %414, align 4
+  %416 = load i32, i32* %15, align 4
+  %417 = mul nsw i32 2, %416
+  %418 = sub nsw i32 %417, 1
+  %419 = load i32*, i32** @p2, align 8
+  %420 = load i32, i32* @num_refine, align 4
+  %421 = load i32, i32* %26, align 4
+  %422 = sub nsw i32 %420, %421
+  %423 = sub nsw i32 %422, 1
+  %424 = sext i32 %423 to i64
+  %425 = getelementptr inbounds i32, i32* %419, i64 %424
+  %426 = load i32, i32* %425, align 4
+  %427 = mul nsw i32 %418, %426
+  %428 = add nsw i32 %415, %427
+  %429 = load %struct.block*, %struct.block** %32, align 8
+  %430 = getelementptr inbounds %struct.block, %struct.block* %429, i32 0, i32 10
+  %431 = getelementptr inbounds [3 x i32], [3 x i32]* %430, i64 0, i64 0
+  store i32 %428, i32* %431, align 4
+  %432 = load %struct.block*, %struct.block** %31, align 8
+  %433 = getelementptr inbounds %struct.block, %struct.block* %432, i32 0, i32 10
+  %434 = getelementptr inbounds [3 x i32], [3 x i32]* %433, i64 0, i64 1
+  %435 = load i32, i32* %434, align 4
+  %436 = load i32, i32* %17, align 4
+  %437 = mul nsw i32 2, %436
+  %438 = sub nsw i32 %437, 1
+  %439 = load i32*, i32** @p2, align 8
+  %440 = load i32, i32* @num_refine, align 4
+  %441 = load i32, i32* %26, align 4
+  %442 = sub nsw i32 %440, %441
+  %443 = sub nsw i32 %442, 1
+  %444 = sext i32 %443 to i64
+  %445 = getelementptr inbounds i32, i32* %439, i64 %444
+  %446 = load i32, i32* %445, align 4
+  %447 = mul nsw i32 %438, %446
+  %448 = add nsw i32 %435, %447
+  %449 = load %struct.block*, %struct.block** %32, align 8
+  %450 = getelementptr inbounds %struct.block, %struct.block* %449, i32 0, i32 10
+  %451 = getelementptr inbounds [3 x i32], [3 x i32]* %450, i64 0, i64 1
+  store i32 %448, i32* %451, align 4
+  %452 = load %struct.block*, %struct.block** %31, align 8
+  %453 = getelementptr inbounds %struct.block, %struct.block* %452, i32 0, i32 10
+  %454 = getelementptr inbounds [3 x i32], [3 x i32]* %453, i64 0, i64 2
+  %455 = load i32, i32* %454, align 4
+  %456 = load i32, i32* %19, align 4
+  %457 = mul nsw i32 2, %456
+  %458 = sub nsw i32 %457, 1
+  %459 = load i32*, i32** @p2, align 8
+  %460 = load i32, i32* @num_refine, align 4
+  %461 = load i32, i32* %26, align 4
+  %462 = sub nsw i32 %460, %461
+  %463 = sub nsw i32 %462, 1
+  %464 = sext i32 %463 to i64
+  %465 = getelementptr inbounds i32, i32* %459, i64 %464
+  %466 = load i32, i32* %465, align 4
+  %467 = mul nsw i32 %458, %466
+  %468 = add nsw i32 %455, %467
+  %469 = load %struct.block*, %struct.block** %32, align 8
+  %470 = getelementptr inbounds %struct.block, %struct.block* %469, i32 0, i32 10
+  %471 = getelementptr inbounds [3 x i32], [3 x i32]* %470, i64 0, i64 2
+  store i32 %468, i32* %471, align 4
+  %472 = load i32*, i32** @p2, align 8
+  %473 = load i32, i32* @num_refine, align 4
+  %474 = load i32, i32* %26, align 4
+  %475 = sub nsw i32 %473, %474
+  %476 = sub nsw i32 %475, 1
+  %477 = sext i32 %476 to i64
+  %478 = getelementptr inbounds i32, i32* %472, i64 %477
+  %479 = load i32, i32* %478, align 4
+  store i32 %479, i32* %30, align 4
+  %480 = load i32, i32* @x_block_half, align 4
+  %481 = load i32, i32* %15, align 4
+  %482 = mul nsw i32 %481, %480
+  store i32 %482, i32* %15, align 4
+  %483 = load i32, i32* @y_block_half, align 4
+  %484 = load i32, i32* %17, align 4
+  %485 = mul nsw i32 %484, %483
+  store i32 %485, i32* %17, align 4
+  %486 = load i32, i32* @z_block_half, align 4
+  %487 = load i32, i32* %19, align 4
+  %488 = mul nsw i32 %487, %486
+  store i32 %488, i32* %19, align 4
+  store i32 0, i32* %7, align 4
+  br label %489
+
+; <label>:489:                                    ; preds = %709, %318
+  %490 = load i32, i32* %7, align 4
+  %491 = load i32, i32* @num_vars, align 4
+  %492 = icmp slt i32 %490, %491
+  br i1 %492, label %493, label %712
+
+; <label>:493:                                    ; preds = %489
+  store i32 1, i32* %1, align 4
+  store i32 1, i32* %16, align 4
+  br label %494
+
+; <label>:494:                                    ; preds = %703, %493
+  %495 = load i32, i32* %1, align 4
+  %496 = load i32, i32* @x_block_half, align 4
+  %497 = icmp sle i32 %495, %496
+  br i1 %497, label %498, label %708
+
+; <label>:498:                                    ; preds = %494
+  store i32 1, i32* %2, align 4
+  store i32 1, i32* %18, align 4
+  br label %499
+
+; <label>:499:                                    ; preds = %697, %498
+  %500 = load i32, i32* %2, align 4
+  %501 = load i32, i32* @y_block_half, align 4
+  %502 = icmp sle i32 %500, %501
+  br i1 %502, label %503, label %702
+
+; <label>:503:                                    ; preds = %499
+  store i32 1, i32* %3, align 4
+  store i32 1, i32* %20, align 4
+  br label %504
+
+; <label>:504:                                    ; preds = %691, %503
+  %505 = load i32, i32* %3, align 4
+  %506 = load i32, i32* @z_block_half, align 4
+  %507 = icmp sle i32 %505, %506
+  br i1 %507, label %508, label %696
+
+; <label>:508:                                    ; preds = %504
+  %509 = load %struct.block*, %struct.block** %31, align 8
+  %510 = getelementptr inbounds %struct.block, %struct.block* %509, i32 0, i32 11
+  %511 = load double****, double***** %510, align 8
+  %512 = load i32, i32* %7, align 4
+  %513 = sext i32 %512 to i64
+  %514 = getelementptr inbounds double***, double**** %511, i64 %513
+  %515 = load double***, double**** %514, align 8
+  %516 = load i32, i32* %1, align 4
+  %517 = load i32, i32* %15, align 4
+  %518 = add nsw i32 %516, %517
+  %519 = sext i32 %518 to i64
+  %520 = getelementptr inbounds double**, double*** %515, i64 %519
+  %521 = load double**, double*** %520, align 8
+  %522 = load i32, i32* %2, align 4
+  %523 = load i32, i32* %17, align 4
+  %524 = add nsw i32 %522, %523
+  %525 = sext i32 %524 to i64
+  %526 = getelementptr inbounds double*, double** %521, i64 %525
+  %527 = load double*, double** %526, align 8
+  %528 = load i32, i32* %3, align 4
+  %529 = load i32, i32* %19, align 4
+  %530 = add nsw i32 %528, %529
+  %531 = sext i32 %530 to i64
+  %532 = getelementptr inbounds double, double* %527, i64 %531
+  %533 = load double, double* %532, align 8
+  %534 = fdiv double %533, 8.000000e+00
+  %535 = load %struct.block*, %struct.block** %32, align 8
+  %536 = getelementptr inbounds %struct.block, %struct.block* %535, i32 0, i32 11
+  %537 = load double****, double***** %536, align 8
+  %538 = load i32, i32* %7, align 4
+  %539 = sext i32 %538 to i64
+  %540 = getelementptr inbounds double***, double**** %537, i64 %539
+  %541 = load double***, double**** %540, align 8
+  %542 = load i32, i32* %16, align 4
+  %543 = add nsw i32 %542, 1
+  %544 = sext i32 %543 to i64
+  %545 = getelementptr inbounds double**, double*** %541, i64 %544
+  %546 = load double**, double*** %545, align 8
+  %547 = load i32, i32* %18, align 4
+  %548 = add nsw i32 %547, 1
+  %549 = sext i32 %548 to i64
+  %550 = getelementptr inbounds double*, double** %546, i64 %549
+  %551 = load double*, double** %550, align 8
+  %552 = load i32, i32* %20, align 4
+  %553 = add nsw i32 %552, 1
+  %554 = sext i32 %553 to i64
+  %555 = getelementptr inbounds double, double* %551, i64 %554
+  store double %534, double* %555, align 8
+  %556 = load %struct.block*, %struct.block** %32, align 8
+  %557 = getelementptr inbounds %struct.block, %struct.block* %556, i32 0, i32 11
+  %558 = load double****, double***** %557, align 8
+  %559 = load i32, i32* %7, align 4
+  %560 = sext i32 %559 to i64
+  %561 = getelementptr inbounds double***, double**** %558, i64 %560
+  %562 = load double***, double**** %561, align 8
+  %563 = load i32, i32* %16, align 4
+  %564 = sext i32 %563 to i64
+  %565 = getelementptr inbounds double**, double*** %562, i64 %564
+  %566 = load double**, double*** %565, align 8
+  %567 = load i32, i32* %18, align 4
+  %568 = add nsw i32 %567, 1
+  %569 = sext i32 %568 to i64
+  %570 = getelementptr inbounds double*, double** %566, i64 %569
+  %571 = load double*, double** %570, align 8
+  %572 = load i32, i32* %20, align 4
+  %573 = add nsw i32 %572, 1
+  %574 = sext i32 %573 to i64
+  %575 = getelementptr inbounds double, double* %571, i64 %574
+  store double %534, double* %575, align 8
+  %576 = load %struct.block*, %struct.block** %32, align 8
+  %577 = getelementptr inbounds %struct.block, %struct.block* %576, i32 0, i32 11
+  %578 = load double****, double***** %577, align 8
+  %579 = load i32, i32* %7, align 4
+  %580 = sext i32 %579 to i64
+  %581 = getelementptr inbounds double***, double**** %578, i64 %580
+  %582 = load double***, double**** %581, align 8
+  %583 = load i32, i32* %16, align 4
+  %584 = add nsw i32 %583, 1
+  %585 = sext i32 %584 to i64
+  %586 = getelementptr inbounds double**, double*** %582, i64 %585
+  %587 = load double**, double*** %586, align 8
+  %588 = load i32, i32* %18, align 4
+  %589 = sext i32 %588 to i64
+  %590 = getelementptr inbounds double*, double** %587, i64 %589
+  %591 = load double*, double** %590, align 8
+  %592 = load i32, i32* %20, align 4
+  %593 = add nsw i32 %592, 1
+  %594 = sext i32 %593 to i64
+  %595 = getelementptr inbounds double, double* %591, i64 %594
+  store double %534, double* %595, align 8
+  %596 = load %struct.block*, %struct.block** %32, align 8
+  %597 = getelementptr inbounds %struct.block, %struct.block* %596, i32 0, i32 11
+  %598 = load double****, double***** %597, align 8
+  %599 = load i32, i32* %7, align 4
+  %600 = sext i32 %599 to i64
+  %601 = getelementptr inbounds double***, double**** %598, i64 %600
+  %602 = load double***, double**** %601, align 8
+  %603 = load i32, i32* %16, align 4
+  %604 = sext i32 %603 to i64
+  %605 = getelementptr inbounds double**, double*** %602, i64 %604
+  %606 = load double**, double*** %605, align 8
+  %607 = load i32, i32* %18, align 4
+  %608 = sext i32 %607 to i64
+  %609 = getelementptr inbounds double*, double** %606, i64 %608
+  %610 = load double*, double** %609, align 8
+  %611 = load i32, i32* %20, align 4
+  %612 = add nsw i32 %611, 1
+  %613 = sext i32 %612 to i64
+  %614 = getelementptr inbounds double, double* %610, i64 %613
+  store double %534, double* %614, align 8
+  %615 = load %struct.block*, %struct.block** %32, align 8
+  %616 = getelementptr inbounds %struct.block, %struct.block* %615, i32 0, i32 11
+  %617 = load double****, double***** %616, align 8
+  %618 = load i32, i32* %7, align 4
+  %619 = sext i32 %618 to i64
+  %620 = getelementptr inbounds double***, double**** %617, i64 %619
+  %621 = load double***, double**** %620, align 8
+  %622 = load i32, i32* %16, align 4
+  %623 = add nsw i32 %622, 1
+  %624 = sext i32 %623 to i64
+  %625 = getelementptr inbounds double**, double*** %621, i64 %624
+  %626 = load double**, double*** %625, align 8
+  %627 = load i32, i32* %18, align 4
+  %628 = add nsw i32 %627, 1
+  %629 = sext i32 %628 to i64
+  %630 = getelementptr inbounds double*, double** %626, i64 %629
+  %631 = load double*, double** %630, align 8
+  %632 = load i32, i32* %20, align 4
+  %633 = sext i32 %632 to i64
+  %634 = getelementptr inbounds double, double* %631, i64 %633
+  store double %534, double* %634, align 8
+  %635 = load %struct.block*, %struct.block** %32, align 8
+  %636 = getelementptr inbounds %struct.block, %struct.block* %635, i32 0, i32 11
+  %637 = load double****, double***** %636, align 8
+  %638 = load i32, i32* %7, align 4
+  %639 = sext i32 %638 to i64
+  %640 = getelementptr inbounds double***, double**** %637, i64 %639
+  %641 = load double***, double**** %640, align 8
+  %642 = load i32, i32* %16, align 4
+  %643 = sext i32 %642 to i64
+  %644 = getelementptr inbounds double**, double*** %641, i64 %643
+  %645 = load double**, double*** %644, align 8
+  %646 = load i32, i32* %18, align 4
+  %647 = add nsw i32 %646, 1
+  %648 = sext i32 %647 to i64
+  %649 = getelementptr inbounds double*, double** %645, i64 %648
+  %650 = load double*, double** %649, align 8
+  %651 = load i32, i32* %20, align 4
+  %652 = sext i32 %651 to i64
+  %653 = getelementptr inbounds double, double* %650, i64 %652
+  store double %534, double* %653, align 8
+  %654 = load %struct.block*, %struct.block** %32, align 8
+  %655 = getelementptr inbounds %struct.block, %struct.block* %654, i32 0, i32 11
+  %656 = load double****, double***** %655, align 8
+  %657 = load i32, i32* %7, align 4
+  %658 = sext i32 %657 to i64
+  %659 = getelementptr inbounds double***, double**** %656, i64 %658
+  %660 = load double***, double**** %659, align 8
+  %661 = load i32, i32* %16, align 4
+  %662 = add nsw i32 %661, 1
+  %663 = sext i32 %662 to i64
+  %664 = getelementptr inbounds double**, double*** %660, i64 %663
+  %665 = load double**, double*** %664, align 8
+  %666 = load i32, i32* %18, align 4
+  %667 = sext i32 %666 to i64
+  %668 = getelementptr inbounds double*, double** %665, i64 %667
+  %669 = load double*, double** %668, align 8
+  %670 = load i32, i32* %20, align 4
+  %671 = sext i32 %670 to i64
+  %672 = getelementptr inbounds double, double* %669, i64 %671
+  store double %534, double* %672, align 8
+  %673 = load %struct.block*, %struct.block** %32, align 8
+  %674 = getelementptr inbounds %struct.block, %struct.block* %673, i32 0, i32 11
+  %675 = load double****, double***** %674, align 8
+  %676 = load i32, i32* %7, align 4
+  %677 = sext i32 %676 to i64
+  %678 = getelementptr inbounds double***, double**** %675, i64 %677
+  %679 = load double***, double**** %678, align 8
+  %680 = load i32, i32* %16, align 4
+  %681 = sext i32 %680 to i64
+  %682 = getelementptr inbounds double**, double*** %679, i64 %681
+  %683 = load double**, double*** %682, align 8
+  %684 = load i32, i32* %18, align 4
+  %685 = sext i32 %684 to i64
+  %686 = getelementptr inbounds double*, double** %683, i64 %685
+  %687 = load double*, double** %686, align 8
+  %688 = load i32, i32* %20, align 4
+  %689 = sext i32 %688 to i64
+  %690 = getelementptr inbounds double, double* %687, i64 %689
+  store double %534, double* %690, align 8
+  br label %691
+
+; <label>:691:                                    ; preds = %508
+  %692 = load i32, i32* %3, align 4
+  %693 = add nsw i32 %692, 1
+  store i32 %693, i32* %3, align 4
+  %694 = load i32, i32* %20, align 4
+  %695 = add nsw i32 %694, 2
+  store i32 %695, i32* %20, align 4
+  br label %504
+
+; <label>:696:                                    ; preds = %504
+  br label %697
+
+; <label>:697:                                    ; preds = %696
+  %698 = load i32, i32* %2, align 4
+  %699 = add nsw i32 %698, 1
+  store i32 %699, i32* %2, align 4
+  %700 = load i32, i32* %18, align 4
+  %701 = add nsw i32 %700, 2
+  store i32 %701, i32* %18, align 4
+  br label %499
+
+; <label>:702:                                    ; preds = %499
+  br label %703
+
+; <label>:703:                                    ; preds = %702
+  %704 = load i32, i32* %1, align 4
+  %705 = add nsw i32 %704, 1
+  store i32 %705, i32* %1, align 4
+  %706 = load i32, i32* %16, align 4
+  %707 = add nsw i32 %706, 2
+  store i32 %707, i32* %16, align 4
+  br label %494
+
+; <label>:708:                                    ; preds = %494
+  br label %709
+
+; <label>:709:                                    ; preds = %708
+  %710 = load i32, i32* %7, align 4
+  %711 = add nsw i32 %710, 1
+  store i32 %711, i32* %7, align 4
+  br label %489
+
+; <label>:712:                                    ; preds = %489
+  br label %713
+
+; <label>:713:                                    ; preds = %712
+  %714 = load i32, i32* %6, align 4
+  %715 = add nsw i32 %714, 1
+  store i32 %715, i32* %6, align 4
+  br label %280
+
+; <label>:716:                                    ; preds = %280
+  store i32 0, i32* %12, align 4
+  br label %717
+
+; <label>:717:                                    ; preds = %1183, %716
+  %718 = load i32, i32* %12, align 4
+  %719 = icmp slt i32 %718, 6
+  br i1 %719, label %720, label %1186
+
+; <label>:720:                                    ; preds = %717
+  store i32 0, i32* %1, align 4
+  br label %721
+
+; <label>:721:                                    ; preds = %800, %720
+  %722 = load i32, i32* %1, align 4
+  %723 = icmp slt i32 %722, 2
+  br i1 %723, label %724, label %803
+
+; <label>:724:                                    ; preds = %721
+  store i32 0, i32* %2, align 4
+  br label %725
+
+; <label>:725:                                    ; preds = %796, %724
+  %726 = load i32, i32* %2, align 4
+  %727 = icmp slt i32 %726, 2
+  br i1 %727, label %728, label %799
+
+; <label>:728:                                    ; preds = %725
+  %729 = load i32, i32* %26, align 4
+  %730 = add nsw i32 %729, 1
+  %731 = load %struct.block*, %struct.block** @blocks, align 8
+  %732 = load i32, i32* %12, align 4
+  %733 = sext i32 %732 to i64
+  %734 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* @split_blocks.side, i64 0, i64 %733
+  %735 = load i32, i32* %1, align 4
+  %736 = sext i32 %735 to i64
+  %737 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %734, i64 0, i64 %736
+  %738 = load i32, i32* %2, align 4
+  %739 = sext i32 %738 to i64
+  %740 = getelementptr inbounds [2 x i32], [2 x i32]* %737, i64 0, i64 %739
+  %741 = load i32, i32* %740, align 4
+  %742 = load i32, i32* %12, align 4
+  %743 = sext i32 %742 to i64
+  %744 = getelementptr inbounds [6 x i32], [6 x i32]* @split_blocks.off, i64 0, i64 %743
+  %745 = load i32, i32* %744, align 4
+  %746 = add nsw i32 %741, %745
+  %747 = sext i32 %746 to i64
+  %748 = getelementptr inbounds [8 x i32], [8 x i32]* %27, i64 0, i64 %747
+  %749 = load i32, i32* %748, align 4
+  %750 = sext i32 %749 to i64
+  %751 = getelementptr inbounds %struct.block, %struct.block* %731, i64 %750
+  %752 = getelementptr inbounds %struct.block, %struct.block* %751, i32 0, i32 8
+  %753 = load i32, i32* %12, align 4
+  %754 = sext i32 %753 to i64
+  %755 = getelementptr inbounds [6 x i32], [6 x i32]* %752, i64 0, i64 %754
+  store i32 %730, i32* %755, align 4
+  %756 = load i32, i32* %12, align 4
+  %757 = sext i32 %756 to i64
+  %758 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* @split_blocks.side, i64 0, i64 %757
+  %759 = load i32, i32* %1, align 4
+  %760 = sext i32 %759 to i64
+  %761 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %758, i64 0, i64 %760
+  %762 = load i32, i32* %2, align 4
+  %763 = sext i32 %762 to i64
+  %764 = getelementptr inbounds [2 x i32], [2 x i32]* %761, i64 0, i64 %763
+  %765 = load i32, i32* %764, align 4
+  %766 = sext i32 %765 to i64
+  %767 = getelementptr inbounds [8 x i32], [8 x i32]* %27, i64 0, i64 %766
+  %768 = load i32, i32* %767, align 4
+  %769 = load %struct.block*, %struct.block** @blocks, align 8
+  %770 = load i32, i32* %12, align 4
+  %771 = sext i32 %770 to i64
+  %772 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* @split_blocks.side, i64 0, i64 %771
+  %773 = load i32, i32* %1, align 4
+  %774 = sext i32 %773 to i64
+  %775 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %772, i64 0, i64 %774
+  %776 = load i32, i32* %2, align 4
+  %777 = sext i32 %776 to i64
+  %778 = getelementptr inbounds [2 x i32], [2 x i32]* %775, i64 0, i64 %777
+  %779 = load i32, i32* %778, align 4
+  %780 = load i32, i32* %12, align 4
+  %781 = sext i32 %780 to i64
+  %782 = getelementptr inbounds [6 x i32], [6 x i32]* @split_blocks.off, i64 0, i64 %781
+  %783 = load i32, i32* %782, align 4
+  %784 = add nsw i32 %779, %783
+  %785 = sext i32 %784 to i64
+  %786 = getelementptr inbounds [8 x i32], [8 x i32]* %27, i64 0, i64 %785
+  %787 = load i32, i32* %786, align 4
+  %788 = sext i32 %787 to i64
+  %789 = getelementptr inbounds %struct.block, %struct.block* %769, i64 %788
+  %790 = getelementptr inbounds %struct.block, %struct.block* %789, i32 0, i32 9
+  %791 = load i32, i32* %12, align 4
+  %792 = sext i32 %791 to i64
+  %793 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %790, i64 0, i64 %792
+  %794 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %793, i64 0, i64 0
+  %795 = getelementptr inbounds [2 x i32], [2 x i32]* %794, i64 0, i64 0
+  store i32 %768, i32* %795, align 4
+  br label %796
+
+; <label>:796:                                    ; preds = %728
+  %797 = load i32, i32* %2, align 4
+  %798 = add nsw i32 %797, 1
+  store i32 %798, i32* %2, align 4
+  br label %725
+
+; <label>:799:                                    ; preds = %725
+  br label %800
+
+; <label>:800:                                    ; preds = %799
+  %801 = load i32, i32* %1, align 4
+  %802 = add nsw i32 %801, 1
+  store i32 %802, i32* %1, align 4
+  br label %721
+
+; <label>:803:                                    ; preds = %721
+  %804 = load %struct.block*, %struct.block** %31, align 8
+  %805 = getelementptr inbounds %struct.block, %struct.block* %804, i32 0, i32 8
+  %806 = load i32, i32* %12, align 4
+  %807 = sext i32 %806 to i64
+  %808 = getelementptr inbounds [6 x i32], [6 x i32]* %805, i64 0, i64 %807
+  %809 = load i32, i32* %808, align 4
+  %810 = icmp eq i32 %809, -2
+  br i1 %810, label %811, label %870
+
+; <label>:811:                                    ; preds = %803
+  store i32 0, i32* %1, align 4
+  br label %812
+
+; <label>:812:                                    ; preds = %866, %811
+  %813 = load i32, i32* %1, align 4
+  %814 = icmp slt i32 %813, 2
+  br i1 %814, label %815, label %869
+
+; <label>:815:                                    ; preds = %812
+  store i32 0, i32* %2, align 4
+  br label %816
+
+; <label>:816:                                    ; preds = %862, %815
+  %817 = load i32, i32* %2, align 4
+  %818 = icmp slt i32 %817, 2
+  br i1 %818, label %819, label %865
+
+; <label>:819:                                    ; preds = %816
+  %820 = load %struct.block*, %struct.block** @blocks, align 8
+  %821 = load i32, i32* %12, align 4
+  %822 = sext i32 %821 to i64
+  %823 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* @split_blocks.side, i64 0, i64 %822
+  %824 = load i32, i32* %1, align 4
+  %825 = sext i32 %824 to i64
+  %826 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %823, i64 0, i64 %825
+  %827 = load i32, i32* %2, align 4
+  %828 = sext i32 %827 to i64
+  %829 = getelementptr inbounds [2 x i32], [2 x i32]* %826, i64 0, i64 %828
+  %830 = load i32, i32* %829, align 4
+  %831 = sext i32 %830 to i64
+  %832 = getelementptr inbounds [8 x i32], [8 x i32]* %27, i64 0, i64 %831
+  %833 = load i32, i32* %832, align 4
+  %834 = sext i32 %833 to i64
+  %835 = getelementptr inbounds %struct.block, %struct.block* %820, i64 %834
+  %836 = getelementptr inbounds %struct.block, %struct.block* %835, i32 0, i32 8
+  %837 = load i32, i32* %12, align 4
+  %838 = sext i32 %837 to i64
+  %839 = getelementptr inbounds [6 x i32], [6 x i32]* %836, i64 0, i64 %838
+  store i32 -2, i32* %839, align 4
+  %840 = load %struct.block*, %struct.block** @blocks, align 8
+  %841 = load i32, i32* %12, align 4
+  %842 = sext i32 %841 to i64
+  %843 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* @split_blocks.side, i64 0, i64 %842
+  %844 = load i32, i32* %1, align 4
+  %845 = sext i32 %844 to i64
+  %846 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %843, i64 0, i64 %845
+  %847 = load i32, i32* %2, align 4
+  %848 = sext i32 %847 to i64
+  %849 = getelementptr inbounds [2 x i32], [2 x i32]* %846, i64 0, i64 %848
+  %850 = load i32, i32* %849, align 4
+  %851 = sext i32 %850 to i64
+  %852 = getelementptr inbounds [8 x i32], [8 x i32]* %27, i64 0, i64 %851
+  %853 = load i32, i32* %852, align 4
+  %854 = sext i32 %853 to i64
+  %855 = getelementptr inbounds %struct.block, %struct.block* %840, i64 %854
+  %856 = getelementptr inbounds %struct.block, %struct.block* %855, i32 0, i32 9
+  %857 = load i32, i32* %12, align 4
+  %858 = sext i32 %857 to i64
+  %859 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %856, i64 0, i64 %858
+  %860 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %859, i64 0, i64 0
+  %861 = getelementptr inbounds [2 x i32], [2 x i32]* %860, i64 0, i64 0
+  store i32 0, i32* %861, align 4
+  br label %862
+
+; <label>:862:                                    ; preds = %819
+  %863 = load i32, i32* %2, align 4
+  %864 = add nsw i32 %863, 1
+  store i32 %864, i32* %2, align 4
+  br label %816
+
+; <label>:865:                                    ; preds = %816
+  br label %866
+
+; <label>:866:                                    ; preds = %865
+  %867 = load i32, i32* %1, align 4
+  %868 = add nsw i32 %867, 1
+  store i32 %868, i32* %1, align 4
+  br label %812
+
+; <label>:869:                                    ; preds = %812
+  br label %1182
+
+; <label>:870:                                    ; preds = %803
+  %871 = load %struct.block*, %struct.block** %31, align 8
+  %872 = getelementptr inbounds %struct.block, %struct.block* %871, i32 0, i32 8
+  %873 = load i32, i32* %12, align 4
+  %874 = sext i32 %873 to i64
+  %875 = getelementptr inbounds [6 x i32], [6 x i32]* %872, i64 0, i64 %874
+  %876 = load i32, i32* %875, align 4
+  %877 = load i32, i32* %26, align 4
+  %878 = sub nsw i32 %877, 1
+  %879 = icmp eq i32 %876, %878
+  br i1 %879, label %880, label %907
+
+; <label>:880:                                    ; preds = %870
+  %881 = load %struct.block*, %struct.block** %31, align 8
+  %882 = getelementptr inbounds %struct.block, %struct.block* %881, i32 0, i32 9
+  %883 = load i32, i32* %12, align 4
+  %884 = sext i32 %883 to i64
+  %885 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %882, i64 0, i64 %884
+  %886 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %885, i64 0, i64 0
+  %887 = getelementptr inbounds [2 x i32], [2 x i32]* %886, i64 0, i64 0
+  %888 = load i32, i32* %887, align 4
+  %889 = icmp sge i32 %888, 0
+  br i1 %889, label %890, label %906
+
+; <label>:890:                                    ; preds = %880
+  %891 = load i32, i32* @my_pe, align 4
+  %892 = load i32, i32* %5, align 4
+  %893 = load %struct.block*, %struct.block** %31, align 8
+  %894 = getelementptr inbounds %struct.block, %struct.block* %893, i32 0, i32 0
+  %895 = load i32, i32* %894, align 8
+  %896 = load i32, i32* %12, align 4
+  %897 = load %struct.block*, %struct.block** %31, align 8
+  %898 = getelementptr inbounds %struct.block, %struct.block* %897, i32 0, i32 9
+  %899 = load i32, i32* %12, align 4
+  %900 = sext i32 %899 to i64
+  %901 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %898, i64 0, i64 %900
+  %902 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %901, i64 0, i64 0
+  %903 = getelementptr inbounds [2 x i32], [2 x i32]* %902, i64 0, i64 0
+  %904 = load i32, i32* %903, align 4
+  %905 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([55 x i8], [55 x i8]* @.str.3, i32 0, i32 0), i32 %891, i32 %892, i32 %895, i32 %896, i32 %904)
+  call void @exit(i32 -1) #3
+  unreachable
+
+; <label>:906:                                    ; preds = %880
+  br label %1181
+
+; <label>:907:                                    ; preds = %870
+  %908 = load %struct.block*, %struct.block** %31, align 8
+  %909 = getelementptr inbounds %struct.block, %struct.block* %908, i32 0, i32 8
+  %910 = load i32, i32* %12, align 4
+  %911 = sext i32 %910 to i64
+  %912 = getelementptr inbounds [6 x i32], [6 x i32]* %909, i64 0, i64 %911
+  %913 = load i32, i32* %912, align 4
+  %914 = load i32, i32* %26, align 4
+  %915 = icmp eq i32 %913, %914
+  br i1 %915, label %916, label %1026
+
+; <label>:916:                                    ; preds = %907
+  %917 = load %struct.block*, %struct.block** %31, align 8
+  %918 = getelementptr inbounds %struct.block, %struct.block* %917, i32 0, i32 9
+  %919 = load i32, i32* %12, align 4
+  %920 = sext i32 %919 to i64
+  %921 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %918, i64 0, i64 %920
+  %922 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %921, i64 0, i64 0
+  %923 = getelementptr inbounds [2 x i32], [2 x i32]* %922, i64 0, i64 0
+  %924 = load i32, i32* %923, align 4
+  %925 = icmp sge i32 %924, 0
+  br i1 %925, label %926, label %1025
+
+; <label>:926:                                    ; preds = %916
+  %927 = load %struct.block*, %struct.block** %31, align 8
+  %928 = getelementptr inbounds %struct.block, %struct.block* %927, i32 0, i32 9
+  %929 = load i32, i32* %12, align 4
+  %930 = sext i32 %929 to i64
+  %931 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %928, i64 0, i64 %930
+  %932 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %931, i64 0, i64 0
+  %933 = getelementptr inbounds [2 x i32], [2 x i32]* %932, i64 0, i64 0
+  %934 = load i32, i32* %933, align 4
+  store i32 %934, i32* %14, align 4
+  %935 = load i32, i32* %12, align 4
+  %936 = sdiv i32 %935, 2
+  %937 = mul nsw i32 %936, 2
+  %938 = load i32, i32* %12, align 4
+  %939 = add nsw i32 %938, 1
+  %940 = srem i32 %939, 2
+  %941 = add nsw i32 %937, %940
+  store i32 %941, i32* %13, align 4
+  %942 = load i32, i32* %26, align 4
+  %943 = add nsw i32 %942, 1
+  %944 = load %struct.block*, %struct.block** @blocks, align 8
+  %945 = load i32, i32* %14, align 4
+  %946 = sext i32 %945 to i64
+  %947 = getelementptr inbounds %struct.block, %struct.block* %944, i64 %946
+  %948 = getelementptr inbounds %struct.block, %struct.block* %947, i32 0, i32 8
+  %949 = load i32, i32* %13, align 4
+  %950 = sext i32 %949 to i64
+  %951 = getelementptr inbounds [6 x i32], [6 x i32]* %948, i64 0, i64 %950
+  store i32 %943, i32* %951, align 4
+  store i32 0, i32* %1, align 4
+  br label %952
+
+; <label>:952:                                    ; preds = %1021, %926
+  %953 = load i32, i32* %1, align 4
+  %954 = icmp slt i32 %953, 2
+  br i1 %954, label %955, label %1024
+
+; <label>:955:                                    ; preds = %952
+  store i32 0, i32* %2, align 4
+  br label %956
+
+; <label>:956:                                    ; preds = %1017, %955
+  %957 = load i32, i32* %2, align 4
+  %958 = icmp slt i32 %957, 2
+  br i1 %958, label %959, label %1020
+
+; <label>:959:                                    ; preds = %956
+  %960 = load %struct.block*, %struct.block** @blocks, align 8
+  %961 = load i32, i32* %12, align 4
+  %962 = sext i32 %961 to i64
+  %963 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* @split_blocks.side, i64 0, i64 %962
+  %964 = load i32, i32* %1, align 4
+  %965 = sext i32 %964 to i64
+  %966 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %963, i64 0, i64 %965
+  %967 = load i32, i32* %2, align 4
+  %968 = sext i32 %967 to i64
+  %969 = getelementptr inbounds [2 x i32], [2 x i32]* %966, i64 0, i64 %968
+  %970 = load i32, i32* %969, align 4
+  %971 = sext i32 %970 to i64
+  %972 = getelementptr inbounds [8 x i32], [8 x i32]* %27, i64 0, i64 %971
+  %973 = load i32, i32* %972, align 4
+  %974 = sext i32 %973 to i64
+  %975 = getelementptr inbounds %struct.block, %struct.block* %960, i64 %974
+  store %struct.block* %975, %struct.block** %32, align 8
+  %976 = load i32, i32* %26, align 4
+  %977 = load %struct.block*, %struct.block** %32, align 8
+  %978 = getelementptr inbounds %struct.block, %struct.block* %977, i32 0, i32 8
+  %979 = load i32, i32* %12, align 4
+  %980 = sext i32 %979 to i64
+  %981 = getelementptr inbounds [6 x i32], [6 x i32]* %978, i64 0, i64 %980
+  store i32 %976, i32* %981, align 4
+  %982 = load i32, i32* %14, align 4
+  %983 = load %struct.block*, %struct.block** %32, align 8
+  %984 = getelementptr inbounds %struct.block, %struct.block* %983, i32 0, i32 9
+  %985 = load i32, i32* %12, align 4
+  %986 = sext i32 %985 to i64
+  %987 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %984, i64 0, i64 %986
+  %988 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %987, i64 0, i64 0
+  %989 = getelementptr inbounds [2 x i32], [2 x i32]* %988, i64 0, i64 0
+  store i32 %982, i32* %989, align 4
+  %990 = load i32, i32* %12, align 4
+  %991 = sext i32 %990 to i64
+  %992 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* @split_blocks.side, i64 0, i64 %991
+  %993 = load i32, i32* %1, align 4
+  %994 = sext i32 %993 to i64
+  %995 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %992, i64 0, i64 %994
+  %996 = load i32, i32* %2, align 4
+  %997 = sext i32 %996 to i64
+  %998 = getelementptr inbounds [2 x i32], [2 x i32]* %995, i64 0, i64 %997
+  %999 = load i32, i32* %998, align 4
+  %1000 = sext i32 %999 to i64
+  %1001 = getelementptr inbounds [8 x i32], [8 x i32]* %27, i64 0, i64 %1000
+  %1002 = load i32, i32* %1001, align 4
+  %1003 = load %struct.block*, %struct.block** @blocks, align 8
+  %1004 = load i32, i32* %14, align 4
+  %1005 = sext i32 %1004 to i64
+  %1006 = getelementptr inbounds %struct.block, %struct.block* %1003, i64 %1005
+  %1007 = getelementptr inbounds %struct.block, %struct.block* %1006, i32 0, i32 9
+  %1008 = load i32, i32* %13, align 4
+  %1009 = sext i32 %1008 to i64
+  %1010 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %1007, i64 0, i64 %1009
+  %1011 = load i32, i32* %1, align 4
+  %1012 = sext i32 %1011 to i64
+  %1013 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %1010, i64 0, i64 %1012
+  %1014 = load i32, i32* %2, align 4
+  %1015 = sext i32 %1014 to i64
+  %1016 = getelementptr inbounds [2 x i32], [2 x i32]* %1013, i64 0, i64 %1015
+  store i32 %1002, i32* %1016, align 4
+  br label %1017
+
+; <label>:1017:                                   ; preds = %959
+  %1018 = load i32, i32* %2, align 4
+  %1019 = add nsw i32 %1018, 1
+  store i32 %1019, i32* %2, align 4
+  br label %956
+
+; <label>:1020:                                   ; preds = %956
+  br label %1021
+
+; <label>:1021:                                   ; preds = %1020
+  %1022 = load i32, i32* %1, align 4
+  %1023 = add nsw i32 %1022, 1
+  store i32 %1023, i32* %1, align 4
+  br label %952
+
+; <label>:1024:                                   ; preds = %952
+  br label %1025
+
+; <label>:1025:                                   ; preds = %1024, %916
+  br label %1180
+
+; <label>:1026:                                   ; preds = %907
+  %1027 = load %struct.block*, %struct.block** %31, align 8
+  %1028 = getelementptr inbounds %struct.block, %struct.block* %1027, i32 0, i32 8
+  %1029 = load i32, i32* %12, align 4
+  %1030 = sext i32 %1029 to i64
+  %1031 = getelementptr inbounds [6 x i32], [6 x i32]* %1028, i64 0, i64 %1030
+  %1032 = load i32, i32* %1031, align 4
+  %1033 = load i32, i32* %26, align 4
+  %1034 = add nsw i32 %1033, 1
+  %1035 = icmp eq i32 %1032, %1034
+  br i1 %1035, label %1036, label %1164
+
+; <label>:1036:                                   ; preds = %1026
+  %1037 = load i32, i32* %12, align 4
+  %1038 = sdiv i32 %1037, 2
+  store i32 %1038, i32* %21, align 4
+  %1039 = load i32, i32* %12, align 4
+  %1040 = srem i32 %1039, 2
+  %1041 = mul nsw i32 %1040, 10
+  store i32 %1041, i32* %22, align 4
+  %1042 = load i32, i32* %12, align 4
+  %1043 = sdiv i32 %1042, 2
+  %1044 = mul nsw i32 %1043, 2
+  %1045 = load i32, i32* %12, align 4
+  %1046 = add nsw i32 %1045, 1
+  %1047 = srem i32 %1046, 2
+  %1048 = add nsw i32 %1044, %1047
+  store i32 %1048, i32* %13, align 4
+  %1049 = load i32, i32* %12, align 4
+  %1050 = srem i32 %1049, 2
+  %1051 = mul nsw i32 2, %1050
+  %1052 = sub nsw i32 %1051, 1
+  store i32 %1052, i32* %29, align 4
+  %1053 = load i32, i32* %22, align 4
+  %1054 = add nsw i32 %1053, 6
+  store i32 %1054, i32* %3, align 4
+  store i32 0, i32* %1, align 4
+  br label %1055
+
+; <label>:1055:                                   ; preds = %1160, %1036
+  %1056 = load i32, i32* %1, align 4
+  %1057 = icmp slt i32 %1056, 2
+  br i1 %1057, label %1058, label %1163
+
+; <label>:1058:                                   ; preds = %1055
+  store i32 0, i32* %2, align 4
+  br label %1059
+
+; <label>:1059:                                   ; preds = %1154, %1058
+  %1060 = load i32, i32* %2, align 4
+  %1061 = icmp slt i32 %1060, 2
+  br i1 %1061, label %1062, label %1159
+
+; <label>:1062:                                   ; preds = %1059
+  %1063 = load %struct.block*, %struct.block** %31, align 8
+  %1064 = getelementptr inbounds %struct.block, %struct.block* %1063, i32 0, i32 9
+  %1065 = load i32, i32* %12, align 4
+  %1066 = sext i32 %1065 to i64
+  %1067 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %1064, i64 0, i64 %1066
+  %1068 = load i32, i32* %1, align 4
+  %1069 = sext i32 %1068 to i64
+  %1070 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %1067, i64 0, i64 %1069
+  %1071 = load i32, i32* %2, align 4
+  %1072 = sext i32 %1071 to i64
+  %1073 = getelementptr inbounds [2 x i32], [2 x i32]* %1070, i64 0, i64 %1072
+  %1074 = load i32, i32* %1073, align 4
+  %1075 = icmp sge i32 %1074, 0
+  br i1 %1075, label %1076, label %1153
+
+; <label>:1076:                                   ; preds = %1062
+  %1077 = load %struct.block*, %struct.block** %31, align 8
+  %1078 = getelementptr inbounds %struct.block, %struct.block* %1077, i32 0, i32 9
+  %1079 = load i32, i32* %12, align 4
+  %1080 = sext i32 %1079 to i64
+  %1081 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %1078, i64 0, i64 %1080
+  %1082 = load i32, i32* %1, align 4
+  %1083 = sext i32 %1082 to i64
+  %1084 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %1081, i64 0, i64 %1083
+  %1085 = load i32, i32* %2, align 4
+  %1086 = sext i32 %1085 to i64
+  %1087 = getelementptr inbounds [2 x i32], [2 x i32]* %1084, i64 0, i64 %1086
+  %1088 = load i32, i32* %1087, align 4
+  store i32 %1088, i32* %14, align 4
+  %1089 = load %struct.block*, %struct.block** @blocks, align 8
+  %1090 = load i32, i32* %12, align 4
+  %1091 = sext i32 %1090 to i64
+  %1092 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* @split_blocks.side, i64 0, i64 %1091
+  %1093 = load i32, i32* %1, align 4
+  %1094 = sext i32 %1093 to i64
+  %1095 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %1092, i64 0, i64 %1094
+  %1096 = load i32, i32* %2, align 4
+  %1097 = sext i32 %1096 to i64
+  %1098 = getelementptr inbounds [2 x i32], [2 x i32]* %1095, i64 0, i64 %1097
+  %1099 = load i32, i32* %1098, align 4
+  %1100 = sext i32 %1099 to i64
+  %1101 = getelementptr inbounds [8 x i32], [8 x i32]* %27, i64 0, i64 %1100
+  %1102 = load i32, i32* %1101, align 4
+  %1103 = sext i32 %1102 to i64
+  %1104 = getelementptr inbounds %struct.block, %struct.block* %1089, i64 %1103
+  store %struct.block* %1104, %struct.block** %32, align 8
+  %1105 = load i32, i32* %26, align 4
+  %1106 = add nsw i32 %1105, 1
+  %1107 = load %struct.block*, %struct.block** %32, align 8
+  %1108 = getelementptr inbounds %struct.block, %struct.block* %1107, i32 0, i32 8
+  %1109 = load i32, i32* %12, align 4
+  %1110 = sext i32 %1109 to i64
+  %1111 = getelementptr inbounds [6 x i32], [6 x i32]* %1108, i64 0, i64 %1110
+  store i32 %1106, i32* %1111, align 4
+  %1112 = load i32, i32* %14, align 4
+  %1113 = load %struct.block*, %struct.block** %32, align 8
+  %1114 = getelementptr inbounds %struct.block, %struct.block* %1113, i32 0, i32 9
+  %1115 = load i32, i32* %12, align 4
+  %1116 = sext i32 %1115 to i64
+  %1117 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %1114, i64 0, i64 %1116
+  %1118 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %1117, i64 0, i64 0
+  %1119 = getelementptr inbounds [2 x i32], [2 x i32]* %1118, i64 0, i64 0
+  store i32 %1112, i32* %1119, align 4
+  %1120 = load i32, i32* %26, align 4
+  %1121 = add nsw i32 %1120, 1
+  %1122 = load %struct.block*, %struct.block** @blocks, align 8
+  %1123 = load i32, i32* %14, align 4
+  %1124 = sext i32 %1123 to i64
+  %1125 = getelementptr inbounds %struct.block, %struct.block* %1122, i64 %1124
+  %1126 = getelementptr inbounds %struct.block, %struct.block* %1125, i32 0, i32 8
+  %1127 = load i32, i32* %13, align 4
+  %1128 = sext i32 %1127 to i64
+  %1129 = getelementptr inbounds [6 x i32], [6 x i32]* %1126, i64 0, i64 %1128
+  store i32 %1121, i32* %1129, align 4
+  %1130 = load i32, i32* %12, align 4
+  %1131 = sext i32 %1130 to i64
+  %1132 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* @split_blocks.side, i64 0, i64 %1131
+  %1133 = load i32, i32* %1, align 4
+  %1134 = sext i32 %1133 to i64
+  %1135 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %1132, i64 0, i64 %1134
+  %1136 = load i32, i32* %2, align 4
+  %1137 = sext i32 %1136 to i64
+  %1138 = getelementptr inbounds [2 x i32], [2 x i32]* %1135, i64 0, i64 %1137
+  %1139 = load i32, i32* %1138, align 4
+  %1140 = sext i32 %1139 to i64
+  %1141 = getelementptr inbounds [8 x i32], [8 x i32]* %27, i64 0, i64 %1140
+  %1142 = load i32, i32* %1141, align 4
+  %1143 = load %struct.block*, %struct.block** @blocks, align 8
+  %1144 = load i32, i32* %14, align 4
+  %1145 = sext i32 %1144 to i64
+  %1146 = getelementptr inbounds %struct.block, %struct.block* %1143, i64 %1145
+  %1147 = getelementptr inbounds %struct.block, %struct.block* %1146, i32 0, i32 9
+  %1148 = load i32, i32* %13, align 4
+  %1149 = sext i32 %1148 to i64
+  %1150 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %1147, i64 0, i64 %1149
+  %1151 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %1150, i64 0, i64 0
+  %1152 = getelementptr inbounds [2 x i32], [2 x i32]* %1151, i64 0, i64 0
+  store i32 %1142, i32* %1152, align 4
+  br label %1153
+
+; <label>:1153:                                   ; preds = %1076, %1062
+  br label %1154
+
+; <label>:1154:                                   ; preds = %1153
+  %1155 = load i32, i32* %2, align 4
+  %1156 = add nsw i32 %1155, 1
+  store i32 %1156, i32* %2, align 4
+  %1157 = load i32, i32* %3, align 4
+  %1158 = add nsw i32 %1157, 1
+  store i32 %1158, i32* %3, align 4
+  br label %1059
+
+; <label>:1159:                                   ; preds = %1059
+  br label %1160
+
+; <label>:1160:                                   ; preds = %1159
+  %1161 = load i32, i32* %1, align 4
+  %1162 = add nsw i32 %1161, 1
+  store i32 %1162, i32* %1, align 4
+  br label %1055
+
+; <label>:1163:                                   ; preds = %1055
+  br label %1179
+
+; <label>:1164:                                   ; preds = %1026
+  %1165 = load i32, i32* @my_pe, align 4
+  %1166 = load i32, i32* %5, align 4
+  %1167 = load %struct.block*, %struct.block** %31, align 8
+  %1168 = getelementptr inbounds %struct.block, %struct.block* %1167, i32 0, i32 0
+  %1169 = load i32, i32* %1168, align 8
+  %1170 = load i32, i32* %26, align 4
+  %1171 = load i32, i32* %12, align 4
+  %1172 = load %struct.block*, %struct.block** %31, align 8
+  %1173 = getelementptr inbounds %struct.block, %struct.block* %1172, i32 0, i32 8
+  %1174 = load i32, i32* %12, align 4
+  %1175 = sext i32 %1174 to i64
+  %1176 = getelementptr inbounds [6 x i32], [6 x i32]* %1173, i64 0, i64 %1175
+  %1177 = load i32, i32* %1176, align 4
+  %1178 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([48 x i8], [48 x i8]* @.str.4, i32 0, i32 0), i32 %1165, i32 %1166, i32 %1169, i32 %1170, i32 %1171, i32 %1177)
+  call void @exit(i32 -1) #3
+  unreachable
+
+; <label>:1179:                                   ; preds = %1163
+  br label %1180
+
+; <label>:1180:                                   ; preds = %1179, %1025
+  br label %1181
+
+; <label>:1181:                                   ; preds = %1180, %906
+  br label %1182
+
+; <label>:1182:                                   ; preds = %1181, %869
+  br label %1183
+
+; <label>:1183:                                   ; preds = %1182
+  %1184 = load i32, i32* %12, align 4
+  %1185 = add nsw i32 %1184, 1
+  store i32 %1185, i32* %12, align 4
+  br label %717
+
+; <label>:1186:                                   ; preds = %717
+  %1187 = load %struct.block*, %struct.block** %31, align 8
+  %1188 = getelementptr inbounds %struct.block, %struct.block* %1187, i32 0, i32 0
+  store i32 -1, i32* %1188, align 8
+  %1189 = load i32, i32* %5, align 4
+  %1190 = load i32, i32* %4, align 4
+  %1191 = icmp slt i32 %1189, %1190
+  br i1 %1191, label %1192, label %1194
+
+; <label>:1192:                                   ; preds = %1186
+  %1193 = load i32, i32* %5, align 4
+  store i32 %1193, i32* %4, align 4
+  br label %1194
+
+; <label>:1194:                                   ; preds = %1192, %1186
+  br label %1195
+
+; <label>:1195:                                   ; preds = %1194, %60
+  br label %1196
+
+; <label>:1196:                                   ; preds = %1195, %51, %43
+  br label %1197
+
+; <label>:1197:                                   ; preds = %1196
+  %1198 = load i32, i32* %5, align 4
+  %1199 = add nsw i32 %1198, 1
+  store i32 %1199, i32* %5, align 4
+  br label %39
+
+; <label>:1200:                                   ; preds = %39
+  br label %1201
+
+; <label>:1201:                                   ; preds = %1200
+  %1202 = load i32, i32* %26, align 4
+  %1203 = add nsw i32 %1202, 1
+  store i32 %1203, i32* %26, align 4
+  br label %34
+
+; <label>:1204:                                   ; preds = %34
+  ret void
+}
+
+declare i32 @printf(i8*, ...) #1
+
+; Function Attrs: noreturn nounwind
+declare void @exit(i32) #2
+
+; Function Attrs: noinline nounwind uwtable
+define void @del_sorted_list(i32, i32) #0 {
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4
+  %5 = alloca i32, align 4
+  %6 = alloca i32, align 4
+  store i32 %0, i32* %3, align 4
+  store i32 %1, i32* %4, align 4
+  %7 = load i32*, i32** @sorted_index, align 8
+  %8 = load i32, i32* %4, align 4
+  %9 = sext i32 %8 to i64
+  %10 = getelementptr inbounds i32, i32* %7, i64 %9
+  %11 = load i32, i32* %10, align 4
+  store i32 %11, i32* %5, align 4
+  br label %12
+
+; <label>:12:                                     ; preds = %32, %2
+  %13 = load i32, i32* %5, align 4
+  %14 = load i32*, i32** @sorted_index, align 8
+  %15 = load i32, i32* %4, align 4
+  %16 = add nsw i32 %15, 1
+  %17 = sext i32 %16 to i64
+  %18 = getelementptr inbounds i32, i32* %14, i64 %17
+  %19 = load i32, i32* %18, align 4
+  %20 = icmp slt i32 %13, %19
+  br i1 %20, label %21, label %35
+
+; <label>:21:                                     ; preds = %12
+  %22 = load i32, i32* %3, align 4
+  %23 = load %struct.sorted_block*, %struct.sorted_block** @sorted_list, align 8
+  %24 = load i32, i32* %5, align 4
+  %25 = sext i32 %24 to i64
+  %26 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %23, i64 %25
+  %27 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %26, i32 0, i32 0
+  %28 = load i32, i32* %27, align 4
+  %29 = icmp eq i32 %22, %28
+  br i1 %29, label %30, label %31
+
+; <label>:30:                                     ; preds = %21
+  br label %35
+
+; <label>:31:                                     ; preds = %21
+  br label %32
+
+; <label>:32:                                     ; preds = %31
+  %33 = load i32, i32* %5, align 4
+  %34 = add nsw i32 %33, 1
+  store i32 %34, i32* %5, align 4
+  br label %12
+
+; <label>:35:                                     ; preds = %30, %12
+  %36 = load i32, i32* %3, align 4
+  %37 = load %struct.sorted_block*, %struct.sorted_block** @sorted_list, align 8
+  %38 = load i32, i32* %5, align 4
+  %39 = sext i32 %38 to i64
+  %40 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %37, i64 %39
+  %41 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %40, i32 0, i32 0
+  %42 = load i32, i32* %41, align 4
+  %43 = icmp ne i32 %36, %42
+  br i1 %43, label %44, label %48
+
+; <label>:44:                                     ; preds = %35
+  %45 = load i32, i32* @my_pe, align 4
+  %46 = load i32, i32* %3, align 4
+  %47 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([52 x i8], [52 x i8]* @.str.7, i32 0, i32 0), i32 %45, i32 %46)
+  call void @exit(i32 -1) #3
+  unreachable
+
+; <label>:48:                                     ; preds = %35
+  %49 = load i32, i32* %4, align 4
+  %50 = add nsw i32 %49, 1
+  store i32 %50, i32* %6, align 4
+  br label %51
+
+; <label>:51:                                     ; preds = %63, %48
+  %52 = load i32, i32* %6, align 4
+  %53 = load i32, i32* @num_refine, align 4
+  %54 = add nsw i32 %53, 1
+  %55 = icmp sle i32 %52, %54
+  br i1 %55, label %56, label %66
+
+; <label>:56:                                     ; preds = %51
+  %57 = load i32*, i32** @sorted_index, align 8
+  %58 = load i32, i32* %6, align 4
+  %59 = sext i32 %58 to i64
+  %60 = getelementptr inbounds i32, i32* %57, i64 %59
+  %61 = load i32, i32* %60, align 4
+  %62 = add nsw i32 %61, -1
+  store i32 %62, i32* %60, align 4
+  br label %63
+
+; <label>:63:                                     ; preds = %56
+  %64 = load i32, i32* %6, align 4
+  %65 = add nsw i32 %64, 1
+  store i32 %65, i32* %6, align 4
+  br label %51
+
+; <label>:66:                                     ; preds = %51
+  %67 = load i32, i32* %5, align 4
+  store i32 %67, i32* %6, align 4
+  br label %68
+
+; <label>:68:                                     ; preds = %102, %66
+  %69 = load i32, i32* %6, align 4
+  %70 = load i32*, i32** @sorted_index, align 8
+  %71 = load i32, i32* @num_refine, align 4
+  %72 = add nsw i32 %71, 1
+  %73 = sext i32 %72 to i64
+  %74 = getelementptr inbounds i32, i32* %70, i64 %73
+  %75 = load i32, i32* %74, align 4
+  %76 = icmp slt i32 %69, %75
+  br i1 %76, label %77, label %105
+
+; <label>:77:                                     ; preds = %68
+  %78 = load %struct.sorted_block*, %struct.sorted_block** @sorted_list, align 8
+  %79 = load i32, i32* %6, align 4
+  %80 = add nsw i32 %79, 1
+  %81 = sext i32 %80 to i64
+  %82 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %78, i64 %81
+  %83 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %82, i32 0, i32 0
+  %84 = load i32, i32* %83, align 4
+  %85 = load %struct.sorted_block*, %struct.sorted_block** @sorted_list, align 8
+  %86 = load i32, i32* %6, align 4
+  %87 = sext i32 %86 to i64
+  %88 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %85, i64 %87
+  %89 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %88, i32 0, i32 0
+  store i32 %84, i32* %89, align 4
+  %90 = load %struct.sorted_block*, %struct.sorted_block** @sorted_list, align 8
+  %91 = load i32, i32* %6, align 4
+  %92 = add nsw i32 %91, 1
+  %93 = sext i32 %92 to i64
+  %94 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %90, i64 %93
+  %95 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %94, i32 0, i32 1
+  %96 = load i32, i32* %95, align 4
+  %97 = load %struct.sorted_block*, %struct.sorted_block** @sorted_list, align 8
+  %98 = load i32, i32* %6, align 4
+  %99 = sext i32 %98 to i64
+  %100 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %97, i64 %99
+  %101 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %100, i32 0, i32 1
+  store i32 %96, i32* %101, align 4
+  br label %102
+
+; <label>:102:                                    ; preds = %77
+  %103 = load i32, i32* %6, align 4
+  %104 = add nsw i32 %103, 1
+  store i32 %104, i32* %6, align 4
+  br label %68
+
+; <label>:105:                                    ; preds = %68
+  ret void
+}
+
+; Function Attrs: noinline nounwind uwtable
+define void @add_sorted_list(i32, i32, i32) #0 {
+  %4 = alloca i32, align 4
+  %5 = alloca i32, align 4
+  %6 = alloca i32, align 4
+  %7 = alloca i32, align 4
+  %8 = alloca i32, align 4
+  store i32 %0, i32* %4, align 4
+  store i32 %1, i32* %5, align 4
+  store i32 %2, i32* %6, align 4
+  %9 = load i32*, i32** @sorted_index, align 8
+  %10 = load i32, i32* %6, align 4
+  %11 = sext i32 %10 to i64
+  %12 = getelementptr inbounds i32, i32* %9, i64 %11
+  %13 = load i32, i32* %12, align 4
+  store i32 %13, i32* %7, align 4
+  br label %14
+
+; <label>:14:                                     ; preds = %34, %3
+  %15 = load i32, i32* %7, align 4
+  %16 = load i32*, i32** @sorted_index, align 8
+  %17 = load i32, i32* %6, align 4
+  %18 = add nsw i32 %17, 1
+  %19 = sext i32 %18 to i64
+  %20 = getelementptr inbounds i32, i32* %16, i64 %19
+  %21 = load i32, i32* %20, align 4
+  %22 = icmp slt i32 %15, %21
+  br i1 %22, label %23, label %37
+
+; <label>:23:                                     ; preds = %14
+  %24 = load i32, i32* %5, align 4
+  %25 = load %struct.sorted_block*, %struct.sorted_block** @sorted_list, align 8
+  %26 = load i32, i32* %7, align 4
+  %27 = sext i32 %26 to i64
+  %28 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %25, i64 %27
+  %29 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %28, i32 0, i32 0
+  %30 = load i32, i32* %29, align 4
+  %31 = icmp sgt i32 %24, %30
+  br i1 %31, label %32, label %33
+
+; <label>:32:                                     ; preds = %23
+  br label %37
+
+; <label>:33:                                     ; preds = %23
+  br label %34
+
+; <label>:34:                                     ; preds = %33
+  %35 = load i32, i32* %7, align 4
+  %36 = add nsw i32 %35, 1
+  store i32 %36, i32* %7, align 4
+  br label %14
+
+; <label>:37:                                     ; preds = %32, %14
+  %38 = load i32*, i32** @sorted_index, align 8
+  %39 = load i32, i32* @num_refine, align 4
+  %40 = add nsw i32 %39, 1
+  %41 = sext i32 %40 to i64
+  %42 = getelementptr inbounds i32, i32* %38, i64 %41
+  %43 = load i32, i32* %42, align 4
+  store i32 %43, i32* %8, align 4
+  br label %44
+
+; <label>:44:                                     ; preds = %73, %37
+  %45 = load i32, i32* %8, align 4
+  %46 = load i32, i32* %7, align 4
+  %47 = icmp sgt i32 %45, %46
+  br i1 %47, label %48, label %76
+
+; <label>:48:                                     ; preds = %44
+  %49 = load %struct.sorted_block*, %struct.sorted_block** @sorted_list, align 8
+  %50 = load i32, i32* %8, align 4
+  %51 = sub nsw i32 %50, 1
+  %52 = sext i32 %51 to i64
+  %53 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %49, i64 %52
+  %54 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %53, i32 0, i32 0
+  %55 = load i32, i32* %54, align 4
+  %56 = load %struct.sorted_block*, %struct.sorted_block** @sorted_list, align 8
+  %57 = load i32, i32* %8, align 4
+  %58 = sext i32 %57 to i64
+  %59 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %56, i64 %58
+  %60 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %59, i32 0, i32 0
+  store i32 %55, i32* %60, align 4
+  %61 = load %struct.sorted_block*, %struct.sorted_block** @sorted_list, align 8
+  %62 = load i32, i32* %8, align 4
+  %63 = sub nsw i32 %62, 1
+  %64 = sext i32 %63 to i64
+  %65 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %61, i64 %64
+  %66 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %65, i32 0, i32 1
+  %67 = load i32, i32* %66, align 4
+  %68 = load %struct.sorted_block*, %struct.sorted_block** @sorted_list, align 8
+  %69 = load i32, i32* %8, align 4
+  %70 = sext i32 %69 to i64
+  %71 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %68, i64 %70
+  %72 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %71, i32 0, i32 1
+  store i32 %67, i32* %72, align 4
+  br label %73
+
+; <label>:73:                                     ; preds = %48
+  %74 = load i32, i32* %8, align 4
+  %75 = add nsw i32 %74, -1
+  store i32 %75, i32* %8, align 4
+  br label %44
+
+; <label>:76:                                     ; preds = %44
+  %77 = load i32, i32* %5, align 4
+  %78 = load %struct.sorted_block*, %struct.sorted_block** @sorted_list, align 8
+  %79 = load i32, i32* %7, align 4
+  %80 = sext i32 %79 to i64
+  %81 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %78, i64 %80
+  %82 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %81, i32 0, i32 0
+  store i32 %77, i32* %82, align 4
+  %83 = load i32, i32* %4, align 4
+  %84 = load %struct.sorted_block*, %struct.sorted_block** @sorted_list, align 8
+  %85 = load i32, i32* %7, align 4
+  %86 = sext i32 %85 to i64
+  %87 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %84, i64 %86
+  %88 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %87, i32 0, i32 1
+  store i32 %83, i32* %88, align 4
+  %89 = load i32, i32* %6, align 4
+  %90 = add nsw i32 %89, 1
+  store i32 %90, i32* %7, align 4
+  br label %91
+
+; <label>:91:                                     ; preds = %103, %76
+  %92 = load i32, i32* %7, align 4
+  %93 = load i32, i32* @num_refine, align 4
+  %94 = add nsw i32 %93, 1
+  %95 = icmp sle i32 %92, %94
+  br i1 %95, label %96, label %106
+
+; <label>:96:                                     ; preds = %91
+  %97 = load i32*, i32** @sorted_index, align 8
+  %98 = load i32, i32* %7, align 4
+  %99 = sext i32 %98 to i64
+  %100 = getelementptr inbounds i32, i32* %97, i64 %99
+  %101 = load i32, i32* %100, align 4
+  %102 = add nsw i32 %101, 1
+  store i32 %102, i32* %100, align 4
+  br label %103
+
+; <label>:103:                                    ; preds = %96
+  %104 = load i32, i32* %7, align 4
+  %105 = add nsw i32 %104, 1
+  store i32 %105, i32* %7, align 4
+  br label %91
+
+; <label>:106:                                    ; preds = %91
+  ret void
+}
+
+; Function Attrs: noinline nounwind uwtable
+define void @consolidate_blocks() #0 {
+  %1 = alloca i32, align 4
+  %2 = alloca i32, align 4
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4
+  %5 = alloca i32, align 4
+  %6 = alloca i32, align 4
+  %7 = alloca i32, align 4
+  %8 = alloca i32, align 4
+  %9 = alloca i32, align 4
+  %10 = alloca i32, align 4
+  %11 = alloca i32, align 4
+  %12 = alloca i32, align 4
+  %13 = alloca i32, align 4
+  %14 = alloca i32, align 4
+  %15 = alloca i32, align 4
+  %16 = alloca i32, align 4
+  %17 = alloca i32, align 4
+  %18 = alloca i32, align 4
+  %19 = alloca i32, align 4
+  %20 = alloca i32, align 4
+  %21 = alloca i32, align 4
+  %22 = alloca i32, align 4
+  %23 = alloca i32, align 4
+  %24 = alloca [3 x i32], align 4
+  %25 = alloca i32, align 4
+  %26 = alloca i32, align 4
+  %27 = alloca %struct.block*, align 8
+  %28 = alloca %struct.block*, align 8
+  %29 = alloca %struct.parent*, align 8
+  %30 = load i32, i32* @stencil, align 4
+  %31 = icmp eq i32 %30, 7
+  br i1 %31, label %32, label %33
+
+; <label>:32:                                     ; preds = %0
+  store i32 0, i32* %15, align 4
+  br label %34
+
+; <label>:33:                                     ; preds = %0
+  store i32 1, i32* %15, align 4
+  br label %34
+
+; <label>:34:                                     ; preds = %33, %32
+  %35 = load i32, i32* @cur_max_level, align 4
+  store i32 %35, i32* %12, align 4
+  br label %36
+
+; <label>:36:                                     ; preds = %820, %34
+  %37 = load i32, i32* %12, align 4
+  %38 = icmp sge i32 %37, 0
+  br i1 %38, label %39, label %823
+
+; <label>:39:                                     ; preds = %36
+  store i32 0, i32* %2, align 4
+  br label %40
+
+; <label>:40:                                     ; preds = %816, %39
+  %41 = load i32, i32* %2, align 4
+  %42 = load i32, i32* @max_active_parent, align 4
+  %43 = icmp slt i32 %41, %42
+  br i1 %43, label %44, label %819
+
+; <label>:44:                                     ; preds = %40
+  %45 = load %struct.parent*, %struct.parent** @parents, align 8
+  %46 = load i32, i32* %2, align 4
+  %47 = sext i32 %46 to i64
+  %48 = getelementptr inbounds %struct.parent, %struct.parent* %45, i64 %47
+  store %struct.parent* %48, %struct.parent** %29, align 8
+  %49 = getelementptr inbounds %struct.parent, %struct.parent* %48, i32 0, i32 0
+  %50 = load i32, i32* %49, align 4
+  %51 = icmp sge i32 %50, 0
+  br i1 %51, label %52, label %815
+
+; <label>:52:                                     ; preds = %44
+  %53 = load %struct.parent*, %struct.parent** %29, align 8
+  %54 = getelementptr inbounds %struct.parent, %struct.parent* %53, i32 0, i32 1
+  %55 = load i32, i32* %54, align 4
+  %56 = load i32, i32* %12, align 4
+  %57 = icmp eq i32 %55, %56
+  br i1 %57, label %58, label %815
+
+; <label>:58:                                     ; preds = %52
+  %59 = load %struct.parent*, %struct.parent** %29, align 8
+  %60 = getelementptr inbounds %struct.parent, %struct.parent* %59, i32 0, i32 5
+  %61 = load i32, i32* %60, align 4
+  %62 = icmp eq i32 %61, -1
+  br i1 %62, label %63, label %815
+
+; <label>:63:                                     ; preds = %58
+  store i32 0, i32* %1, align 4
+  br label %64
+
+; <label>:64:                                     ; preds = %78, %63
+  %65 = load i32, i32* %1, align 4
+  %66 = load i32, i32* @max_num_blocks, align 4
+  %67 = icmp slt i32 %65, %66
+  br i1 %67, label %68, label %81
+
+; <label>:68:                                     ; preds = %64
+  %69 = load %struct.block*, %struct.block** @blocks, align 8
+  %70 = load i32, i32* %1, align 4
+  %71 = sext i32 %70 to i64
+  %72 = getelementptr inbounds %struct.block, %struct.block* %69, i64 %71
+  %73 = getelementptr inbounds %struct.block, %struct.block* %72, i32 0, i32 0
+  %74 = load i32, i32* %73, align 8
+  %75 = icmp slt i32 %74, 0
+  br i1 %75, label %76, label %77
+
+; <label>:76:                                     ; preds = %68
+  br label %81
+
+; <label>:77:                                     ; preds = %68
+  br label %78
+
+; <label>:78:                                     ; preds = %77
+  %79 = load i32, i32* %1, align 4
+  %80 = add nsw i32 %79, 1
+  store i32 %80, i32* %1, align 4
+  br label %64
+
+; <label>:81:                                     ; preds = %76, %64
+  %82 = load i32, i32* %1, align 4
+  %83 = load i32, i32* @max_num_blocks, align 4
+  %84 = icmp eq i32 %82, %83
+  br i1 %84, label %85, label %88
+
+; <label>:85:                                     ; preds = %81
+  %86 = load i32, i32* @my_pe, align 4
+  %87 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([45 x i8], [45 x i8]* @.str.5, i32 0, i32 0), i32 %86)
+  call void @exit(i32 -1) #3
+  unreachable
+
+; <label>:88:                                     ; preds = %81
+  %89 = load %struct.block*, %struct.block** @blocks, align 8
+  %90 = load i32, i32* %1, align 4
+  %91 = sext i32 %90 to i64
+  %92 = getelementptr inbounds %struct.block, %struct.block* %89, i64 %91
+  store %struct.block* %92, %struct.block** %27, align 8
+  br label %93
+
+; <label>:93:                                     ; preds = %88
+  %94 = load i32, i32* %1, align 4
+  %95 = add nsw i32 %94, 1
+  %96 = load i32, i32* @max_active_block, align 4
+  %97 = icmp sgt i32 %95, %96
+  br i1 %97, label %98, label %101
+
+; <label>:98:                                     ; preds = %93
+  %99 = load i32, i32* %1, align 4
+  %100 = add nsw i32 %99, 1
+  store i32 %100, i32* @max_active_block, align 4
+  br label %101
+
+; <label>:101:                                    ; preds = %98, %93
+  %102 = load i32, i32* @num_active, align 4
+  %103 = add nsw i32 %102, 1
+  %104 = load i32, i32* @local_max_b, align 4
+  %105 = icmp sgt i32 %103, %104
+  br i1 %105, label %106, label %109
+
+; <label>:106:                                    ; preds = %101
+  %107 = load i32, i32* @num_active, align 4
+  %108 = add nsw i32 %107, 1
+  store i32 %108, i32* @local_max_b, align 4
+  br label %109
+
+; <label>:109:                                    ; preds = %106, %101
+  %110 = load i32, i32* @num_active, align 4
+  %111 = sub nsw i32 %110, 7
+  store i32 %111, i32* @num_active, align 4
+  %112 = load i32, i32* @num_reformed, align 4
+  %113 = add nsw i32 %112, 1
+  store i32 %113, i32* @num_reformed, align 4
+  %114 = load i32*, i32** @num_blocks, align 8
+  %115 = load i32, i32* %12, align 4
+  %116 = sext i32 %115 to i64
+  %117 = getelementptr inbounds i32, i32* %114, i64 %116
+  %118 = load i32, i32* %117, align 4
+  %119 = add nsw i32 %118, 1
+  store i32 %119, i32* %117, align 4
+  %120 = load i32*, i32** @num_blocks, align 8
+  %121 = load i32, i32* %12, align 4
+  %122 = add nsw i32 %121, 1
+  %123 = sext i32 %122 to i64
+  %124 = getelementptr inbounds i32, i32* %120, i64 %123
+  %125 = load i32, i32* %124, align 4
+  %126 = sub nsw i32 %125, 8
+  store i32 %126, i32* %124, align 4
+  %127 = load %struct.parent*, %struct.parent** %29, align 8
+  %128 = getelementptr inbounds %struct.parent, %struct.parent* %127, i32 0, i32 0
+  %129 = load i32, i32* %128, align 4
+  %130 = load %struct.block*, %struct.block** %27, align 8
+  %131 = getelementptr inbounds %struct.block, %struct.block* %130, i32 0, i32 0
+  store i32 %129, i32* %131, align 8
+  %132 = load %struct.parent*, %struct.parent** %29, align 8
+  %133 = getelementptr inbounds %struct.parent, %struct.parent* %132, i32 0, i32 0
+  store i32 -1, i32* %133, align 4
+  %134 = load %struct.parent*, %struct.parent** %29, align 8
+  %135 = getelementptr inbounds %struct.parent, %struct.parent* %134, i32 0, i32 1
+  %136 = load i32, i32* %135, align 4
+  %137 = load %struct.block*, %struct.block** %27, align 8
+  %138 = getelementptr inbounds %struct.block, %struct.block* %137, i32 0, i32 1
+  store i32 %136, i32* %138, align 4
+  %139 = load %struct.parent*, %struct.parent** %29, align 8
+  %140 = getelementptr inbounds %struct.parent, %struct.parent* %139, i32 0, i32 2
+  %141 = load i32, i32* %140, align 4
+  %142 = load %struct.block*, %struct.block** %27, align 8
+  %143 = getelementptr inbounds %struct.block, %struct.block* %142, i32 0, i32 4
+  store i32 %141, i32* %143, align 8
+  %144 = load %struct.parent*, %struct.parent** %29, align 8
+  %145 = getelementptr inbounds %struct.parent, %struct.parent* %144, i32 0, i32 3
+  %146 = load i32, i32* %145, align 4
+  %147 = load %struct.block*, %struct.block** %27, align 8
+  %148 = getelementptr inbounds %struct.block, %struct.block* %147, i32 0, i32 5
+  store i32 %146, i32* %148, align 4
+  %149 = load %struct.parent*, %struct.parent** %29, align 8
+  %150 = getelementptr inbounds %struct.parent, %struct.parent* %149, i32 0, i32 4
+  %151 = load i32, i32* %150, align 4
+  %152 = load %struct.block*, %struct.block** %27, align 8
+  %153 = getelementptr inbounds %struct.block, %struct.block* %152, i32 0, i32 6
+  store i32 %151, i32* %153, align 8
+  %154 = load i32, i32* %1, align 4
+  %155 = load %struct.parent*, %struct.parent** @parents, align 8
+  %156 = load %struct.block*, %struct.block** %27, align 8
+  %157 = getelementptr inbounds %struct.block, %struct.block* %156, i32 0, i32 4
+  %158 = load i32, i32* %157, align 8
+  %159 = sext i32 %158 to i64
+  %160 = getelementptr inbounds %struct.parent, %struct.parent* %155, i64 %159
+  %161 = getelementptr inbounds %struct.parent, %struct.parent* %160, i32 0, i32 6
+  %162 = load %struct.block*, %struct.block** %27, align 8
+  %163 = getelementptr inbounds %struct.block, %struct.block* %162, i32 0, i32 6
+  %164 = load i32, i32* %163, align 8
+  %165 = sext i32 %164 to i64
+  %166 = getelementptr inbounds [8 x i32], [8 x i32]* %161, i64 0, i64 %165
+  store i32 %154, i32* %166, align 4
+  %167 = load i32, i32* %1, align 4
+  %168 = load %struct.block*, %struct.block** %27, align 8
+  %169 = getelementptr inbounds %struct.block, %struct.block* %168, i32 0, i32 0
+  %170 = load i32, i32* %169, align 8
+  %171 = load i32, i32* %12, align 4
+  call void @add_sorted_list(i32 %167, i32 %170, i32 %171)
+  %172 = load %struct.block*, %struct.block** %27, align 8
+  %173 = getelementptr inbounds %struct.block, %struct.block* %172, i32 0, i32 2
+  store i32 0, i32* %173, align 8
+  %174 = load %struct.parent*, %struct.parent** %29, align 8
+  %175 = getelementptr inbounds %struct.parent, %struct.parent* %174, i32 0, i32 8
+  %176 = getelementptr inbounds [3 x i32], [3 x i32]* %175, i64 0, i64 0
+  %177 = load i32, i32* %176, align 4
+  %178 = load %struct.block*, %struct.block** %27, align 8
+  %179 = getelementptr inbounds %struct.block, %struct.block* %178, i32 0, i32 10
+  %180 = getelementptr inbounds [3 x i32], [3 x i32]* %179, i64 0, i64 0
+  store i32 %177, i32* %180, align 4
+  %181 = load %struct.parent*, %struct.parent** %29, align 8
+  %182 = getelementptr inbounds %struct.parent, %struct.parent* %181, i32 0, i32 8
+  %183 = getelementptr inbounds [3 x i32], [3 x i32]* %182, i64 0, i64 1
+  %184 = load i32, i32* %183, align 4
+  %185 = load %struct.block*, %struct.block** %27, align 8
+  %186 = getelementptr inbounds %struct.block, %struct.block* %185, i32 0, i32 10
+  %187 = getelementptr inbounds [3 x i32], [3 x i32]* %186, i64 0, i64 1
+  store i32 %184, i32* %187, align 4
+  %188 = load %struct.parent*, %struct.parent** %29, align 8
+  %189 = getelementptr inbounds %struct.parent, %struct.parent* %188, i32 0, i32 8
+  %190 = getelementptr inbounds [3 x i32], [3 x i32]* %189, i64 0, i64 2
+  %191 = load i32, i32* %190, align 4
+  %192 = load %struct.block*, %struct.block** %27, align 8
+  %193 = getelementptr inbounds %struct.block, %struct.block* %192, i32 0, i32 10
+  %194 = getelementptr inbounds [3 x i32], [3 x i32]* %193, i64 0, i64 2
+  store i32 %191, i32* %194, align 4
+  store i32 0, i32* %13, align 4
+  br label %195
+
+; <label>:195:                                    ; preds = %465, %109
+  %196 = load i32, i32* %13, align 4
+  %197 = icmp slt i32 %196, 8
+  br i1 %197, label %198, label %468
+
+; <label>:198:                                    ; preds = %195
+  %199 = load %struct.block*, %struct.block** @blocks, align 8
+  %200 = load %struct.parent*, %struct.parent** %29, align 8
+  %201 = getelementptr inbounds %struct.parent, %struct.parent* %200, i32 0, i32 6
+  %202 = load i32, i32* %13, align 4
+  %203 = sext i32 %202 to i64
+  %204 = getelementptr inbounds [8 x i32], [8 x i32]* %201, i64 0, i64 %203
+  %205 = load i32, i32* %204, align 4
+  %206 = sext i32 %205 to i64
+  %207 = getelementptr inbounds %struct.block, %struct.block* %199, i64 %206
+  store %struct.block* %207, %struct.block** %28, align 8
+  %208 = load %struct.block*, %struct.block** %28, align 8
+  %209 = getelementptr inbounds %struct.block, %struct.block* %208, i32 0, i32 0
+  %210 = load i32, i32* %209, align 8
+  %211 = load i32, i32* %12, align 4
+  %212 = add nsw i32 %211, 1
+  call void @del_sorted_list(i32 %210, i32 %212)
+  %213 = load %struct.block*, %struct.block** %28, align 8
+  %214 = getelementptr inbounds %struct.block, %struct.block* %213, i32 0, i32 0
+  store i32 -1, i32* %214, align 8
+  %215 = load i32, i32* %13, align 4
+  %216 = srem i32 %215, 2
+  %217 = load i32, i32* @x_block_half, align 4
+  %218 = mul nsw i32 %216, %217
+  store i32 %218, i32* %6, align 4
+  %219 = load i32, i32* %13, align 4
+  %220 = sdiv i32 %219, 2
+  %221 = srem i32 %220, 2
+  %222 = load i32, i32* @y_block_half, align 4
+  %223 = mul nsw i32 %221, %222
+  store i32 %223, i32* %7, align 4
+  %224 = load i32, i32* %13, align 4
+  %225 = sdiv i32 %224, 4
+  %226 = load i32, i32* @z_block_half, align 4
+  %227 = mul nsw i32 %225, %226
+  store i32 %227, i32* %8, align 4
+  store i32 0, i32* %14, align 4
+  br label %228
+
+; <label>:228:                                    ; preds = %461, %198
+  %229 = load i32, i32* %14, align 4
+  %230 = load i32, i32* @num_vars, align 4
+  %231 = icmp slt i32 %229, %230
+  br i1 %231, label %232, label %464
+
+; <label>:232:                                    ; preds = %228
+  store i32 1, i32* %3, align 4
+  store i32 1, i32* %9, align 4
+  br label %233
+
+; <label>:233:                                    ; preds = %455, %232
+  %234 = load i32, i32* %3, align 4
+  %235 = load i32, i32* @x_block_half, align 4
+  %236 = icmp sle i32 %234, %235
+  br i1 %236, label %237, label %460
+
+; <label>:237:                                    ; preds = %233
+  store i32 1, i32* %4, align 4
+  store i32 1, i32* %10, align 4
+  br label %238
+
+; <label>:238:                                    ; preds = %449, %237
+  %239 = load i32, i32* %4, align 4
+  %240 = load i32, i32* @y_block_half, align 4
+  %241 = icmp sle i32 %239, %240
+  br i1 %241, label %242, label %454
+
+; <label>:242:                                    ; preds = %238
+  store i32 1, i32* %5, align 4
+  store i32 1, i32* %11, align 4
+  br label %243
+
+; <label>:243:                                    ; preds = %443, %242
+  %244 = load i32, i32* %5, align 4
+  %245 = load i32, i32* @z_block_half, align 4
+  %246 = icmp sle i32 %244, %245
+  br i1 %246, label %247, label %448
+
+; <label>:247:                                    ; preds = %243
+  %248 = load %struct.block*, %struct.block** %28, align 8
+  %249 = getelementptr inbounds %struct.block, %struct.block* %248, i32 0, i32 11
+  %250 = load double****, double***** %249, align 8
+  %251 = load i32, i32* %14, align 4
+  %252 = sext i32 %251 to i64
+  %253 = getelementptr inbounds double***, double**** %250, i64 %252
+  %254 = load double***, double**** %253, align 8
+  %255 = load i32, i32* %9, align 4
+  %256 = sext i32 %255 to i64
+  %257 = getelementptr inbounds double**, double*** %254, i64 %256
+  %258 = load double**, double*** %257, align 8
+  %259 = load i32, i32* %10, align 4
+  %260 = sext i32 %259 to i64
+  %261 = getelementptr inbounds double*, double** %258, i64 %260
+  %262 = load double*, double** %261, align 8
+  %263 = load i32, i32* %11, align 4
+  %264 = sext i32 %263 to i64
+  %265 = getelementptr inbounds double, double* %262, i64 %264
+  %266 = load double, double* %265, align 8
+  %267 = load %struct.block*, %struct.block** %28, align 8
+  %268 = getelementptr inbounds %struct.block, %struct.block* %267, i32 0, i32 11
+  %269 = load double****, double***** %268, align 8
+  %270 = load i32, i32* %14, align 4
+  %271 = sext i32 %270 to i64
+  %272 = getelementptr inbounds double***, double**** %269, i64 %271
+  %273 = load double***, double**** %272, align 8
+  %274 = load i32, i32* %9, align 4
+  %275 = add nsw i32 %274, 1
+  %276 = sext i32 %275 to i64
+  %277 = getelementptr inbounds double**, double*** %273, i64 %276
+  %278 = load double**, double*** %277, align 8
+  %279 = load i32, i32* %10, align 4
+  %280 = sext i32 %279 to i64
+  %281 = getelementptr inbounds double*, double** %278, i64 %280
+  %282 = load double*, double** %281, align 8
+  %283 = load i32, i32* %11, align 4
+  %284 = sext i32 %283 to i64
+  %285 = getelementptr inbounds double, double* %282, i64 %284
+  %286 = load double, double* %285, align 8
+  %287 = fadd double %266, %286
+  %288 = load %struct.block*, %struct.block** %28, align 8
+  %289 = getelementptr inbounds %struct.block, %struct.block* %288, i32 0, i32 11
+  %290 = load double****, double***** %289, align 8
+  %291 = load i32, i32* %14, align 4
+  %292 = sext i32 %291 to i64
+  %293 = getelementptr inbounds double***, double**** %290, i64 %292
+  %294 = load double***, double**** %293, align 8
+  %295 = load i32, i32* %9, align 4
+  %296 = sext i32 %295 to i64
+  %297 = getelementptr inbounds double**, double*** %294, i64 %296
+  %298 = load double**, double*** %297, align 8
+  %299 = load i32, i32* %10, align 4
+  %300 = add nsw i32 %299, 1
+  %301 = sext i32 %300 to i64
+  %302 = getelementptr inbounds double*, double** %298, i64 %301
+  %303 = load double*, double** %302, align 8
+  %304 = load i32, i32* %11, align 4
+  %305 = sext i32 %304 to i64
+  %306 = getelementptr inbounds double, double* %303, i64 %305
+  %307 = load double, double* %306, align 8
+  %308 = fadd double %287, %307
+  %309 = load %struct.block*, %struct.block** %28, align 8
+  %310 = getelementptr inbounds %struct.block, %struct.block* %309, i32 0, i32 11
+  %311 = load double****, double***** %310, align 8
+  %312 = load i32, i32* %14, align 4
+  %313 = sext i32 %312 to i64
+  %314 = getelementptr inbounds double***, double**** %311, i64 %313
+  %315 = load double***, double**** %314, align 8
+  %316 = load i32, i32* %9, align 4
+  %317 = add nsw i32 %316, 1
+  %318 = sext i32 %317 to i64
+  %319 = getelementptr inbounds double**, double*** %315, i64 %318
+  %320 = load double**, double*** %319, align 8
+  %321 = load i32, i32* %10, align 4
+  %322 = add nsw i32 %321, 1
+  %323 = sext i32 %322 to i64
+  %324 = getelementptr inbounds double*, double** %320, i64 %323
+  %325 = load double*, double** %324, align 8
+  %326 = load i32, i32* %11, align 4
+  %327 = sext i32 %326 to i64
+  %328 = getelementptr inbounds double, double* %325, i64 %327
+  %329 = load double, double* %328, align 8
+  %330 = fadd double %308, %329
+  %331 = load %struct.block*, %struct.block** %28, align 8
+  %332 = getelementptr inbounds %struct.block, %struct.block* %331, i32 0, i32 11
+  %333 = load double****, double***** %332, align 8
+  %334 = load i32, i32* %14, align 4
+  %335 = sext i32 %334 to i64
+  %336 = getelementptr inbounds double***, double**** %333, i64 %335
+  %337 = load double***, double**** %336, align 8
+  %338 = load i32, i32* %9, align 4
+  %339 = sext i32 %338 to i64
+  %340 = getelementptr inbounds double**, double*** %337, i64 %339
+  %341 = load double**, double*** %340, align 8
+  %342 = load i32, i32* %10, align 4
+  %343 = sext i32 %342 to i64
+  %344 = getelementptr inbounds double*, double** %341, i64 %343
+  %345 = load double*, double** %344, align 8
+  %346 = load i32, i32* %11, align 4
+  %347 = add nsw i32 %346, 1
+  %348 = sext i32 %347 to i64
+  %349 = getelementptr inbounds double, double* %345, i64 %348
+  %350 = load double, double* %349, align 8
+  %351 = fadd double %330, %350
+  %352 = load %struct.block*, %struct.block** %28, align 8
+  %353 = getelementptr inbounds %struct.block, %struct.block* %352, i32 0, i32 11
+  %354 = load double****, double***** %353, align 8
+  %355 = load i32, i32* %14, align 4
+  %356 = sext i32 %355 to i64
+  %357 = getelementptr inbounds double***, double**** %354, i64 %356
+  %358 = load double***, double**** %357, align 8
+  %359 = load i32, i32* %9, align 4
+  %360 = add nsw i32 %359, 1
+  %361 = sext i32 %360 to i64
+  %362 = getelementptr inbounds double**, double*** %358, i64 %361
+  %363 = load double**, double*** %362, align 8
+  %364 = load i32, i32* %10, align 4
+  %365 = sext i32 %364 to i64
+  %366 = getelementptr inbounds double*, double** %363, i64 %365
+  %367 = load double*, double** %366, align 8
+  %368 = load i32, i32* %11, align 4
+  %369 = add nsw i32 %368, 1
+  %370 = sext i32 %369 to i64
+  %371 = getelementptr inbounds double, double* %367, i64 %370
+  %372 = load double, double* %371, align 8
+  %373 = fadd double %351, %372
+  %374 = load %struct.block*, %struct.block** %28, align 8
+  %375 = getelementptr inbounds %struct.block, %struct.block* %374, i32 0, i32 11
+  %376 = load double****, double***** %375, align 8
+  %377 = load i32, i32* %14, align 4
+  %378 = sext i32 %377 to i64
+  %379 = getelementptr inbounds double***, double**** %376, i64 %378
+  %380 = load double***, double**** %379, align 8
+  %381 = load i32, i32* %9, align 4
+  %382 = sext i32 %381 to i64
+  %383 = getelementptr inbounds double**, double*** %380, i64 %382
+  %384 = load double**, double*** %383, align 8
+  %385 = load i32, i32* %10, align 4
+  %386 = add nsw i32 %385, 1
+  %387 = sext i32 %386 to i64
+  %388 = getelementptr inbounds double*, double** %384, i64 %387
+  %389 = load double*, double** %388, align 8
+  %390 = load i32, i32* %11, align 4
+  %391 = add nsw i32 %390, 1
+  %392 = sext i32 %391 to i64
+  %393 = getelementptr inbounds double, double* %389, i64 %392
+  %394 = load double, double* %393, align 8
+  %395 = fadd double %373, %394
+  %396 = load %struct.block*, %struct.block** %28, align 8
+  %397 = getelementptr inbounds %struct.block, %struct.block* %396, i32 0, i32 11
+  %398 = load double****, double***** %397, align 8
+  %399 = load i32, i32* %14, align 4
+  %400 = sext i32 %399 to i64
+  %401 = getelementptr inbounds double***, double**** %398, i64 %400
+  %402 = load double***, double**** %401, align 8
+  %403 = load i32, i32* %9, align 4
+  %404 = add nsw i32 %403, 1
+  %405 = sext i32 %404 to i64
+  %406 = getelementptr inbounds double**, double*** %402, i64 %405
+  %407 = load double**, double*** %406, align 8
+  %408 = load i32, i32* %10, align 4
+  %409 = add nsw i32 %408, 1
+  %410 = sext i32 %409 to i64
+  %411 = getelementptr inbounds double*, double** %407, i64 %410
+  %412 = load double*, double** %411, align 8
+  %413 = load i32, i32* %11, align 4
+  %414 = add nsw i32 %413, 1
+  %415 = sext i32 %414 to i64
+  %416 = getelementptr inbounds double, double* %412, i64 %415
+  %417 = load double, double* %416, align 8
+  %418 = fadd double %395, %417
+  %419 = load %struct.block*, %struct.block** %27, align 8
+  %420 = getelementptr inbounds %struct.block, %struct.block* %419, i32 0, i32 11
+  %421 = load double****, double***** %420, align 8
+  %422 = load i32, i32* %14, align 4
+  %423 = sext i32 %422 to i64
+  %424 = getelementptr inbounds double***, double**** %421, i64 %423
+  %425 = load double***, double**** %424, align 8
+  %426 = load i32, i32* %3, align 4
+  %427 = load i32, i32* %6, align 4
+  %428 = add nsw i32 %426, %427
+  %429 = sext i32 %428 to i64
+  %430 = getelementptr inbounds double**, double*** %425, i64 %429
+  %431 = load double**, double*** %430, align 8
+  %432 = load i32, i32* %4, align 4
+  %433 = load i32, i32* %7, align 4
+  %434 = add nsw i32 %432, %433
+  %435 = sext i32 %434 to i64
+  %436 = getelementptr inbounds double*, double** %431, i64 %435
+  %437 = load double*, double** %436, align 8
+  %438 = load i32, i32* %5, align 4
+  %439 = load i32, i32* %8, align 4
+  %440 = add nsw i32 %438, %439
+  %441 = sext i32 %440 to i64
+  %442 = getelementptr inbounds double, double* %437, i64 %441
+  store double %418, double* %442, align 8
+  br label %443
+
+; <label>:443:                                    ; preds = %247
+  %444 = load i32, i32* %5, align 4
+  %445 = add nsw i32 %444, 1
+  store i32 %445, i32* %5, align 4
+  %446 = load i32, i32* %11, align 4
+  %447 = add nsw i32 %446, 2
+  store i32 %447, i32* %11, align 4
+  br label %243
+
+; <label>:448:                                    ; preds = %243
+  br label %449
+
+; <label>:449:                                    ; preds = %448
+  %450 = load i32, i32* %4, align 4
+  %451 = add nsw i32 %450, 1
+  store i32 %451, i32* %4, align 4
+  %452 = load i32, i32* %10, align 4
+  %453 = add nsw i32 %452, 2
+  store i32 %453, i32* %10, align 4
+  br label %238
+
+; <label>:454:                                    ; preds = %238
+  br label %455
+
+; <label>:455:                                    ; preds = %454
+  %456 = load i32, i32* %3, align 4
+  %457 = add nsw i32 %456, 1
+  store i32 %457, i32* %3, align 4
+  %458 = load i32, i32* %9, align 4
+  %459 = add nsw i32 %458, 2
+  store i32 %459, i32* %9, align 4
+  br label %233
+
+; <label>:460:                                    ; preds = %233
+  br label %461
+
+; <label>:461:                                    ; preds = %460
+  %462 = load i32, i32* %14, align 4
+  %463 = add nsw i32 %462, 1
+  store i32 %463, i32* %14, align 4
+  br label %228
+
+; <label>:464:                                    ; preds = %228
+  br label %465
+
+; <label>:465:                                    ; preds = %464
+  %466 = load i32, i32* %13, align 4
+  %467 = add nsw i32 %466, 1
+  store i32 %467, i32* %13, align 4
+  br label %195
+
+; <label>:468:                                    ; preds = %195
+  store i32 0, i32* %16, align 4
+  br label %469
+
+; <label>:469:                                    ; preds = %811, %468
+  %470 = load i32, i32* %16, align 4
+  %471 = icmp slt i32 %470, 6
+  br i1 %471, label %472, label %814
+
+; <label>:472:                                    ; preds = %469
+  %473 = load %struct.parent*, %struct.parent** %29, align 8
+  %474 = getelementptr inbounds %struct.parent, %struct.parent* %473, i32 0, i32 6
+  %475 = load i32, i32* %16, align 4
+  %476 = sext i32 %475 to i64
+  %477 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* @consolidate_blocks.side, i64 0, i64 %476
+  %478 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %477, i64 0, i64 0
+  %479 = getelementptr inbounds [2 x i32], [2 x i32]* %478, i64 0, i64 0
+  %480 = load i32, i32* %479, align 16
+  %481 = sext i32 %480 to i64
+  %482 = getelementptr inbounds [8 x i32], [8 x i32]* %474, i64 0, i64 %481
+  %483 = load i32, i32* %482, align 4
+  store i32 %483, i32* %18, align 4
+  %484 = load %struct.block*, %struct.block** @blocks, align 8
+  %485 = load i32, i32* %18, align 4
+  %486 = sext i32 %485 to i64
+  %487 = getelementptr inbounds %struct.block, %struct.block* %484, i64 %486
+  %488 = getelementptr inbounds %struct.block, %struct.block* %487, i32 0, i32 8
+  %489 = load i32, i32* %16, align 4
+  %490 = sext i32 %489 to i64
+  %491 = getelementptr inbounds [6 x i32], [6 x i32]* %488, i64 0, i64 %490
+  %492 = load i32, i32* %491, align 4
+  %493 = icmp eq i32 %492, -2
+  br i1 %493, label %494, label %505
+
+; <label>:494:                                    ; preds = %472
+  %495 = load %struct.block*, %struct.block** %27, align 8
+  %496 = getelementptr inbounds %struct.block, %struct.block* %495, i32 0, i32 8
+  %497 = load i32, i32* %16, align 4
+  %498 = sext i32 %497 to i64
+  %499 = getelementptr inbounds [6 x i32], [6 x i32]* %496, i64 0, i64 %498
+  store i32 -2, i32* %499, align 4
+  %500 = load %struct.block*, %struct.block** %27, align 8
+  %501 = getelementptr inbounds %struct.block, %struct.block* %500, i32 0, i32 7
+  %502 = load i32, i32* %16, align 4
+  %503 = sext i32 %502 to i64
+  %504 = getelementptr inbounds [6 x i32], [6 x i32]* %501, i64 0, i64 %503
+  store i32 0, i32* %504, align 4
+  br label %810
+
+; <label>:505:                                    ; preds = %472
+  %506 = load %struct.block*, %struct.block** @blocks, align 8
+  %507 = load i32, i32* %18, align 4
+  %508 = sext i32 %507 to i64
+  %509 = getelementptr inbounds %struct.block, %struct.block* %506, i64 %508
+  %510 = getelementptr inbounds %struct.block, %struct.block* %509, i32 0, i32 8
+  %511 = load i32, i32* %16, align 4
+  %512 = sext i32 %511 to i64
+  %513 = getelementptr inbounds [6 x i32], [6 x i32]* %510, i64 0, i64 %512
+  %514 = load i32, i32* %513, align 4
+  %515 = load i32, i32* %12, align 4
+  %516 = icmp eq i32 %514, %515
+  br i1 %516, label %517, label %626
+
+; <label>:517:                                    ; preds = %505
+  %518 = load %struct.block*, %struct.block** @blocks, align 8
+  %519 = load i32, i32* %18, align 4
+  %520 = sext i32 %519 to i64
+  %521 = getelementptr inbounds %struct.block, %struct.block* %518, i64 %520
+  %522 = getelementptr inbounds %struct.block, %struct.block* %521, i32 0, i32 9
+  %523 = load i32, i32* %16, align 4
+  %524 = sext i32 %523 to i64
+  %525 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %522, i64 0, i64 %524
+  %526 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %525, i64 0, i64 0
+  %527 = getelementptr inbounds [2 x i32], [2 x i32]* %526, i64 0, i64 0
+  %528 = load i32, i32* %527, align 4
+  %529 = icmp sge i32 %528, 0
+  br i1 %529, label %530, label %625
+
+; <label>:530:                                    ; preds = %517
+  %531 = load i32, i32* %16, align 4
+  %532 = sdiv i32 %531, 2
+  %533 = mul nsw i32 %532, 2
+  %534 = load i32, i32* %16, align 4
+  %535 = add nsw i32 %534, 1
+  %536 = srem i32 %535, 2
+  %537 = add nsw i32 %533, %536
+  store i32 %537, i32* %19, align 4
+  %538 = load %struct.block*, %struct.block** @blocks, align 8
+  %539 = load i32, i32* %18, align 4
+  %540 = sext i32 %539 to i64
+  %541 = getelementptr inbounds %struct.block, %struct.block* %538, i64 %540
+  %542 = getelementptr inbounds %struct.block, %struct.block* %541, i32 0, i32 9
+  %543 = load i32, i32* %16, align 4
+  %544 = sext i32 %543 to i64
+  %545 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %542, i64 0, i64 %544
+  %546 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %545, i64 0, i64 0
+  %547 = getelementptr inbounds [2 x i32], [2 x i32]* %546, i64 0, i64 0
+  %548 = load i32, i32* %547, align 4
+  %549 = load %struct.block*, %struct.block** %27, align 8
+  %550 = getelementptr inbounds %struct.block, %struct.block* %549, i32 0, i32 9
+  %551 = load i32, i32* %16, align 4
+  %552 = sext i32 %551 to i64
+  %553 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %550, i64 0, i64 %552
+  %554 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %553, i64 0, i64 0
+  %555 = getelementptr inbounds [2 x i32], [2 x i32]* %554, i64 0, i64 0
+  store i32 %548, i32* %555, align 4
+  %556 = load i32, i32* %12, align 4
+  %557 = load %struct.block*, %struct.block** %27, align 8
+  %558 = getelementptr inbounds %struct.block, %struct.block* %557, i32 0, i32 8
+  %559 = load i32, i32* %16, align 4
+  %560 = sext i32 %559 to i64
+  %561 = getelementptr inbounds [6 x i32], [6 x i32]* %558, i64 0, i64 %560
+  store i32 %556, i32* %561, align 4
+  %562 = load %struct.block*, %struct.block** %27, align 8
+  %563 = getelementptr inbounds %struct.block, %struct.block* %562, i32 0, i32 7
+  %564 = load i32, i32* %16, align 4
+  %565 = sext i32 %564 to i64
+  %566 = getelementptr inbounds [6 x i32], [6 x i32]* %563, i64 0, i64 %565
+  store i32 0, i32* %566, align 4
+  %567 = load i32, i32* %1, align 4
+  %568 = load %struct.block*, %struct.block** @blocks, align 8
+  %569 = load %struct.block*, %struct.block** @blocks, align 8
+  %570 = load i32, i32* %18, align 4
+  %571 = sext i32 %570 to i64
+  %572 = getelementptr inbounds %struct.block, %struct.block* %569, i64 %571
+  %573 = getelementptr inbounds %struct.block, %struct.block* %572, i32 0, i32 9
+  %574 = load i32, i32* %16, align 4
+  %575 = sext i32 %574 to i64
+  %576 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %573, i64 0, i64 %575
+  %577 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %576, i64 0, i64 0
+  %578 = getelementptr inbounds [2 x i32], [2 x i32]* %577, i64 0, i64 0
+  %579 = load i32, i32* %578, align 4
+  %580 = sext i32 %579 to i64
+  %581 = getelementptr inbounds %struct.block, %struct.block* %568, i64 %580
+  %582 = getelementptr inbounds %struct.block, %struct.block* %581, i32 0, i32 9
+  %583 = load i32, i32* %19, align 4
+  %584 = sext i32 %583 to i64
+  %585 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %582, i64 0, i64 %584
+  %586 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %585, i64 0, i64 0
+  %587 = getelementptr inbounds [2 x i32], [2 x i32]* %586, i64 0, i64 0
+  store i32 %567, i32* %587, align 4
+  %588 = load i32, i32* %12, align 4
+  %589 = load %struct.block*, %struct.block** @blocks, align 8
+  %590 = load %struct.block*, %struct.block** @blocks, align 8
+  %591 = load i32, i32* %18, align 4
+  %592 = sext i32 %591 to i64
+  %593 = getelementptr inbounds %struct.block, %struct.block* %590, i64 %592
+  %594 = getelementptr inbounds %struct.block, %struct.block* %593, i32 0, i32 9
+  %595 = load i32, i32* %16, align 4
+  %596 = sext i32 %595 to i64
+  %597 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %594, i64 0, i64 %596
+  %598 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %597, i64 0, i64 0
+  %599 = getelementptr inbounds [2 x i32], [2 x i32]* %598, i64 0, i64 0
+  %600 = load i32, i32* %599, align 4
+  %601 = sext i32 %600 to i64
+  %602 = getelementptr inbounds %struct.block, %struct.block* %589, i64 %601
+  %603 = getelementptr inbounds %struct.block, %struct.block* %602, i32 0, i32 8
+  %604 = load i32, i32* %19, align 4
+  %605 = sext i32 %604 to i64
+  %606 = getelementptr inbounds [6 x i32], [6 x i32]* %603, i64 0, i64 %605
+  store i32 %588, i32* %606, align 4
+  %607 = load %struct.block*, %struct.block** @blocks, align 8
+  %608 = load %struct.block*, %struct.block** @blocks, align 8
+  %609 = load i32, i32* %18, align 4
+  %610 = sext i32 %609 to i64
+  %611 = getelementptr inbounds %struct.block, %struct.block* %608, i64 %610
+  %612 = getelementptr inbounds %struct.block, %struct.block* %611, i32 0, i32 9
+  %613 = load i32, i32* %16, align 4
+  %614 = sext i32 %613 to i64
+  %615 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %612, i64 0, i64 %614
+  %616 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %615, i64 0, i64 0
+  %617 = getelementptr inbounds [2 x i32], [2 x i32]* %616, i64 0, i64 0
+  %618 = load i32, i32* %617, align 4
+  %619 = sext i32 %618 to i64
+  %620 = getelementptr inbounds %struct.block, %struct.block* %607, i64 %619
+  %621 = getelementptr inbounds %struct.block, %struct.block* %620, i32 0, i32 7
+  %622 = load i32, i32* %19, align 4
+  %623 = sext i32 %622 to i64
+  %624 = getelementptr inbounds [6 x i32], [6 x i32]* %621, i64 0, i64 %623
+  store i32 0, i32* %624, align 4
+  br label %625
+
+; <label>:625:                                    ; preds = %530, %517
+  br label %809
+
+; <label>:626:                                    ; preds = %505
+  %627 = load i32, i32* %16, align 4
+  %628 = sdiv i32 %627, 2
+  store i32 %628, i32* %20, align 4
+  %629 = load i32, i32* %16, align 4
+  %630 = srem i32 %629, 2
+  %631 = mul nsw i32 %630, 10
+  store i32 %631, i32* %21, align 4
+  %632 = load i32*, i32** @p2, align 8
+  %633 = load i32, i32* @num_refine, align 4
+  %634 = load i32, i32* %12, align 4
+  %635 = sub nsw i32 %633, %634
+  %636 = sub nsw i32 %635, 1
+  %637 = sext i32 %636 to i64
+  %638 = getelementptr inbounds i32, i32* %632, i64 %637
+  %639 = load i32, i32* %638, align 4
+  store i32 %639, i32* %17, align 4
+  %640 = load i32, i32* %21, align 4
+  %641 = add nsw i32 %640, 6
+  store i32 %641, i32* %5, align 4
+  store i32 0, i32* %3, align 4
+  br label %642
+
+; <label>:642:                                    ; preds = %805, %626
+  %643 = load i32, i32* %3, align 4
+  %644 = icmp slt i32 %643, 2
+  br i1 %644, label %645, label %808
+
+; <label>:645:                                    ; preds = %642
+  store i32 0, i32* %4, align 4
+  br label %646
+
+; <label>:646:                                    ; preds = %799, %645
+  %647 = load i32, i32* %4, align 4
+  %648 = icmp slt i32 %647, 2
+  br i1 %648, label %649, label %804
+
+; <label>:649:                                    ; preds = %646
+  %650 = load %struct.parent*, %struct.parent** %29, align 8
+  %651 = getelementptr inbounds %struct.parent, %struct.parent* %650, i32 0, i32 6
+  %652 = load i32, i32* %16, align 4
+  %653 = sext i32 %652 to i64
+  %654 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* @consolidate_blocks.side, i64 0, i64 %653
+  %655 = load i32, i32* %3, align 4
+  %656 = sext i32 %655 to i64
+  %657 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %654, i64 0, i64 %656
+  %658 = load i32, i32* %4, align 4
+  %659 = sext i32 %658 to i64
+  %660 = getelementptr inbounds [2 x i32], [2 x i32]* %657, i64 0, i64 %659
+  %661 = load i32, i32* %660, align 4
+  %662 = sext i32 %661 to i64
+  %663 = getelementptr inbounds [8 x i32], [8 x i32]* %651, i64 0, i64 %662
+  %664 = load i32, i32* %663, align 4
+  store i32 %664, i32* %18, align 4
+  %665 = load %struct.block*, %struct.block** @blocks, align 8
+  %666 = load i32, i32* %18, align 4
+  %667 = sext i32 %666 to i64
+  %668 = getelementptr inbounds %struct.block, %struct.block* %665, i64 %667
+  %669 = getelementptr inbounds %struct.block, %struct.block* %668, i32 0, i32 9
+  %670 = load i32, i32* %16, align 4
+  %671 = sext i32 %670 to i64
+  %672 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %669, i64 0, i64 %671
+  %673 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %672, i64 0, i64 0
+  %674 = getelementptr inbounds [2 x i32], [2 x i32]* %673, i64 0, i64 0
+  %675 = load i32, i32* %674, align 4
+  %676 = icmp sge i32 %675, 0
+  br i1 %676, label %677, label %798
+
+; <label>:677:                                    ; preds = %649
+  %678 = load %struct.block*, %struct.block** @blocks, align 8
+  %679 = load i32, i32* %18, align 4
+  %680 = sext i32 %679 to i64
+  %681 = getelementptr inbounds %struct.block, %struct.block* %678, i64 %680
+  %682 = getelementptr inbounds %struct.block, %struct.block* %681, i32 0, i32 8
+  %683 = load i32, i32* %16, align 4
+  %684 = sext i32 %683 to i64
+  %685 = getelementptr inbounds [6 x i32], [6 x i32]* %682, i64 0, i64 %684
+  %686 = load i32, i32* %685, align 4
+  %687 = load i32, i32* %12, align 4
+  %688 = add nsw i32 %687, 2
+  %689 = icmp eq i32 %686, %688
+  br i1 %689, label %690, label %698
+
+; <label>:690:                                    ; preds = %677
+  %691 = load i32, i32* @my_pe, align 4
+  %692 = load i32, i32* %2, align 4
+  %693 = load i32, i32* %1, align 4
+  %694 = load i32, i32* %18, align 4
+  %695 = load i32, i32* %16, align 4
+  %696 = load i32, i32* %12, align 4
+  %697 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([50 x i8], [50 x i8]* @.str.6, i32 0, i32 0), i32 %691, i32 %692, i32 %693, i32 %694, i32 %695, i32 %696)
+  call void @exit(i32 -1) #3
+  unreachable
+
+; <label>:698:                                    ; preds = %677
+  %699 = load i32, i32* %16, align 4
+  %700 = sdiv i32 %699, 2
+  %701 = mul nsw i32 %700, 2
+  %702 = load i32, i32* %16, align 4
+  %703 = add nsw i32 %702, 1
+  %704 = srem i32 %703, 2
+  %705 = add nsw i32 %701, %704
+  store i32 %705, i32* %19, align 4
+  %706 = load %struct.block*, %struct.block** @blocks, align 8
+  %707 = load i32, i32* %18, align 4
+  %708 = sext i32 %707 to i64
+  %709 = getelementptr inbounds %struct.block, %struct.block* %706, i64 %708
+  %710 = getelementptr inbounds %struct.block, %struct.block* %709, i32 0, i32 9
+  %711 = load i32, i32* %16, align 4
+  %712 = sext i32 %711 to i64
+  %713 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %710, i64 0, i64 %712
+  %714 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %713, i64 0, i64 0
+  %715 = getelementptr inbounds [2 x i32], [2 x i32]* %714, i64 0, i64 0
+  %716 = load i32, i32* %715, align 4
+  %717 = load %struct.block*, %struct.block** %27, align 8
+  %718 = getelementptr inbounds %struct.block, %struct.block* %717, i32 0, i32 9
+  %719 = load i32, i32* %16, align 4
+  %720 = sext i32 %719 to i64
+  %721 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %718, i64 0, i64 %720
+  %722 = load i32, i32* %3, align 4
+  %723 = sext i32 %722 to i64
+  %724 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %721, i64 0, i64 %723
+  %725 = load i32, i32* %4, align 4
+  %726 = sext i32 %725 to i64
+  %727 = getelementptr inbounds [2 x i32], [2 x i32]* %724, i64 0, i64 %726
+  store i32 %716, i32* %727, align 4
+  %728 = load i32, i32* %12, align 4
+  %729 = add nsw i32 %728, 1
+  %730 = load %struct.block*, %struct.block** %27, align 8
+  %731 = getelementptr inbounds %struct.block, %struct.block* %730, i32 0, i32 8
+  %732 = load i32, i32* %16, align 4
+  %733 = sext i32 %732 to i64
+  %734 = getelementptr inbounds [6 x i32], [6 x i32]* %731, i64 0, i64 %733
+  store i32 %729, i32* %734, align 4
+  %735 = load %struct.block*, %struct.block** %27, align 8
+  %736 = getelementptr inbounds %struct.block, %struct.block* %735, i32 0, i32 7
+  %737 = load i32, i32* %16, align 4
+  %738 = sext i32 %737 to i64
+  %739 = getelementptr inbounds [6 x i32], [6 x i32]* %736, i64 0, i64 %738
+  store i32 0, i32* %739, align 4
+  %740 = load i32, i32* %1, align 4
+  %741 = load %struct.block*, %struct.block** @blocks, align 8
+  %742 = load %struct.block*, %struct.block** @blocks, align 8
+  %743 = load i32, i32* %18, align 4
+  %744 = sext i32 %743 to i64
+  %745 = getelementptr inbounds %struct.block, %struct.block* %742, i64 %744
+  %746 = getelementptr inbounds %struct.block, %struct.block* %745, i32 0, i32 9
+  %747 = load i32, i32* %16, align 4
+  %748 = sext i32 %747 to i64
+  %749 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %746, i64 0, i64 %748
+  %750 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %749, i64 0, i64 0
+  %751 = getelementptr inbounds [2 x i32], [2 x i32]* %750, i64 0, i64 0
+  %752 = load i32, i32* %751, align 4
+  %753 = sext i32 %752 to i64
+  %754 = getelementptr inbounds %struct.block, %struct.block* %741, i64 %753
+  %755 = getelementptr inbounds %struct.block, %struct.block* %754, i32 0, i32 9
+  %756 = load i32, i32* %19, align 4
+  %757 = sext i32 %756 to i64
+  %758 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %755, i64 0, i64 %757
+  %759 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %758, i64 0, i64 0
+  %760 = getelementptr inbounds [2 x i32], [2 x i32]* %759, i64 0, i64 0
+  store i32 %740, i32* %760, align 4
+  %761 = load i32, i32* %12, align 4
+  %762 = load %struct.block*, %struct.block** @blocks, align 8
+  %763 = load %struct.block*, %struct.block** @blocks, align 8
+  %764 = load i32, i32* %18, align 4
+  %765 = sext i32 %764 to i64
+  %766 = getelementptr inbounds %struct.block, %struct.block* %763, i64 %765
+  %767 = getelementptr inbounds %struct.block, %struct.block* %766, i32 0, i32 9
+  %768 = load i32, i32* %16, align 4
+  %769 = sext i32 %768 to i64
+  %770 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %767, i64 0, i64 %769
+  %771 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %770, i64 0, i64 0
+  %772 = getelementptr inbounds [2 x i32], [2 x i32]* %771, i64 0, i64 0
+  %773 = load i32, i32* %772, align 4
+  %774 = sext i32 %773 to i64
+  %775 = getelementptr inbounds %struct.block, %struct.block* %762, i64 %774
+  %776 = getelementptr inbounds %struct.block, %struct.block* %775, i32 0, i32 8
+  %777 = load i32, i32* %19, align 4
+  %778 = sext i32 %777 to i64
+  %779 = getelementptr inbounds [6 x i32], [6 x i32]* %776, i64 0, i64 %778
+  store i32 %761, i32* %779, align 4
+  %780 = load %struct.block*, %struct.block** @blocks, align 8
+  %781 = load %struct.block*, %struct.block** @blocks, align 8
+  %782 = load i32, i32* %18, align 4
+  %783 = sext i32 %782 to i64
+  %784 = getelementptr inbounds %struct.block, %struct.block* %781, i64 %783
+  %785 = getelementptr inbounds %struct.block, %struct.block* %784, i32 0, i32 9
+  %786 = load i32, i32* %16, align 4
+  %787 = sext i32 %786 to i64
+  %788 = getelementptr inbounds [6 x [2 x [2 x i32]]], [6 x [2 x [2 x i32]]]* %785, i64 0, i64 %787
+  %789 = getelementptr inbounds [2 x [2 x i32]], [2 x [2 x i32]]* %788, i64 0, i64 0
+  %790 = getelementptr inbounds [2 x i32], [2 x i32]* %789, i64 0, i64 0
+  %791 = load i32, i32* %790, align 4
+  %792 = sext i32 %791 to i64
+  %793 = getelementptr inbounds %struct.block, %struct.block* %780, i64 %792
+  %794 = getelementptr inbounds %struct.block, %struct.block* %793, i32 0, i32 7
+  %795 = load i32, i32* %19, align 4
+  %796 = sext i32 %795 to i64
+  %797 = getelementptr inbounds [6 x i32], [6 x i32]* %794, i64 0, i64 %796
+  store i32 0, i32* %797, align 4
+  br label %798
+
+; <label>:798:                                    ; preds = %698, %649
+  br label %799
+
+; <label>:799:                                    ; preds = %798
+  %800 = load i32, i32* %4, align 4
+  %801 = add nsw i32 %800, 1
+  store i32 %801, i32* %4, align 4
+  %802 = load i32, i32* %5, align 4
+  %803 = add nsw i32 %802, 1
+  store i32 %803, i32* %5, align 4
+  br label %646
+
+; <label>:804:                                    ; preds = %646
+  br label %805
+
+; <label>:805:                                    ; preds = %804
+  %806 = load i32, i32* %3, align 4
+  %807 = add nsw i32 %806, 1
+  store i32 %807, i32* %3, align 4
+  br label %642
+
+; <label>:808:                                    ; preds = %642
+  br label %809
+
+; <label>:809:                                    ; preds = %808, %625
+  br label %810
+
+; <label>:810:                                    ; preds = %809, %494
+  br label %811
+
+; <label>:811:                                    ; preds = %810
+  %812 = load i32, i32* %16, align 4
+  %813 = add nsw i32 %812, 1
+  store i32 %813, i32* %16, align 4
+  br label %469
+
+; <label>:814:                                    ; preds = %469
+  br label %815
+
+; <label>:815:                                    ; preds = %814, %58, %52, %44
+  br label %816
+
+; <label>:816:                                    ; preds = %815
+  %817 = load i32, i32* %2, align 4
+  %818 = add nsw i32 %817, 1
+  store i32 %818, i32* %2, align 4
+  br label %40
+
+; <label>:819:                                    ; preds = %40
+  br label %820
+
+; <label>:820:                                    ; preds = %819
+  %821 = load i32, i32* %12, align 4
+  %822 = add nsw i32 %821, -1
+  store i32 %822, i32* %12, align 4
+  br label %36
+
+; <label>:823:                                    ; preds = %36
+  ret void
+}
+
+; Function Attrs: noinline nounwind uwtable
+define i32 @find_sorted_list(i32, i32) #0 {
+  %3 = alloca i32, align 4
+  %4 = alloca i32, align 4
+  %5 = alloca i32, align 4
+  store i32 %0, i32* %3, align 4
+  store i32 %1, i32* %4, align 4
+  %6 = load i32*, i32** @sorted_index, align 8
+  %7 = load i32, i32* %4, align 4
+  %8 = sext i32 %7 to i64
+  %9 = getelementptr inbounds i32, i32* %6, i64 %8
+  %10 = load i32, i32* %9, align 4
+  store i32 %10, i32* %5, align 4
+  br label %11
+
+; <label>:11:                                     ; preds = %37, %2
+  %12 = load i32, i32* %5, align 4
+  %13 = load i32*, i32** @sorted_index, align 8
+  %14 = load i32, i32* %4, align 4
+  %15 = add nsw i32 %14, 1
+  %16 = sext i32 %15 to i64
+  %17 = getelementptr inbounds i32, i32* %13, i64 %16
+  %18 = load i32, i32* %17, align 4
+  %19 = icmp slt i32 %12, %18
+  br i1 %19, label %20, label %40
+
+; <label>:20:                                     ; preds = %11
+  %21 = load i32, i32* %3, align 4
+  %22 = load %struct.sorted_block*, %struct.sorted_block** @sorted_list, align 8
+  %23 = load i32, i32* %5, align 4
+  %24 = sext i32 %23 to i64
+  %25 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %22, i64 %24
+  %26 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %25, i32 0, i32 0
+  %27 = load i32, i32* %26, align 4
+  %28 = icmp eq i32 %21, %27
+  br i1 %28, label %29, label %36
+
+; <label>:29:                                     ; preds = %20
+  %30 = load %struct.sorted_block*, %struct.sorted_block** @sorted_list, align 8
+  %31 = load i32, i32* %5, align 4
+  %32 = sext i32 %31 to i64
+  %33 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %30, i64 %32
+  %34 = getelementptr inbounds %struct.sorted_block, %struct.sorted_block* %33, i32 0, i32 1
+  %35 = load i32, i32* %34, align 4
+  ret i32 %35
+
+; <label>:36:                                     ; preds = %20
+  br label %37
+
+; <label>:37:                                     ; preds = %36
+  %38 = load i32, i32* %5, align 4
+  %39 = add nsw i32 %38, 1
+  store i32 %39, i32* %5, align 4
+  br label %11
+
+; <label>:40:                                     ; preds = %11
+  %41 = load i32, i32* @my_pe, align 4
+  %42 = load i32, i32* %3, align 4
+  %43 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([53 x i8], [53 x i8]* @.str.8, i32 0, i32 0), i32 %41, i32 %42)
+  call void @exit(i32 -1) #3
+  unreachable
+}
+
+attributes #0 = { noinline nounwind uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #1 = { "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #2 = { noreturn nounwind "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #3 = { noreturn nounwind }
+
+!llvm.module.flags = !{!0}
+!llvm.ident = !{!1}
+
+!0 = !{i32 1, !"wchar_size", i32 4}
+!1 = !{!"clang version 6.0.0-1ubuntu2 (tags/RELEASE_600/final)"}

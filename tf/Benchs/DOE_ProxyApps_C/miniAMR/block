@@ -1,0 +1,2609 @@
+# mark_description "Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.5.281 Build 20190815";
+# mark_description "-lm -S -c -o block";
+	.file "block.c"
+	.text
+..TXTST0:
+.L_2__routine_start_split_blocks_0:
+# -- Begin  split_blocks
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl split_blocks
+# --- split_blocks(void)
+split_blocks:
+..B1.1:                         # Preds ..B1.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_split_blocks.1:
+..L2:
+                                                          #39.1
+        pushq     %r12                                          #39.1
+	.cfi_def_cfa_offset 16
+	.cfi_offset 12, -16
+        pushq     %r13                                          #39.1
+	.cfi_def_cfa_offset 24
+	.cfi_offset 13, -24
+        pushq     %r14                                          #39.1
+	.cfi_def_cfa_offset 32
+	.cfi_offset 14, -32
+        pushq     %r15                                          #39.1
+	.cfi_def_cfa_offset 40
+	.cfi_offset 15, -40
+        pushq     %rbx                                          #39.1
+	.cfi_def_cfa_offset 48
+	.cfi_offset 3, -48
+        pushq     %rbp                                          #39.1
+	.cfi_def_cfa_offset 56
+	.cfi_offset 6, -56
+        subq      $312, %rsp                                    #39.1
+	.cfi_def_cfa_offset 368
+        xorl      %r8d, %r8d                                    #52.13
+        movl      cur_max_level(%rip), %r9d                     #52.33
+        xorl      %esi, %esi                                    #52.9
+        testl     %r9d, %r9d                                    #52.33
+        jl        ..B1.12       # Prob 4%                       #52.33
+                                # LOE rbx rbp r12 r13 r14 r15 esi r8d r9d
+..B1.2:                         # Preds ..B1.1
+                                # Execution count [9.59e-01]
+        movq      sorted_list(%rip), %r11                       #71.16
+        movq      %r11, 144(%rsp)                               #71.16[spill]
+        movq      num_blocks(%rip), %r11                        #73.16
+        movq      %r11, 48(%rsp)                                #73.16[spill]
+        movq      block_start(%rip), %r10                       #58.34
+        movq      sorted_index(%rip), %rdi                      #71.16
+        movq      parents(%rip), %r11                           #76.23
+        movslq    max_active_block(%rip), %rax                  #54.23
+        movq      blocks(%rip), %rdx                            #55.14
+        movq      p2(%rip), %rcx                                #59.26
+        movq      %r11, 8(%rsp)                                 #76.23[spill]
+        movsd     .L_2il0floatpacket.0(%rip), %xmm0             #147.68
+        movq      %rdi, 192(%rsp)                               #147.68[spill]
+        movq      %r10, 184(%rsp)                               #147.68[spill]
+                                # LOE rax rdx rcx esi r8d r9d xmm0
+..B1.3:                         # Preds ..B1.10 ..B1.2
+                                # Execution count [4.32e+00]
+        xorl      %edi, %edi                                    #54.12
+        movq      %rdx, %rbx                                    #54.12
+        xorl      %r11d, %r11d                                  #54.12
+        lea       1(%r8), %r10d                                 #114.40
+        testq     %rax, %rax                                    #54.23
+        jle       ..B1.10       # Prob 10%                      #54.23
+                                # LOE rax rdx rcx rbx rdi r11 esi r8d r9d r10d xmm0
+..B1.4:                         # Preds ..B1.3
+                                # Execution count [3.89e+00]
+        movslq    %r8d, %rbp                                    #71.16
+        movq      %rcx, %r14                                    #126.44
+        movl      %r10d, 168(%rsp)                              #167.54[spill]
+        lea       -1(%r8), %r9d                                 #167.54
+        movl      %r9d, 104(%rsp)                               #167.54[spill]
+        movq      %rdx, 112(%rsp)                               #167.54[spill]
+        movq      %rcx, 176(%rsp)                               #167.54[spill]
+        lea       (,%rbp,4), %r15                               #71.16
+        subq      %r15, %r14                                    #126.44
+        lea       1(%rbp), %r13                                 #71.16
+        movq      %r13, 96(%rsp)                                #167.54[spill]
+        lea       2(%rbp), %r12                                 #124.19
+        movq      %r12, 152(%rsp)                               #167.54[spill]
+        movq      %r14, 160(%rsp)                               #167.54[spill]
+        movq      %r15, 120(%rsp)                               #167.54[spill]
+                                # LOE rax rbx rbp rdi r11 esi r8d xmm0
+..B1.5:                         # Preds ..B1.8 ..B1.4
+                                # Execution count [2.06e+01]
+        cmpl      $0, (%rbx)                                    #55.34
+        jl        ..B1.8        # Prob 16%                      #55.34
+                                # LOE rax rbx rbp rdi r11 esi r8d xmm0
+..B1.6:                         # Preds ..B1.5
+                                # Execution count [1.73e+01]
+        cmpl      4(%rbx), %r8d                                 #55.58
+        jne       ..B1.8        # Prob 50%                      #55.58
+                                # LOE rax rbx rbp rdi r11 esi r8d xmm0
+..B1.7:                         # Preds ..B1.6
+                                # Execution count [8.65e+00]
+        cmpl      $1, 8(%rbx)                                   #57.31
+        je        ..B1.13       # Prob 16%                      #57.31
+                                # LOE rax rbx rbp rdi r11 esi r8d xmm0
+..B1.8:                         # Preds ..B1.103 ..B1.7 ..B1.6 ..B1.5
+                                # Execution count [2.04e+01]
+        incq      %rdi                                          #54.41
+        addq      $192, %rbx                                    #54.41
+        addq      $192, %r11                                    #54.41
+        cmpq      %rax, %rdi                                    #54.23
+        jl        ..B1.5        # Prob 82%                      #54.23
+                                # LOE rax rbx rbp rdi r11 esi r8d xmm0
+..B1.9:                         # Preds ..B1.8
+                                # Execution count [3.67e+00]
+        movl      168(%rsp), %r10d                              #[spill]
+        movq      112(%rsp), %rdx                               #[spill]
+        movq      176(%rsp), %rcx                               #[spill]
+        movl      cur_max_level(%rip), %r9d                     #52.33
+                                # LOE rax rdx rcx esi r9d r10d xmm0
+..B1.10:                        # Preds ..B1.3 ..B1.9
+                                # Execution count [4.10e+00]
+        movl      %r10d, %r8d                                   #52.48
+        cmpl      %r9d, %r10d                                   #52.33
+        jle       ..B1.3        # Prob 82%                      #52.33
+                                # LOE rax rdx rcx esi r8d r9d xmm0
+..B1.12:                        # Preds ..B1.10 ..B1.1
+                                # Execution count [7.79e-01]
+        addq      $312, %rsp                                    #214.1
+	.cfi_def_cfa_offset 56
+	.cfi_restore 6
+        popq      %rbp                                          #214.1
+	.cfi_def_cfa_offset 48
+	.cfi_restore 3
+        popq      %rbx                                          #214.1
+	.cfi_def_cfa_offset 40
+	.cfi_restore 15
+        popq      %r15                                          #214.1
+	.cfi_def_cfa_offset 32
+	.cfi_restore 14
+        popq      %r14                                          #214.1
+	.cfi_def_cfa_offset 24
+	.cfi_restore 13
+        popq      %r13                                          #214.1
+	.cfi_def_cfa_offset 16
+	.cfi_restore 12
+        popq      %r12                                          #214.1
+	.cfi_def_cfa_offset 8
+        ret                                                     #214.1
+	.cfi_def_cfa_offset 368
+	.cfi_offset 3, -48
+	.cfi_offset 6, -56
+	.cfi_offset 12, -16
+	.cfi_offset 13, -24
+	.cfi_offset 14, -32
+	.cfi_offset 15, -40
+                                # LOE
+..B1.13:                        # Preds ..B1.7
+                                # Execution count [1.38e+00]: Infreq
+        movq      176(%rsp), %r10                               #60.26[spill]
+        movq      184(%rsp), %r12                               #58.21[spill]
+        movl      (%rbx), %ecx                                  #58.21
+        movl      npx(%rip), %r14d                              #59.36
+        movl      %r14d, %edx                                   #60.40
+        movl      (%r10,%rbp,4), %r13d                          #60.26
+        movl      %r13d, %r10d                                  #59.36
+        subl      (%r12,%rbp,4), %ecx                           #58.21
+        movl      init_block_x(%rip), %r12d                     #59.40
+        imull     %r12d, %edx                                   #60.40
+        imull     %r13d, %r10d                                  #59.36
+        imull     %r13d, %r14d                                  #63.32
+        imull     %edx, %r10d                                   #59.40
+        imull     %r14d, %r12d                                  #63.36
+        movl      npy(%rip), %r9d                               #60.36
+        imull     init_block_y(%rip), %r9d                      #60.40
+        imull     %r9d, %r10d                                   #60.36
+        movl      num_active(%rip), %r9d                        #65.21
+        movl      max_num_blocks(%rip), %edx                    #65.39
+        lea       8(%r9), %r13d                                 #65.34
+        cmpl      %edx, %r13d                                   #65.39
+        jg        ..B1.119      # Prob 4%                       #65.39
+                                # LOE rbx rbp rdi r11 edx ecx esi r8d r9d r10d r12d r13d xmm0
+..B1.14:                        # Preds ..B1.13
+                                # Execution count [1.33e+00]: Infreq
+        movl      local_max_b(%rip), %edx                       #69.39
+        cmpl      %edx, %r13d                                   #69.16
+        movq      192(%rsp), %r14                               #71.16[spill]
+        movq      120(%rsp), %r15                               #71.16[spill]
+        cmovge    %r13d, %edx                                   #69.16
+        movl      %edx, local_max_b(%rip)                       #70.19
+        movl      (%r14,%rbp,4), %r13d                          #71.16
+        movl      4(%r14,%r15), %r14d                           #71.16
+        movl      (%rbx), %edx                                  #71.32
+        movslq    %r13d, %r9                                    #71.16
+        cmpl      %r14d, %r13d                                  #71.16
+        jge       ..B1.19       # Prob 10%                      #71.16
+                                # LOE rbx rbp rdi r9 r11 edx ecx esi r8d r10d r12d r13d r14d xmm0
+..B1.15:                        # Preds ..B1.14
+                                # Execution count [1.20e+00]: Infreq
+        movq      144(%rsp), %r15                               #[spill]
+                                # LOE rbx rbp rdi r9 r11 r15 edx ecx esi r8d r10d r12d r13d r14d xmm0
+..B1.16:                        # Preds ..B1.17 ..B1.15
+                                # Execution count [3.47e+00]: Infreq
+        cmpl      (%r15,%r9,8), %edx                            #71.16
+        je        ..B1.19       # Prob 20%                      #71.16
+                                # LOE rbx rbp rdi r9 r11 r15 edx ecx esi r8d r10d r12d r13d r14d xmm0
+..B1.17:                        # Preds ..B1.16
+                                # Execution count [2.78e+00]: Infreq
+        incl      %r13d                                         #71.16
+        incq      %r9                                           #71.16
+        cmpl      %r14d, %r13d                                  #71.16
+        jl        ..B1.16       # Prob 82%                      #71.16
+                                # LOE rbx rbp rdi r9 r11 r15 edx ecx esi r8d r10d r12d r13d r14d xmm0
+..B1.18:                        # Preds ..B1.17
+                                # Execution count [5.00e-01]: Infreq
+        movslq    %r13d, %r9                                    #71.16
+                                # LOE rbx rbp rdi r9 r11 edx ecx esi r8d r10d r12d r13d xmm0
+..B1.19:                        # Preds ..B1.14 ..B1.16 ..B1.18
+                                # Execution count [1.33e+00]: Infreq
+        movq      144(%rsp), %r14                               #71.16[spill]
+        lea       (%r14,%r9,8), %r9                             #71.16
+        cmpl      (%r9), %edx                                   #71.16
+        jne       ..B1.115      # Prob 5%                       #71.16
+                                # LOE rbx rbp rdi r9 r11 edx ecx esi r8d r10d r12d r13d xmm0
+..B1.20:                        # Preds ..B1.19
+                                # Execution count [1.26e+00]: Infreq
+        movslq    num_refine(%rip), %r14                        #71.16
+        movq      96(%rsp), %rdx                                #71.16[spill]
+        lea       1(%r14), %r15                                 #71.16
+        cmpq      %r15, %rdx                                    #71.16
+        jg        ..B1.24       # Prob 15%                      #71.16
+                                # LOE rdx rbx rbp rdi r9 r11 r14 ecx esi r8d r10d r12d r13d xmm0
+..B1.21:                        # Preds ..B1.20
+                                # Execution count [1.07e+00]: Infreq
+        movq      192(%rsp), %rax                               #[spill]
+                                # LOE rax rdx rbx rbp rdi r9 r11 ecx esi r8d r10d r12d r13d xmm0
+..B1.22:                        # Preds ..B1.22 ..B1.21
+                                # Execution count [5.93e+00]: Infreq
+        decl      (%rax,%rdx,4)                                 #71.16
+        incq      %rdx                                          #71.16
+        movslq    num_refine(%rip), %r14                        #71.16
+        lea       1(%r14), %r15                                 #71.16
+        cmpq      %r15, %rdx                                    #71.16
+        jle       ..B1.22       # Prob 82%                      #71.16
+                                # LOE rax rdx rbx rbp rdi r9 r11 r14 ecx esi r8d r10d r12d r13d xmm0
+..B1.24:                        # Preds ..B1.22 ..B1.20
+                                # Execution count [1.26e+00]: Infreq
+        movq      192(%rsp), %rdx                               #71.16[spill]
+        cmpl      4(%rdx,%r14,4), %r13d                         #71.16
+        jge       ..B1.28       # Prob 10%                      #71.16
+                                # LOE rdx rbx rbp rdi r9 r11 ecx esi r8d r10d r12d r13d xmm0
+..B1.25:                        # Preds ..B1.24
+                                # Execution count [1.14e+00]: Infreq
+        xorl      %r14d, %r14d                                  #71.16
+                                # LOE rdx rbx rbp rdi r9 r11 r14 ecx esi r8d r10d r12d r13d xmm0
+..B1.26:                        # Preds ..B1.26 ..B1.25
+                                # Execution count [6.31e+00]: Infreq
+        incq      %r14                                          #71.16
+        incl      %r13d                                         #71.16
+        movl      (%r9,%r14,8), %r15d                           #71.16
+        movl      %r15d, -8(%r9,%r14,8)                         #71.16
+        movl      4(%r9,%r14,8), %r15d                          #71.16
+        movl      %r15d, -4(%r9,%r14,8)                         #71.16
+        movslq    num_refine(%rip), %r15                        #71.16
+        cmpl      4(%rdx,%r15,4), %r13d                         #71.16
+        jl        ..B1.26       # Prob 82%                      #71.16
+                                # LOE rdx rbx rbp rdi r9 r11 r14 ecx esi r8d r10d r12d r13d xmm0
+..B1.28:                        # Preds ..B1.26 ..B1.24
+                                # Execution count [1.33e+00]: Infreq
+        movq      48(%rsp), %rdx                                #73.16[spill]
+        xorl      %r13d, %r13d                                  #75.21
+        movq      120(%rsp), %r9                                #74.16[spill]
+        addl      $7, num_active(%rip)                          #72.16
+        decl      (%rdx,%rbp,4)                                 #73.16
+        addl      $8, 4(%rdx,%r9)                               #74.16
+        xorl      %edx, %edx                                    #75.25
+        movl      max_active_parent(%rip), %r9d                 #75.32
+        testl     %r9d, %r9d                                    #75.32
+        jle       ..B1.33       # Prob 10%                      #75.32
+                                # LOE rdx rbx rbp rdi r11 ecx esi r8d r9d r10d r12d r13d xmm0
+..B1.29:                        # Preds ..B1.28
+                                # Execution count [1.20e+00]: Infreq
+        movq      8(%rsp), %r14                                 #[spill]
+                                # LOE rdx rbx rbp rdi r11 r14 ecx esi r8d r9d r10d r12d r13d xmm0
+..B1.30:                        # Preds ..B1.31 ..B1.29
+                                # Execution count [3.47e+00]: Infreq
+        cmpl      $0, (%rdx,%r14)                               #76.43
+        jl        ..B1.33       # Prob 20%                      #76.43
+                                # LOE rdx rbx rbp rdi r11 r14 ecx esi r8d r9d r10d r12d r13d xmm0
+..B1.31:                        # Preds ..B1.30
+                                # Execution count [2.78e+00]: Infreq
+        incl      %r13d                                         #75.51
+        addq      $100, %rdx                                    #75.51
+        cmpl      %r9d, %r13d                                   #75.32
+        jl        ..B1.30       # Prob 82%                      #75.32
+                                # LOE rdx rbx rbp rdi r11 r14 ecx esi r8d r9d r10d r12d r13d xmm0
+..B1.33:                        # Preds ..B1.30 ..B1.31 ..B1.28
+                                # Execution count [1.33e+00]: Infreq
+        cmpl      max_num_parents(%rip), %r13d                  #78.25
+        je        ..B1.112      # Prob 4%                       #78.25
+                                # LOE rbx rbp rdi r11 ecx esi r8d r9d r10d r12d r13d xmm0
+..B1.34:                        # Preds ..B1.33
+                                # Execution count [1.27e+00]: Infreq
+        cmpl      %r9d, %r13d                                   #82.25
+        jne       ..B1.36       # Prob 50%                      #82.25
+                                # LOE rbx rbp rdi r11 ecx esi r8d r9d r10d r12d r13d xmm0
+..B1.35:                        # Preds ..B1.34
+                                # Execution count [6.37e-01]: Infreq
+        incl      %r9d                                          #83.19
+        movl      %r9d, max_active_parent(%rip)                 #83.19
+                                # LOE rbx rbp rdi r11 ecx esi r8d r10d r12d r13d xmm0
+..B1.36:                        # Preds ..B1.34 ..B1.35
+                                # Execution count [1.27e+00]: Infreq
+        movslq    %r13d, %r13                                   #86.22
+        imulq     $100, %r13, %r14                              #86.22
+        movq      8(%rsp), %rax                                 #86.22[spill]
+        addq      %rax, %r14                                    #86.22
+        movslq    16(%rbx), %rdx                                #89.29
+        incl      num_parents(%rip)                             #84.16
+        incl      num_refined(%rip)                             #85.16
+        movl      %edx, 8(%r14)                                 #89.16
+        imulq     $100, %rdx, %rdx                              #92.16
+        movl      (%rbx), %r9d                                  #87.29
+        addq      %rax, %rdx                                    #92.16
+        movl      %r9d, (%r14)                                  #87.16
+        movl      %ecx, %eax                                    #64.39
+        movl      20(%rbx), %r9d                                #90.34
+        movl      4(%rbx), %r15d                                #88.28
+        movl      %r9d, 12(%r14)                                #90.16
+        movslq    24(%rbx), %r9                                 #91.35
+        movl      %r15d, 4(%r14)                                #88.16
+        movl      %r13d, %r15d                                  #92.67
+        negl      %r15d                                         #92.67
+        decl      %r15d                                         #92.67
+        movl      %r15d, 24(%rdx,%r9,4)                         #92.16
+        cltd                                                    #64.39
+        idivl     %r12d                                         #64.39
+        movl      172(%rbx), %r15d                              #94.29
+        movl      %ecx, %eax                                    #62.41
+        movl      %r15d, 88(%r14)                               #94.16
+        movl      %edx, %r15d                                   #64.39
+        cltd                                                    #62.41
+        idivl     %r10d                                         #62.41
+        movl      %eax, %ecx                                    #62.41
+        movl      %edx, %eax                                    #63.36
+        cltd                                                    #63.36
+        idivl     %r12d                                         #63.36
+        movl      %r9d, 16(%r14)                                #91.16
+        movl      %eax, %edx                                    #63.36
+        movl      176(%rbx), %r9d                               #95.29
+        xorl      %eax, %eax                                    #99.25
+        movl      %r9d, 92(%r14)                                #95.16
+        movl      180(%rbx), %r9d                               #96.29
+        movl      %r9d, 96(%r14)                                #96.16
+        xorl      %r9d, %r9d                                    #99.21
+        movq      %r11, 24(%rsp)                                #99.25[spill]
+        movl      $0, 20(%r14)                                  #93.16
+        movq      %rax, 200(%rsp)                               #99.25[spill]
+        movl      %edx, 208(%rsp)                               #99.25[spill]
+        movl      %ecx, 216(%rsp)                               #99.25[spill]
+        movl      %r15d, 224(%rsp)                              #99.25[spill]
+        movq      %r14, 232(%rsp)                               #99.25[spill]
+        movl      %r13d, 240(%rsp)                              #99.25[spill]
+        movq      %rbp, 16(%rsp)                                #99.25[spill]
+        movq      %rdi, 32(%rsp)                                #99.25[spill]
+        movl      %r8d, 40(%rsp)                                #99.25[spill]
+        movq      120(%rsp), %r11                               #99.25[spill]
+        movq      112(%rsp), %r12                               #99.25[spill]
+                                # LOE rbx r11 r12 esi r9d xmm0
+..B1.37:                        # Preds ..B1.85 ..B1.36
+                                # Execution count [9.66e+00]: Infreq
+        movl      max_num_blocks(%rip), %ecx                    #100.31
+        cmpl      %ecx, %esi                                    #100.31
+        jge       ..B1.54       # Prob 10%                      #100.31
+                                # LOE rbx r11 r12 ecx esi r9d xmm0
+..B1.38:                        # Preds ..B1.37
+                                # Execution count [8.69e+00]: Infreq
+        movslq    %esi, %rsi                                    #101.26
+        lea       (%rsi,%rsi,2), %r8                            #101.26
+        shlq      $6, %r8                                       #101.26
+        lea       (%r12,%r8), %r13                              #101.26
+        cmpl      $0, (%r13)                                    #101.45
+        jl        ..B1.56       # Prob 20%                      #101.45
+                                # LOE rbx r8 r11 r12 r13 ecx esi r9d xmm0
+..B1.39:                        # Preds ..B1.38
+                                # Execution count [6.95e+00]: Infreq
+        incl      %esi                                          #100.47
+        cmpl      %ecx, %esi                                    #100.31
+        jge       ..B1.54       # Prob 18%                      #100.31
+                                # LOE rbx r11 r12 ecx esi r9d xmm0
+..B1.40:                        # Preds ..B1.39
+                                # Execution count [5.70e+00]: Infreq
+        movslq    %esi, %rsi                                    #101.26
+        lea       (%rsi,%rsi,2), %r8                            #101.26
+        shlq      $6, %r8                                       #101.26
+        lea       (%r12,%r8), %r13                              #101.26
+        cmpl      $0, (%r13)                                    #101.45
+        jl        ..B1.56       # Prob 20%                      #101.45
+                                # LOE rbx r8 r11 r12 r13 ecx esi r9d xmm0
+..B1.41:                        # Preds ..B1.40
+                                # Execution count [4.56e+00]: Infreq
+        incl      %esi                                          #100.47
+        cmpl      %ecx, %esi                                    #100.31
+        jge       ..B1.54       # Prob 18%                      #100.31
+                                # LOE rbx r11 r12 ecx esi r9d xmm0
+..B1.42:                        # Preds ..B1.41
+                                # Execution count [3.74e+00]: Infreq
+        movslq    %esi, %rsi                                    #101.26
+        lea       (%rsi,%rsi,2), %r8                            #101.26
+        shlq      $6, %r8                                       #101.26
+        lea       (%r12,%r8), %r13                              #101.26
+        cmpl      $0, (%r13)                                    #101.45
+        jl        ..B1.56       # Prob 20%                      #101.45
+                                # LOE rbx r8 r11 r12 r13 ecx esi r9d xmm0
+..B1.43:                        # Preds ..B1.42
+                                # Execution count [2.99e+00]: Infreq
+        incl      %esi                                          #100.47
+        cmpl      %ecx, %esi                                    #100.31
+        jge       ..B1.54       # Prob 18%                      #100.31
+                                # LOE rbx r11 r12 ecx esi r9d xmm0
+..B1.44:                        # Preds ..B1.43
+                                # Execution count [2.45e+00]: Infreq
+        movslq    %esi, %rsi                                    #101.26
+        lea       (%rsi,%rsi,2), %r8                            #101.26
+        shlq      $6, %r8                                       #101.26
+        lea       (%r12,%r8), %r13                              #101.26
+        cmpl      $0, (%r13)                                    #101.45
+        jl        ..B1.56       # Prob 20%                      #101.45
+                                # LOE rbx r8 r11 r12 r13 ecx esi r9d xmm0
+..B1.45:                        # Preds ..B1.44
+                                # Execution count [1.96e+00]: Infreq
+        incl      %esi                                          #100.47
+        cmpl      %ecx, %esi                                    #100.31
+        jge       ..B1.54       # Prob 18%                      #100.31
+                                # LOE rbx r11 r12 ecx esi r9d xmm0
+..B1.46:                        # Preds ..B1.45
+                                # Execution count [1.61e+00]: Infreq
+        movslq    %esi, %rsi                                    #101.26
+        lea       (%rsi,%rsi,2), %r8                            #101.26
+        shlq      $6, %r8                                       #101.26
+        cmpl      $0, (%r12,%r8)                                #101.45
+        jl        ..B1.111      # Prob 20%                      #101.45
+                                # LOE rbx r8 r11 r12 ecx esi r9d xmm0
+..B1.47:                        # Preds ..B1.46
+                                # Execution count [1.29e+00]: Infreq
+        incl      %esi                                          #100.47
+        cmpl      %ecx, %esi                                    #100.31
+        jge       ..B1.54       # Prob 18%                      #100.31
+                                # LOE rbx r11 r12 ecx esi r9d xmm0
+..B1.48:                        # Preds ..B1.47
+                                # Execution count [1.06e+00]: Infreq
+        movslq    %esi, %rsi                                    #101.26
+        lea       (%rsi,%rsi,2), %r8                            #101.26
+        shlq      $6, %r8                                       #101.26
+        cmpl      $0, (%r12,%r8)                                #101.45
+        jl        ..B1.111      # Prob 20%                      #101.45
+                                # LOE rbx r8 r11 r12 ecx esi r9d xmm0
+..B1.49:                        # Preds ..B1.48
+                                # Execution count [8.45e-01]: Infreq
+        incl      %esi                                          #100.47
+        cmpl      %ecx, %esi                                    #100.31
+        jge       ..B1.54       # Prob 18%                      #100.31
+                                # LOE rbx r11 r12 ecx esi r9d xmm0
+..B1.51:                        # Preds ..B1.49 ..B1.52
+                                # Execution count [2.01e+00]: Infreq
+        movslq    %esi, %rsi                                    #101.26
+        lea       (%rsi,%rsi,2), %r8                            #101.26
+        shlq      $6, %r8                                       #101.26
+        cmpl      $0, (%r12,%r8)                                #101.45
+        jl        ..B1.111      # Prob 20%                      #101.45
+                                # LOE rbx r8 r11 r12 ecx esi r9d xmm0
+..B1.52:                        # Preds ..B1.51
+                                # Execution count [1.61e+00]: Infreq
+        incl      %esi                                          #100.47
+        cmpl      %ecx, %esi                                    #100.31
+        jl        ..B1.51       # Prob 82%                      #100.31
+                                # LOE rbx r11 r12 ecx esi r9d xmm0
+..B1.54:                        # Preds ..B1.52 ..B1.49 ..B1.47 ..B1.45 ..B1.43
+                                #       ..B1.41 ..B1.39 ..B1.37
+                                # Execution count [4.60e+00]: Infreq
+        je        ..B1.108      # Prob 0%                       #103.28
+                                # LOE rbx r11 r12 ecx esi r9d xmm0
+..B1.55:                        # Preds ..B1.54
+                                # Execution count [4.57e+00]: Infreq
+        movslq    %esi, %rsi                                    #109.26
+        lea       (%rsi,%rsi,2), %r8                            #109.26
+        shlq      $6, %r8                                       #109.26
+        lea       (%r12,%r8), %r13                              #109.26
+                                # LOE rbx r8 r11 r12 r13 esi r9d xmm0
+..B1.56:                        # Preds ..B1.111 ..B1.44 ..B1.42 ..B1.40 ..B1.38
+                                #       ..B1.55
+                                # Execution count [9.58e+00]: Infreq
+        movq      200(%rsp), %r15                               #110.19[spill]
+        lea       1(%rsi), %eax                                 #107.26
+        movq      232(%rsp), %rcx                               #111.19[spill]
+        movl      max_active_block(%rip), %edx                  #107.31
+        cmpl      %edx, %eax                                    #107.19
+        movl      168(%rsp), %r10d                              #114.19[spill]
+        cmovge    %eax, %edx                                    #107.19
+        movl      %edx, max_active_block(%rip)                  #108.22
+        movl      %esi, 24(%rcx,%r15,4)                         #111.19
+        movl      my_pe(%rip), %r14d                            #112.39
+        movl      %r14d, 56(%rcx,%r15,4)                        #112.19
+        movl      %r9d, %r14d                                   #120.27
+        movq      184(%rsp), %rcx                               #123.45[spill]
+        movl      240(%rsp), %eax                               #115.19[spill]
+        movl      my_pe(%rip), %edx                             #116.38
+        movl      $0, 8(%r8,%r12)                               #113.19
+        movl      %r10d, 4(%r8,%r12)                            #114.19
+        movl      %eax, 16(%r8,%r12)                            #115.19
+        movl      %r9d, %eax                                    #118.27
+        movl      %edx, 20(%r8,%r12)                            #116.19
+        movl      %r9d, %edx                                    #119.28
+        movl      %r9d, 24(%r8,%r12)                            #117.19
+        andl      $1, %eax                                      #118.27
+        shrl      $2, %r14d                                     #120.27
+        movl      %esi, 56(%rsp,%r15,4)                         #110.19
+        movl      4(%rcx,%r11), %r15d                           #123.45
+        movl      224(%rsp), %edi                               #123.35[spill]
+        movl      216(%rsp), %r10d                              #121.40[spill]
+        shrl      $1, %edx                                      #119.28
+        andl      $1, %edx                                      #119.31
+        lea       (%r15,%rdi,2), %ecx                           #123.35
+        movl      208(%rsp), %ebp                               #122.40[spill]
+        lea       (%r14,%r10,2), %r15d                          #121.40
+        movl      npy(%rip), %r10d                              #121.57
+        imull     init_block_y(%rip), %r10d                     #121.61
+        lea       (%rdx,%rbp,2), %edi                           #122.40
+        movq      176(%rsp), %rbp                               #121.57[spill]
+        imull     4(%rbp,%r11), %r10d                           #121.57
+        imull     %r15d, %r10d                                  #121.61
+        movl      npx(%rip), %r15d                              #122.58
+        addl      %r10d, %edi                                   #122.40
+        imull     init_block_x(%rip), %r15d                     #122.62
+        imull     4(%rbp,%r11), %r15d                           #122.58
+        imull     %edi, %r15d                                   #122.62
+        addl      %eax, %r15d                                   #123.40
+        addl      %r15d, %ecx                                   #123.45
+        movl      %ecx, (%r8,%r12)                              #121.19
+        movq      192(%rsp), %r8                                #124.19[spill]
+        movq      152(%rsp), %rbp                               #124.19[spill]
+        movslq    4(%r8,%r11), %r15                             #124.19
+        movslq    (%r8,%rbp,4), %rbp                            #124.19
+        cmpq      %rbp, %r15                                    #124.19
+        jge       ..B1.61       # Prob 10%                      #124.19
+                                # LOE rax rdx rbx rbp r11 r12 r13 r14 r15 ecx esi r9d xmm0
+..B1.57:                        # Preds ..B1.56
+                                # Execution count [8.62e+00]: Infreq
+        movq      144(%rsp), %rdi                               #[spill]
+                                # LOE rax rdx rbx rbp rdi r11 r12 r13 r14 r15 ecx esi r9d xmm0
+..B1.58:                        # Preds ..B1.59 ..B1.57
+                                # Execution count [2.51e+01]: Infreq
+        cmpl      (%rdi,%r15,8), %ecx                           #124.19
+        jg        ..B1.61       # Prob 20%                      #124.19
+                                # LOE rax rdx rbx rbp rdi r11 r12 r13 r14 r15 ecx esi r9d xmm0
+..B1.59:                        # Preds ..B1.58
+                                # Execution count [2.01e+01]: Infreq
+        incq      %r15                                          #124.19
+        cmpq      %rbp, %r15                                    #124.19
+        jl        ..B1.58       # Prob 82%                      #124.19
+                                # LOE rax rdx rbx rbp rdi r11 r12 r13 r14 r15 ecx esi r9d xmm0
+..B1.61:                        # Preds ..B1.58 ..B1.59 ..B1.56
+                                # Execution count [9.58e+00]: Infreq
+        movslq    num_refine(%rip), %rdi                        #124.19
+        xorl      %r8d, %r8d                                    #124.19
+        movq      192(%rsp), %rbp                               #124.19[spill]
+        xorl      %r10d, %r10d                                  #124.19
+        movslq    4(%rbp,%rdi,4), %rdi                          #124.19
+        cmpq      %r15, %rdi                                    #124.19
+        jle       ..B1.65       # Prob 10%                      #124.19
+                                # LOE rax rdx rbx rdi r8 r10 r11 r12 r13 r14 r15 ecx esi r9d xmm0
+..B1.62:                        # Preds ..B1.61
+                                # Execution count [8.62e+00]: Infreq
+        movq      144(%rsp), %rbp                               #124.19[spill]
+        movl      %esi, 128(%rsp)                               #124.19[spill]
+        lea       (%rbp,%rdi,8), %rbp                           #124.19
+        subq      %r15, %rdi                                    #124.19
+                                # LOE rax rdx rbx rbp rdi r8 r10 r11 r12 r13 r14 r15 ecx r9d xmm0
+..B1.63:                        # Preds ..B1.63 ..B1.62
+                                # Execution count [4.79e+01]: Infreq
+        movl      -8(%rbp,%r10,8), %esi                         #124.19
+        incq      %r8                                           #124.19
+        movl      %esi, (%rbp,%r10,8)                           #124.19
+        movl      -4(%rbp,%r10,8), %esi                         #124.19
+        movl      %esi, 4(%rbp,%r10,8)                          #124.19
+        decq      %r10                                          #124.19
+        cmpq      %rdi, %r8                                     #124.19
+        jb        ..B1.63       # Prob 82%                      #124.19
+                                # LOE rax rdx rbx rbp rdi r8 r10 r11 r12 r13 r14 r15 ecx r9d xmm0
+..B1.64:                        # Preds ..B1.63
+                                # Execution count [8.62e+00]: Infreq
+        movl      128(%rsp), %esi                               #[spill]
+                                # LOE rax rdx rbx r11 r12 r13 r14 r15 ecx esi r9d xmm0
+..B1.65:                        # Preds ..B1.64 ..B1.61
+                                # Execution count [9.58e+00]: Infreq
+        movq      144(%rsp), %rbp                               #124.19[spill]
+        movl      %ecx, (%rbp,%r15,8)                           #124.19
+        movslq    num_refine(%rip), %rcx                        #124.19
+        movl      %esi, 4(%rbp,%r15,8)                          #124.19
+        movq      152(%rsp), %rbp                               #124.19[spill]
+        lea       1(%rcx), %rdi                                 #124.19
+        cmpq      %rdi, %rbp                                    #124.19
+        jg        ..B1.69       # Prob 10%                      #124.19
+                                # LOE rax rdx rcx rbx rbp r11 r12 r13 r14 esi r9d xmm0
+..B1.66:                        # Preds ..B1.65
+                                # Execution count [8.62e+00]: Infreq
+        movq      192(%rsp), %r8                                #[spill]
+                                # LOE rax rdx rbx rbp r8 r11 r12 r13 r14 esi r9d xmm0
+..B1.67:                        # Preds ..B1.67 ..B1.66
+                                # Execution count [4.79e+01]: Infreq
+        incl      (%r8,%rbp,4)                                  #124.19
+        incq      %rbp                                          #124.19
+        movslq    num_refine(%rip), %rcx                        #124.19
+        lea       1(%rcx), %rdi                                 #124.19
+        cmpq      %rdi, %rbp                                    #124.19
+        jle       ..B1.67       # Prob 82%                      #124.19
+                                # LOE rax rdx rcx rbx rbp r8 r11 r12 r13 r14 esi r9d xmm0
+..B1.69:                        # Preds ..B1.67 ..B1.65
+                                # Execution count [9.58e+00]: Infreq
+        movq      160(%rsp), %rbp                               #126.44[spill]
+        lea       -1(%rax,%rax), %edi                           #126.41
+        movq      176(%rsp), %r15                               #128.44[spill]
+        lea       -1(%rdx,%rdx), %r10d                          #128.41
+        imull     -4(%rbp,%rcx,4), %edi                         #126.44
+        addl      172(%rbx), %edi                               #126.44
+        movl      %edi, 172(%r13)                               #125.19
+        lea       -1(%r14,%r14), %edi                           #130.41
+        movslq    num_refine(%rip), %rcx                        #128.47
+        lea       (%r15,%rcx,4), %r8                            #128.44
+        subq      %r11, %r8                                     #128.44
+        imull     -4(%r8), %r10d                                #128.44
+        addl      176(%rbx), %r10d                              #128.44
+        movl      %r10d, 176(%r13)                              #127.19
+        xorl      %r10d, %r10d                                  #135.24
+        movslq    num_refine(%rip), %rcx                        #130.47
+        lea       (%r15,%rcx,4), %rbp                           #130.44
+        subq      %r11, %rbp                                    #130.44
+        imull     -4(%rbp), %edi                                #130.44
+        addl      180(%rbx), %edi                               #130.44
+        movl      %edi, 180(%r13)                               #129.19
+        movslq    num_vars(%rip), %rdi                          #135.35
+        movslq    x_block_half(%rip), %rcx                      #132.25
+        movslq    y_block_half(%rip), %rbp                      #133.25
+        movslq    z_block_half(%rip), %r8                       #134.25
+        testq     %rdi, %rdi                                    #135.35
+        jle       ..B1.85       # Prob 10%                      #135.35
+                                # LOE rax rdx rcx rbx rbp rdi r8 r10 r11 r12 r13 r14 esi r9d xmm0
+..B1.70:                        # Preds ..B1.69
+                                # Execution count [8.62e+00]: Infreq
+        imulq     %r8, %r14                                     #134.19
+        movq      %r14, 280(%rsp)                               #134.19[spill]
+        imulq     %rbp, %rdx                                    #133.19
+        imulq     %rcx, %rax                                    #132.19
+        movq      %r13, 288(%rsp)                               #132.19[spill]
+        movl      %r9d, 136(%rsp)                               #132.19[spill]
+        movq      %r11, 120(%rsp)                               #132.19[spill]
+        movl      %esi, 128(%rsp)                               #132.19[spill]
+                                # LOE rax rdx rcx rbx rbp rdi r8 r10 xmm0
+..B1.71:                        # Preds ..B1.83 ..B1.70
+                                # Execution count [4.79e+01]: Infreq
+        movl      $1, %r12d                                     #136.32
+        movq      %r12, %r11                                    #136.27
+        testq     %rcx, %rcx                                    #136.44
+        jle       ..B1.83       # Prob 10%                      #136.44
+                                # LOE rax rdx rcx rbx rbp rdi r8 r10 r11 r12 xmm0
+..B1.72:                        # Preds ..B1.71
+                                # Execution count [4.31e+01]: Infreq
+        movq      %rdi, 248(%rsp)                               #[spill]
+                                # LOE rax rdx rcx rbx rbp r8 r10 r11 r12 xmm0
+..B1.73:                        # Preds ..B1.81 ..B1.72
+                                # Execution count [2.40e+02]: Infreq
+        movl      $1, %esi                                      #137.35
+        movl      $8, %r9d                                      #137.30
+        testq     %rbp, %rbp                                    #137.47
+        jle       ..B1.81       # Prob 10%                      #137.47
+                                # LOE rax rdx rcx rbx rbp rsi r8 r9 r10 r11 r12 xmm0
+..B1.74:                        # Preds ..B1.73
+                                # Execution count [2.16e+02]: Infreq
+        movq      %r12, 272(%rsp)                               #147.37[spill]
+        lea       (,%r12,8), %rdi                               #147.37
+        movq      %rax, 264(%rsp)                               #147.37[spill]
+        lea       (%rdi,%rax,8), %rdi                           #147.37
+        movq      %rbp, 296(%rsp)                               #147.37[spill]
+        movq      %rcx, 256(%rsp)                               #147.37[spill]
+                                # LOE rdx rbx rsi rdi r8 r9 r10 r11 xmm0
+..B1.75:                        # Preds ..B1.79 ..B1.74
+                                # Execution count [1.20e+03]: Infreq
+        movl      $1, %r12d                                     #138.38
+        movq      %r12, %r13                                    #138.33
+        testq     %r8, %r8                                      #138.50
+        jle       ..B1.79       # Prob 10%                      #138.50
+                                # LOE rdx rbx rsi rdi r8 r9 r10 r11 r12 r13 xmm0
+..B1.76:                        # Preds ..B1.75
+                                # Execution count [1.08e+03]: Infreq
+        movq      184(%rbx), %rax                               #147.37
+        lea       (,%rsi,8), %rcx                               #147.37
+        movq      288(%rsp), %r14                               #146.31[spill]
+        lea       (%rcx,%rdx,8), %rcx                           #147.37
+        movq      (%rax,%r10,8), %r15                           #147.37
+        movq      184(%r14), %rbp                               #146.31
+        movq      (%r15,%rdi), %r14                             #147.37
+        movq      280(%rsp), %r15                               #147.37[spill]
+        movq      (%r14,%rcx), %rax                             #147.37
+        lea       (%rax,%r15,8), %r14                           #147.37
+        movq      (%rbp,%r10,8), %rax                           #146.31
+        movq      (%rax,%r11,8), %rcx                           #145.31
+        movq      8(%rax,%r11,8), %r15                          #146.31
+        movq      (%rcx,%r9), %rbp                              #143.31
+        movq      (%r15,%r9), %rax                              #144.31
+        movq      8(%r15,%r9), %r15                             #146.31
+        movq      8(%rcx,%r9), %rcx                             #145.31
+        .align    16,0x90
+                                # LOE rax rdx rcx rbx rbp rsi rdi r8 r9 r10 r11 r12 r13 r14 r15 xmm0
+..B1.77:                        # Preds ..B1.77 ..B1.76
+                                # Execution count [5.99e+03]: Infreq
+        movsd     (%r14,%r12,8), %xmm1                          #147.37
+        incq      %r12                                          #138.64
+        mulsd     %xmm0, %xmm1                                  #147.68
+        movsd     %xmm1, 8(%r15,%r13,8)                         #146.31
+        movsd     %xmm1, 8(%rcx,%r13,8)                         #145.31
+        movsd     %xmm1, 8(%rax,%r13,8)                         #144.31
+        movsd     %xmm1, 8(%rbp,%r13,8)                         #143.31
+        movsd     %xmm1, (%r15,%r13,8)                          #142.31
+        movsd     %xmm1, (%rcx,%r13,8)                          #141.31
+        movsd     %xmm1, (%rax,%r13,8)                          #140.31
+        movsd     %xmm1, (%rbp,%r13,8)                          #139.31
+        addq      $2, %r13                                      #138.69
+        cmpq      %r8, %r12                                     #138.50
+        jle       ..B1.77       # Prob 82%                      #138.50
+                                # LOE rax rdx rcx rbx rbp rsi rdi r8 r9 r10 r11 r12 r13 r14 r15 xmm0
+..B1.79:                        # Preds ..B1.77 ..B1.75
+                                # Execution count [1.20e+03]: Infreq
+        incq      %rsi                                          #137.61
+        addq      $16, %r9                                      #137.66
+        cmpq      296(%rsp), %rsi                               #137.47[spill]
+        jle       ..B1.75       # Prob 82%                      #137.47
+                                # LOE rdx rbx rsi rdi r8 r9 r10 r11 xmm0
+..B1.80:                        # Preds ..B1.79
+                                # Execution count [2.16e+02]: Infreq
+        movq      272(%rsp), %r12                               #[spill]
+        movq      264(%rsp), %rax                               #[spill]
+        movq      296(%rsp), %rbp                               #[spill]
+        movq      256(%rsp), %rcx                               #[spill]
+                                # LOE rax rdx rcx rbx rbp r8 r10 r11 r12 xmm0
+..B1.81:                        # Preds ..B1.80 ..B1.73
+                                # Execution count [2.40e+02]: Infreq
+        incq      %r12                                          #136.58
+        addq      $2, %r11                                      #136.63
+        cmpq      %rcx, %r12                                    #136.44
+        jle       ..B1.73       # Prob 82%                      #136.44
+                                # LOE rax rdx rcx rbx rbp r8 r10 r11 r12 xmm0
+..B1.82:                        # Preds ..B1.81
+                                # Execution count [4.31e+01]: Infreq
+        movq      248(%rsp), %rdi                               #[spill]
+                                # LOE rax rdx rcx rbx rbp rdi r8 r10 xmm0
+..B1.83:                        # Preds ..B1.82 ..B1.71
+                                # Execution count [4.79e+01]: Infreq
+        incq      %r10                                          #135.45
+        cmpq      %rdi, %r10                                    #135.35
+        jl        ..B1.71       # Prob 82%                      #135.35
+                                # LOE rax rdx rcx rbx rbp rdi r8 r10 xmm0
+..B1.84:                        # Preds ..B1.83
+                                # Execution count [8.62e+00]: Infreq
+        movl      136(%rsp), %r9d                               #[spill]
+        movq      120(%rsp), %r11                               #[spill]
+        movq      112(%rsp), %r12                               #[spill]
+        movl      128(%rsp), %esi                               #[spill]
+                                # LOE rbx r11 r12 esi r9d xmm0
+..B1.85:                        # Preds ..B1.84 ..B1.69
+                                # Execution count [9.58e+00]: Infreq
+        incl      %r9d                                          #99.35
+        incq      200(%rsp)                                     #99.35[spill]
+        cmpl      $8, %r9d                                      #99.32
+        jl        ..B1.37       # Prob 87%                      #99.32
+                                # LOE rbx r11 r12 esi r9d xmm0
+..B1.86:                        # Preds ..B1.85
+                                # Execution count [1.20e+00]: Infreq
+        movq      112(%rsp), %rax                               #193.32[spill]
+        xorl      %r9d, %r9d                                    #151.21
+        xorl      %ecx, %ecx                                    #151.21
+        movq      %r11, 120(%rsp)                               #[spill]
+        xorl      %r10d, %r10d                                  #151.21
+        movq      24(%rsp), %r11                                #[spill]
+        lea       (%rax,%r11), %rdx                             #193.32
+        movq      %rbx, %rax                                    #55.10
+        movl      40(%rsp), %r8d                                #[spill]
+        movl      168(%rsp), %r13d                              #55.10[spill]
+        movq      112(%rsp), %r14                               #55.10[spill]
+        movq      %rbx, 88(%rsp)                                #55.10[spill]
+        movl      %esi, 128(%rsp)                               #55.10[spill]
+                                # LOE rax rdx rcx r10 r14 r8d r9d r13d xmm0
+..B1.87:                        # Preds ..B1.102 ..B1.86
+                                # Execution count [7.01e+00]: Infreq
+        movl      side.333.0.1(%r10), %esi                      #155.36
+        lea       (%r14,%rcx), %r12                             #155.25
+        movl      off.333.0.1(%rcx), %r15d                      #155.50
+        lea       (%r15,%rsi), %edi                             #155.50
+        movslq    %esi, %rsi                                    #158.31
+        movslq    %edi, %rdi                                    #155.32
+        movslq    56(%rsp,%rdi,4), %r11                         #155.32
+        lea       (%r14,%r10), %rdi                             #157.25
+        lea       (%r11,%r11,2), %rbp                           #155.25
+        movslq    56(%rsp,%rsi,4), %r11                         #158.31
+        movl      4+side.333.0.1(%r10), %esi                    #155.36
+        shlq      $6, %rbp                                      #155.25
+        lea       (%r15,%rsi), %ebx                             #155.50
+        movslq    %esi, %rsi                                    #158.31
+        movslq    %ebx, %rbx                                    #155.32
+        movl      %r13d, 52(%r12,%rbp)                          #155.25
+        movl      %r11d, 76(%rdi,%rbp)                          #157.25
+        movslq    56(%rsp,%rsi,4), %rsi                         #158.31
+        movslq    56(%rsp,%rbx,4), %rbp                         #155.32
+        lea       (%rbp,%rbp,2), %rbx                           #155.25
+        movl      8+side.333.0.1(%r10), %ebp                    #155.36
+        shlq      $6, %rbx                                      #155.25
+        movl      %r13d, 52(%r12,%rbx)                          #155.25
+        movl      %esi, 76(%rdi,%rbx)                           #157.25
+        lea       (%r15,%rbp), %ebx                             #155.50
+        movslq    %ebx, %rbx                                    #155.32
+        movslq    %ebp, %rbp                                    #158.31
+        movslq    56(%rsp,%rbx,4), %rbx                         #155.32
+        movslq    56(%rsp,%rbp,4), %rbp                         #158.31
+        lea       (%rbx,%rbx,2), %rbx                           #155.25
+        shlq      $6, %rbx                                      #155.25
+        movl      %r13d, 52(%r12,%rbx)                          #155.25
+        movl      %ebp, 76(%rdi,%rbx)                           #157.25
+        movl      12+side.333.0.1(%r10), %ebx                   #155.36
+        addl      %ebx, %r15d                                   #155.50
+        movslq    %r15d, %r15                                   #155.32
+        movslq    %ebx, %rbx                                    #158.31
+        movslq    56(%rsp,%r15,4), %r15                         #155.32
+        movslq    56(%rsp,%rbx,4), %rbx                         #158.31
+        lea       (%r15,%r15,2), %r15                           #155.25
+        shlq      $6, %r15                                      #155.25
+        movl      %r13d, 52(%r12,%r15)                          #155.25
+        movl      %ebx, 76(%rdi,%r15)                           #157.25
+        movl      52(%rax), %r15d                               #161.23
+        cmpl      $-2, %r15d                                    #161.43
+        je        ..B1.106      # Prob 16%                      #161.43
+                                # LOE rax rdx rcx rbx rbp rsi rdi r10 r11 r12 r14 r8d r9d r13d r15d xmm0
+..B1.88:                        # Preds ..B1.87
+                                # Execution count [5.89e+00]: Infreq
+        cmpl      104(%rsp), %r15d                              #167.54[spill]
+        jne       ..B1.90       # Prob 50%                      #167.54
+                                # LOE rax rdx rcx rbx rbp rsi r10 r11 r14 r8d r9d r13d r15d xmm0
+..B1.89:                        # Preds ..B1.88
+                                # Execution count [2.94e+00]: Infreq
+        movq      88(%rsp), %rbx                                #168.46[spill]
+        cmpl      $0, 76(%r10,%rbx)                             #168.46
+        jge       ..B1.121      # Prob 0%                       #168.46
+        jmp       ..B1.102      # Prob 100%                     #168.46
+                                # LOE rax rdx rcx rbx r10 r14 r8d r9d r13d xmm0
+..B1.90:                        # Preds ..B1.88
+                                # Execution count [2.94e+00]: Infreq
+        cmpl      %r8d, %r15d                                   #173.50
+        jne       ..B1.93       # Prob 50%                      #173.50
+                                # LOE rax rdx rcx rbx rbp rsi r10 r11 r14 r8d r9d r13d r15d xmm0
+..B1.91:                        # Preds ..B1.90
+                                # Execution count [1.47e+00]: Infreq
+        movq      88(%rsp), %rdi                                #174.26[spill]
+        movslq    76(%r10,%rdi), %r12                           #174.26
+        testq     %r12, %r12                                    #174.46
+        jl        ..B1.102      # Prob 16%                      #174.46
+                                # LOE rax rdx rcx rbx rbp rsi r10 r11 r12 r14 r8d r9d r13d xmm0
+..B1.92:                        # Preds ..B1.91
+                                # Execution count [1.24e+00]: Infreq
+        movq      %rax, (%rsp)                                  #[spill]
+        lea       (%r12,%r12,2), %rdi                           #177.25
+        shlq      $6, %rdi                                      #177.25
+        movl      %r9d, %eax                                    #176.36
+        addq      %r14, %rdi                                    #177.25
+        lea       1(%r9), %r15d                                 #176.43
+        andl      $-2, %eax                                     #176.36
+        andl      $1, %r15d                                     #176.46
+        addl      %r15d, %eax                                   #176.46
+        lea       (%r11,%r11,2), %r15                           #180.38
+        shlq      $6, %r15                                      #180.38
+        addq      %r14, %r15                                    #180.38
+        movl      %r13d, 52(%rdi,%rax,4)                        #177.25
+        shlq      $4, %rax                                      #183.31
+        movl      %r12d, 76(%r15,%r10)                          #182.31
+        movl      %r8d, 52(%r15,%rcx)                           #181.31
+        movl      %r11d, 76(%rax,%rdi)                          #183.31
+        lea       (%rsi,%rsi,2), %r11                           #180.38
+        shlq      $6, %r11                                      #180.38
+        addq      %r14, %r11                                    #180.38
+        movl      %r12d, 76(%r11,%r10)                          #182.31
+        movl      %esi, 80(%rax,%rdi)                           #183.31
+        lea       (%rbp,%rbp,2), %rsi                           #180.38
+        shlq      $6, %rsi                                      #180.38
+        addq      %r14, %rsi                                    #180.38
+        movl      %r8d, 52(%r11,%rcx)                           #181.31
+        movl      %r12d, 76(%rsi,%r10)                          #182.31
+        movl      %ebp, 84(%rax,%rdi)                           #183.31
+        lea       (%rbx,%rbx,2), %rbp                           #180.38
+        shlq      $6, %rbp                                      #180.38
+        addq      %r14, %rbp                                    #180.38
+        movl      %r8d, 52(%rsi,%rcx)                           #181.31
+        movl      %r12d, 76(%rbp,%r10)                          #182.31
+        movl      %ebx, 88(%rax,%rdi)                           #183.31
+        movl      %r8d, 52(%rbp,%rcx)                           #181.31
+        movq      (%rsp), %rax                                  #183.31[spill]
+        jmp       ..B1.102      # Prob 100%                     #183.31
+                                # LOE rax rdx rcx r10 r14 r8d r9d r13d xmm0
+..B1.93:                        # Preds ..B1.90
+                                # Execution count [1.47e+00]: Infreq
+        cmpl      %r13d, %r15d                                  #186.56
+        jne       ..B1.104      # Prob 0%                       #186.56
+                                # LOE rax rdx rcx rbx rbp rsi r10 r11 r14 r8d r9d r13d xmm0
+..B1.94:                        # Preds ..B1.93
+                                # Execution count [1.46e+00]: Infreq
+        movl      %r9d, %r12d                                   #189.33
+        lea       1(%r9), %edi                                  #189.40
+        andl      $-2, %r12d                                    #189.33
+        andl      $1, %edi                                      #189.43
+        addl      %edi, %r12d                                   #189.43
+        movslq    76(%r10,%rdx), %rdi                           #193.32
+        testq     %rdi, %rdi                                    #193.52
+        jl        ..B1.96       # Prob 16%                      #193.52
+                                # LOE rax rdx rcx rbx rbp rsi rdi r10 r11 r12 r14 r8d r9d r13d xmm0
+..B1.95:                        # Preds ..B1.94
+                                # Execution count [1.23e+00]: Infreq
+        lea       (%r11,%r11,2), %r15                           #195.38
+        shlq      $6, %r15                                      #195.38
+        addq      %r14, %r15                                    #195.38
+        movl      %edi, 76(%r15,%r10)                           #197.31
+        lea       (%rdi,%rdi,2), %rdi                           #198.31
+        shlq      $6, %rdi                                      #198.31
+        movl      %r13d, 52(%r15,%rcx)                          #196.31
+        lea       (%r14,%r12,4), %r15                           #198.31
+        movl      %r13d, 52(%rdi,%r15)                          #198.31
+        movq      %r12, %r15                                    #199.31
+        shlq      $4, %r15                                      #199.31
+        addq      %r14, %r15                                    #199.31
+        movl      %r11d, 76(%rdi,%r15)                          #199.31
+                                # LOE rax rdx rcx rbx rbp rsi r10 r12 r14 r8d r9d r13d xmm0
+..B1.96:                        # Preds ..B1.94 ..B1.95
+                                # Execution count [1.46e+00]: Infreq
+        movslq    80(%r10,%rdx), %r11                           #193.32
+        testq     %r11, %r11                                    #193.52
+        jl        ..B1.98       # Prob 16%                      #193.52
+                                # LOE rax rdx rcx rbx rbp rsi r10 r11 r12 r14 r8d r9d r13d xmm0
+..B1.97:                        # Preds ..B1.96
+                                # Execution count [1.23e+00]: Infreq
+        lea       (%rsi,%rsi,2), %rdi                           #195.38
+        shlq      $6, %rdi                                      #195.38
+        lea       (%r11,%r11,2), %r15                           #198.31
+        addq      %r14, %rdi                                    #195.38
+        shlq      $6, %r15                                      #198.31
+        movl      %r13d, 52(%rdi,%rcx)                          #196.31
+        movl      %r11d, 76(%rdi,%r10)                          #197.31
+        movq      %r12, %rdi                                    #199.31
+        shlq      $4, %rdi                                      #199.31
+        lea       (%r14,%r12,4), %r11                           #198.31
+        addq      %r14, %rdi                                    #199.31
+        movl      %r13d, 52(%r15,%r11)                          #198.31
+        movl      %esi, 76(%r15,%rdi)                           #199.31
+                                # LOE rax rdx rcx rbx rbp r10 r12 r14 r8d r9d r13d xmm0
+..B1.98:                        # Preds ..B1.96 ..B1.97
+                                # Execution count [1.46e+00]: Infreq
+        movslq    84(%r10,%rdx), %rdi                           #193.32
+        testq     %rdi, %rdi                                    #193.52
+        jl        ..B1.100      # Prob 16%                      #193.52
+                                # LOE rax rdx rcx rbx rbp rdi r10 r12 r14 r8d r9d r13d xmm0
+..B1.99:                        # Preds ..B1.98
+                                # Execution count [1.23e+00]: Infreq
+        movq      %r12, %r15                                    #199.31
+        lea       (%rbp,%rbp,2), %rsi                           #195.38
+        shlq      $6, %rsi                                      #195.38
+        lea       (%rdi,%rdi,2), %r11                           #198.31
+        shlq      $4, %r15                                      #199.31
+        addq      %r14, %rsi                                    #195.38
+        shlq      $6, %r11                                      #198.31
+        addq      %r14, %r15                                    #199.31
+        movl      %edi, 76(%rsi,%r10)                           #197.31
+        lea       (%r14,%r12,4), %rdi                           #198.31
+        movl      %r13d, 52(%rsi,%rcx)                          #196.31
+        movl      %r13d, 52(%r11,%rdi)                          #198.31
+        movl      %ebp, 76(%r11,%r15)                           #199.31
+                                # LOE rax rdx rcx rbx r10 r12 r14 r8d r9d r13d xmm0
+..B1.100:                       # Preds ..B1.98 ..B1.99
+                                # Execution count [1.46e+00]: Infreq
+        movslq    88(%r10,%rdx), %rsi                           #193.32
+        testq     %rsi, %rsi                                    #193.52
+        jl        ..B1.102      # Prob 16%                      #193.52
+                                # LOE rax rdx rcx rbx rsi r10 r12 r14 r8d r9d r13d xmm0
+..B1.101:                       # Preds ..B1.100
+                                # Execution count [1.23e+00]: Infreq
+        lea       (%rbx,%rbx,2), %rbp                           #195.38
+        shlq      $6, %rbp                                      #195.38
+        lea       (%rsi,%rsi,2), %rdi                           #198.31
+        addq      %r14, %rbp                                    #195.38
+        shlq      $6, %rdi                                      #198.31
+        movl      %esi, 76(%rbp,%r10)                           #197.31
+        lea       (%r14,%r12,4), %rsi                           #198.31
+        shlq      $4, %r12                                      #199.31
+        addq      %r14, %r12                                    #199.31
+        movl      %r13d, 52(%rbp,%rcx)                          #196.31
+        movl      %r13d, 52(%rdi,%rsi)                          #198.31
+        movl      %ebx, 76(%rdi,%r12)                           #199.31
+                                # LOE rax rdx rcx r10 r14 r8d r9d r13d xmm0
+..B1.102:                       # Preds ..B1.89 ..B1.91 ..B1.100 ..B1.106 ..B1.92
+                                #       ..B1.101
+                                # Execution count [6.97e+00]: Infreq
+        incl      %r9d                                          #151.35
+        addq      $4, %rax                                      #151.35
+        addq      $4, %rcx                                      #151.35
+        addq      $16, %r10                                     #151.35
+        cmpl      $6, %r9d                                      #151.32
+        jl        ..B1.87       # Prob 83%                      #151.32
+                                # LOE rax rdx rcx r10 r14 r8d r9d r13d xmm0
+..B1.103:                       # Preds ..B1.102
+                                # Execution count [1.16e+00]: Infreq
+        movq      32(%rsp), %rdi                                #[spill]
+        movq      88(%rsp), %rbx                                #[spill]
+        movl      128(%rsp), %esi                               #[spill]
+        cmpl      %esi, %edi                                    #209.16
+        movl      $-1, (%rbx)                                   #208.16
+        movl      %r13d, 168(%rsp)                              #[spill]
+        cmovl     %edi, %esi                                    #209.16
+        movq      16(%rsp), %rbp                                #[spill]
+        movq      24(%rsp), %r11                                #[spill]
+        movslq    max_active_block(%rip), %rax                  #54.23
+        jmp       ..B1.8        # Prob 100%                     #54.23
+                                # LOE rax rbx rbp rdi r11 esi r8d xmm0
+..B1.104:                       # Preds ..B1.93
+                                # Execution count [1.18e-02]: Infreq
+        movq      88(%rsp), %rax                                #[spill]
+        movl      $.L_2__STRING.4, %edi                         #202.22
+        movq      32(%rsp), %rdx                                #[spill]
+        addq      $-16, %rsp                                    #202.22
+	.cfi_def_cfa_offset 384
+        movl      52(%rcx,%rax), %r10d                          #202.22
+        movl      (%rax), %ecx                                  #202.22
+        xorl      %eax, %eax                                    #202.22
+        movl      my_pe(%rip), %esi                             #202.22
+        movl      %r10d, (%rsp)                                 #202.22
+..___tag_value_split_blocks.143:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #202.22
+..___tag_value_split_blocks.144:
+                                # LOE
+..B1.125:                       # Preds ..B1.104
+                                # Execution count [1.18e-02]: Infreq
+        addq      $16, %rsp                                     #202.22
+	.cfi_def_cfa_offset 368
+                                # LOE
+..B1.105:                       # Preds ..B1.121 ..B1.119 ..B1.115 ..B1.112 ..B1.108
+                                #       ..B1.125
+                                # Execution count [1.18e-02]: Infreq
+        movl      $-1, %edi                                     #204.22
+#       exit(int)
+        call      exit                                          #204.22
+                                # LOE
+..B1.106:                       # Preds ..B1.87
+                                # Execution count [1.12e+00]: Infreq
+        movq      %rax, (%rsp)                                  #[spill]
+        lea       (%r11,%r11,2), %r15                           #164.28
+        shlq      $6, %r15                                      #164.28
+        lea       (%rsi,%rsi,2), %rsi                           #164.28
+        shlq      $6, %rsi                                      #164.28
+        lea       (%rbp,%rbp,2), %rbp                           #164.28
+        shlq      $6, %rbp                                      #164.28
+        lea       (%rbx,%rbx,2), %rbx                           #164.28
+        shlq      $6, %rbx                                      #164.28
+        xorl      %eax, %eax                                    #165.28
+        movl      %eax, 76(%rdi,%r15)                           #165.28
+        movl      $-2, %r11d                                    #164.28
+        movl      %r11d, 52(%r12,%r15)                          #164.28
+        movl      %eax, 76(%rdi,%rsi)                           #165.28
+        movl      %r11d, 52(%r12,%rsi)                          #164.28
+        movl      %eax, 76(%rdi,%rbp)                           #165.28
+        movl      %r11d, 52(%r12,%rbp)                          #164.28
+        movl      %eax, 76(%rdi,%rbx)                           #165.28
+        movl      %r11d, 52(%r12,%rbx)                          #164.28
+        movq      (%rsp), %rax                                  #165.28[spill]
+        jmp       ..B1.102      # Prob 100%                     #165.28
+                                # LOE rax rdx rcx r10 r14 r8d r9d r13d xmm0
+..B1.108:                       # Preds ..B1.54
+                                # Execution count [7.73e-02]: Infreq
+        movl      $.L_2__STRING.2, %edi                         #104.22
+        xorl      %eax, %eax                                    #104.22
+        movl      num_active(%rip), %edx                        #104.22
+..___tag_value_split_blocks.148:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #104.22
+..___tag_value_split_blocks.149:
+        jmp       ..B1.105      # Prob 100%                     #104.22
+                                # LOE
+..B1.111:                       # Preds ..B1.51 ..B1.48 ..B1.46
+                                # Execution count [9.36e-01]: Infreq
+        lea       (%r12,%r8), %r13                              #109.26
+        jmp       ..B1.56       # Prob 100%                     #109.26
+                                # LOE rbx r8 r11 r12 r13 esi r9d xmm0
+..B1.112:                       # Preds ..B1.33
+                                # Execution count [5.31e-02]: Infreq
+        movl      $il0_peep_printf_format_0, %edi               #79.19
+        call      puts                                          #79.19
+        jmp       ..B1.105      # Prob 100%                     #79.19
+                                # LOE
+..B1.115:                       # Preds ..B1.19
+                                # Execution count [6.64e-02]: Infreq
+        movl      $.L_2__STRING.7, %edi                         #71.16
+        xorl      %eax, %eax                                    #71.16
+        movl      my_pe(%rip), %esi                             #71.16
+..___tag_value_split_blocks.150:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #71.16
+..___tag_value_split_blocks.151:
+        jmp       ..B1.105      # Prob 100%                     #71.16
+                                # LOE
+..B1.119:                       # Preds ..B1.13
+                                # Execution count [5.53e-02]: Infreq
+        movl      $.L_2__STRING.0, %edi                         #66.19
+        movl      %r9d, %esi                                    #66.19
+        xorl      %eax, %eax                                    #66.19
+        movl      my_pe(%rip), %ecx                             #66.19
+..___tag_value_split_blocks.152:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #66.19
+..___tag_value_split_blocks.153:
+        jmp       ..B1.105      # Prob 100%                     #66.19
+                                # LOE
+..B1.121:                       # Preds ..B1.89
+                                # Execution count [2.36e-02]: Infreq
+        movq      %rbx, %rax                                    #
+        movl      $.L_2__STRING.3, %edi                         #169.25
+        movl      (%rax), %ecx                                  #169.25
+        movl      %r9d, %r8d                                    #169.25
+        movl      76(%r10,%rax), %r9d                           #169.25
+        xorl      %eax, %eax                                    #169.25
+        movq      32(%rsp), %rdx                                #[spill]
+        movl      my_pe(%rip), %esi                             #169.25
+..___tag_value_split_blocks.155:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #169.25
+..___tag_value_split_blocks.156:
+        jmp       ..B1.105      # Prob 100%                     #169.25
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	split_blocks,@function
+	.size	split_blocks,.-split_blocks
+..LNsplit_blocks.0:
+	.section .rodata, "a"
+	.align 32
+	.align 32
+side.333.0.1:
+	.long	0
+	.long	2
+	.long	4
+	.long	6
+	.long	1
+	.long	3
+	.long	5
+	.long	7
+	.long	0
+	.long	1
+	.long	4
+	.long	5
+	.long	2
+	.long	3
+	.long	6
+	.long	7
+	.long	0
+	.long	1
+	.long	2
+	.long	3
+	.long	4
+	.long	5
+	.long	6
+	.long	7
+	.align 4
+off.333.0.1:
+	.long	1
+	.long	-1
+	.long	2
+	.long	-2
+	.long	4
+	.long	-4
+	.section .rodata.str1.4, "aMS",@progbits,1
+	.align 4
+	.align 4
+il0_peep_printf_format_0:
+	.long	1330795077
+	.long	1310734930
+	.long	543450469
+	.long	1701998445
+	.long	1918988320
+	.long	1937010277
+	.byte	0
+	.data
+# -- End  split_blocks
+	.text
+.L_2__routine_start_consolidate_blocks_1:
+# -- Begin  consolidate_blocks
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl consolidate_blocks
+# --- consolidate_blocks(void)
+consolidate_blocks:
+..B2.1:                         # Preds ..B2.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_consolidate_blocks.158:
+..L159:
+                                                        #221.1
+        pushq     %r12                                          #221.1
+	.cfi_def_cfa_offset 16
+	.cfi_offset 12, -16
+        pushq     %r13                                          #221.1
+	.cfi_def_cfa_offset 24
+	.cfi_offset 13, -24
+        pushq     %r14                                          #221.1
+	.cfi_def_cfa_offset 32
+	.cfi_offset 14, -32
+        pushq     %r15                                          #221.1
+	.cfi_def_cfa_offset 40
+	.cfi_offset 15, -40
+        pushq     %rbx                                          #221.1
+	.cfi_def_cfa_offset 48
+	.cfi_offset 3, -48
+        pushq     %rbp                                          #221.1
+	.cfi_def_cfa_offset 56
+	.cfi_offset 6, -56
+        subq      $232, %rsp                                    #221.1
+	.cfi_def_cfa_offset 288
+        movl      cur_max_level(%rip), %eax                     #235.17
+        testl     %eax, %eax                                    #235.41
+        js        ..B2.12       # Prob 0%                       #235.41
+                                # LOE rbx rbp r12 r13 r14 r15 eax
+..B2.2:                         # Preds ..B2.1
+                                # Execution count [9.92e-01]
+        movq      num_blocks(%rip), %r8                         #253.13
+        movslq    max_active_parent(%rip), %rcx                 #236.23
+        movq      parents(%rip), %r10                           #237.21
+        movq      blocks(%rip), %rsi                            #240.20
+        movq      sorted_index(%rip), %rdi                      #262.13
+        movq      sorted_list(%rip), %rdx                       #262.13
+        movq      %r8, (%rsp)                                   #262.13[spill]
+                                # LOE rdx rcx rsi rdi r10 eax
+..B2.3:                         # Preds ..B2.10 ..B2.2
+                                # Execution count [5.18e+00]
+        xorl      %r11d, %r11d                                  #236.12
+        movq      %r10, %r9                                     #236.12
+        testq     %rcx, %rcx                                    #236.23
+        jle       ..B2.10       # Prob 10%                      #236.23
+                                # LOE rdx rcx rsi rdi r9 r10 r11 eax
+..B2.4:                         # Preds ..B2.3
+                                # Execution count [4.66e+00]
+        movslq    %eax, %r8                                     #262.13
+        lea       2(%rax), %ebp                                 #319.68
+        movl      %ebp, 40(%rsp)                                #326.55[spill]
+        lea       1(%rax), %ebx                                 #326.55
+        movl      %ebx, 144(%rsp)                               #326.55[spill]
+        movq      %r10, 56(%rsp)                                #326.55[spill]
+        lea       1(%r8), %r13                                  #262.13
+        movq      %r13, 48(%rsp)                                #326.55[spill]
+        lea       2(%r8), %r12                                  #270.16
+        movq      %r12, 88(%rsp)                                #326.55[spill]
+                                # LOE rdx rcx rsi rdi r8 r9 r11 eax
+..B2.5:                         # Preds ..B2.8 ..B2.4
+                                # Execution count [2.56e+01]
+        cmpl      $0, (%r9)                                     #237.44
+        jl        ..B2.8        # Prob 16%                      #237.44
+                                # LOE rdx rcx rsi rdi r8 r9 r11 eax
+..B2.6:                         # Preds ..B2.5
+                                # Execution count [2.15e+01]
+        cmpl      4(%r9), %eax                                  #237.62
+        jne       ..B2.8        # Prob 50%                      #237.62
+                                # LOE rdx rcx rsi rdi r8 r9 r11 eax
+..B2.7:                         # Preds ..B2.6
+                                # Execution count [1.07e+01]
+        cmpl      $-1, 20(%r9)                                  #238.28
+        je        ..B2.13       # Prob 16%                      #238.28
+                                # LOE rdx rcx rsi rdi r8 r9 r11 eax
+..B2.8:                         # Preds ..B2.91 ..B2.7 ..B2.6 ..B2.5
+                                # Execution count [2.55e+01]
+        incq      %r11                                          #236.42
+        addq      $100, %r9                                     #236.42
+        cmpq      %rcx, %r11                                    #236.23
+        jl        ..B2.5        # Prob 82%                      #236.23
+                                # LOE rdx rcx rsi rdi r8 r9 r11 eax
+..B2.9:                         # Preds ..B2.8
+                                # Execution count [4.59e+00]
+        .byte     15                                            #
+        .byte     31                                            #
+        .byte     128                                           #
+        .byte     0                                             #
+        .byte     0                                             #
+        .byte     0                                             #
+        .byte     0                                             #
+        movq      56(%rsp), %r10                                #[spill]
+                                # LOE rdx rcx rsi rdi r10 eax
+..B2.10:                        # Preds ..B2.9 ..B2.3
+                                # Execution count [5.10e+00]
+        decl      %eax                                          #235.44
+        jns       ..B2.3        # Prob 82%                      #235.41
+                                # LOE rdx rcx rsi rdi r10 eax
+..B2.12:                        # Preds ..B2.10 ..B2.1
+                                # Execution count [9.27e-01]
+        addq      $232, %rsp                                    #339.1
+	.cfi_def_cfa_offset 56
+	.cfi_restore 6
+        popq      %rbp                                          #339.1
+	.cfi_def_cfa_offset 48
+	.cfi_restore 3
+        popq      %rbx                                          #339.1
+	.cfi_def_cfa_offset 40
+	.cfi_restore 15
+        popq      %r15                                          #339.1
+	.cfi_def_cfa_offset 32
+	.cfi_restore 14
+        popq      %r14                                          #339.1
+	.cfi_def_cfa_offset 24
+	.cfi_restore 13
+        popq      %r13                                          #339.1
+	.cfi_def_cfa_offset 16
+	.cfi_restore 12
+        popq      %r12                                          #339.1
+	.cfi_def_cfa_offset 8
+        ret                                                     #339.1
+	.cfi_def_cfa_offset 288
+	.cfi_offset 3, -48
+	.cfi_offset 6, -56
+	.cfi_offset 12, -16
+	.cfi_offset 13, -24
+	.cfi_offset 14, -32
+	.cfi_offset 15, -40
+                                # LOE
+..B2.13:                        # Preds ..B2.7
+                                # Execution count [1.72e+00]: Infreq
+        movl      max_num_blocks(%rip), %ebx                    #239.29
+        xorl      %ecx, %ecx                                    #239.18
+        testl     %ebx, %ebx                                    #239.29
+        jle       ..B2.30       # Prob 10%                      #239.29
+                                # LOE rdx rsi rdi r8 r9 r11 eax ecx ebx
+..B2.14:                        # Preds ..B2.13
+                                # Execution count [1.55e+00]: Infreq
+        cmpl      $0, (%rsi)                                    #240.39
+        jl        ..B2.30       # Prob 20%                      #240.39
+                                # LOE rdx rsi rdi r8 r9 r11 eax ecx ebx
+..B2.15:                        # Preds ..B2.14
+                                # Execution count [1.24e+00]: Infreq
+        movl      $1, %ecx                                      #239.45
+        cmpl      $1, %ebx                                      #239.29
+        jle       ..B2.30       # Prob 18%                      #239.29
+                                # LOE rdx rsi rdi r8 r9 r11 eax ecx ebx
+..B2.16:                        # Preds ..B2.15
+                                # Execution count [1.01e+00]: Infreq
+        cmpl      $0, 192(%rsi)                                 #240.39
+        jl        ..B2.105      # Prob 20%                      #240.39
+                                # LOE rdx rsi rdi r8 r9 r11 eax ecx ebx
+..B2.17:                        # Preds ..B2.16
+                                # Execution count [8.11e-01]: Infreq
+        movl      $2, %ecx                                      #239.45
+        cmpl      $2, %ebx                                      #239.29
+        jle       ..B2.30       # Prob 18%                      #239.29
+                                # LOE rdx rsi rdi r8 r9 r11 eax ecx ebx
+..B2.18:                        # Preds ..B2.17
+                                # Execution count [6.65e-01]: Infreq
+        cmpl      $0, 384(%rsi)                                 #240.39
+        jl        ..B2.104      # Prob 20%                      #240.39
+                                # LOE rdx rsi rdi r8 r9 r11 eax ecx ebx
+..B2.19:                        # Preds ..B2.18
+                                # Execution count [5.32e-01]: Infreq
+        movl      $3, %ecx                                      #239.45
+        cmpl      $3, %ebx                                      #239.29
+        jle       ..B2.30       # Prob 18%                      #239.29
+                                # LOE rdx rsi rdi r8 r9 r11 eax ecx ebx
+..B2.20:                        # Preds ..B2.19
+                                # Execution count [4.36e-01]: Infreq
+        cmpl      $0, 576(%rsi)                                 #240.39
+        jl        ..B2.103      # Prob 20%                      #240.39
+                                # LOE rdx rsi rdi r8 r9 r11 eax ecx ebx
+..B2.21:                        # Preds ..B2.20
+                                # Execution count [3.49e-01]: Infreq
+        movl      $4, %ecx                                      #239.45
+        cmpl      $4, %ebx                                      #239.29
+        jle       ..B2.30       # Prob 18%                      #239.29
+                                # LOE rdx rsi rdi r8 r9 r11 eax ecx ebx
+..B2.22:                        # Preds ..B2.21
+                                # Execution count [2.86e-01]: Infreq
+        movl      $768, %r10d                                   #240.16
+        cmpl      $0, 768(%rsi)                                 #240.39
+        jl        ..B2.32       # Prob 20%                      #240.39
+                                # LOE rdx rsi rdi r8 r9 r10 r11 eax ecx ebx
+..B2.23:                        # Preds ..B2.22
+                                # Execution count [2.29e-01]: Infreq
+        movl      $5, %ecx                                      #239.45
+        cmpl      $5, %ebx                                      #239.29
+        jle       ..B2.30       # Prob 18%                      #239.29
+                                # LOE rdx rsi rdi r8 r9 r11 eax ecx ebx
+..B2.24:                        # Preds ..B2.23
+                                # Execution count [1.88e-01]: Infreq
+        movl      $960, %r10d                                   #240.16
+        cmpl      $0, 960(%rsi)                                 #240.39
+        jl        ..B2.32       # Prob 20%                      #240.39
+                                # LOE rdx rsi rdi r8 r9 r10 r11 eax ecx ebx
+..B2.25:                        # Preds ..B2.24
+                                # Execution count [1.50e-01]: Infreq
+        movl      $6, %ecx                                      #239.45
+        movl      $1152, %r10d                                  #240.20
+        cmpl      $6, %ebx                                      #239.29
+        jle       ..B2.30       # Prob 18%                      #239.29
+                                # LOE rdx rsi rdi r8 r9 r10 r11 eax ecx ebx
+..B2.27:                        # Preds ..B2.25 ..B2.28
+                                # Execution count [3.58e-01]: Infreq
+        cmpl      $0, (%r10,%rsi)                               #240.39
+        jl        ..B2.32       # Prob 20%                      #240.39
+                                # LOE rdx rsi rdi r8 r9 r10 r11 eax ecx ebx
+..B2.28:                        # Preds ..B2.27
+                                # Execution count [2.86e-01]: Infreq
+        incl      %ecx                                          #239.45
+        addq      $192, %r10                                    #239.45
+        cmpl      %ebx, %ecx                                    #239.29
+        jl        ..B2.27       # Prob 82%                      #239.29
+                                # LOE rdx rsi rdi r8 r9 r10 r11 eax ecx ebx
+..B2.30:                        # Preds ..B2.28 ..B2.25 ..B2.23 ..B2.21 ..B2.19
+                                #       ..B2.17 ..B2.15 ..B2.14 ..B2.13
+                                # Execution count [1.13e+00]: Infreq
+        cmpl      %ebx, %ecx                                    #242.22
+        je        ..B2.100      # Prob 4%                       #242.22
+                                # LOE rdx rsi rdi r8 r9 r11 eax ecx
+..B2.31:                        # Preds ..B2.30
+                                # Execution count [1.08e+00]: Infreq
+        movslq    %ecx, %rcx                                    #246.22
+        lea       (%rcx,%rcx,2), %r10                           #246.22
+        shlq      $6, %r10                                      #246.22
+                                # LOE rdx rsi rdi r8 r9 r10 r11 eax ecx
+..B2.32:                        # Preds ..B2.27 ..B2.24 ..B2.22 ..B2.103 ..B2.104
+                                #       ..B2.105 ..B2.31
+                                # Execution count [1.65e+00]: Infreq
+        movl      num_active(%rip), %r14d                       #249.18
+        lea       1(%rcx), %ebx                                 #247.20
+        movl      max_active_block(%rip), %ebp                  #247.25
+        cmpl      %ebp, %ebx                                    #247.13
+        movl      local_max_b(%rip), %r13d                      #249.36
+        cmovge    %ebx, %ebp                                    #247.13
+        lea       1(%r14), %r12d                                #249.31
+        cmpl      %r13d, %r12d                                  #249.13
+        movq      (%rsp), %r15                                  #253.13[spill]
+        cmovge    %r12d, %r13d                                  #249.13
+        addl      $-7, %r14d                                    #251.13
+        movl      %ebp, max_active_block(%rip)                  #248.16
+        addq      %rsi, %r10                                    #246.22
+        movl      %r13d, local_max_b(%rip)                      #250.16
+        movl      %r14d, num_active(%rip)                       #251.13
+        incl      num_reformed(%rip)                            #252.13
+        incl      (%r15,%r8,4)                                  #253.13
+        addl      $-8, 4(%r15,%r8,4)                            #254.13
+        movslq    8(%r9), %r13                                  #258.26
+        imulq     $100, %r13, %r14                              #261.13
+        movl      %r13d, 16(%r10)                               #258.13
+        movslq    16(%r9), %r15                                 #260.32
+        addq      56(%rsp), %r14                                #261.13[spill]
+        movl      (%r9), %ebx                                   #255.26
+        movl      4(%r9), %ebp                                  #257.25
+        movl      12(%r9), %r12d                                #259.31
+        movl      %ebx, (%r10)                                  #255.13
+        movl      %r15d, 24(%r10)                               #260.13
+        movl      $-1, (%r9)                                    #256.13
+        movl      %ebp, 4(%r10)                                 #257.13
+        movl      %r12d, 20(%r10)                               #259.13
+        movl      %ecx, 24(%r14,%r15,4)                         #261.13
+        movslq    (%rdi,%r8,4), %r14                            #262.13
+        movslq    4(%rdi,%r8,4), %rbx                           #262.13
+        movl      (%r10), %r15d                                 #262.32
+        cmpq      %rbx, %r14                                    #262.13
+        jge       ..B2.37       # Prob 10%                      #262.13
+                                # LOE rdx rbx rsi rdi r8 r9 r10 r11 r14 eax ecx r15d
+..B2.34:                        # Preds ..B2.32 ..B2.35
+                                # Execution count [4.31e+00]: Infreq
+        cmpl      (%rdx,%r14,8), %r15d                          #262.13
+        jg        ..B2.37       # Prob 20%                      #262.13
+                                # LOE rdx rbx rsi rdi r8 r9 r10 r11 r14 eax ecx r15d
+..B2.35:                        # Preds ..B2.34
+                                # Execution count [3.45e+00]: Infreq
+        incq      %r14                                          #262.13
+        cmpq      %rbx, %r14                                    #262.13
+        jl        ..B2.34       # Prob 82%                      #262.13
+                                # LOE rdx rbx rsi rdi r8 r9 r10 r11 r14 eax ecx r15d
+..B2.37:                        # Preds ..B2.34 ..B2.35 ..B2.32
+                                # Execution count [1.65e+00]: Infreq
+        movslq    num_refine(%rip), %rbx                        #262.13
+        xorl      %ebp, %ebp                                    #262.13
+        xorl      %r13d, %r13d                                  #262.13
+        movslq    4(%rdi,%rbx,4), %rbx                          #262.13
+        cmpq      %r14, %rbx                                    #262.13
+        jle       ..B2.41       # Prob 9%                       #262.13
+                                # LOE rdx rbx rbp rsi rdi r8 r9 r10 r11 r13 r14 eax ecx r15d
+..B2.38:                        # Preds ..B2.37
+                                # Execution count [1.48e+00]: Infreq
+        movl      %eax, 136(%rsp)                               #262.13[spill]
+        lea       (%rdx,%rbx,8), %r12                           #262.13
+        subq      %r14, %rbx                                    #262.13
+                                # LOE rdx rbx rbp rsi rdi r8 r9 r10 r11 r12 r13 r14 ecx r15d
+..B2.39:                        # Preds ..B2.39 ..B2.38
+                                # Execution count [8.24e+00]: Infreq
+        movl      -8(%r12,%r13,8), %eax                         #262.13
+        incq      %rbp                                          #262.13
+        movl      %eax, (%r12,%r13,8)                           #262.13
+        movl      -4(%r12,%r13,8), %eax                         #262.13
+        movl      %eax, 4(%r12,%r13,8)                          #262.13
+        decq      %r13                                          #262.13
+        cmpq      %rbx, %rbp                                    #262.13
+        jb        ..B2.39       # Prob 82%                      #262.13
+                                # LOE rdx rbx rbp rsi rdi r8 r9 r10 r11 r12 r13 r14 ecx r15d
+..B2.40:                        # Preds ..B2.39
+                                # Execution count [1.48e+00]: Infreq
+        movl      136(%rsp), %eax                               #[spill]
+                                # LOE rdx rsi rdi r8 r9 r10 r11 r14 eax ecx r15d
+..B2.41:                        # Preds ..B2.37 ..B2.40
+                                # Execution count [1.65e+00]: Infreq
+        movl      %r15d, (%rdx,%r14,8)                          #262.13
+        movslq    num_refine(%rip), %rbp                        #262.13
+        incq      %rbp                                          #262.13
+        movq      48(%rsp), %rbx                                #262.13[spill]
+        movl      %ecx, 4(%rdx,%r14,8)                          #262.13
+        cmpq      %rbp, %rbx                                    #262.13
+        jg        ..B2.45       # Prob 10%                      #262.13
+                                # LOE rdx rbx rsi rdi r8 r9 r10 r11 eax ecx
+..B2.43:                        # Preds ..B2.41 ..B2.43
+                                # Execution count [8.24e+00]: Infreq
+        incl      (%rdi,%rbx,4)                                 #262.13
+        incq      %rbx                                          #262.13
+        movslq    num_refine(%rip), %rbp                        #262.13
+        incq      %rbp                                          #262.13
+        cmpq      %rbp, %rbx                                    #262.13
+        jle       ..B2.43       # Prob 82%                      #262.13
+                                # LOE rdx rbx rsi rdi r8 r9 r10 r11 eax ecx
+..B2.45:                        # Preds ..B2.43 ..B2.41
+                                # Execution count [1.65e+00]: Infreq
+        movl      88(%r9), %ebx                                 #264.26
+        movl      92(%r9), %ebp                                 #265.26
+        movl      96(%r9), %r12d                                #266.26
+        movl      %ebx, 172(%r10)                               #264.13
+        xorl      %ebx, %ebx                                    #268.18
+        movl      %eax, 136(%rsp)                               #268.22[spill]
+        movl      $0, 8(%r10)                                   #263.13
+        movl      %ebp, 176(%r10)                               #265.13
+        movq      %r9, %rbp                                     #268.22
+        movl      %r12d, 180(%r10)                              #266.13
+        movq      %r10, 200(%rsp)                               #268.22[spill]
+        movl      %ecx, 24(%rsp)                                #268.22[spill]
+        movq      %r9, 16(%rsp)                                 #268.22[spill]
+        movq      %r11, 8(%rsp)                                 #268.22[spill]
+        movq      %rdx, 128(%rsp)                               #268.22[spill]
+        movq      88(%rsp), %rax                                #268.22[spill]
+                                # LOE rax rbp rsi rdi r8 ebx
+..B2.46:                        # Preds ..B2.76 ..B2.45
+                                # Execution count [1.32e+01]: Infreq
+        movslq    24(%rbp), %rdx                                #269.30
+        movl      4(%rdi,%r8,4), %ecx                           #270.16
+        movl      (%rdi,%rax,4), %r9d                           #270.16
+        movslq    %ecx, %r10                                    #270.16
+        lea       (%rdx,%rdx,2), %r13                           #269.23
+        shlq      $6, %r13                                      #269.23
+        movl      (%r13,%rsi), %edx                             #270.32
+        cmpl      %r9d, %ecx                                    #270.16
+        jge       ..B2.51       # Prob 10%                      #270.16
+                                # LOE rax rbp rsi rdi r8 r10 r13 edx ecx ebx r9d
+..B2.47:                        # Preds ..B2.46
+                                # Execution count [1.19e+01]: Infreq
+        movq      128(%rsp), %r11                               #[spill]
+                                # LOE rax rbp rsi rdi r8 r10 r11 r13 edx ecx ebx r9d
+..B2.48:                        # Preds ..B2.49 ..B2.47
+                                # Execution count [3.45e+01]: Infreq
+        cmpl      (%r11,%r10,8), %edx                           #270.16
+        je        ..B2.51       # Prob 20%                      #270.16
+                                # LOE rax rbp rsi rdi r8 r10 r11 r13 edx ecx ebx r9d
+..B2.49:                        # Preds ..B2.48
+                                # Execution count [2.76e+01]: Infreq
+        incl      %ecx                                          #270.16
+        incq      %r10                                          #270.16
+        cmpl      %r9d, %ecx                                    #270.16
+        jl        ..B2.48       # Prob 82%                      #270.16
+                                # LOE rax rbp rsi rdi r8 r10 r11 r13 edx ecx ebx r9d
+..B2.50:                        # Preds ..B2.49
+                                # Execution count [4.97e+00]: Infreq
+        movslq    %ecx, %r10                                    #270.16
+                                # LOE rax rbp rsi rdi r8 r10 r13 edx ecx ebx
+..B2.51:                        # Preds ..B2.46 ..B2.48 ..B2.50
+                                # Execution count [1.32e+01]: Infreq
+        movq      128(%rsp), %r9                                #270.16[spill]
+        lea       (%r9,%r10,8), %r9                             #270.16
+        cmpl      (%r9), %edx                                   #270.16
+        jne       ..B2.95       # Prob 5%                       #270.16
+                                # LOE rax rbp rsi rdi r8 r9 r13 edx ecx ebx
+..B2.52:                        # Preds ..B2.51
+                                # Execution count [1.25e+01]: Infreq
+        movslq    num_refine(%rip), %rdx                        #270.16
+        movq      %rax, %r10                                    #270.16
+        lea       1(%rdx), %r11                                 #270.16
+        cmpq      %r11, %rax                                    #270.16
+        jg        ..B2.56       # Prob 15%                      #270.16
+                                # LOE rax rdx rbp rsi rdi r8 r9 r10 r13 ecx ebx
+..B2.54:                        # Preds ..B2.52 ..B2.54
+                                # Execution count [5.89e+01]: Infreq
+        decl      (%rdi,%r10,4)                                 #270.16
+        incq      %r10                                          #270.16
+        movslq    num_refine(%rip), %rdx                        #270.16
+        lea       1(%rdx), %r11                                 #270.16
+        cmpq      %r11, %r10                                    #270.16
+        jle       ..B2.54       # Prob 82%                      #270.16
+                                # LOE rax rdx rbp rsi rdi r8 r9 r10 r13 ecx ebx
+..B2.56:                        # Preds ..B2.54 ..B2.52
+                                # Execution count [1.25e+01]: Infreq
+        cmpl      4(%rdi,%rdx,4), %ecx                          #270.16
+        jge       ..B2.60       # Prob 10%                      #270.16
+                                # LOE rax rbp rsi rdi r8 r9 r13 ecx ebx
+..B2.57:                        # Preds ..B2.56
+                                # Execution count [1.13e+01]: Infreq
+        xorl      %edx, %edx                                    #270.16
+                                # LOE rax rdx rbp rsi rdi r8 r9 r13 ecx ebx
+..B2.58:                        # Preds ..B2.58 ..B2.57
+                                # Execution count [6.26e+01]: Infreq
+        incq      %rdx                                          #270.16
+        incl      %ecx                                          #270.16
+        movl      (%r9,%rdx,8), %r10d                           #270.16
+        movl      4(%r9,%rdx,8), %r11d                          #270.16
+        movl      %r10d, -8(%r9,%rdx,8)                         #270.16
+        movl      %r11d, -4(%r9,%rdx,8)                         #270.16
+        movslq    num_refine(%rip), %r12                        #270.16
+        cmpl      4(%rdi,%r12,4), %ecx                          #270.16
+        jl        ..B2.58       # Prob 82%                      #270.16
+                                # LOE rax rdx rbp rsi rdi r8 r9 r13 ecx ebx
+..B2.60:                        # Preds ..B2.58 ..B2.56
+                                # Execution count [1.32e+01]: Infreq
+        movl      $-1, (%r13,%rsi)                              #271.16
+        xorl      %ecx, %ecx                                    #275.21
+        movslq    num_vars(%rip), %rdx                          #275.32
+        movslq    x_block_half(%rip), %r12                      #272.27
+        movslq    y_block_half(%rip), %r10                      #273.31
+        movslq    z_block_half(%rip), %r11                      #274.27
+        testq     %rdx, %rdx                                    #275.32
+        jle       ..B2.76       # Prob 10%                      #275.32
+                                # LOE rax rdx rcx rbp rsi rdi r8 r10 r11 r12 r13 ebx
+..B2.61:                        # Preds ..B2.60
+                                # Execution count [1.19e+01]: Infreq
+        movl      %ebx, %r15d                                   #273.25
+        movl      %ebx, %r14d                                   #274.24
+        shrl      $1, %r15d                                     #273.25
+        movl      %ebx, %r9d                                    #272.24
+        shrl      $2, %r14d                                     #274.24
+        andl      $1, %r15d                                     #273.28
+        imull     %r11d, %r14d                                  #274.27
+        andl      $1, %r9d                                      #272.24
+        imull     %r10d, %r15d                                  #273.31
+        imull     %r12d, %r9d                                   #272.27
+        movslq    %r14d, %r14                                   #274.16
+        movslq    %r15d, %r15                                   #273.16
+        movslq    %r9d, %r9                                     #272.16
+        movq      %r15, 216(%rsp)                               #272.16[spill]
+        movq      %r14, 208(%rsp)                               #272.16[spill]
+        movq      %rbp, 120(%rsp)                               #272.16[spill]
+        movl      %ebx, 112(%rsp)                               #272.16[spill]
+        movq      %rax, 88(%rsp)                                #272.16[spill]
+        movq      %r8, 104(%rsp)                                #272.16[spill]
+        movq      %rdi, 96(%rsp)                                #272.16[spill]
+                                # LOE rdx rcx rsi r9 r10 r11 r12 r13
+..B2.62:                        # Preds ..B2.74 ..B2.61
+                                # Execution count [6.59e+01]: Infreq
+        movl      $1, %edi                                      #276.29
+        movq      %rdi, %rbp                                    #276.24
+        testq     %r12, %r12                                    #276.41
+        jle       ..B2.74       # Prob 10%                      #276.41
+                                # LOE rdx rcx rbp rsi rdi r9 r10 r11 r12 r13
+..B2.63:                        # Preds ..B2.62
+                                # Execution count [5.93e+01]: Infreq
+        movq      %rdx, 168(%rsp)                               #[spill]
+                                # LOE rcx rbp rsi rdi r9 r10 r11 r12 r13
+..B2.64:                        # Preds ..B2.72 ..B2.63
+                                # Execution count [3.30e+02]: Infreq
+        movl      $1, %edx                                      #277.32
+        movl      $8, %ebx                                      #277.27
+        testq     %r10, %r10                                    #277.44
+        jle       ..B2.72       # Prob 10%                      #277.44
+                                # LOE rdx rcx rbx rbp rsi rdi r9 r10 r11 r12 r13
+..B2.65:                        # Preds ..B2.64
+                                # Execution count [2.97e+02]: Infreq
+        movq      %rdi, 192(%rsp)                               #279.28[spill]
+        lea       (,%rdi,8), %rax                               #279.28
+        movq      %r9, 184(%rsp)                                #279.28[spill]
+        lea       (%rax,%r9,8), %rax                            #279.28
+        movq      %r10, 224(%rsp)                               #279.28[spill]
+        movq      %r12, 176(%rsp)                               #279.28[spill]
+                                # LOE rax rdx rcx rbx rbp rsi r11 r13
+..B2.66:                        # Preds ..B2.70 ..B2.65
+                                # Execution count [1.65e+03]: Infreq
+        movl      $1, %r10d                                     #278.35
+        movq      %r10, %r12                                    #278.30
+        testq     %r11, %r11                                    #278.47
+        jle       ..B2.70       # Prob 10%                      #278.47
+                                # LOE rax rdx rcx rbx rbp rsi r10 r11 r12 r13
+..B2.67:                        # Preds ..B2.66
+                                # Execution count [1.48e+03]: Infreq
+        movq      200(%rsp), %r14                               #279.28[spill]
+        lea       (,%rdx,8), %r8                                #279.28
+        movq      216(%rsp), %rdi                               #279.28[spill]
+        movq      184(%r13,%rsi), %r9                           #280.34
+        movq      184(%r14), %r15                               #279.28
+        lea       (%r8,%rdi,8), %rdi                            #279.28
+        movq      (%r15,%rcx,8), %r14                           #279.28
+        movq      (%r14,%rax), %r8                              #279.28
+        movq      208(%rsp), %r14                               #279.28[spill]
+        movq      (%r8,%rdi), %r15                              #279.28
+        movq      (%r9,%rcx,8), %rdi                            #280.34
+        lea       (%r15,%r14,8), %r14                           #279.28
+        movq      8(%rdi,%rbp,8), %r8                           #281.34
+        movq      (%rdi,%rbp,8), %r15                           #280.34
+        movq      8(%r8,%rbx), %r9                              #283.34
+        movq      8(%r15,%rbx), %rdi                            #282.34
+        movq      (%r15,%rbx), %r15                             #280.34
+        movq      (%r8,%rbx), %r8                               #281.34
+        .align    16,0x90
+                                # LOE rax rdx rcx rbx rbp rsi rdi r8 r9 r10 r11 r12 r13 r14 r15
+..B2.68:                        # Preds ..B2.68 ..B2.67
+                                # Execution count [8.24e+03]: Infreq
+        movsd     (%r15,%r12,8), %xmm0                          #280.34
+        addsd     (%r8,%r12,8), %xmm0                           #281.34
+        addsd     (%rdi,%r12,8), %xmm0                          #282.34
+        addsd     (%r9,%r12,8), %xmm0                           #283.34
+        addsd     8(%r15,%r12,8), %xmm0                         #284.34
+        addsd     8(%r8,%r12,8), %xmm0                          #285.34
+        addsd     8(%rdi,%r12,8), %xmm0                         #286.34
+        addsd     8(%r9,%r12,8), %xmm0                          #287.34
+        addq      $2, %r12                                      #278.66
+        movsd     %xmm0, (%r14,%r10,8)                          #279.28
+        incq      %r10                                          #278.61
+        cmpq      %r11, %r10                                    #278.47
+        jle       ..B2.68       # Prob 82%                      #278.47
+                                # LOE rax rdx rcx rbx rbp rsi rdi r8 r9 r10 r11 r12 r13 r14 r15
+..B2.70:                        # Preds ..B2.68 ..B2.66
+                                # Execution count [1.65e+03]: Infreq
+        incq      %rdx                                          #277.58
+        addq      $16, %rbx                                     #277.63
+        cmpq      224(%rsp), %rdx                               #277.44[spill]
+        jle       ..B2.66       # Prob 82%                      #277.44
+                                # LOE rax rdx rcx rbx rbp rsi r11 r13
+..B2.71:                        # Preds ..B2.70
+                                # Execution count [2.97e+02]: Infreq
+        movq      192(%rsp), %rdi                               #[spill]
+        movq      184(%rsp), %r9                                #[spill]
+        movq      224(%rsp), %r10                               #[spill]
+        movq      176(%rsp), %r12                               #[spill]
+                                # LOE rcx rbp rsi rdi r9 r10 r11 r12 r13
+..B2.72:                        # Preds ..B2.71 ..B2.64
+                                # Execution count [3.30e+02]: Infreq
+        incq      %rdi                                          #276.55
+        addq      $2, %rbp                                      #276.60
+        cmpq      %r12, %rdi                                    #276.41
+        jle       ..B2.64       # Prob 82%                      #276.41
+                                # LOE rcx rbp rsi rdi r9 r10 r11 r12 r13
+..B2.73:                        # Preds ..B2.72
+                                # Execution count [5.93e+01]: Infreq
+        movq      168(%rsp), %rdx                               #[spill]
+                                # LOE rdx rcx rsi r9 r10 r11 r12 r13
+..B2.74:                        # Preds ..B2.73 ..B2.62
+                                # Execution count [6.59e+01]: Infreq
+        incq      %rcx                                          #275.42
+        cmpq      %rdx, %rcx                                    #275.32
+        jl        ..B2.62       # Prob 82%                      #275.32
+                                # LOE rdx rcx rsi r9 r10 r11 r12 r13
+..B2.75:                        # Preds ..B2.74
+                                # Execution count [1.19e+01]: Infreq
+        movq      120(%rsp), %rbp                               #[spill]
+        movl      112(%rsp), %ebx                               #[spill]
+        movq      88(%rsp), %rax                                #[spill]
+        movq      104(%rsp), %r8                                #[spill]
+        movq      96(%rsp), %rdi                                #[spill]
+                                # LOE rax rbp rsi rdi r8 ebx
+..B2.76:                        # Preds ..B2.75 ..B2.60
+                                # Execution count [1.32e+01]: Infreq
+        incl      %ebx                                          #268.32
+        addq      $4, %rbp                                      #268.32
+        cmpl      $8, %ebx                                      #268.29
+        jl        ..B2.46       # Prob 87%                      #268.29
+                                # LOE rax rbp rsi rdi r8 ebx
+..B2.77:                        # Preds ..B2.76
+                                # Execution count [1.65e+00]: Infreq
+        xorl      %ebp, %ebp                                    #290.18
+        xorl      %r14d, %r14d                                  #290.18
+        movq      %rax, 88(%rsp)                                #[spill]
+        xorl      %ebx, %ebx                                    #290.18
+        movq      200(%rsp), %r10                               #[spill]
+        movl      24(%rsp), %ecx                                #[spill]
+        movq      16(%rsp), %r9                                 #[spill]
+        movq      8(%rsp), %r11                                 #[spill]
+        movl      136(%rsp), %eax                               #[spill]
+        movq      %r8, 104(%rsp)                                #290.18[spill]
+        movq      %rdi, 96(%rsp)                                #290.18[spill]
+                                # LOE rbx rbp rsi r9 r10 eax ecx r14d
+..B2.78:                        # Preds ..B2.90 ..B2.77
+                                # Execution count [9.87e+00]: Infreq
+        movslq    side.410.0.2(%rbx), %rdx                      #291.34
+        movslq    24(%r9,%rdx,4), %rdi                          #291.24
+        lea       (%rdi,%rdi,2), %rdi                           #294.20
+        shlq      $6, %rdi                                      #294.20
+        addq      %rsi, %rdi                                    #294.16
+        movl      52(%rdi,%rbp,4), %edx                         #294.20
+        cmpl      $-2, %edx                                     #294.50
+        je        ..B2.94       # Prob 16%                      #294.50
+                                # LOE rbx rbp rsi rdi r9 r10 eax edx ecx r14d
+..B2.79:                        # Preds ..B2.78
+                                # Execution count [8.29e+00]: Infreq
+        cmpl      %eax, %edx                                    #298.57
+        jne       ..B2.82       # Prob 50%                      #298.57
+                                # LOE rbx rbp rsi rdi r9 r10 eax ecx r14d
+..B2.80:                        # Preds ..B2.79
+                                # Execution count [4.14e+00]: Infreq
+        movl      76(%rdi,%rbx), %r11d                          #300.23
+        testl     %r11d, %r11d                                  #300.53
+        jl        ..B2.90       # Prob 16%                      #300.53
+                                # LOE rbx rbp rsi rdi r9 r10 eax ecx r11d r14d
+..B2.81:                        # Preds ..B2.80
+                                # Execution count [3.48e+00]: Infreq
+        movl      %ebp, %r8d                                    #303.22
+        movl      %r8d, %edx                                    #303.33
+        incl      %r8d                                          #303.40
+        movl      %r11d, 76(%rbx,%r10)                          #304.22
+        andl      $-2, %edx                                     #303.33
+        andl      $1, %r8d                                      #303.43
+        movslq    76(%rdi,%rbx), %r11                           #307.29
+        addl      %r8d, %edx                                    #303.43
+        movq      %rdx, %r12                                    #307.22
+        lea       (%rsi,%rdx,4), %r15                           #308.22
+        shlq      $4, %r12                                      #307.22
+        addq      %rsi, %r12                                    #307.22
+        lea       (%r11,%r11,2), %r13                           #307.22
+        shlq      $6, %r13                                      #307.22
+        movl      %eax, 52(%r10,%rbp,4)                         #305.22
+        movl      %r14d, 28(%r10,%rbp,4)                        #306.22
+        movl      %ecx, 76(%r12,%r13)                           #307.22
+        movslq    76(%rdi,%rbx), %rdi                           #308.29
+        lea       (%rdi,%rdi,2), %rdi                           #308.22
+        shlq      $6, %rdi                                      #308.22
+        movl      %eax, 52(%r15,%rdi)                           #308.22
+        movl      %r14d, 28(%r15,%rdi)                          #309.22
+        jmp       ..B2.90       # Prob 100%                     #309.22
+                                # LOE rbx rbp rsi r9 r10 eax ecx r14d
+..B2.82:                        # Preds ..B2.79
+                                # Execution count [4.14e+00]: Infreq
+        movl      %ebp, %r15d                                   #320.31
+        xorl      %edx, %edx                                    #315.37
+        movl      %r15d, %edi                                   #324.39
+        lea       (%r10,%rbx), %r12                             #325.28
+        andl      $-2, %edi                                     #324.39
+        lea       (%rsi,%rbx), %r11                             #318.29
+        movq      %rsi, 152(%rsp)                               #328.28[spill]
+        lea       (%rsi,%rbp,4), %r8                            #319.32
+        movl      %r15d, 32(%rsp)                               #328.28[spill]
+        lea       1(%r15), %r13d                                #324.46
+        andl      $1, %r13d                                     #324.49
+        addl      %r13d, %edi                                   #324.49
+        movq      %rdi, %r13                                    #328.28
+        shlq      $4, %r13                                      #328.28
+        movl      %eax, 136(%rsp)                               #328.28[spill]
+        movl      40(%rsp), %esi                                #328.28[spill]
+                                # LOE rdx rbx rbp rdi r8 r9 r10 r11 r12 r13 ecx esi
+..B2.83:                        # Preds ..B2.88 ..B2.82
+                                # Execution count [8.28e+00]: Infreq
+        movq      %r12, 80(%rsp)                                #[spill]
+        xorl      %r15d, %r15d                                  #316.27
+        movq      %rdx, 72(%rsp)                                #[spill]
+        lea       (%rbx,%rdx,8), %r14                           #317.43
+        movq      %rbx, 64(%rsp)                                #[spill]
+        lea       (%r12,%rdx,8), %rax                           #
+                                # LOE rax rbp rdi r8 r9 r10 r11 r13 r14 r15 ecx esi
+..B2.84:                        # Preds ..B2.87 ..B2.83
+                                # Execution count [1.66e+01]: Infreq
+        movslq    side.410.0.2(%r14,%r15,4), %rdx               #317.43
+        movslq    24(%r9,%rdx,4), %rdx                          #317.33
+        lea       (%rdx,%rdx,2), %rbx                           #318.29
+        shlq      $6, %rbx                                      #318.29
+        movl      76(%rbx,%r11), %r12d                          #318.29
+        testl     %r12d, %r12d                                  #318.59
+        jl        ..B2.87       # Prob 16%                      #318.59
+                                # LOE rax rdx rbx rbp rdi r8 r9 r10 r11 r13 r14 r15 ecx esi r12d
+..B2.85:                        # Preds ..B2.84
+                                # Execution count [1.39e+01]: Infreq
+        cmpl      52(%r8,%rbx), %esi                            #319.68
+        je        ..B2.92       # Prob 0%                       #319.68
+                                # LOE rax rdx rbx rbp rdi r8 r9 r10 r11 r13 r14 r15 ecx esi r12d
+..B2.86:                        # Preds ..B2.85
+                                # Execution count [1.39e+01]: Infreq
+        movl      %r12d, 76(%rax,%r15,4)                        #325.28
+        xorl      %edx, %edx                                    #327.28
+        movq      %rax, 160(%rsp)                               #[spill]
+        movslq    76(%rbx,%r11), %rax                           #328.35
+        movl      144(%rsp), %r12d                              #326.28[spill]
+        movl      %r12d, 52(%r10,%rbp,4)                        #326.28
+        movl      %edx, 28(%r10,%rbp,4)                         #327.28
+        lea       (%rax,%rax,2), %r12                           #328.28
+        shlq      $6, %r12                                      #328.28
+        movq      152(%rsp), %rax                               #328.28[spill]
+        addq      %rax, %r12                                    #328.28
+        movl      %ecx, 76(%r13,%r12)                           #328.28
+        movslq    76(%rbx,%r11), %rbx                           #330.35
+        lea       (%rbx,%rbx,2), %r12                           #330.28
+        shlq      $6, %r12                                      #330.28
+        addq      %rax, %r12                                    #330.28
+        movl      136(%rsp), %eax                               #330.28[spill]
+        movl      %eax, 52(%r12,%rdi,4)                         #330.28
+        movl      %edx, 28(%r12,%rdi,4)                         #332.28
+        movq      160(%rsp), %rax                               #332.28[spill]
+                                # LOE rax rbp rdi r8 r9 r10 r11 r13 r14 r15 ecx esi
+..B2.87:                        # Preds ..B2.84 ..B2.86
+                                # Execution count [1.66e+01]: Infreq
+        incq      %r15                                          #316.41
+        cmpq      $2, %r15                                      #316.38
+        jl        ..B2.84       # Prob 50%                      #316.38
+                                # LOE rax rbp rdi r8 r9 r10 r11 r13 r14 r15 ecx esi
+..B2.88:                        # Preds ..B2.87
+                                # Execution count [8.28e+00]: Infreq
+        movq      72(%rsp), %rdx                                #[spill]
+        incq      %rdx                                          #315.51
+        movq      80(%rsp), %r12                                #[spill]
+        movq      64(%rsp), %rbx                                #[spill]
+        cmpq      $2, %rdx                                      #315.48
+        jl        ..B2.83       # Prob 50%                      #315.48
+                                # LOE rdx rbx rbp rdi r8 r9 r10 r11 r12 r13 ecx esi
+..B2.89:                        # Preds ..B2.88
+                                # Execution count [4.14e+00]: Infreq
+        movq      152(%rsp), %rsi                               #[spill]
+        xorl      %r14d, %r14d                                  #
+        movl      136(%rsp), %eax                               #[spill]
+                                # LOE rbx rbp rsi r9 r10 eax ecx r14d
+..B2.90:                        # Preds ..B2.80 ..B2.89 ..B2.94 ..B2.81
+                                # Execution count [9.86e+00]: Infreq
+        incq      %rbp                                          #290.32
+        addq      $16, %rbx                                     #290.32
+        cmpq      $6, %rbp                                      #290.29
+        jl        ..B2.78       # Prob 83%                      #290.29
+                                # LOE rbx rbp rsi r9 r10 eax ecx r14d
+..B2.91:                        # Preds ..B2.90
+                                # Execution count [1.64e+00]: Infreq
+        movq      104(%rsp), %r8                                #[spill]
+        movq      8(%rsp), %r11                                 #[spill]
+        movq      128(%rsp), %rdx                               #[spill]
+        movq      96(%rsp), %rdi                                #[spill]
+        movslq    max_active_parent(%rip), %rcx                 #236.23
+        jmp       ..B2.8        # Prob 100%                     #236.23
+                                # LOE rdx rcx rsi rdi r8 r9 r11 eax
+..B2.92:                        # Preds ..B2.85
+                                # Execution count [4.45e-03]: Infreq
+        movl      32(%rsp), %r9d                                #[spill]
+        movq      %rdx, %r8                                     #
+        movq      8(%rsp), %rdx                                 #[spill]
+        movl      $.L_2__STRING.6, %edi                         #320.31
+        movl      136(%rsp), %eax                               #[spill]
+        addq      $-16, %rsp                                    #320.31
+	.cfi_def_cfa_offset 304
+        movl      my_pe(%rip), %esi                             #320.31
+        movl      %eax, (%rsp)                                  #320.31
+        xorl      %eax, %eax                                    #320.31
+..___tag_value_consolidate_blocks.273:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #320.31
+..___tag_value_consolidate_blocks.274:
+                                # LOE
+..B2.108:                       # Preds ..B2.92
+                                # Execution count [4.45e-03]: Infreq
+        addq      $16, %rsp                                     #320.31
+	.cfi_def_cfa_offset 288
+                                # LOE
+..B2.93:                        # Preds ..B2.100 ..B2.95 ..B2.108
+                                # Execution count [4.45e-03]: Infreq
+        movl      $-1, %edi                                     #322.31
+#       exit(int)
+        call      exit                                          #322.31
+                                # LOE
+..B2.94:                        # Preds ..B2.78
+                                # Execution count [1.58e+00]: Infreq
+        movl      $-2, 52(%r10,%rbp,4)                          #296.19
+        movl      $0, 28(%r10,%rbp,4)                           #297.19
+        jmp       ..B2.90       # Prob 100%                     #297.19
+                                # LOE rbx rbp rsi r9 r10 eax ecx r14d
+..B2.95:                        # Preds ..B2.51
+                                # Execution count [6.59e-01]: Infreq
+        movl      $.L_2__STRING.7, %edi                         #270.16
+        xorl      %eax, %eax                                    #270.16
+        movl      my_pe(%rip), %esi                             #270.16
+..___tag_value_consolidate_blocks.276:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #270.16
+..___tag_value_consolidate_blocks.277:
+        jmp       ..B2.93       # Prob 100%                     #270.16
+                                # LOE
+..B2.100:                       # Preds ..B2.30
+                                # Execution count [6.87e-02]: Infreq
+        movl      $.L_2__STRING.5, %edi                         #243.16
+        xorl      %eax, %eax                                    #243.16
+        movl      my_pe(%rip), %esi                             #243.16
+..___tag_value_consolidate_blocks.278:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #243.16
+..___tag_value_consolidate_blocks.279:
+        jmp       ..B2.93       # Prob 100%                     #243.16
+                                # LOE
+..B2.103:                       # Preds ..B2.20
+                                # Execution count [8.73e-02]: Infreq
+        movl      $576, %r10d                                   #246.22
+        jmp       ..B2.32       # Prob 100%                     #246.22
+                                # LOE rdx rsi rdi r8 r9 r10 r11 eax ecx
+..B2.104:                       # Preds ..B2.18
+                                # Execution count [1.33e-01]: Infreq
+        movl      $384, %r10d                                   #246.22
+        jmp       ..B2.32       # Prob 100%                     #246.22
+                                # LOE rdx rsi rdi r8 r9 r10 r11 eax ecx
+..B2.105:                       # Preds ..B2.16
+                                # Execution count [2.03e-01]: Infreq
+        movl      $192, %r10d                                   #246.22
+        jmp       ..B2.32       # Prob 100%                     #246.22
+        .align    16,0x90
+                                # LOE rdx rsi rdi r8 r9 r10 r11 eax ecx
+	.cfi_endproc
+# mark_end;
+	.type	consolidate_blocks,@function
+	.size	consolidate_blocks,.-consolidate_blocks
+..LNconsolidate_blocks.1:
+	.section .rodata, "a"
+	.space 8, 0x00 	# pad
+	.align 32
+side.410.0.2:
+	.long	0
+	.long	2
+	.long	4
+	.long	6
+	.long	1
+	.long	3
+	.long	5
+	.long	7
+	.long	0
+	.long	1
+	.long	4
+	.long	5
+	.long	2
+	.long	3
+	.long	6
+	.long	7
+	.long	0
+	.long	1
+	.long	2
+	.long	3
+	.long	4
+	.long	5
+	.long	6
+	.long	7
+	.data
+# -- End  consolidate_blocks
+	.text
+.L_2__routine_start_add_sorted_list_2:
+# -- Begin  add_sorted_list
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl add_sorted_list
+# --- add_sorted_list(int, int, int)
+add_sorted_list:
+# parameter 1: %edi
+# parameter 2: %esi
+# parameter 3: %edx
+..B3.1:                         # Preds ..B3.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_add_sorted_list.281:
+..L282:
+                                                        #342.1
+        pushq     %rbp                                          #342.1
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+        movslq    %edx, %r10                                    #342.1
+        movq      sorted_index(%rip), %r11                      #345.13
+        movq      sorted_list(%rip), %r8                        #346.20
+        movslq    (%r11,%r10,4), %r9                            #345.13
+        movslq    4(%r11,%r10,4), %rax                          #345.38
+        cmpq      %rax, %r9                                     #345.38
+        jge       ..B3.6        # Prob 10%                      #345.38
+                                # LOE rax rbx r8 r9 r10 r11 r12 r13 r14 r15 esi edi
+..B3.3:                         # Preds ..B3.1 ..B3.4
+                                # Execution count [2.62e+00]
+        cmpl      (%r8,%r9,8), %esi                             #346.20
+        jg        ..B3.6        # Prob 20%                      #346.20
+                                # LOE rax rbx r8 r9 r10 r11 r12 r13 r14 r15 esi edi
+..B3.4:                         # Preds ..B3.3
+                                # Execution count [2.09e+00]
+        incq      %r9                                           #345.61
+        cmpq      %rax, %r9                                     #345.38
+        jl        ..B3.3        # Prob 82%                      #345.38
+                                # LOE rax rbx r8 r9 r10 r11 r12 r13 r14 r15 esi edi
+..B3.6:                         # Preds ..B3.3 ..B3.4 ..B3.1
+                                # Execution count [1.00e+00]
+        movslq    num_refine(%rip), %rax                        #348.26
+        xorl      %ecx, %ecx                                    #348.4
+        xorl      %edx, %edx                                    #348.4
+        movslq    4(%r11,%rax,4), %rax                          #348.13
+        cmpq      %r9, %rax                                     #348.45
+        jle       ..B3.10       # Prob 9%                       #348.45
+                                # LOE rax rdx rcx rbx r8 r9 r10 r11 r12 r13 r14 r15 esi edi
+..B3.7:                         # Preds ..B3.6
+                                # Execution count [9.00e-01]
+        movq      %rbx, -16(%rsp)                               #348.9[spill]
+	.cfi_offset 3, -32
+        lea       (%r8,%rax,8), %rbp                            #349.31
+        subq      %r9, %rax                                     #348.9
+                                # LOE rax rdx rcx rbp r8 r9 r10 r11 r12 r13 r14 r15 esi edi
+..B3.8:                         # Preds ..B3.8 ..B3.7
+                                # Execution count [5.00e+00]
+        movl      -8(%rbp,%rdx,8), %ebx                         #349.31
+        incq      %rcx                                          #348.4
+        movl      %ebx, (%rbp,%rdx,8)                           #349.7
+        movl      -4(%rbp,%rdx,8), %ebx                         #349.31
+        movl      %ebx, 4(%rbp,%rdx,8)                          #349.7
+        decq      %rdx                                          #348.4
+        cmpq      %rax, %rcx                                    #348.4
+        jb        ..B3.8        # Prob 81%                      #348.4
+                                # LOE rax rdx rcx rbp r8 r9 r10 r11 r12 r13 r14 r15 esi edi
+..B3.9:                         # Preds ..B3.8
+                                # Execution count [9.00e-01]
+        movq      -16(%rsp), %rbx                               #[spill]
+	.cfi_restore 3
+                                # LOE rbx r8 r9 r10 r11 r12 r13 r14 r15 esi edi
+..B3.10:                        # Preds ..B3.9 ..B3.6
+                                # Execution count [1.00e+00]
+        movl      %esi, (%r8,%r9,8)                             #352.4
+        incq      %r10                                          #354.19
+        movslq    num_refine(%rip), %rax                        #354.28
+        incq      %rax                                          #354.39
+        movl      %edi, 4(%r8,%r9,8)                            #353.4
+        cmpq      %rax, %r10                                    #354.39
+        jg        ..B3.14       # Prob 10%                      #354.39
+                                # LOE rbx r10 r11 r12 r13 r14 r15
+..B3.12:                        # Preds ..B3.10 ..B3.12
+                                # Execution count [5.00e+00]
+        incl      (%r11,%r10,4)                                 #355.7
+        incq      %r10                                          #354.43
+        movslq    num_refine(%rip), %rax                        #354.28
+        incq      %rax                                          #354.39
+        cmpq      %rax, %r10                                    #354.39
+        jle       ..B3.12       # Prob 82%                      #354.39
+                                # LOE rbx r10 r11 r12 r13 r14 r15
+..B3.14:                        # Preds ..B3.12 ..B3.10
+                                # Execution count [1.00e+00]
+	.cfi_restore 6
+        popq      %rbp                                          #356.1
+	.cfi_def_cfa_offset 8
+        ret                                                     #356.1
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	add_sorted_list,@function
+	.size	add_sorted_list,.-add_sorted_list
+..LNadd_sorted_list.2:
+	.data
+# -- End  add_sorted_list
+	.text
+.L_2__routine_start_del_sorted_list_3:
+# -- Begin  del_sorted_list
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl del_sorted_list
+# --- del_sorted_list(int, int)
+del_sorted_list:
+# parameter 1: %edi
+# parameter 2: %esi
+..B4.1:                         # Preds ..B4.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_del_sorted_list.291:
+..L292:
+                                                        #359.1
+        pushq     %rsi                                          #359.1
+	.cfi_def_cfa_offset 16
+        movl      %edi, %edx                                    #359.1
+        movslq    %esi, %rsi                                    #359.1
+        movq      sorted_index(%rip), %rcx                      #362.13
+        movq      sorted_list(%rip), %rax                       #363.21
+        movl      (%rcx,%rsi,4), %edi                           #362.13
+        movl      4(%rcx,%rsi,4), %r8d                          #362.38
+        movslq    %edi, %r9                                     #362.9
+        cmpl      %r8d, %edi                                    #362.38
+        jge       ..B4.6        # Prob 10%                      #362.38
+                                # LOE rax rcx rbx rbp rsi r9 r12 r13 r14 r15 edx edi r8d
+..B4.3:                         # Preds ..B4.1 ..B4.4
+                                # Execution count [2.62e+00]
+        cmpl      (%rax,%r9,8), %edx                            #363.21
+        je        ..B4.6        # Prob 20%                      #363.21
+                                # LOE rax rcx rbx rbp rsi r9 r12 r13 r14 r15 edx edi r8d
+..B4.4:                         # Preds ..B4.3
+                                # Execution count [2.09e+00]
+        incl      %edi                                          #362.61
+        incq      %r9                                           #362.61
+        cmpl      %r8d, %edi                                    #362.38
+        jl        ..B4.3        # Prob 82%                      #362.38
+                                # LOE rax rcx rbx rbp rsi r9 r12 r13 r14 r15 edx edi r8d
+..B4.5:                         # Preds ..B4.4
+                                # Execution count [3.77e-01]
+        movslq    %edi, %r9                                     #365.18
+                                # LOE rax rcx rbx rbp rsi r9 r12 r13 r14 r15 edx edi
+..B4.6:                         # Preds ..B4.1 ..B4.3 ..B4.5
+                                # Execution count [1.00e+00]
+        lea       (%rax,%r9,8), %rax                            #365.18
+        cmpl      (%rax), %edx                                  #365.18
+        jne       ..B4.16       # Prob 5%                       #365.18
+                                # LOE rax rcx rbx rbp rsi r12 r13 r14 r15 edx edi
+..B4.7:                         # Preds ..B4.6
+                                # Execution count [9.50e-01]
+        movslq    num_refine(%rip), %rdx                        #370.28
+        incq      %rsi                                          #370.19
+        lea       1(%rdx), %r8                                  #370.39
+        cmpq      %r8, %rsi                                     #370.39
+        jg        ..B4.11       # Prob 15%                      #370.39
+                                # LOE rax rdx rcx rbx rbp rsi r12 r13 r14 r15 edi
+..B4.9:                         # Preds ..B4.7 ..B4.9
+                                # Execution count [4.47e+00]
+        decl      (%rcx,%rsi,4)                                 #371.7
+        incq      %rsi                                          #370.43
+        movslq    num_refine(%rip), %rdx                        #370.28
+        lea       1(%rdx), %r8                                  #370.39
+        cmpq      %r8, %rsi                                     #370.39
+        jle       ..B4.9        # Prob 82%                      #370.39
+                                # LOE rax rdx rcx rbx rbp rsi r12 r13 r14 r15 edi
+..B4.11:                        # Preds ..B4.9 ..B4.7
+                                # Execution count [9.50e-01]
+        cmpl      4(%rcx,%rdx,4), %edi                          #372.20
+        jge       ..B4.15       # Prob 10%                      #372.20
+                                # LOE rax rcx rbx rbp r12 r13 r14 r15 edi
+..B4.12:                        # Preds ..B4.11
+                                # Execution count [8.55e-01]
+        xorl      %edx, %edx                                    #372.4
+                                # LOE rax rdx rcx rbx rbp r12 r13 r14 r15 edi
+..B4.13:                        # Preds ..B4.13 ..B4.12
+                                # Execution count [4.75e+00]
+        incq      %rdx                                          #372.4
+        incl      %edi                                          #372.4
+        movl      (%rax,%rdx,8), %esi                           #373.31
+        movl      4(%rax,%rdx,8), %r8d                          #373.31
+        movl      %esi, -8(%rax,%rdx,8)                         #373.7
+        movl      %r8d, -4(%rax,%rdx,8)                         #373.7
+        movslq    num_refine(%rip), %r9                         #372.33
+        cmpl      4(%rcx,%r9,4), %edi                           #372.20
+        jl        ..B4.13       # Prob 82%                      #372.20
+                                # LOE rax rdx rcx rbx rbp r12 r13 r14 r15 edi
+..B4.15:                        # Preds ..B4.13 ..B4.11
+                                # Execution count [9.50e-01]
+        popq      %rcx                                          #376.1
+	.cfi_def_cfa_offset 8
+        ret                                                     #376.1
+	.cfi_def_cfa_offset 16
+                                # LOE
+..B4.16:                        # Preds ..B4.6
+                                # Execution count [5.00e-02]: Infreq
+        movl      $.L_2__STRING.7, %edi                         #366.7
+        xorl      %eax, %eax                                    #366.7
+        movl      my_pe(%rip), %esi                             #366.7
+..___tag_value_del_sorted_list.296:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #366.7
+..___tag_value_del_sorted_list.297:
+                                # LOE
+..B4.17:                        # Preds ..B4.16
+                                # Execution count [5.00e-02]: Infreq
+        movl      $-1, %edi                                     #368.7
+#       exit(int)
+        call      exit                                          #368.7
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	del_sorted_list,@function
+	.size	del_sorted_list,.-del_sorted_list
+..LNdel_sorted_list.3:
+	.data
+# -- End  del_sorted_list
+	.text
+.L_2__routine_start_find_sorted_list_4:
+# -- Begin  find_sorted_list
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl find_sorted_list
+# --- find_sorted_list(int, int)
+find_sorted_list:
+# parameter 1: %edi
+# parameter 2: %esi
+..B5.1:                         # Preds ..B5.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_find_sorted_list.299:
+..L300:
+                                                        #379.1
+        pushq     %rsi                                          #379.1
+	.cfi_def_cfa_offset 16
+        movl      %edi, %edx                                    #379.1
+        movslq    %esi, %rcx                                    #379.1
+        movq      sorted_index(%rip), %rax                      #382.13
+        movl      (%rax,%rcx,4), %edi                           #382.13
+        movl      4(%rax,%rcx,4), %ecx                          #382.38
+        movslq    %edi, %rsi                                    #382.9
+        cmpl      %ecx, %edi                                    #382.38
+        jge       ..B5.6        # Prob 0%                       #382.38
+                                # LOE rbx rbp rsi r12 r13 r14 r15 edx ecx edi
+..B5.2:                         # Preds ..B5.1
+                                # Execution count [9.94e-01]
+        movq      sorted_list(%rip), %rax                       #383.21
+                                # LOE rax rbx rbp rsi r12 r13 r14 r15 edx ecx edi
+..B5.3:                         # Preds ..B5.4 ..B5.2
+                                # Execution count [2.89e+00]
+        cmpl      (%rax,%rsi,8), %edx                           #383.21
+        je        ..B5.8        # Prob 20%                      #383.21
+                                # LOE rax rbx rbp rsi r12 r13 r14 r15 edx ecx edi
+..B5.4:                         # Preds ..B5.3
+                                # Execution count [2.31e+00]
+        incl      %edi                                          #382.61
+        incq      %rsi                                          #382.61
+        cmpl      %ecx, %edi                                    #382.38
+        jl        ..B5.3        # Prob 82%                      #382.38
+                                # LOE rax rbx rbp rsi r12 r13 r14 r15 edx ecx edi
+..B5.6:                         # Preds ..B5.4 ..B5.1
+                                # Execution count [4.22e-01]
+        movl      $.L_2__STRING.8, %edi                         #385.4
+        xorl      %eax, %eax                                    #385.4
+        movl      my_pe(%rip), %esi                             #385.4
+..___tag_value_find_sorted_list.302:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #385.4
+..___tag_value_find_sorted_list.303:
+                                # LOE
+..B5.7:                         # Preds ..B5.6
+                                # Execution count [4.22e-01]
+        movl      $-1, %edi                                     #387.4
+#       exit(int)
+        call      exit                                          #387.4
+                                # LOE
+..B5.8:                         # Preds ..B5.3
+                                # Execution count [5.78e-01]: Infreq
+        movl      4(%rax,%rsi,8), %eax                          #384.17
+        popq      %rcx                                          #384.17
+	.cfi_def_cfa_offset 8
+        ret                                                     #384.17
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	find_sorted_list,@function
+	.size	find_sorted_list,.-find_sorted_list
+..LNfind_sorted_list.4:
+	.data
+# -- End  find_sorted_list
+	.section .rodata, "a"
+	.align 8
+.L_2il0floatpacket.0:
+	.long	0x00000000,0x3fc00000
+	.type	.L_2il0floatpacket.0,@object
+	.size	.L_2il0floatpacket.0,8
+	.section .rodata.str1.4, "aMS",@progbits,1
+	.space 3, 0x00 	# pad
+	.align 4
+.L_2__STRING.4:
+	.long	1159750693
+	.long	1380930130
+	.long	1768759354
+	.long	1852793715
+	.long	1952671086
+	.long	1646290021
+	.long	543434016
+	.long	1814062117
+	.long	543434016
+	.long	1533633902
+	.long	542991397
+	.long	680997
+	.type	.L_2__STRING.4,@object
+	.size	.L_2__STRING.4,48
+	.align 4
+.L_2__STRING.2:
+	.long	1869771333
+	.long	1310734962
+	.long	1852383343
+	.long	1769235297
+	.long	1646290294
+	.long	1801678700
+	.long	1986076787
+	.long	1634494817
+	.long	543517794
+	.long	622879781
+	.long	1680154724
+	.word	10
+	.type	.L_2__STRING.2,@object
+	.size	.L_2__STRING.2,46
+	.space 2, 0x00 	# pad
+	.align 4
+.L_2__STRING.7:
+	.long	1330795077
+	.long	1679833682
+	.long	1935633509
+	.long	1702130287
+	.long	1768709988
+	.long	1864397939
+	.long	1680154734
+	.long	1847602464
+	.long	1700949365
+	.long	1680154738
+	.long	1953459744
+	.long	1970234912
+	.long	681070
+	.type	.L_2__STRING.7,@object
+	.size	.L_2__STRING.7,52
+	.align 4
+.L_2__STRING.0:
+	.long	1330795077
+	.long	1310734930
+	.long	543450469
+	.long	1701998445
+	.long	1869373984
+	.long	544435043
+	.long	622879781
+	.long	1852776548
+	.long	174335264
+	.byte	0
+	.type	.L_2__STRING.0,@object
+	.size	.L_2__STRING.0,37
+	.space 3, 0x00 	# pad
+	.align 4
+.L_2__STRING.3:
+	.long	1159750693
+	.long	1380930130
+	.long	1852383290
+	.long	1852990836
+	.long	1830841441
+	.long	1868788585
+	.long	1667591790
+	.long	1818370164
+	.long	543908719
+	.long	1847616549
+	.long	622882165
+	.long	543367268
+	.long	622879781
+	.word	2660
+	.byte	0
+	.type	.L_2__STRING.3,@object
+	.size	.L_2__STRING.3,55
+	.space 1, 0x00 	# pad
+	.align 4
+.L_2__STRING.6:
+	.long	1159750693
+	.long	1380930130
+	.long	1680154682
+	.long	1852793632
+	.long	543434016
+	.long	1668246626
+	.long	1680154731
+	.long	622879520
+	.long	1920409700
+	.long	543649391
+	.long	1702258028
+	.long	1680154732
+	.word	10
+	.type	.L_2__STRING.6,@object
+	.size	.L_2__STRING.6,50
+	.space 2, 0x00 	# pad
+	.align 4
+.L_2__STRING.5:
+	.long	544503119
+	.long	1713399407
+	.long	543516018
+	.long	1668246626
+	.long	1763734379
+	.long	1868767342
+	.long	1819243374
+	.long	1952539753
+	.long	1818386277
+	.long	1936417647
+	.long	174335264
+	.byte	0
+	.type	.L_2__STRING.5,@object
+	.size	.L_2__STRING.5,45
+	.space 3, 0x00 	# pad
+	.align 4
+.L_2__STRING.8:
+	.long	1330795077
+	.long	1713388114
+	.long	1600417385
+	.long	1953656691
+	.long	1818190949
+	.long	544502633
+	.long	622882415
+	.long	539828324
+	.long	1651340654
+	.long	622883429
+	.long	1869488228
+	.long	1868963956
+	.long	174354037
+	.byte	0
+	.type	.L_2__STRING.8,@object
+	.size	.L_2__STRING.8,53
+	.data
+	.comm blocks,8,8
+	.comm parents,8,8
+	.comm sorted_list,8,8
+	.comm sorted_index,8,8
+	.comm my_pe,4,4
+	.comm num_pes,4,4
+	.comm max_num_blocks,4,4
+	.comm target_active,4,4
+	.comm target_max,4,4
+	.comm target_min,4,4
+	.comm num_refine,4,4
+	.comm uniform_refine,4,4
+	.comm x_block_size,4,4
+	.comm y_block_size,4,4
+	.comm z_block_size,4,4
+	.comm num_vars,4,4
+	.comm comm_vars,4,4
+	.comm init_block_x,4,4
+	.comm init_block_y,4,4
+	.comm init_block_z,4,4
+	.comm reorder,4,4
+	.comm npx,4,4
+	.comm npy,4,4
+	.comm npz,4,4
+	.comm inbalance,4,4
+	.comm refine_freq,4,4
+	.comm report_diffusion,4,4
+	.comm checksum_freq,4,4
+	.comm stages_per_ts,4,4
+	.comm error_tol,4,4
+	.comm num_tsteps,4,4
+	.comm stencil,4,4
+	.comm report_perf,4,4
+	.comm plot_freq,4,4
+	.comm lb_opt,4,4
+	.comm block_change,4,4
+	.comm code,4,4
+	.comm permute,4,4
+	.comm nonblocking,4,4
+	.comm refine_ghost,4,4
+	.comm max_num_parents,4,4
+	.comm num_parents,4,4
+	.comm max_active_parent,4,4
+	.comm cur_max_level,4,4
+	.comm num_blocks,8,8
+	.comm block_start,8,8
+	.comm num_active,4,4
+	.comm max_active_block,4,4
+	.comm global_active,4,4
+	.comm x_block_half,4,4
+	.comm y_block_half,4,4
+	.comm z_block_half,4,4
+	.comm tol,8,8
+	.comm grid_sum,8,8
+	.comm p8,8,8
+	.comm p2,8,8
+	.comm mesh_size,12,4
+	.comm max_mesh_size,4,4
+	.comm from,8,8
+	.comm to,8,8
+	.comm msg_len,48,4
+	.comm local_max_b,4,4
+	.comm global_max_b,4,4
+	.comm num_objects,4,4
+	.comm objects,8,8
+	.comm average,1024,32
+	.comm stddev,1024,32
+	.comm minimum,1024,32
+	.comm maximum,1024,32
+	.comm timer_all,8,8
+	.comm timer_comm_all,8,8
+	.comm timer_comm_dir,24,8
+	.comm timer_comm_same,24,8
+	.comm timer_comm_diff,24,8
+	.comm timer_comm_bc,24,8
+	.comm timer_calc_all,8,8
+	.comm timer_cs_all,8,8
+	.comm timer_cs_calc,8,8
+	.comm timer_refine_all,8,8
+	.comm timer_refine_co,8,8
+	.comm timer_refine_mr,8,8
+	.comm timer_refine_sb,8,8
+	.comm timer_refine_cc,8,8
+	.comm timer_cb_all,8,8
+	.comm timer_target_all,8,8
+	.comm timer_target_rb,8,8
+	.comm timer_target_dc,8,8
+	.comm timer_target_cb,8,8
+	.comm timer_target_ab,8,8
+	.comm timer_target_da,8,8
+	.comm timer_target_sb,8,8
+	.comm timer_plot,8,8
+	.comm total_blocks,8,8
+	.comm nb_min,4,4
+	.comm nb_max,4,4
+	.comm nrs,4,4
+	.comm nps,4,4
+	.comm num_refined,4,4
+	.comm num_reformed,4,4
+	.comm counter_bc,12,4
+	.comm counter_same,12,4
+	.comm counter_diff,12,4
+	.comm counter_malloc,4,4
+	.comm size_malloc,8,8
+	.comm counter_malloc_init,4,4
+	.comm size_malloc_init,8,8
+	.comm total_red,4,4
+	.section .note.GNU-stack, ""
+# End

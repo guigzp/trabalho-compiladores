@@ -73,14 +73,6 @@ function cBench(){
   walk "${dirs[@]}"
 }
 
-# function cpu2006(){
-#   dirs=("400.perlbench/rbc/" "401.bzip2/rbc/" "403.gcc/rbc/" "429.mcf/rbc/"
-#         "433.milc/rbc/" "444.namd/rbc/" "445.gobmk/rbc/"
-#         "456.hmmer/rbc/" "458.sjeng/rbc/" "462.libquantum/rbc/" 
-#         "464.h264ref/rbc/" "470.lbm/rbc/")
-#   walk "${dirs[@]}"
-# }
-
 # benchs=( "ASC_Sequoia" "BenchmarkGame" "BitBench" "CoyoteBench" "DOE_ProxyApps_C" 
 #   "Dhrystone" "McGill" "MiBench" "Misc"  "Shootout" "Stanford" "Fhourstones" 
 #   "Linpack" "mediabench" "ASCI_Purple" "Fhourstones_31" "PolyBench"
@@ -88,5 +80,4 @@ function cBench(){
 #   "Trimaran" "TSVC" "PAQ8p" "NPB-serial" "VersaBench" "FreeBench" "cBench"
 #   "MallocBench" "McCat" "Olden" "Prolangs-C")
 
-
-benchs=( "ASC_Sequoia")
+benchs=("BenchmarkGame")

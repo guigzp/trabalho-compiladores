@@ -1,0 +1,691 @@
+# mark_description "Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.5.281 Build 20190815";
+# mark_description "-lm -S -c -o driver";
+	.file "driver.c"
+	.text
+..TXTST0:
+.L_2__routine_start_driver_0:
+# -- Begin  driver
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl driver
+# --- driver(void)
+driver:
+..B1.1:                         # Preds ..B1.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_driver.1:
+..L2:
+                                                          #36.1
+        subq      $104, %rsp                                    #36.1
+	.cfi_def_cfa_offset 112
+        pxor      %xmm0, %xmm0                                  #38.4
+        movsd     %xmm0, 88(%rsp)                               #38.4[spill]
+..___tag_value_driver.4:
+#       init(void)
+        call      init                                          #41.4
+..___tag_value_driver.5:
+                                # LOE rbx rbp r12 r13 r14 r15
+..B1.2:                         # Preds ..B1.1
+                                # Execution count [1.00e+00]
+..___tag_value_driver.7:
+#       init_profile(void)
+        call      init_profile                                  #42.4
+..___tag_value_driver.8:
+                                # LOE rbx rbp r12 r13 r14 r15
+..B1.3:                         # Preds ..B1.2
+                                # Execution count [1.00e+00]
+        movl      counter_malloc(%rip), %eax                    #43.26
+        movq      size_malloc(%rip), %rdx                       #44.23
+        movl      %eax, counter_malloc_init(%rip)               #43.4
+        movq      %rdx, size_malloc_init(%rip)                  #44.4
+..___tag_value_driver.9:
+#       timer(void)
+        call      timer                                         #46.9
+..___tag_value_driver.10:
+                                # LOE rbx rbp r12 r13 r14 r15 xmm0
+..B1.58:                        # Preds ..B1.3
+                                # Execution count [1.00e+00]
+        movsd     %xmm0, 48(%rsp)                               #46.9[spill]
+                                # LOE rbx rbp r12 r13 r14 r15
+..B1.4:                         # Preds ..B1.58
+                                # Execution count [1.00e+00]
+        movl      num_refine(%rip), %eax                        #48.8
+        orl       uniform_refine(%rip), %eax                    #48.8
+        je        ..B1.6        # Prob 78%                      #48.8
+                                # LOE rbx rbp r12 r13 r14 r15
+..B1.5:                         # Preds ..B1.4
+                                # Execution count [2.20e-01]
+        xorl      %edi, %edi                                    #48.38
+..___tag_value_driver.12:
+#       refine(int)
+        call      refine                                        #48.38
+..___tag_value_driver.13:
+                                # LOE rbx rbp r12 r13 r14 r15
+..B1.6:                         # Preds ..B1.5 ..B1.4
+                                # Execution count [1.00e+00]
+..___tag_value_driver.14:
+#       timer(void)
+        call      timer                                         #49.9
+..___tag_value_driver.15:
+                                # LOE rbx rbp r12 r13 r14 r15 xmm0
+..B1.59:                        # Preds ..B1.6
+                                # Execution count [1.00e+00]
+        movsd     %xmm0, 56(%rsp)                               #49.9[spill]
+                                # LOE rbx rbp r12 r13 r14 r15 xmm0
+..B1.7:                         # Preds ..B1.59
+                                # Execution count [1.00e+00]
+        cmpl      $0, plot_freq(%rip)                           #52.8
+        subsd     48(%rsp), %xmm0                               #50.29[spill]
+        addsd     timer_refine_all(%rip), %xmm0                 #50.4
+        movsd     %xmm0, timer_refine_all(%rip)                 #50.4
+        je        ..B1.9        # Prob 78%                      #52.8
+                                # LOE rbx rbp r12 r13 r14 r15
+..B1.8:                         # Preds ..B1.7
+                                # Execution count [2.20e-01]
+        xorl      %edi, %edi                                    #53.7
+..___tag_value_driver.18:
+#       plot(int)
+        call      plot                                          #53.7
+..___tag_value_driver.19:
+                                # LOE rbx rbp r12 r13 r14 r15
+..B1.9:                         # Preds ..B1.8 ..B1.7
+                                # Execution count [1.00e+00]
+..___tag_value_driver.20:
+#       timer(void)
+        call      timer                                         #54.9
+..___tag_value_driver.21:
+                                # LOE rbx rbp r12 r13 r14 r15 xmm0
+..B1.10:                        # Preds ..B1.9
+                                # Execution count [1.00e+00]
+        movsd     timer_plot(%rip), %xmm1                       #55.4
+        xorl      %edx, %edx                                    #59.9
+        movl      global_active(%rip), %eax                     #57.22
+        movl      $1, %esi                                      #59.25
+        movl      %eax, nb_max(%rip)                            #57.13
+        movl      %eax, nb_min(%rip)                            #57.4
+        cmpl      $0, num_tsteps(%rip)                          #59.39
+        subsd     56(%rsp), %xmm1                               #55.23[spill]
+        addsd     %xmm0, %xmm1                                  #55.4
+        movsd     %xmm1, timer_plot(%rip)                       #55.4
+        jle       ..B1.51       # Prob 1%                       #59.39
+                                # LOE rbx rbp r12 r13 r14 r15 edx esi
+..B1.11:                        # Preds ..B1.10
+                                # Execution count [9.88e-01]
+        movq      %r12, 40(%rsp)                                #[spill]
+        movq      %r13, 16(%rsp)                                #[spill]
+        movq      %r14, 24(%rsp)                                #[spill]
+        movq      %r15, 32(%rsp)                                #[spill]
+	.cfi_offset 12, -72
+	.cfi_offset 13, -96
+	.cfi_offset 14, -88
+	.cfi_offset 15, -80
+        movl      %edx, %r15d                                   #
+        movq      %rbx, (%rsp)                                  #[spill]
+        movq      %rbp, 8(%rsp)                                 #[spill]
+	.cfi_offset 3, -112
+	.cfi_offset 6, -104
+        movl      %esi, %ebp                                    #
+                                # LOE ebp r15d
+..B1.12:                        # Preds ..B1.49 ..B1.11
+                                # Execution count [4.14e+00]
+        movl      stages_per_ts(%rip), %ebx                     #60.31
+        xorl      %r13d, %r13d                                  #60.12
+        testl     %ebx, %ebx                                    #60.31
+        jle       ..B1.38       # Prob 10%                      #60.31
+                                # LOE ebx ebp r13d r15d
+..B1.13:                        # Preds ..B1.12
+                                # Execution count [3.72e+00]
+        movl      num_vars(%rip), %ecx                          #66.34
+        movsd     88(%rsp), %xmm0                               #66.34[spill]
+                                # LOE ecx ebx ebp r13d r15d xmm0
+..B1.14:                        # Preds ..B1.36 ..B1.13
+                                # Execution count [1.93e+01]
+        movl      global_active(%rip), %r8d                     #61.26
+        xorl      %r12d, %r12d                                  #66.15
+        movslq    %r8d, %r8                                     #61.26
+        movl      nb_min(%rip), %r9d                            #62.30
+        cmpl      %r9d, %r8d                                    #62.10
+        movl      nb_max(%rip), %r10d                           #64.30
+        cmovl     %r8d, %r9d                                    #62.10
+        cmpl      %r10d, %r8d                                   #64.10
+        movl      %r9d, nb_min(%rip)                            #63.13
+        cmovge    %r8d, %r10d                                   #64.10
+        addq      %r8, total_blocks(%rip)                       #61.10
+        movl      %r10d, nb_max(%rip)                           #65.13
+        testl     %ecx, %ecx                                    #66.34
+        jle       ..B1.36       # Prob 10%                      #66.34
+                                # LOE ecx ebx ebp r12d r13d r15d xmm0
+..B1.15:                        # Preds ..B1.14
+                                # Execution count [1.74e+01]
+        movl      comm_vars(%rip), %r14d                        #67.23
+                                # LOE ecx ebp r12d r13d r14d r15d
+..B1.16:                        # Preds ..B1.34 ..B1.15
+                                # Execution count [9.53e+01]
+        movl      %ecx, %r8d                                    #68.25
+        lea       (%r12,%r14), %ebx                             #67.23
+        subl      %r12d, %r8d                                   #68.25
+        cmpl      %ecx, %ebx                                    #70.16
+        cmovg     %r8d, %r14d                                   #70.16
+..___tag_value_driver.36:
+#       timer(void)
+        call      timer                                         #71.18
+..___tag_value_driver.37:
+                                # LOE ebp r12d r13d r14d r15d xmm0
+..B1.61:                        # Preds ..B1.16
+                                # Execution count [9.53e+01]
+        movsd     %xmm0, 80(%rsp)                               #71.18[spill]
+                                # LOE ebp r12d r13d r14d r15d
+..B1.17:                        # Preds ..B1.61
+                                # Execution count [9.53e+01]
+        movl      %r12d, %edi                                   #72.13
+        movl      %r14d, %esi                                   #72.13
+        movl      %r15d, %edx                                   #72.13
+..___tag_value_driver.39:
+#       comm(int, int, int)
+        call      comm                                          #72.13
+..___tag_value_driver.40:
+                                # LOE ebp r12d r13d r14d r15d
+..B1.18:                        # Preds ..B1.17
+                                # Execution count [9.53e+01]
+..___tag_value_driver.41:
+#       timer(void)
+        call      timer                                         #73.18
+..___tag_value_driver.42:
+                                # LOE ebp r12d r13d r14d r15d xmm0
+..B1.19:                        # Preds ..B1.18
+                                # Execution count [9.53e+01]
+        movaps    %xmm0, %xmm1                                  #74.36
+        movl      %r12d, %ebx                                   #75.18
+        subsd     80(%rsp), %xmm1                               #74.36[spill]
+        addsd     timer_comm_all(%rip), %xmm1                   #74.13
+        movsd     %xmm1, timer_comm_all(%rip)                   #74.13
+        testl     %r14d, %r14d                                  #75.44
+        jle       ..B1.34       # Prob 10%                      #75.44
+                                # LOE ebx ebp r12d r13d r14d r15d xmm0
+..B1.20:                        # Preds ..B1.19
+                                # Execution count [8.58e+01]
+        movsd     %xmm0, 88(%rsp)                               #75.44[spill]
+        addl      %r12d, %r14d                                  #75.44
+        movl      %r15d, 72(%rsp)                               #75.44[spill]
+                                # LOE ebx ebp r12d r13d r14d
+..B1.21:                        # Preds ..B1.32 ..B1.20
+                                # Execution count [4.75e+02]
+        movl      %ebx, %edi                                    #76.16
+..___tag_value_driver.46:
+#       stencil_calc(int)
+        call      stencil_calc                                  #76.16
+..___tag_value_driver.47:
+                                # LOE ebx ebp r12d r13d r14d
+..B1.22:                        # Preds ..B1.21
+                                # Execution count [4.75e+02]
+..___tag_value_driver.48:
+#       timer(void)
+        call      timer                                         #77.21
+..___tag_value_driver.49:
+                                # LOE ebx ebp r12d r13d r14d xmm0
+..B1.63:                        # Preds ..B1.22
+                                # Execution count [4.75e+02]
+        movsd     %xmm0, 96(%rsp)                               #77.21[spill]
+                                # LOE ebx ebp r12d r13d r14d xmm0
+..B1.23:                        # Preds ..B1.63
+                                # Execution count [4.75e+02]
+        movl      checksum_freq(%rip), %ecx                     #79.20
+        subsd     88(%rsp), %xmm0                               #78.39[spill]
+        addsd     timer_calc_all(%rip), %xmm0                   #78.16
+        movsd     %xmm0, timer_calc_all(%rip)                   #78.16
+        testl     %ecx, %ecx                                    #79.20
+        je        ..B1.31       # Prob 22%                      #79.20
+                                # LOE ecx ebx ebp r12d r13d r14d
+..B1.24:                        # Preds ..B1.23
+                                # Execution count [3.71e+02]
+        movl      %r13d, %eax                                   #79.45
+        cltd                                                    #79.45
+        idivl     %ecx                                          #79.45
+        testl     %edx, %edx                                    #79.45
+        jne       ..B1.31       # Prob 50%                      #79.45
+                                # LOE ebx ebp r12d r13d r14d
+..B1.25:                        # Preds ..B1.24
+                                # Execution count [1.85e+02]
+        movl      %ebx, %edi                                    #80.25
+..___tag_value_driver.52:
+#       check_sum(int)
+        call      check_sum                                     #80.25
+..___tag_value_driver.53:
+                                # LOE ebx ebp r12d r13d r14d xmm0
+..B1.26:                        # Preds ..B1.25
+                                # Execution count [1.85e+02]
+        movslq    %ebx, %r15                                    #83.43
+        cmpl      $0, report_diffusion(%rip)                    #81.23
+        je        ..B1.29       # Prob 50%                      #81.23
+                                # LOE r15 ebx ebp r12d r13d r14d xmm0
+..B1.27:                        # Preds ..B1.26
+                                # Execution count [9.27e+01]
+        cmpl      $0, my_pe(%rip)                               #81.44
+        jne       ..B1.29       # Prob 78%                      #81.44
+                                # LOE r15 ebx ebp r12d r13d r14d xmm0
+..B1.28:                        # Preds ..B1.27
+                                # Execution count [2.04e+01]
+        movq      grid_sum(%rip), %rcx                          #83.43
+        movaps    %xmm0, %xmm2                                  #82.22
+        movsd     tol(%rip), %xmm3                              #82.22
+        movl      $.L_2__STRING.0, %edi                         #82.22
+        movl      %ebp, %esi                                    #82.22
+        movl      %ebx, %edx                                    #82.22
+        movsd     (%rcx,%r15,8), %xmm1                          #84.56
+        movl      $4, %eax                                      #82.22
+        movsd     %xmm0, 64(%rsp)                               #82.22[spill]
+        subsd     %xmm1, %xmm2                                  #82.22
+        andps     .L_2il0floatpacket.0(%rip), %xmm2             #82.22
+        divsd     %xmm1, %xmm2                                  #82.22
+..___tag_value_driver.55:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #82.22
+..___tag_value_driver.56:
+                                # LOE r15 ebx ebp r12d r13d r14d
+..B1.70:                        # Preds ..B1.28
+                                # Execution count [2.04e+01]
+        movsd     64(%rsp), %xmm0                               #[spill]
+                                # LOE r15 ebx ebp r12d r13d r14d xmm0
+..B1.29:                        # Preds ..B1.27 ..B1.26 ..B1.70
+                                # Execution count [1.85e+02]
+        movq      grid_sum(%rip), %rcx                          #85.34
+        movaps    %xmm0, %xmm2                                  #85.34
+        movsd     (%rcx,%r15,8), %xmm1                          #85.49
+        subsd     %xmm1, %xmm2                                  #85.34
+        andps     .L_2il0floatpacket.0(%rip), %xmm2             #85.23
+        divsd     %xmm1, %xmm2                                  #85.49
+        comisd    tol(%rip), %xmm2                              #85.65
+        ja        ..B1.53       # Prob 0%                       #85.65
+                                # LOE rcx r15 ebx ebp r12d r13d r14d xmm0 xmm1
+..B1.30:                        # Preds ..B1.29
+                                # Execution count [1.85e+02]
+        movsd     %xmm0, (%rcx,%r15,8)                          #90.19
+                                # LOE ebx ebp r12d r13d r14d
+..B1.31:                        # Preds ..B1.24 ..B1.23 ..B1.30
+                                # Execution count [4.75e+02]
+..___tag_value_driver.58:
+#       timer(void)
+        call      timer                                         #92.21
+..___tag_value_driver.59:
+                                # LOE ebx ebp r12d r13d r14d xmm0
+..B1.65:                        # Preds ..B1.31
+                                # Execution count [4.75e+02]
+        movsd     %xmm0, 88(%rsp)                               #92.21[spill]
+                                # LOE ebx ebp r12d r13d r14d xmm0
+..B1.32:                        # Preds ..B1.65
+                                # Execution count [4.75e+02]
+        incl      %ebx                                          #75.53
+        subsd     96(%rsp), %xmm0                               #93.37[spill]
+        addsd     timer_cs_all(%rip), %xmm0                     #93.16
+        movsd     %xmm0, timer_cs_all(%rip)                     #93.16
+        cmpl      %r14d, %ebx                                   #75.44
+        jl        ..B1.21       # Prob 82%                      #75.44
+                                # LOE ebx ebp r12d r13d r14d
+..B1.33:                        # Preds ..B1.32
+                                # Execution count [8.55e+01]
+        movsd     88(%rsp), %xmm0                               #[spill]
+        movl      72(%rsp), %r15d                               #[spill]
+                                # LOE ebp r12d r13d r15d xmm0
+..B1.34:                        # Preds ..B1.33 ..B1.19
+                                # Execution count [9.50e+01]
+        movl      comm_vars(%rip), %r14d                        #66.53
+        addl      %r14d, %r12d                                  #66.44
+        movl      num_vars(%rip), %ecx                          #66.34
+        cmpl      %ecx, %r12d                                   #66.34
+        jl        ..B1.16       # Prob 82%                      #66.34
+                                # LOE ecx ebp r12d r13d r14d r15d xmm0
+..B1.35:                        # Preds ..B1.34
+                                # Execution count [1.71e+01]
+        movl      stages_per_ts(%rip), %ebx                     #60.31
+                                # LOE ecx ebx ebp r13d r15d xmm0
+..B1.36:                        # Preds ..B1.35 ..B1.14
+                                # Execution count [1.90e+01]
+        incl      %r13d                                         #60.46
+        incl      %r15d                                         #60.55
+        cmpl      %ebx, %r13d                                   #60.31
+        jl        ..B1.14       # Prob 82%                      #60.31
+                                # LOE ecx ebx ebp r13d r15d xmm0
+..B1.37:                        # Preds ..B1.36
+                                # Execution count [3.43e+00]
+        movsd     %xmm0, 88(%rsp)                               #[spill]
+                                # LOE ebp r15d
+..B1.38:                        # Preds ..B1.37 ..B1.12
+                                # Execution count [3.84e+00]
+        cmpl      $0, num_refine(%rip)                          #98.11
+        je        ..B1.43       # Prob 50%                      #98.11
+                                # LOE ebp r15d
+..B1.39:                        # Preds ..B1.38
+                                # Execution count [1.92e+00]
+        cmpl      $0, uniform_refine(%rip)                      #98.26
+        jne       ..B1.43       # Prob 78%                      #98.26
+                                # LOE ebp r15d
+..B1.40:                        # Preds ..B1.39
+                                # Execution count [4.22e-01]
+..___tag_value_driver.65:
+#       move(void)
+        call      move                                          #99.10
+..___tag_value_driver.66:
+                                # LOE ebp r15d
+..B1.41:                        # Preds ..B1.40
+                                # Execution count [4.22e-01]
+        movl      %ebp, %eax                                    #100.19
+        cltd                                                    #100.19
+        idivl     refine_freq(%rip)                             #100.19
+        testl     %edx, %edx                                    #100.19
+        jne       ..B1.43       # Prob 78%                      #100.19
+                                # LOE ebp r15d
+..B1.42:                        # Preds ..B1.41
+                                # Execution count [9.29e-02]
+        movl      %ebp, %edi                                    #101.13
+..___tag_value_driver.67:
+#       refine(int)
+        call      refine                                        #101.13
+..___tag_value_driver.68:
+                                # LOE ebp r15d
+..B1.43:                        # Preds ..B1.42 ..B1.41 ..B1.39 ..B1.38
+                                # Execution count [3.84e+00]
+..___tag_value_driver.69:
+#       timer(void)
+        call      timer                                         #103.12
+..___tag_value_driver.70:
+                                # LOE ebp r15d xmm0
+..B1.44:                        # Preds ..B1.43
+                                # Execution count [3.84e+00]
+        subsd     88(%rsp), %xmm0                               #104.32[spill]
+        addsd     timer_refine_all(%rip), %xmm0                 #104.7
+        movsd     %xmm0, timer_refine_all(%rip)                 #104.7
+..___tag_value_driver.72:
+#       timer(void)
+        call      timer                                         #106.12
+..___tag_value_driver.73:
+                                # LOE ebp r15d xmm0
+..B1.67:                        # Preds ..B1.44
+                                # Execution count [3.84e+00]
+        movsd     %xmm0, 56(%rsp)                               #106.12[spill]
+                                # LOE ebp r15d
+..B1.45:                        # Preds ..B1.67
+                                # Execution count [3.84e+00]
+        movl      plot_freq(%rip), %ecx                         #107.11
+        testl     %ecx, %ecx                                    #107.11
+        je        ..B1.48       # Prob 50%                      #107.11
+                                # LOE ecx ebp r15d
+..B1.46:                        # Preds ..B1.45
+                                # Execution count [1.92e+00]
+        movl      %ebp, %eax                                    #107.29
+        cltd                                                    #107.29
+        idivl     %ecx                                          #107.29
+        testl     %edx, %edx                                    #107.29
+        jne       ..B1.48       # Prob 78%                      #107.29
+                                # LOE ebp r15d
+..B1.47:                        # Preds ..B1.46
+                                # Execution count [4.22e-01]
+        movl      %ebp, %edi                                    #108.10
+..___tag_value_driver.75:
+#       plot(int)
+        call      plot                                          #108.10
+..___tag_value_driver.76:
+                                # LOE ebp r15d
+..B1.48:                        # Preds ..B1.47 ..B1.46 ..B1.45
+                                # Execution count [3.84e+00]
+..___tag_value_driver.77:
+#       timer(void)
+        call      timer                                         #109.21
+..___tag_value_driver.78:
+                                # LOE ebp r15d xmm0
+..B1.68:                        # Preds ..B1.48
+                                # Execution count [3.84e+00]
+        movaps    %xmm0, %xmm1                                  #109.21
+                                # LOE ebp r15d xmm1
+..B1.49:                        # Preds ..B1.68
+                                # Execution count [3.84e+00]
+        movsd     timer_plot(%rip), %xmm0                       #109.7
+        incl      %ebp                                          #59.51
+        subsd     56(%rsp), %xmm0                               #109.31[spill]
+        addsd     %xmm1, %xmm0                                  #109.7
+        movsd     %xmm0, timer_plot(%rip)                       #109.7
+        cmpl      num_tsteps(%rip), %ebp                        #59.39
+        jle       ..B1.12       # Prob 82%                      #59.39
+                                # LOE ebp r15d
+..B1.50:                        # Preds ..B1.49
+                                # Execution count [6.91e-01]
+        movq      40(%rsp), %r12                                #[spill]
+	.cfi_restore 12
+        movq      16(%rsp), %r13                                #[spill]
+	.cfi_restore 13
+        movq      24(%rsp), %r14                                #[spill]
+	.cfi_restore 14
+        movq      32(%rsp), %r15                                #[spill]
+	.cfi_restore 15
+        movq      (%rsp), %rbx                                  #[spill]
+	.cfi_restore 3
+        movq      8(%rsp), %rbp                                 #[spill]
+	.cfi_restore 6
+                                # LOE rbx rbp r12 r13 r14 r15
+..B1.51:                        # Preds ..B1.50 ..B1.10
+                                # Execution count [7.03e-01]
+..___tag_value_driver.91:
+#       timer(void)
+        call      timer                                         #111.16
+..___tag_value_driver.92:
+                                # LOE rbx rbp r12 r13 r14 r15 xmm0
+..B1.52:                        # Preds ..B1.51
+                                # Execution count [7.03e-01]
+        subsd     48(%rsp), %xmm0                               #111.26[spill]
+        movsd     %xmm0, timer_all(%rip)                        #111.4
+        addq      $104, %rsp                                    #112.1
+	.cfi_def_cfa_offset 8
+        ret                                                     #112.1
+	.cfi_def_cfa_offset 112
+	.cfi_offset 3, -112
+	.cfi_offset 6, -104
+	.cfi_offset 12, -72
+	.cfi_offset 13, -96
+	.cfi_offset 14, -88
+	.cfi_offset 15, -80
+                                # LOE
+..B1.53:                        # Preds ..B1.29
+                                # Execution count [2.97e-01]: Infreq
+        movq      40(%rsp), %r12                                #[spill]
+	.cfi_restore 12
+        movl      %ebx, %edx                                    #
+        movq      16(%rsp), %r13                                #[spill]
+	.cfi_restore 13
+        movl      %ebp, %esi                                    #
+        movq      24(%rsp), %r14                                #[spill]
+	.cfi_restore 14
+        movq      32(%rsp), %r15                                #[spill]
+	.cfi_restore 15
+        movq      (%rsp), %rbx                                  #[spill]
+	.cfi_restore 3
+        movq      8(%rsp), %rbp                                 #[spill]
+	.cfi_restore 6
+        cmpl      $0, my_pe(%rip)                               #86.27
+        jne       ..B1.55       # Prob 78%                      #86.27
+	.cfi_offset 3, -112
+	.cfi_offset 6, -104
+	.cfi_offset 12, -72
+	.cfi_offset 13, -96
+	.cfi_offset 14, -88
+	.cfi_offset 15, -80
+                                # LOE rbx rbp r12 r13 r14 r15 edx esi xmm0 xmm1
+..B1.54:                        # Preds ..B1.53
+                                # Execution count [6.52e-02]: Infreq
+        movl      $.L_2__STRING.1, %edi                         #87.25
+        movl      $2, %eax                                      #87.25
+..___tag_value_driver.119:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #87.25
+..___tag_value_driver.120:
+                                # LOE rbx rbp r12 r13 r14 r15
+..B1.55:                        # Preds ..B1.54 ..B1.53
+                                # Execution count [2.97e-01]: Infreq
+        addq      $104, %rsp                                    #88.25
+	.cfi_def_cfa_offset 8
+        ret                                                     #88.25
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	driver,@function
+	.size	driver,.-driver
+..LNdriver.0:
+	.data
+# -- End  driver
+	.section .rodata, "a"
+	.align 16
+	.align 16
+.L_2il0floatpacket.0:
+	.long	0xffffffff,0x7fffffff,0x00000000,0x00000000
+	.type	.L_2il0floatpacket.0,@object
+	.size	.L_2il0floatpacket.0,16
+	.section .rodata.str1.4, "aMS",@progbits,1
+	.align 4
+	.align 4
+.L_2__STRING.0:
+	.long	1981834277
+	.long	622883425
+	.long	1970479204
+	.long	1814372461
+	.long	1819222118
+	.long	1814372452
+	.long	1768169574
+	.long	622880358
+	.long	1948280428
+	.long	622881903
+	.long	681580
+	.type	.L_2__STRING.0,@object
+	.size	.L_2__STRING.0,44
+	.section .rodata.str1.32, "aMS",@progbits,1
+	.align 32
+	.align 32
+.L_2__STRING.1:
+	.long	1701669204
+	.long	1702130464
+	.long	1680154736
+	.long	1836413728
+	.long	1718363424
+	.long	1819224096
+	.long	1814372452
+	.long	1981819238
+	.long	1634300513
+	.long	543517794
+	.long	1679844389
+	.long	1701209705
+	.long	1668179314
+	.long	1869881445
+	.long	1634476143
+	.long	174417778
+	.byte	0
+	.type	.L_2__STRING.1,@object
+	.size	.L_2__STRING.1,65
+	.data
+	.comm blocks,8,8
+	.comm parents,8,8
+	.comm sorted_list,8,8
+	.comm sorted_index,8,8
+	.comm my_pe,4,4
+	.comm num_pes,4,4
+	.comm max_num_blocks,4,4
+	.comm target_active,4,4
+	.comm target_max,4,4
+	.comm target_min,4,4
+	.comm num_refine,4,4
+	.comm uniform_refine,4,4
+	.comm x_block_size,4,4
+	.comm y_block_size,4,4
+	.comm z_block_size,4,4
+	.comm num_vars,4,4
+	.comm comm_vars,4,4
+	.comm init_block_x,4,4
+	.comm init_block_y,4,4
+	.comm init_block_z,4,4
+	.comm reorder,4,4
+	.comm npx,4,4
+	.comm npy,4,4
+	.comm npz,4,4
+	.comm inbalance,4,4
+	.comm refine_freq,4,4
+	.comm report_diffusion,4,4
+	.comm checksum_freq,4,4
+	.comm stages_per_ts,4,4
+	.comm error_tol,4,4
+	.comm num_tsteps,4,4
+	.comm stencil,4,4
+	.comm report_perf,4,4
+	.comm plot_freq,4,4
+	.comm lb_opt,4,4
+	.comm block_change,4,4
+	.comm code,4,4
+	.comm permute,4,4
+	.comm nonblocking,4,4
+	.comm refine_ghost,4,4
+	.comm max_num_parents,4,4
+	.comm num_parents,4,4
+	.comm max_active_parent,4,4
+	.comm cur_max_level,4,4
+	.comm num_blocks,8,8
+	.comm block_start,8,8
+	.comm num_active,4,4
+	.comm max_active_block,4,4
+	.comm global_active,4,4
+	.comm x_block_half,4,4
+	.comm y_block_half,4,4
+	.comm z_block_half,4,4
+	.comm tol,8,8
+	.comm grid_sum,8,8
+	.comm p8,8,8
+	.comm p2,8,8
+	.comm mesh_size,12,4
+	.comm max_mesh_size,4,4
+	.comm from,8,8
+	.comm to,8,8
+	.comm msg_len,48,4
+	.comm local_max_b,4,4
+	.comm global_max_b,4,4
+	.comm num_objects,4,4
+	.comm objects,8,8
+	.comm average,1024,32
+	.comm stddev,1024,32
+	.comm minimum,1024,32
+	.comm maximum,1024,32
+	.comm timer_all,8,8
+	.comm timer_comm_all,8,8
+	.comm timer_comm_dir,24,8
+	.comm timer_comm_same,24,8
+	.comm timer_comm_diff,24,8
+	.comm timer_comm_bc,24,8
+	.comm timer_calc_all,8,8
+	.comm timer_cs_all,8,8
+	.comm timer_cs_calc,8,8
+	.comm timer_refine_all,8,8
+	.comm timer_refine_co,8,8
+	.comm timer_refine_mr,8,8
+	.comm timer_refine_sb,8,8
+	.comm timer_refine_cc,8,8
+	.comm timer_cb_all,8,8
+	.comm timer_target_all,8,8
+	.comm timer_target_rb,8,8
+	.comm timer_target_dc,8,8
+	.comm timer_target_cb,8,8
+	.comm timer_target_ab,8,8
+	.comm timer_target_da,8,8
+	.comm timer_target_sb,8,8
+	.comm timer_plot,8,8
+	.comm total_blocks,8,8
+	.comm nb_min,4,4
+	.comm nb_max,4,4
+	.comm nrs,4,4
+	.comm nps,4,4
+	.comm num_refined,4,4
+	.comm num_reformed,4,4
+	.comm counter_bc,12,4
+	.comm counter_same,12,4
+	.comm counter_diff,12,4
+	.comm counter_malloc,4,4
+	.comm size_malloc,8,8
+	.comm counter_malloc_init,4,4
+	.comm size_malloc_init,8,8
+	.comm total_red,4,4
+	.section .note.GNU-stack, ""
+# End

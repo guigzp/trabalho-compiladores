@@ -1,0 +1,465 @@
+# mark_description "Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.5.281 Build 20190815";
+# mark_description "-S -c -o Fsanity";
+	.file "Fsanity.c"
+	.text
+..TXTST0:
+.L_2__routine_start_SanityCheck1_0:
+# -- Begin  SanityCheck1
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl SanityCheck1
+# --- SanityCheck1(HeapP *, Item *)
+SanityCheck1:
+# parameter 1: %rdi
+# parameter 2: %rsi
+..B1.1:                         # Preds ..B1.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_SanityCheck1.1:
+..L2:
+                                                          #37.1
+        subq      $24, %rsp                                     #37.1
+	.cfi_def_cfa_offset 32
+        testq     %rdi, %rdi                                    #40.11
+        je        ..B1.10       # Prob 0%                       #40.11
+                                # LOE rbx rbp rsi rdi r12 r13 r14 r15
+..B1.2:                         # Preds ..B1.1
+                                # Execution count [9.94e-01]
+        movq      %rdi, %rax                                    #45.3
+        movq      %r12, 16(%rsp)                                #45.3[spill]
+	.cfi_offset 12, -16
+        movq      %rax, %r12                                    #45.3
+        movq      %r13, 8(%rsp)                                 #45.3[spill]
+	.cfi_offset 13, -24
+        movq      %rdi, %r13                                    #45.3
+        movq      %r14, (%rsp)                                  #45.3[spill]
+	.cfi_offset 14, -32
+        movq      %rsi, %r14                                    #45.3
+                                # LOE rbx rbp r12 r13 r14 r15
+..B1.3:                         # Preds ..B1.7 ..B1.2
+                                # Execution count [2.09e+00]
+        movq      %r14, %rsi                                    #48.8
+        movq      (%r12), %rdi                                  #48.8
+..___tag_value_SanityCheck1.10:
+#       LessThan(Item *, Item *)
+        call      LessThan                                      #48.8
+..___tag_value_SanityCheck1.11:
+                                # LOE rbx rbp r12 r13 r14 r15 eax
+..B1.4:                         # Preds ..B1.3
+                                # Execution count [2.09e+00]
+        testl     %eax, %eax                                    #48.8
+        jne       ..B1.9        # Prob 20%                      #48.8
+                                # LOE rbx rbp r12 r13 r14 r15
+..B1.5:                         # Preds ..B1.4
+                                # Execution count [1.67e+00]
+        movq      16(%r12), %rdi                                #52.9
+        movq      (%r12), %rsi                                  #52.9
+..___tag_value_SanityCheck1.12:
+#       SanityCheck1(HeapP *, Item *)
+        call      SanityCheck1                                  #52.9
+..___tag_value_SanityCheck1.13:
+                                # LOE rbx rbp r12 r13 r14 r15 eax
+..B1.6:                         # Preds ..B1.5
+                                # Execution count [1.67e+00]
+        testl     %eax, %eax                                    #52.9
+        je        ..B1.9        # Prob 20%                      #52.9
+                                # LOE rbx rbp r12 r13 r14 r15
+..B1.7:                         # Preds ..B1.6
+                                # Execution count [1.34e+00]
+        movq      24(%r12), %r12                                #57.10
+        cmpq      %r13, %r12                                    #59.15
+        jne       ..B1.3        # Prob 82%                      #59.15
+                                # LOE rbx rbp r12 r13 r14 r15
+..B1.8:                         # Preds ..B1.7
+                                # Execution count [2.41e-01]
+        movq      16(%rsp), %r12                                #[spill]
+	.cfi_restore 12
+        movl      $1, %eax                                      #61.9
+        movq      8(%rsp), %r13                                 #[spill]
+	.cfi_restore 13
+        movq      (%rsp), %r14                                  #[spill]
+	.cfi_restore 14
+        addq      $24, %rsp                                     #61.9
+	.cfi_def_cfa_offset 8
+        ret                                                     #61.9
+	.cfi_def_cfa_offset 32
+	.cfi_offset 12, -16
+	.cfi_offset 13, -24
+	.cfi_offset 14, -32
+                                # LOE
+..B1.9:                         # Preds ..B1.6 ..B1.4
+                                # Execution count [4.18e-01]: Infreq
+        movq      16(%rsp), %r12                                #[spill]
+	.cfi_restore 12
+        xorl      %eax, %eax                                    #50.13
+        movq      8(%rsp), %r13                                 #[spill]
+	.cfi_restore 13
+        movq      (%rsp), %r14                                  #[spill]
+	.cfi_restore 14
+        addq      $24, %rsp                                     #50.13
+	.cfi_def_cfa_offset 8
+        ret                                                     #50.13
+	.cfi_def_cfa_offset 32
+                                # LOE
+..B1.10:                        # Preds ..B1.1
+                                # Execution count [5.86e-03]: Infreq
+        movl      $1, %eax                                      #42.12
+        addq      $24, %rsp                                     #42.12
+	.cfi_def_cfa_offset 8
+        ret                                                     #42.12
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	SanityCheck1,@function
+	.size	SanityCheck1,.-SanityCheck1
+..LNSanityCheck1.0:
+	.data
+# -- End  SanityCheck1
+	.text
+.L_2__routine_start_SanityCheck2_1:
+# -- Begin  SanityCheck2
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl SanityCheck2
+# --- SanityCheck2(HeapP *)
+SanityCheck2:
+# parameter 1: %rdi
+..B2.1:                         # Preds ..B2.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_SanityCheck2.33:
+..L34:
+                                                         #66.1
+        subq      $24, %rsp                                     #66.1
+	.cfi_def_cfa_offset 32
+        testq     %rdi, %rdi                                    #71.11
+        je        ..B2.11       # Prob 0%                       #71.11
+                                # LOE rbx rbp rdi r12 r13 r14 r15
+..B2.2:                         # Preds ..B2.1
+                                # Execution count [9.94e-01]
+        movq      %rdi, %rax                                    #76.3
+        movq      %r12, 8(%rsp)                                 #76.3[spill]
+	.cfi_offset 12, -24
+        movq      %rax, %r12                                    #76.3
+        movq      %r13, (%rsp)                                  #76.3[spill]
+	.cfi_offset 13, -32
+        movq      %rdi, %r13                                    #76.3
+                                # LOE rbx rbp r12 r13 r14 r15
+..B2.3:                         # Preds ..B2.8 ..B2.2
+                                # Execution count [2.11e+00]
+        movq      16(%r12), %rdi                                #79.8
+        testq     %rdi, %rdi                                    #79.21
+        je        ..B2.8        # Prob 1%                       #79.21
+                                # LOE rbx rbp rdi r12 r13 r14 r15
+..B2.4:                         # Preds ..B2.3
+                                # Execution count [2.08e+00]
+        xorl      %ecx, %ecx                                    #81.7
+        movq      %rdi, %rdx                                    #82.7
+                                # LOE rdx rbx rbp rdi r12 r13 r14 r15 ecx
+..B2.5:                         # Preds ..B2.5 ..B2.4
+                                # Execution count [1.16e+01]
+        movl      40(%rdx), %esi                                #85.17
+        movq      24(%rdx), %rdx                                #87.15
+        lea       1(%rcx,%rsi), %ecx                            #85.10
+        cmpq      %rdi, %rdx                                    #89.19
+        jne       ..B2.5        # Prob 82%                      #89.19
+                                # LOE rdx rbx rbp rdi r12 r13 r14 r15 ecx
+..B2.6:                         # Preds ..B2.5
+                                # Execution count [2.08e+00]
+        cmpl      40(%r12), %ecx                                #90.17
+        jne       ..B2.10       # Prob 20%                      #90.17
+                                # LOE rbx rbp rdi r12 r13 r14 r15
+..B2.7:                         # Preds ..B2.6
+                                # Execution count [1.66e+00]
+..___tag_value_SanityCheck2.40:
+#       SanityCheck2(HeapP *)
+        call      SanityCheck2                                  #95.11
+..___tag_value_SanityCheck2.41:
+                                # LOE rbx rbp r12 r13 r14 r15 eax
+..B2.15:                        # Preds ..B2.7
+                                # Execution count [1.66e+00]
+        testl     %eax, %eax                                    #95.11
+        je        ..B2.10       # Prob 20%                      #95.11
+                                # LOE rbx rbp r12 r13 r14 r15
+..B2.8:                         # Preds ..B2.15 ..B2.3
+                                # Execution count [1.36e+00]
+        movq      24(%r12), %r12                                #101.10
+        cmpq      %r13, %r12                                    #103.15
+        jne       ..B2.3        # Prob 82%                      #103.15
+                                # LOE rbx rbp r12 r13 r14 r15
+..B2.9:                         # Preds ..B2.8
+                                # Execution count [2.45e-01]
+        movq      8(%rsp), %r12                                 #[spill]
+	.cfi_restore 12
+        movl      $1, %eax                                      #105.9
+        movq      (%rsp), %r13                                  #[spill]
+	.cfi_restore 13
+        addq      $24, %rsp                                     #105.9
+	.cfi_def_cfa_offset 8
+        ret                                                     #105.9
+	.cfi_def_cfa_offset 32
+	.cfi_offset 12, -24
+	.cfi_offset 13, -32
+                                # LOE
+..B2.10:                        # Preds ..B2.6 ..B2.15
+                                # Execution count [3.33e-01]: Infreq
+        movq      8(%rsp), %r12                                 #[spill]
+	.cfi_restore 12
+        xorl      %eax, %eax                                    #97.15
+        movq      (%rsp), %r13                                  #[spill]
+	.cfi_restore 13
+        addq      $24, %rsp                                     #97.15
+	.cfi_def_cfa_offset 8
+        ret                                                     #97.15
+	.cfi_def_cfa_offset 32
+                                # LOE
+..B2.11:                        # Preds ..B2.1
+                                # Execution count [5.86e-03]: Infreq
+        movl      $1, %eax                                      #73.12
+        addq      $24, %rsp                                     #73.12
+	.cfi_def_cfa_offset 8
+        ret                                                     #73.12
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	SanityCheck2,@function
+	.size	SanityCheck2,.-SanityCheck2
+..LNSanityCheck2.1:
+	.data
+# -- End  SanityCheck2
+	.text
+.L_2__routine_start_SanityCheck3_2:
+# -- Begin  SanityCheck3
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl SanityCheck3
+# --- SanityCheck3(HeapP *, int)
+SanityCheck3:
+# parameter 1: %rdi
+# parameter 2: %esi
+..B3.1:                         # Preds ..B3.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_SanityCheck3.56:
+..L57:
+                                                         #110.1
+        subq      $40, %rsp                                     #110.1
+	.cfi_def_cfa_offset 48
+        testq     %rdi, %rdi                                    #115.12
+        je        ..B3.6        # Prob 1%                       #115.12
+                                # LOE rbx rbp rdi r12 r13 r14 r15 esi
+..B3.2:                         # Preds ..B3.6 ..B3.1
+                                # Execution count [9.99e-01]
+        xorl      %eax, %eax                                    #120.3
+        movq      %rdi, %rdx                                    #121.3
+        movq      %r14, (%rsp)                                  #121.3[spill]
+	.cfi_offset 14, -48
+        movq      %rdx, %r14                                    #121.3
+        movq      %r15, 8(%rsp)                                 #121.3[spill]
+	.cfi_offset 15, -40
+        movq      %rdi, %r15                                    #121.3
+        movq      %rbx, 16(%rsp)                                #121.3[spill]
+	.cfi_offset 3, -32
+        movl      %eax, %ebx                                    #121.3
+        movq      %rbp, 24(%rsp)                                #121.3[spill]
+	.cfi_offset 6, -24
+        movl      %esi, %ebp                                    #121.3
+                                # LOE r12 r13 r14 r15 ebx ebp
+..B3.3:                         # Preds ..B3.4 ..B3.2
+                                # Execution count [2.90e+00]
+        movl      40(%r14), %esi                                #124.12
+        movq      16(%r14), %rdi                                #126.9
+        lea       1(%rbx,%rsi), %ebx                            #124.5
+..___tag_value_SanityCheck3.67:
+#       SanityCheck3(HeapP *, int)
+        call      SanityCheck3                                  #126.9
+..___tag_value_SanityCheck3.68:
+                                # LOE r12 r13 r14 r15 eax ebx ebp
+..B3.11:                        # Preds ..B3.3
+                                # Execution count [2.90e+00]
+        testl     %eax, %eax                                    #126.9
+        je        ..B3.8        # Prob 20%                      #126.9
+                                # LOE r12 r13 r14 r15 ebx ebp
+..B3.4:                         # Preds ..B3.11
+                                # Execution count [2.32e+00]
+        movq      24(%r14), %r14                                #131.10
+        cmpq      %r15, %r14                                    #133.15
+        jne       ..B3.3        # Prob 82%                      #133.15
+                                # LOE r12 r13 r14 r15 ebx ebp
+..B3.5:                         # Preds ..B3.4
+                                # Execution count [4.18e-01]
+        movl      %ebx, %eax                                    #
+        movl      %ebp, %esi                                    #
+        cmpl      %esi, %eax                                    #137.11
+        movl      $0, %eax                                      #137.11
+        movq      (%rsp), %r14                                  #[spill]
+	.cfi_restore 14
+        sete      %al                                           #137.11
+        movq      8(%rsp), %r15                                 #[spill]
+	.cfi_restore 15
+        movq      16(%rsp), %rbx                                #[spill]
+	.cfi_restore 3
+        movq      24(%rsp), %rbp                                #[spill]
+	.cfi_restore 6
+        addq      $40, %rsp                                     #137.11
+	.cfi_def_cfa_offset 8
+        ret                                                     #137.11
+	.cfi_def_cfa_offset 48
+                                # LOE
+..B3.6:                         # Preds ..B3.1
+                                # Execution count [1.83e-02]: Infreq
+        testl     %esi, %esi                                    #115.35
+        jne       ..B3.2        # Prob 94%                      #115.35
+                                # LOE rbx rbp rdi r12 r13 r14 r15 esi
+..B3.7:                         # Preds ..B3.6
+                                # Execution count [9.19e-04]: Infreq
+        movl      $1, %eax                                      #117.12
+        addq      $40, %rsp                                     #117.12
+	.cfi_def_cfa_offset 8
+        ret                                                     #117.12
+	.cfi_def_cfa_offset 48
+	.cfi_offset 3, -32
+	.cfi_offset 6, -24
+	.cfi_offset 14, -48
+	.cfi_offset 15, -40
+                                # LOE
+..B3.8:                         # Preds ..B3.11
+                                # Execution count [5.81e-01]: Infreq
+        movq      (%rsp), %r14                                  #[spill]
+	.cfi_restore 14
+        xorl      %eax, %eax                                    #128.13
+        movq      8(%rsp), %r15                                 #[spill]
+	.cfi_restore 15
+        movq      16(%rsp), %rbx                                #[spill]
+	.cfi_restore 3
+        movq      24(%rsp), %rbp                                #[spill]
+	.cfi_restore 6
+        addq      $40, %rsp                                     #128.13
+	.cfi_def_cfa_offset 8
+        ret                                                     #128.13
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	SanityCheck3,@function
+	.size	SanityCheck3,.-SanityCheck3
+..LNSanityCheck3.2:
+	.data
+# -- End  SanityCheck3
+	.text
+.L_2__routine_start_PrettyPrint_3:
+# -- Begin  PrettyPrint
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl PrettyPrint
+# --- PrettyPrint(HeapP *)
+PrettyPrint:
+# parameter 1: %rdi
+..B4.1:                         # Preds ..B4.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_PrettyPrint.94:
+..L95:
+                                                         #147.1
+        pushq     %r12                                          #147.1
+	.cfi_def_cfa_offset 16
+	.cfi_offset 12, -16
+        subq      $16, %rsp                                     #147.1
+	.cfi_def_cfa_offset 32
+        movq      %rdi, %r12                                    #147.1
+        testq     %r12, %r12                                    #150.11
+        je        ..B4.9        # Prob 0%                       #150.11
+                                # LOE rbx rbp r12 r13 r14 r15
+..B4.2:                         # Preds ..B4.1
+                                # Execution count [9.93e-01]
+        movl      $40, %edi                                     #156.3
+        call      putchar                                       #156.3
+                                # LOE rbx rbp r12 r13 r14 r15
+..B4.3:                         # Preds ..B4.2
+                                # Execution count [9.93e-01]
+        movq      %r13, (%rsp)                                  #158.3[spill]
+	.cfi_offset 13, -32
+        movq      %r12, %r13                                    #158.3
+                                # LOE rbx rbp r12 r13 r14 r15
+..B4.4:                         # Preds ..B4.6 ..B4.3
+                                # Execution count [5.52e+00]
+        movl      $.L_2__STRING.2, %edi                         #162.5
+        xorl      %eax, %eax                                    #162.5
+        movl      40(%r12), %esi                                #162.5
+..___tag_value_PrettyPrint.101:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #162.5
+..___tag_value_PrettyPrint.102:
+                                # LOE rbx rbp r12 r13 r14 r15
+..B4.5:                         # Preds ..B4.4
+                                # Execution count [5.52e+00]
+        movq      16(%r12), %rdi                                #163.5
+..___tag_value_PrettyPrint.103:
+#       PrettyPrint(HeapP *)
+        call      PrettyPrint                                   #163.5
+..___tag_value_PrettyPrint.104:
+                                # LOE rbx rbp r12 r13 r14 r15
+..B4.6:                         # Preds ..B4.5
+                                # Execution count [5.52e+00]
+        movq      24(%r12), %r12                                #164.10
+        cmpq      %r13, %r12                                    #166.15
+        jne       ..B4.4        # Prob 82%                      #166.15
+                                # LOE rbx rbp r12 r13 r14 r15
+..B4.7:                         # Preds ..B4.6
+                                # Execution count [9.93e-01]
+        movq      (%rsp), %r13                                  #[spill]
+	.cfi_restore 13
+        movl      $41, %edi                                     #168.3
+        addq      $16, %rsp                                     #168.3
+	.cfi_def_cfa_offset 16
+	.cfi_restore 12
+        popq      %r12                                          #168.3
+	.cfi_def_cfa_offset 8
+        jmp       putchar                                       #168.3
+	.cfi_def_cfa_offset 32
+	.cfi_offset 12, -16
+                                # LOE
+..B4.9:                         # Preds ..B4.1
+                                # Execution count [7.18e-03]: Infreq
+        movl      $.L_2__STRING.0, %edi                         #152.5
+        xorl      %eax, %eax                                    #152.5
+        addq      $16, %rsp                                     #152.5
+	.cfi_def_cfa_offset 16
+	.cfi_restore 12
+        popq      %r12                                          #152.5
+	.cfi_def_cfa_offset 8
+#       printf(const char *__restrict__, ...)
+        jmp       printf                                        #152.5
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	PrettyPrint,@function
+	.size	PrettyPrint,.-PrettyPrint
+..LNPrettyPrint.3:
+	.data
+# -- End  PrettyPrint
+	.section .rodata.str1.4, "aMS",@progbits,1
+	.align 4
+	.align 4
+.L_2__STRING.2:
+	.long	1567958363
+	.word	32
+	.type	.L_2__STRING.2,@object
+	.size	.L_2__STRING.2,6
+	.space 2, 0x00 	# pad
+	.align 4
+.L_2__STRING.0:
+	.long	1818848800
+	.word	32
+	.type	.L_2__STRING.0,@object
+	.size	.L_2__STRING.0,6
+	.data
+	.section .note.GNU-stack, ""
+# End

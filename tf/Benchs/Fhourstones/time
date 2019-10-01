@@ -1,0 +1,42 @@
+# mark_description "Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.5.281 Build 20190815";
+# mark_description "-DUNIX -DTRANSIZE=1050011 -DPROBES=8 -DREPORTPLY=8 -S -c -o time";
+	.file "time.c"
+	.text
+..TXTST0:
+.L_2__routine_start_millisecs_0:
+# -- Begin  millisecs
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl millisecs
+# --- millisecs()
+millisecs:
+..B1.1:                         # Preds ..B1.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_millisecs.1:
+..L2:
+                                                          #8.1
+        movq      Time.2.0.1(%rip), %rax                        #10.12
+        incq      %rax                                          #10.12
+        movq      %rax, Time.2.0.1(%rip)                        #10.12
+        ret                                                     #10.12
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	millisecs,@function
+	.size	millisecs,.-millisecs
+..LNmillisecs.0:
+	.bss
+	.align 8
+	.align 8
+Time.2.0.1:
+	.type	Time.2.0.1,@object
+	.size	Time.2.0.1,8
+	.space 8	# pad
+	.data
+# -- End  millisecs
+	.data
+	.section .note.GNU-stack, ""
+# End

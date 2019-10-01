@@ -1,0 +1,399 @@
+# mark_description "Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.5.281 Build 20190815";
+# mark_description "-DUNIX -DTRANSIZE=1050011 -DPROBES=8 -DREPORTPLY=8 -S -c -o play";
+	.file "play.c"
+	.text
+..TXTST0:
+.L_2__routine_start_reset_0:
+# -- Begin  reset
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl reset
+# --- reset()
+reset:
+..B1.1:                         # Preds ..B1.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_reset.1:
+..L2:
+                                                          #12.1
+        xorl      %eax, %eax                                    #15.3
+        movdqu    .L_2il0floatpacket.0(%rip), %xmm0             #19.18
+        pxor      %xmm1, %xmm1                                  #17.5
+        movl      %eax, plycnt(%rip)                            #15.3
+        movdqu    %xmm1, dias(%rip)                             #17.5
+        movdqu    %xmm1, 16+dias(%rip)                          #17.5
+        movdqu    %xmm1, 32+dias(%rip)                          #17.5
+        movdqu    %xmm1, 48+dias(%rip)                          #17.5
+        movl      %eax, 64+dias(%rip)                           #17.5
+        movl      %eax, 68+dias(%rip)                           #17.5
+        movl      %eax, 72+dias(%rip)                           #17.5
+        movdqu    %xmm0, columns(%rip)                          #19.5
+        movdqu    %xmm0, height(%rip)                           #20.5
+        movdqu    %xmm1, rows(%rip)                             #21.5
+        movdqu    %xmm0, 16+columns(%rip)                       #19.5
+        movdqu    %xmm0, 16+height(%rip)                        #20.5
+        movdqu    %xmm1, 16+rows(%rip)                          #21.5
+        ret                                                     #23.1
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	reset,@function
+	.size	reset,.-reset
+..LNreset.0:
+	.data
+# -- End  reset
+	.text
+.L_2__routine_start_printMoves_1:
+# -- Begin  printMoves
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl printMoves
+# --- printMoves()
+printMoves:
+..B2.1:                         # Preds ..B2.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_printMoves.4:
+..L5:
+                                                          #40.1
+        subq      $24, %rsp                                     #40.1
+	.cfi_def_cfa_offset 32
+        movl      $1, %edx                                      #43.8
+        movslq    plycnt(%rip), %rax                            #43.16
+        testq     %rax, %rax                                    #43.16
+        jle       ..B2.6        # Prob 10%                      #43.16
+                                # LOE rax rdx rbx rbp r12 r13 r14 r15
+..B2.2:                         # Preds ..B2.1
+                                # Execution count [9.00e-01]
+        movq      %r12, 8(%rsp)                                 #[spill]
+	.cfi_offset 12, -24
+        movq      %rax, %r12                                    #
+        movq      %r13, (%rsp)                                  #[spill]
+	.cfi_offset 13, -32
+        movq      %rdx, %r13                                    #
+                                # LOE rbx rbp r12 r13 r14 r15
+..B2.3:                         # Preds ..B2.4 ..B2.2
+                                # Execution count [3.96e+01]
+        movl      $.L_2__STRING.0, %edi                         #44.5
+        xorl      %eax, %eax                                    #44.5
+        movl      moves(,%r13,4), %esi                          #44.5
+..___tag_value_printMoves.11:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #44.5
+..___tag_value_printMoves.12:
+                                # LOE rbx rbp r12 r13 r14 r15
+..B2.4:                         # Preds ..B2.3
+                                # Execution count [3.96e+01]
+        incq      %r13                                          #43.24
+        cmpq      %r12, %r13                                    #43.16
+        jle       ..B2.3        # Prob 97%                      #43.16
+                                # LOE rbx rbp r12 r13 r14 r15
+..B2.5:                         # Preds ..B2.4
+                                # Execution count [9.00e-01]
+        movq      8(%rsp), %r12                                 #[spill]
+	.cfi_restore 12
+        movq      (%rsp), %r13                                  #[spill]
+	.cfi_restore 13
+                                # LOE rbx rbp r12 r13 r14 r15
+..B2.6:                         # Preds ..B2.5 ..B2.1
+                                # Execution count [1.00e+00]
+        addq      $24, %rsp                                     #45.1
+	.cfi_def_cfa_offset 8
+        ret                                                     #45.1
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	printMoves,@function
+	.size	printMoves,.-printMoves
+..LNprintMoves.1:
+	.data
+# -- End  printMoves
+	.text
+.L_2__routine_start_wins_2:
+# -- Begin  wins
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl wins
+# --- wins(int, int, int)
+wins:
+# parameter 1: %edi
+# parameter 2: %esi
+# parameter 3: %edx
+..B3.1:                         # Preds ..B3.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_wins.18:
+..L19:
+                                                         #50.1
+        lea       (%rdi,%rdi), %ecx                             #53.19
+        movslq    %esi, %rsi                                    #50.1
+        shll      %cl, %edx                                     #53.3
+        movl      rows(,%rsi,4), %r8d                           #54.7
+        orl       %edx, %r8d                                    #54.17
+        lea       (,%r8,4), %eax                                #55.15
+        andl      %eax, %r8d                                    #55.15
+        movl      %r8d, %r9d                                    #56.16
+        shll      $4, %r9d                                      #56.16
+        testl     %r9d, %r8d                                    #56.16
+        jne       ..B3.6        # Prob 28%                      #56.23
+                                # LOE rbx rbp rsi r12 r13 r14 r15 edx edi
+..B3.2:                         # Preds ..B3.1
+                                # Execution count [7.20e-01]
+        movslq    %edi, %rdi                                    #58.7
+        lea       (%rsi,%rdi), %rax                             #58.14
+        movl      20+dias(,%rax,4), %r8d                        #58.7
+        orl       %edx, %r8d                                    #58.21
+        lea       (,%r8,4), %ecx                                #59.15
+        andl      %ecx, %r8d                                    #59.15
+        movl      %r8d, %r9d                                    #60.16
+        shll      $4, %r9d                                      #60.16
+        testl     %r9d, %r8d                                    #60.16
+        je        ..B3.4        # Prob 50%                      #60.23
+                                # LOE rbx rbp rsi rdi r12 r13 r14 r15 edx
+..B3.3:                         # Preds ..B3.2
+                                # Execution count [3.60e-01]
+        movl      $1, %eax                                      #61.12
+        ret                                                     #61.12
+                                # LOE rbx rbp r12 r13 r14 r15 eax
+..B3.4:                         # Preds ..B3.2
+                                # Execution count [3.60e-01]
+        subq      %rsi, %rdi                                    #62.14
+        xorl      %eax, %eax                                    #64.19
+        movl      20+dias(,%rdi,4), %ecx                        #62.7
+        orl       %edx, %ecx                                    #62.21
+        lea       (,%rcx,4), %edx                               #63.15
+        andl      %edx, %ecx                                    #63.15
+        movl      %ecx, %esi                                    #64.19
+        shll      $4, %esi                                      #64.19
+        testl     %esi, %ecx                                    #64.19
+        setne     %al                                           #64.26
+                                # LOE rbx rbp r12 r13 r14 r15 eax
+..B3.5:                         # Preds ..B3.4
+                                # Execution count [7.20e-01]
+        ret                                                     #61.12
+                                # LOE
+..B3.6:                         # Preds ..B3.1
+                                # Execution count [2.80e-01]
+        movl      $1, %eax                                      #57.12
+        ret                                                     #57.12
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	wins,@function
+	.size	wins,.-wins
+..LNwins.2:
+	.data
+# -- End  wins
+	.text
+.L_2__routine_start_backmove_3:
+# -- Begin  backmove
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl backmove
+# --- backmove()
+backmove:
+..B4.1:                         # Preds ..B4.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_backmove.21:
+..L22:
+                                                         #68.1
+        movl      $1, %r9d                                      #75.24
+        movl      plycnt(%rip), %eax                            #71.10
+        movslq    %eax, %rax                                    #72.7
+        lea       -1(%rax), %edx                                #72.13
+        movl      %edx, plycnt(%rip)                            #72.13
+        movslq    moves(,%rax,4), %rdi                          #72.7
+        andl      $1, %eax                                      #71.17
+        movl      height(,%rdi,4), %esi                         #73.9
+        decl      %esi                                          #73.9
+        movl      %esi, height(,%rdi,4)                         #73.9
+        movslq    %esi, %rsi                                    #73.3
+        sarl      $1, columns(,%rdi,4)                          #74.3
+        lea       (%rax,%rdi,2), %ecx                           #75.24
+        shll      %cl, %r9d                                     #75.24
+        notl      %r9d                                          #75.24
+        andl      %r9d, rows(,%rsi,4)                           #76.3
+        lea       (%rdi,%rsi), %r8                              #77.10
+        subq      %rsi, %rdi                                    #78.10
+        andl      %r9d, 20+dias(,%r8,4)                         #77.3
+        andl      %r9d, 20+dias(,%rdi,4)                        #78.3
+        ret                                                     #79.1
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	backmove,@function
+	.size	backmove,.-backmove
+..LNbackmove.3:
+	.data
+# -- End  backmove
+	.text
+.L_2__routine_start_makemove_4:
+# -- Begin  makemove
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl makemove
+# --- makemove(int)
+makemove:
+# parameter 1: %edi
+..B5.1:                         # Preds ..B5.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_makemove.24:
+..L25:
+                                                         #82.1
+        movl      $1, %r11d                                     #89.22
+        movl      plycnt(%rip), %edx                            #85.11
+        incl      %edx                                          #85.11
+        movl      %edx, plycnt(%rip)                            #85.11
+        movslq    %edx, %rdx                                    #85.3
+        movslq    %edi, %rdi                                    #82.1
+        movl      %edi, moves(,%rdx,4)                          #85.3
+        andl      $1, %edx                                      #86.17
+        movl      columns(,%rdi,4), %r8d                        #88.17
+        movslq    height(,%rdi,4), %rax                         #87.7
+        movl      %eax, %esi                                    #87.7
+        incl      %esi                                          #87.7
+        lea       (%rdx,%r8,2), %r9d                            #88.36
+        movl      %esi, height(,%rdi,4)                         #87.7
+        lea       (%rdx,%rdi,2), %ecx                           #89.22
+        movl      %r9d, columns(,%rdi,4)                        #88.3
+        lea       (%rdi,%rax), %r10                             #91.10
+        subq      %rax, %rdi                                    #92.10
+        shll      %cl, %r11d                                    #89.22
+        orl       %r11d, 20+dias(,%r10,4)                       #91.3
+        orl       %r11d, rows(,%rax,4)                          #90.3
+        orl       %r11d, 20+dias(,%rdi,4)                       #92.3
+        ret                                                     #93.1
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	makemove,@function
+	.size	makemove,.-makemove
+..LNmakemove.4:
+	.data
+# -- End  makemove
+	.text
+.L_2__routine_start_play_init_5:
+# -- Begin  play_init
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl play_init
+# --- play_init()
+play_init:
+..B6.1:                         # Preds ..B6.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_play_init.27:
+..L28:
+                                                         #26.1
+        movl      $1, %edx                                      #30.5
+        movdqu    .L_2il0floatpacket.0(%rip), %xmm0             #36.3
+        pxor      %xmm1, %xmm1                                  #36.3
+        movl      $2, %eax                                      #31.5
+        xorl      %ecx, %ecx                                    #36.3
+        movl      %edx, 32+colthr(%rip)                         #30.5
+        movl      %eax, 60+colthr(%rip)                         #31.5
+        movl      %edx, 64+colthr(%rip)                         #30.5
+        movl      %eax, 92+colthr(%rip)                         #31.5
+        movl      %edx, 96+colthr(%rip)                         #30.5
+        movl      %eax, 124+colthr(%rip)                        #31.5
+        movl      %edx, 128+colthr(%rip)                        #30.5
+        movl      %eax, 156+colthr(%rip)                        #31.5
+        movl      %edx, 160+colthr(%rip)                        #30.5
+        movl      %eax, 188+colthr(%rip)                        #31.5
+        movl      %edx, 192+colthr(%rip)                        #30.5
+        movl      %eax, 220+colthr(%rip)                        #31.5
+        movl      %edx, 224+colthr(%rip)                        #30.5
+        movl      %eax, 252+colthr(%rip)                        #31.5
+        movl      %edx, 256+colthr(%rip)                        #30.5
+        movl      %eax, 284+colthr(%rip)                        #31.5
+        movl      %edx, 288+colthr(%rip)                        #30.5
+        movl      %eax, 316+colthr(%rip)                        #31.5
+        movl      %edx, 320+colthr(%rip)                        #30.5
+        movl      %eax, 348+colthr(%rip)                        #31.5
+        movl      %edx, 352+colthr(%rip)                        #30.5
+        movl      %eax, 380+colthr(%rip)                        #31.5
+        movl      %edx, 384+colthr(%rip)                        #30.5
+        movl      %eax, 412+colthr(%rip)                        #31.5
+        movl      %edx, 416+colthr(%rip)                        #30.5
+        movl      %eax, 444+colthr(%rip)                        #31.5
+        movl      %edx, 448+colthr(%rip)                        #30.5
+        movl      %eax, 476+colthr(%rip)                        #31.5
+        movl      %edx, 480+colthr(%rip)                        #30.5
+        movl      %eax, 508+colthr(%rip)                        #31.5
+        movl      %edx, 64+colwon(%rip)                         #34.5
+        movl      %edx, 124+colwon(%rip)                        #34.17
+        movl      %edx, 128+colwon(%rip)                        #34.5
+        movl      %edx, 188+colwon(%rip)                        #34.17
+        movl      %edx, 192+colwon(%rip)                        #34.5
+        movl      %edx, 252+colwon(%rip)                        #34.17
+        movl      %edx, 256+colwon(%rip)                        #34.5
+        movl      %edx, 316+colwon(%rip)                        #34.17
+        movl      %edx, 320+colwon(%rip)                        #34.5
+        movl      %edx, 380+colwon(%rip)                        #34.17
+        movl      %edx, 384+colwon(%rip)                        #34.5
+        movl      %edx, 444+colwon(%rip)                        #34.17
+        movl      %edx, 448+colwon(%rip)                        #34.5
+        movl      %edx, 508+colwon(%rip)                        #34.17
+        movl      %ecx, plycnt(%rip)                            #36.3
+        movdqu    %xmm1, dias(%rip)                             #36.3
+        movdqu    %xmm1, 16+dias(%rip)                          #36.3
+        movdqu    %xmm1, 32+dias(%rip)                          #36.3
+        movdqu    %xmm1, 48+dias(%rip)                          #36.3
+        movl      %ecx, 64+dias(%rip)                           #36.3
+        movl      %ecx, 68+dias(%rip)                           #36.3
+        movl      %ecx, 72+dias(%rip)                           #36.3
+        movdqu    %xmm0, columns(%rip)                          #36.3
+        movdqu    %xmm0, height(%rip)                           #36.3
+        movdqu    %xmm1, rows(%rip)                             #36.3
+        movdqu    %xmm0, 16+columns(%rip)                       #36.3
+        movdqu    %xmm0, 16+height(%rip)                        #36.3
+        movdqu    %xmm1, 16+rows(%rip)                          #36.3
+        ret                                                     #37.1
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	play_init,@function
+	.size	play_init,.-play_init
+..LNplay_init.5:
+	.data
+# -- End  play_init
+	.section .rodata, "a"
+	.align 16
+	.align 16
+.L_2il0floatpacket.0:
+	.long	0x00000001,0x00000001,0x00000001,0x00000001
+	.type	.L_2il0floatpacket.0,@object
+	.size	.L_2il0floatpacket.0,16
+	.section .rodata.str1.4, "aMS",@progbits,1
+	.align 4
+	.align 4
+.L_2__STRING.0:
+	.word	25637
+	.byte	0
+	.type	.L_2__STRING.0,@object
+	.size	.L_2__STRING.0,3
+	.data
+	.comm colthr,512,32
+	.comm colwon,512,32
+	.comm moves,176,32
+	.comm plycnt,4,4
+	.comm rows,32,16
+	.comm dias,76,32
+	.comm columns,512,32
+	.comm height,512,32
+	.section .note.GNU-stack, ""
+# End

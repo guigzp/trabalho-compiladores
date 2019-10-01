@@ -51,7 +51,7 @@ fi
 # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- 
 
 # LLVM_PATH  => The place where I have all the LLVM tools
-LLVM_PATH="/usr/bin"
+LLVM_PATH="/usr/lib/llvm-6.0/bin"
 
 [[ -d "${LLVM_PATH}" ]] || {
 	echo "One must define LLVM_PATH before running tf"
@@ -135,17 +135,18 @@ BENCHSDIR="$BASEDIR/Benchs/"
 
 # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- 
 
-echo "#########################"
-echo "DEBUG is set to $DEBUG"
-echo "RUNTIME is set to $RUNTIME"
-echo "CLEAN is set to $CLEAN"
-echo "PIN is set to $PIN"
-echo "EXEC is set to $EXEC"
-echo "COMPILE is set to $COMPILE"
-echo "INSTRUMENT is set to $INSTRUMENT"
-echo "suffix is set to $suffix" # .so or .dylib
-echo "BASEDIR is set to $BASEDIR"
-echo "Benchmarks dir is set to $BENCHSDIR"
-echo "PASS is set to $PASS"
-echo "DIFF is set to $DIFF"
-echo "#########################"
+# echo "#########################"
+# echo "COMPILER is set to $COMPILER"
+# echo "DEBUG is set to $DEBUG"
+# echo "RUNTIME is set to $RUNTIME"
+# echo "CLEAN is set to $CLEAN"
+# echo "PIN is set to $PIN"
+# echo "EXEC is set to $EXEC"
+# echo "COMPILE is set to $COMPILE"
+# echo "INSTRUMENT is set to $INSTRUMENT"
+# echo "suffix is set to $suffix" # .so or .dylib
+# echo "BASEDIR is set to $BASEDIR"
+# echo "Benchmarks dir is set to $BENCHSDIR"
+# echo "PASS is set to $PASS"
+# echo "DIFF is set to $DIFF"
+# echo "#########################"

@@ -1,0 +1,2005 @@
+# mark_description "Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.5.281 Build 20190815";
+# mark_description "-lm -S -c -o n-body";
+	.file "n-body.c"
+	.text
+..TXTST0:
+.L_2__routine_start_main_0:
+# -- Begin  main
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl main
+# --- main(int, char **)
+main:
+# parameter 1: %edi
+# parameter 2: %rsi
+..B1.1:                         # Preds ..B1.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_main.1:
+..L2:
+                                                          #131.1
+        pushq     %rbp                                          #131.1
+	.cfi_def_cfa_offset 16
+        movq      %rsp, %rbp                                    #131.1
+	.cfi_def_cfa 6, 16
+	.cfi_offset 6, -16
+        andq      $-128, %rsp                                   #131.1
+        subq      $384, %rsp                                    #131.1
+        xorl      %esi, %esi                                    #131.1
+        movl      $3, %edi                                      #131.1
+        call      __intel_new_feature_proc_init                 #131.1
+                                # LOE rbx r12 r13 r14 r15
+..B1.8:                         # Preds ..B1.1
+                                # Execution count [1.00e+00]
+        stmxcsr   8(%rsp)                                       #131.1
+        movl      $.L_2__STRING.0, %edi                         #136.3
+        movl      $1, %eax                                      #136.3
+        orl       $32832, 8(%rsp)                               #131.1
+        movsd     48+bodies(%rip), %xmm10                       #135.3
+        movsd     24+bodies(%rip), %xmm0                        #135.3
+        movsd     32+bodies(%rip), %xmm9                        #135.3
+        movsd     40+bodies(%rip), %xmm5                        #135.3
+        movsd     104+bodies(%rip), %xmm8                       #135.3
+        movsd     88+bodies(%rip), %xmm11                       #135.3
+        movsd     96+bodies(%rip), %xmm15                       #135.3
+        ldmxcsr   8(%rsp)                                       #131.1
+        mulsd     %xmm10, %xmm0                                 #135.3
+        mulsd     %xmm10, %xmm9                                 #135.3
+        mulsd     %xmm10, %xmm5                                 #135.3
+        mulsd     %xmm8, %xmm11                                 #135.3
+        mulsd     %xmm8, %xmm15                                 #135.3
+        addsd     %xmm11, %xmm9                                 #135.3
+        addsd     %xmm15, %xmm5                                 #135.3
+        movsd     80+bodies(%rip), %xmm10                       #135.3
+        mulsd     %xmm8, %xmm10                                 #135.3
+        movsd     136+bodies(%rip), %xmm2                       #135.3
+        addsd     %xmm10, %xmm0                                 #135.3
+        movsd     160+bodies(%rip), %xmm11                      #135.3
+        movsd     144+bodies(%rip), %xmm3                       #135.3
+        movsd     152+bodies(%rip), %xmm4                       #135.3
+        mulsd     %xmm11, %xmm2                                 #135.3
+        mulsd     %xmm11, %xmm3                                 #135.3
+        mulsd     %xmm11, %xmm4                                 #135.3
+        addsd     %xmm2, %xmm0                                  #135.3
+        addsd     %xmm3, %xmm9                                  #135.3
+        addsd     %xmm4, %xmm5                                  #135.3
+        movsd     216+bodies(%rip), %xmm12                      #135.3
+        movsd     192+bodies(%rip), %xmm7                       #135.3
+        movsd     200+bodies(%rip), %xmm1                       #135.3
+        movsd     208+bodies(%rip), %xmm6                       #135.3
+        mulsd     %xmm12, %xmm7                                 #135.3
+        mulsd     %xmm12, %xmm1                                 #135.3
+        mulsd     %xmm12, %xmm6                                 #135.3
+        addsd     %xmm7, %xmm0                                  #135.3
+        addsd     %xmm1, %xmm9                                  #135.3
+        addsd     %xmm6, %xmm5                                  #135.3
+        movsd     248+bodies(%rip), %xmm14                      #135.3
+        movsd     272+bodies(%rip), %xmm10                      #135.3
+        movsd     256+bodies(%rip), %xmm13                      #135.3
+        movsd     264+bodies(%rip), %xmm15                      #135.3
+        mulsd     %xmm10, %xmm14                                #135.3
+        mulsd     %xmm10, %xmm13                                #135.3
+        mulsd     %xmm10, %xmm15                                #135.3
+        addsd     %xmm14, %xmm0                                 #135.3
+        addsd     %xmm13, %xmm9                                 #135.3
+        addsd     %xmm15, %xmm5                                 #135.3
+        movsd     .L_2il0floatpacket.7(%rip), %xmm2             #135.3
+        xorps     .L_2il0floatpacket.10(%rip), %xmm0            #135.3
+        xorps     .L_2il0floatpacket.10(%rip), %xmm9            #135.3
+        xorps     .L_2il0floatpacket.10(%rip), %xmm5            #135.3
+        movsd     bodies(%rip), %xmm15                          #136.21
+        movsd     8+bodies(%rip), %xmm1                         #136.21
+        movsd     56+bodies(%rip), %xmm7                        #136.21
+        movaps    %xmm1, %xmm3                                  #136.21
+        movsd     64+bodies(%rip), %xmm6                        #136.21
+        divsd     %xmm2, %xmm0                                  #135.3
+        divsd     %xmm2, %xmm9                                  #135.3
+        divsd     %xmm2, %xmm5                                  #135.3
+        movaps    %xmm15, %xmm2                                 #136.21
+        subsd     %xmm6, %xmm3                                  #136.21
+        subsd     %xmm7, %xmm2                                  #136.21
+        mulsd     %xmm3, %xmm3                                  #136.21
+        mulsd     %xmm2, %xmm2                                  #136.21
+        movsd     16+bodies(%rip), %xmm14                       #136.21
+        addsd     %xmm3, %xmm2                                  #136.21
+        movaps    %xmm14, %xmm4                                 #136.21
+        movaps    %xmm1, %xmm3                                  #136.21
+        movsd     %xmm0, 24+bodies(%rip)                        #135.28
+        movsd     %xmm9, 32+bodies(%rip)                        #135.28
+        mulsd     %xmm0, %xmm0                                  #136.21
+        subsd     72+bodies(%rip), %xmm4                        #136.21
+        mulsd     %xmm9, %xmm9                                  #136.21
+        mulsd     %xmm4, %xmm4                                  #136.21
+        addsd     %xmm9, %xmm0                                  #136.21
+        addsd     %xmm4, %xmm2                                  #136.21
+        sqrtsd    %xmm2, %xmm2                                  #136.21
+        divsd     %xmm2, %xmm8                                  #136.21
+        movsd     %xmm5, 40+bodies(%rip)                        #135.28
+        movaps    %xmm15, %xmm4                                 #136.21
+        mulsd     %xmm5, %xmm5                                  #136.21
+        movaps    %xmm14, %xmm2                                 #136.21
+        movsd     120+bodies(%rip), %xmm9                       #136.21
+        addsd     %xmm5, %xmm0                                  #136.21
+        subsd     %xmm9, %xmm3                                  #136.21
+        mulsd     .L_2il0floatpacket.8(%rip), %xmm0             #136.21
+        mulsd     %xmm3, %xmm3                                  #136.21
+        subsd     %xmm8, %xmm0                                  #136.21
+        movsd     112+bodies(%rip), %xmm8                       #136.21
+        movsd     128+bodies(%rip), %xmm5                       #136.21
+        subsd     %xmm8, %xmm4                                  #136.21
+        subsd     %xmm5, %xmm2                                  #136.21
+        mulsd     %xmm4, %xmm4                                  #136.21
+        mulsd     %xmm2, %xmm2                                  #136.21
+        addsd     %xmm3, %xmm4                                  #136.21
+        movsd     48+bodies(%rip), %xmm13                       #136.21
+        movaps    %xmm14, %xmm3                                 #136.21
+        movsd     %xmm5, (%rsp)                                 #136.21[spill]
+        movaps    %xmm13, %xmm5                                 #136.21
+        mulsd     %xmm11, %xmm5                                 #136.21
+        addsd     %xmm2, %xmm4                                  #136.21
+        subsd     184+bodies(%rip), %xmm3                       #136.21
+        mulsd     %xmm13, %xmm0                                 #136.21
+        sqrtsd    %xmm4, %xmm4                                  #136.21
+        mulsd     %xmm3, %xmm3                                  #136.21
+        divsd     %xmm4, %xmm5                                  #136.21
+        movaps    %xmm15, %xmm4                                 #136.21
+        movaps    %xmm1, %xmm11                                 #136.21
+        movaps    %xmm13, %xmm2                                 #136.21
+        subsd     %xmm5, %xmm0                                  #136.21
+        mulsd     %xmm12, %xmm2                                 #136.21
+        subsd     176+bodies(%rip), %xmm11                      #136.21
+        mulsd     %xmm10, %xmm13                                #136.21
+        mulsd     %xmm11, %xmm11                                #136.21
+        movsd     168+bodies(%rip), %xmm5                       #136.21
+        movsd     88+bodies(%rip), %xmm12                       #136.21
+        subsd     %xmm5, %xmm4                                  #136.21
+        mulsd     %xmm12, %xmm12                                #136.21
+        mulsd     %xmm4, %xmm4                                  #136.21
+        addsd     %xmm11, %xmm4                                 #136.21
+        movaps    %xmm6, %xmm11                                 #136.21
+        subsd     %xmm9, %xmm11                                 #136.21
+        addsd     %xmm3, %xmm4                                  #136.21
+        mulsd     %xmm11, %xmm11                                #136.21
+        sqrtsd    %xmm4, %xmm4                                  #136.21
+        divsd     %xmm4, %xmm2                                  #136.21
+        movsd     224+bodies(%rip), %xmm3                       #136.21
+        subsd     %xmm2, %xmm0                                  #136.21
+        subsd     %xmm3, %xmm15                                 #136.21
+        movsd     232+bodies(%rip), %xmm4                       #136.21
+        movsd     240+bodies(%rip), %xmm2                       #136.21
+        subsd     %xmm4, %xmm1                                  #136.21
+        mulsd     %xmm15, %xmm15                                #136.21
+        subsd     %xmm2, %xmm14                                 #136.21
+        mulsd     %xmm1, %xmm1                                  #136.21
+        mulsd     %xmm14, %xmm14                                #136.21
+        addsd     %xmm1, %xmm15                                 #136.21
+        movsd     80+bodies(%rip), %xmm1                        #136.21
+        addsd     %xmm14, %xmm15                                #136.21
+        mulsd     %xmm1, %xmm1                                  #136.21
+        sqrtsd    %xmm15, %xmm15                                #136.21
+        addsd     %xmm12, %xmm1                                 #136.21
+        divsd     %xmm15, %xmm13                                #136.21
+        movaps    %xmm7, %xmm14                                 #136.21
+        subsd     %xmm13, %xmm0                                 #136.21
+        subsd     %xmm8, %xmm14                                 #136.21
+        movsd     72+bodies(%rip), %xmm13                       #136.21
+        movaps    %xmm13, %xmm15                                #136.21
+        mulsd     %xmm14, %xmm14                                #136.21
+        subsd     (%rsp), %xmm15                                #136.21[spill]
+        mulsd     %xmm15, %xmm15                                #136.21
+        addsd     %xmm11, %xmm14                                #136.21
+        movsd     160+bodies(%rip), %xmm11                      #136.21
+        addsd     %xmm15, %xmm14                                #136.21
+        sqrtsd    %xmm14, %xmm14                                #136.21
+        divsd     %xmm14, %xmm11                                #136.21
+        movsd     96+bodies(%rip), %xmm12                       #136.21
+        movaps    %xmm6, %xmm15                                 #136.21
+        mulsd     %xmm12, %xmm12                                #136.21
+        subsd     176+bodies(%rip), %xmm15                      #136.21
+        subsd     %xmm4, %xmm6                                  #136.21
+        mulsd     %xmm15, %xmm15                                #136.21
+        addsd     %xmm12, %xmm1                                 #136.21
+        mulsd     %xmm6, %xmm6                                  #136.21
+        mulsd     .L_2il0floatpacket.8(%rip), %xmm1             #136.21
+        movsd     104+bodies(%rip), %xmm14                      #136.21
+        movaps    %xmm13, %xmm12                                #136.21
+        subsd     %xmm11, %xmm1                                 #136.21
+        movsd     216+bodies(%rip), %xmm11                      #136.21
+        mulsd     %xmm14, %xmm11                                #136.21
+        subsd     184+bodies(%rip), %xmm12                      #136.21
+        subsd     %xmm2, %xmm13                                 #136.21
+        mulsd     %xmm14, %xmm1                                 #136.21
+        mulsd     %xmm12, %xmm12                                #136.21
+        mulsd     %xmm13, %xmm13                                #136.21
+        addsd     %xmm0, %xmm1                                  #136.21
+        mulsd     %xmm10, %xmm14                                #136.21
+        movaps    %xmm7, %xmm0                                  #136.21
+        subsd     %xmm3, %xmm7                                  #136.21
+        subsd     %xmm5, %xmm0                                  #136.21
+        mulsd     %xmm7, %xmm7                                  #136.21
+        mulsd     %xmm0, %xmm0                                  #136.21
+        addsd     %xmm6, %xmm7                                  #136.21
+        addsd     %xmm15, %xmm0                                 #136.21
+        addsd     %xmm13, %xmm7                                 #136.21
+        addsd     %xmm12, %xmm0                                 #136.21
+        sqrtsd    %xmm7, %xmm7                                  #136.21
+        sqrtsd    %xmm0, %xmm0                                  #136.21
+        divsd     %xmm7, %xmm14                                 #136.21
+        divsd     %xmm0, %xmm11                                 #136.21
+        movsd     176+bodies(%rip), %xmm12                      #136.21
+        movaps    %xmm8, %xmm13                                 #136.21
+        movaps    %xmm9, %xmm0                                  #136.21
+        subsd     %xmm11, %xmm1                                 #136.21
+        subsd     %xmm5, %xmm13                                 #136.21
+        subsd     %xmm12, %xmm0                                 #136.21
+        subsd     %xmm3, %xmm8                                  #136.21
+        subsd     %xmm4, %xmm9                                  #136.21
+        subsd     %xmm14, %xmm1                                 #136.21
+        mulsd     %xmm13, %xmm13                                #136.21
+        subsd     %xmm3, %xmm5                                  #136.21
+        subsd     %xmm4, %xmm12                                 #136.21
+        mulsd     %xmm0, %xmm0                                  #136.21
+        mulsd     %xmm8, %xmm8                                  #136.21
+        mulsd     %xmm9, %xmm9                                  #136.21
+        addsd     %xmm0, %xmm13                                 #136.21
+        mulsd     %xmm5, %xmm5                                  #136.3
+        mulsd     %xmm12, %xmm12                                #136.3
+        addsd     %xmm9, %xmm8                                  #136.21
+        addsd     %xmm12, %xmm5                                 #136.3
+        movsd     128+bodies(%rip), %xmm6                       #136.21
+        movsd     184+bodies(%rip), %xmm7                       #136.21
+        movaps    %xmm6, %xmm14                                 #136.21
+        movsd     216+bodies(%rip), %xmm0                       #136.21
+        subsd     %xmm7, %xmm14                                 #136.21
+        subsd     %xmm2, %xmm6                                  #136.21
+        subsd     %xmm2, %xmm7                                  #136.21
+        mulsd     %xmm14, %xmm14                                #136.21
+        mulsd     %xmm6, %xmm6                                  #136.21
+        mulsd     %xmm7, %xmm7                                  #136.3
+        addsd     %xmm14, %xmm13                                #136.21
+        addsd     %xmm6, %xmm8                                  #136.21
+        addsd     %xmm7, %xmm5                                  #136.3
+        sqrtsd    %xmm13, %xmm13                                #136.21
+        sqrtsd    %xmm8, %xmm8                                  #136.21
+        sqrtsd    %xmm5, %xmm5                                  #136.3
+        movaps    %xmm0, %xmm14                                 #136.21
+        divsd     %xmm13, %xmm14                                #136.21
+        movsd     136+bodies(%rip), %xmm11                      #136.21
+        movsd     144+bodies(%rip), %xmm15                      #136.21
+        mulsd     %xmm11, %xmm11                                #136.21
+        mulsd     %xmm15, %xmm15                                #136.21
+        movsd     160+bodies(%rip), %xmm13                      #136.21
+        addsd     %xmm15, %xmm11                                #136.21
+        movsd     152+bodies(%rip), %xmm15                      #136.21
+        mulsd     %xmm15, %xmm15                                #136.21
+        movsd     248+bodies(%rip), %xmm4                       #136.3
+        addsd     %xmm15, %xmm11                                #136.21
+        mulsd     %xmm4, %xmm4                                  #136.3
+        movsd     .L_2il0floatpacket.8(%rip), %xmm15            #136.21
+        mulsd     %xmm15, %xmm11                                #136.21
+        movsd     256+bodies(%rip), %xmm2                       #136.3
+        subsd     %xmm14, %xmm11                                #136.21
+        mulsd     %xmm2, %xmm2                                  #136.3
+        mulsd     %xmm13, %xmm11                                #136.21
+        addsd     %xmm2, %xmm4                                  #136.3
+        mulsd     %xmm10, %xmm13                                #136.21
+        addsd     %xmm1, %xmm11                                 #136.21
+        divsd     %xmm8, %xmm13                                 #136.21
+        movaps    %xmm15, %xmm8                                 #136.21
+        subsd     %xmm13, %xmm11                                #136.21
+        mulsd     %xmm0, %xmm8                                  #136.21
+        divsd     %xmm5, %xmm0                                  #136.3
+        movsd     192+bodies(%rip), %xmm9                       #136.21
+        movsd     200+bodies(%rip), %xmm1                       #136.21
+        movsd     264+bodies(%rip), %xmm3                       #136.3
+        mulsd     %xmm9, %xmm9                                  #136.21
+        mulsd     %xmm1, %xmm1                                  #136.21
+        mulsd     %xmm3, %xmm3                                  #136.3
+        addsd     %xmm1, %xmm9                                  #136.21
+        addsd     %xmm3, %xmm4                                  #136.3
+        movsd     208+bodies(%rip), %xmm6                       #136.21
+        mulsd     %xmm6, %xmm6                                  #136.21
+        mulsd     %xmm15, %xmm4                                 #136.3
+        addsd     %xmm6, %xmm9                                  #136.21
+        xorps     .L_2il0floatpacket.10(%rip), %xmm0            #136.3
+        mulsd     %xmm9, %xmm8                                  #136.21
+        addsd     %xmm4, %xmm0                                  #136.3
+        mulsd     %xmm10, %xmm0                                 #136.3
+        addsd     %xmm8, %xmm11                                 #136.21
+        addsd     %xmm11, %xmm0                                 #136.3
+..___tag_value_main.8:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #136.3
+..___tag_value_main.9:
+                                # LOE rbx r12 r13 r14 r15
+..B1.2:                         # Preds ..B1.8
+                                # Execution count [1.33e-01]
+        movsd     152+bodies(%rip), %xmm7                       #138.5
+        xorl      %eax, %eax                                    #137.3
+        movsd     120+bodies(%rip), %xmm11                      #138.5
+        movsd     160+bodies(%rip), %xmm2                       #138.5
+        movsd     144+bodies(%rip), %xmm9                       #138.5
+        movsd     216+bodies(%rip), %xmm14                      #138.5
+        movsd     72+bodies(%rip), %xmm12                       #138.5
+        movsd     %xmm7, 48(%rsp)                               #138.5[spill]
+        movsd     %xmm11, 168(%rsp)                             #138.5[spill]
+        movsd     192+bodies(%rip), %xmm15                      #138.5
+        movsd     224+bodies(%rip), %xmm7                       #138.5
+        movsd     232+bodies(%rip), %xmm11                      #138.5
+        movsd     %xmm2, 192(%rsp)                              #138.5[spill]
+        movsd     %xmm9, 56(%rsp)                               #138.5[spill]
+        movsd     %xmm14, 72(%rsp)                              #138.5[spill]
+        movsd     40+bodies(%rip), %xmm10                       #138.22
+        movsd     bodies(%rip), %xmm6                           #138.22
+        movsd     8+bodies(%rip), %xmm13                        #138.22
+        movsd     104+bodies(%rip), %xmm3                       #138.5
+        movsd     %xmm12, 200(%rsp)                             #138.5[spill]
+        movsd     200+bodies(%rip), %xmm2                       #138.5
+        movsd     208+bodies(%rip), %xmm9                       #138.5
+        movsd     240+bodies(%rip), %xmm14                      #138.5
+        movsd     32+bodies(%rip), %xmm8                        #138.22
+        movsd     96+bodies(%rip), %xmm0                        #138.5
+        movsd     64+bodies(%rip), %xmm5                        #138.5
+        movsd     168+bodies(%rip), %xmm12                      #138.5
+        movsd     %xmm15, 40(%rsp)                              #138.5[spill]
+        movsd     %xmm7, 136(%rsp)                              #138.5[spill]
+        movsd     %xmm11, 120(%rsp)                             #138.5[spill]
+        movsd     88+bodies(%rip), %xmm1                        #138.5
+        movsd     248+bodies(%rip), %xmm15                      #138.5
+        movsd     256+bodies(%rip), %xmm7                       #138.5
+        movsd     264+bodies(%rip), %xmm11                      #138.5
+        movsd     %xmm10, 176(%rsp)                             #138.22[spill]
+        movsd     %xmm6, 152(%rsp)                              #138.22[spill]
+        movsd     %xmm13, 144(%rsp)                             #138.22[spill]
+        movsd     %xmm3, 184(%rsp)                              #138.5[spill]
+        movsd     %xmm2, 8(%rsp)                                #138.5[spill]
+        movsd     %xmm9, 16(%rsp)                               #138.5[spill]
+        movsd     %xmm14, 128(%rsp)                             #138.5[spill]
+        movsd     %xmm8, 96(%rsp)                               #138.22[spill]
+        movsd     16+bodies(%rip), %xmm10                       #138.22
+        movsd     56+bodies(%rip), %xmm6                        #138.5
+        movsd     80+bodies(%rip), %xmm13                       #138.5
+        movsd     112+bodies(%rip), %xmm3                       #138.5
+        movsd     176+bodies(%rip), %xmm9                       #138.5
+        movsd     184+bodies(%rip), %xmm2                       #138.5
+        movsd     %xmm0, 104(%rsp)                              #138.5[spill]
+        movaps    %xmm12, %xmm0                                 #138.5
+        movsd     %xmm5, 160(%rsp)                              #138.5[spill]
+        movsd     272+bodies(%rip), %xmm14                      #138.5
+        movsd     48+bodies(%rip), %xmm8                        #138.22
+        movsd     %xmm1, 112(%rsp)                              #138.5[spill]
+        movsd     128+bodies(%rip), %xmm5                       #138.5
+        movsd     %xmm15, 64(%rsp)                              #138.5[spill]
+        movsd     %xmm7, 24(%rsp)                               #138.5[spill]
+        movsd     %xmm11, 32(%rsp)                              #138.5[spill]
+        movsd     %xmm6, 80(%rsp)                               #138.5[spill]
+        movsd     %xmm3, 88(%rsp)                               #138.5[spill]
+        movsd     %xmm14, (%rsp)                                #138.5[spill]
+        movsd     %xmm6, 272(%rsp)                              #138.5[spill]
+        movsd     %xmm3, 264(%rsp)                              #138.5[spill]
+        movsd     %xmm0, 256(%rsp)                              #138.5[spill]
+        movsd     %xmm2, 216(%rsp)                              #138.5[spill]
+        movsd     %xmm9, 224(%rsp)                              #138.5[spill]
+        movsd     %xmm13, 280(%rsp)                             #138.5[spill]
+        movsd     %xmm10, 240(%rsp)                             #138.5[spill]
+        movsd     24+bodies(%rip), %xmm4                        #138.22
+        movsd     136+bodies(%rip), %xmm1                       #138.5
+        movsd     %xmm12, 208(%rsp)                             #138.5[spill]
+        movsd     %xmm5, 232(%rsp)                              #138.5[spill]
+        movsd     %xmm8, 248(%rsp)                              #138.5[spill]
+        movaps    %xmm11, %xmm2                                 #138.5
+        movaps    %xmm7, %xmm14                                 #138.5
+        movaps    %xmm15, %xmm13                                #138.5
+        movsd     40(%rsp), %xmm10                              #138.5[spill]
+        movsd     48(%rsp), %xmm3                               #138.5[spill]
+        movsd     56(%rsp), %xmm0                               #138.5[spill]
+        movsd     104(%rsp), %xmm11                             #138.5[spill]
+        movsd     112(%rsp), %xmm9                              #138.5[spill]
+        movsd     176(%rsp), %xmm7                              #138.5[spill]
+        movsd     96(%rsp), %xmm6                               #138.5[spill]
+                                # LOE rbx r12 r13 r14 r15 eax xmm0 xmm1 xmm2 xmm3 xmm4 xmm6 xmm7 xmm9 xmm10 xmm11 xmm13 xmm14
+..B1.3:                         # Preds ..B1.9 ..B1.2
+                                # Execution count [4.23e+00]
+        movsd     152(%rsp), %xmm8                              #138.5[spill]
+        incl      %eax                                          #137.3
+        movsd     144(%rsp), %xmm15                             #138.5[spill]
+        movsd     %xmm10, 40(%rsp)                              #[spill]
+        movaps    %xmm8, %xmm10                                 #138.5
+        movsd     %xmm14, 24(%rsp)                              #[spill]
+        movaps    %xmm15, %xmm14                                #138.5
+        movsd     240(%rsp), %xmm5                              #138.5[spill]
+        movsd     %xmm3, 48(%rsp)                               #[spill]
+        movaps    %xmm5, %xmm3                                  #138.5
+        movsd     %xmm2, 32(%rsp)                               #[spill]
+        movsd     %xmm13, 64(%rsp)                              #[spill]
+        subsd     80(%rsp), %xmm10                              #138.5[spill]
+        subsd     160(%rsp), %xmm14                             #138.5[spill]
+        subsd     200(%rsp), %xmm3                              #138.5[spill]
+        movaps    %xmm10, %xmm12                                #138.5
+        movaps    %xmm14, %xmm2                                 #138.5
+        mulsd     %xmm10, %xmm12                                #138.5
+        movaps    %xmm3, %xmm13                                 #138.5
+        mulsd     %xmm14, %xmm2                                 #138.5
+        mulsd     %xmm3, %xmm13                                 #138.5
+        addsd     %xmm2, %xmm12                                 #138.5
+        pxor      %xmm2, %xmm2                                  #138.5
+        addsd     %xmm13, %xmm12                                #138.5
+        sqrtsd    %xmm12, %xmm2                                 #138.5
+        mulsd     %xmm2, %xmm12                                 #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm2             #138.5
+        divsd     %xmm12, %xmm2                                 #138.5
+        movaps    %xmm10, %xmm12                                #138.5
+        mulsd     %xmm2, %xmm12                                 #138.5
+        movsd     184(%rsp), %xmm13                             #138.5[spill]
+        mulsd     %xmm13, %xmm12                                #138.5
+        subsd     %xmm12, %xmm4                                 #138.5
+        movaps    %xmm14, %xmm12                                #138.5
+        mulsd     %xmm2, %xmm12                                 #138.5
+        mulsd     %xmm13, %xmm12                                #138.5
+        subsd     %xmm12, %xmm6                                 #138.5
+        movaps    %xmm3, %xmm12                                 #138.5
+        mulsd     %xmm2, %xmm12                                 #138.5
+        mulsd     %xmm13, %xmm12                                #138.5
+        movsd     280(%rsp), %xmm13                             #138.5[spill]
+        subsd     %xmm12, %xmm7                                 #138.5
+        movsd     248(%rsp), %xmm12                             #138.5[spill]
+        mulsd     %xmm12, %xmm10                                #138.5
+        mulsd     %xmm12, %xmm3                                 #138.5
+        mulsd     %xmm12, %xmm14                                #138.5
+        mulsd     %xmm2, %xmm10                                 #138.5
+        mulsd     %xmm2, %xmm3                                  #138.5
+        mulsd     %xmm2, %xmm14                                 #138.5
+        addsd     %xmm10, %xmm13                                #138.5
+        addsd     %xmm3, %xmm11                                 #138.5
+        addsd     %xmm14, %xmm9                                 #138.5
+        movsd     %xmm13, 280(%rsp)                             #138.5[spill]
+        movaps    %xmm15, %xmm3                                 #138.5
+        movsd     %xmm11, 104(%rsp)                             #138.5[spill]
+        movaps    %xmm8, %xmm11                                 #138.5
+        movsd     88(%rsp), %xmm13                              #138.5[spill]
+        movaps    %xmm5, %xmm2                                  #138.5
+        movsd     %xmm9, 112(%rsp)                              #138.5[spill]
+        subsd     %xmm13, %xmm11                                #138.5
+        subsd     168(%rsp), %xmm3                              #138.5[spill]
+        subsd     232(%rsp), %xmm2                              #138.5[spill]
+        movaps    %xmm11, %xmm14                                #138.5
+        movaps    %xmm3, %xmm10                                 #138.5
+        mulsd     %xmm11, %xmm14                                #138.5
+        movaps    %xmm2, %xmm9                                  #138.5
+        mulsd     %xmm3, %xmm10                                 #138.5
+        mulsd     %xmm2, %xmm9                                  #138.5
+        addsd     %xmm10, %xmm14                                #138.5
+        pxor      %xmm10, %xmm10                                #138.5
+        addsd     %xmm9, %xmm14                                 #138.5
+        sqrtsd    %xmm14, %xmm10                                #138.5
+        mulsd     %xmm10, %xmm14                                #138.5
+        movaps    %xmm11, %xmm9                                 #138.5
+        mulsd     %xmm12, %xmm11                                #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm10            #138.5
+        divsd     %xmm14, %xmm10                                #138.5
+        mulsd     %xmm10, %xmm9                                 #138.5
+        mulsd     %xmm10, %xmm11                                #138.5
+        movsd     192(%rsp), %xmm14                             #138.5[spill]
+        addsd     %xmm11, %xmm1                                 #138.5
+        mulsd     %xmm14, %xmm9                                 #138.5
+        movaps    %xmm8, %xmm11                                 #138.5
+        subsd     %xmm9, %xmm4                                  #138.5
+        subsd     208(%rsp), %xmm11                             #138.5[spill]
+        subsd     136(%rsp), %xmm8                              #138.5[spill]
+        movaps    %xmm3, %xmm9                                  #138.5
+        mulsd     %xmm10, %xmm9                                 #138.5
+        mulsd     %xmm12, %xmm3                                 #138.5
+        mulsd     %xmm14, %xmm9                                 #138.5
+        mulsd     %xmm10, %xmm3                                 #138.5
+        subsd     %xmm9, %xmm6                                  #138.5
+        addsd     %xmm3, %xmm0                                  #138.5
+        movaps    %xmm2, %xmm9                                  #138.5
+        movaps    %xmm11, %xmm3                                 #138.5
+        mulsd     %xmm12, %xmm2                                 #138.5
+        mulsd     %xmm10, %xmm9                                 #138.5
+        mulsd     %xmm11, %xmm3                                 #138.5
+        mulsd     %xmm10, %xmm2                                 #138.5
+        mulsd     %xmm14, %xmm9                                 #138.5
+        movsd     %xmm0, 56(%rsp)                               #138.5[spill]
+        subsd     %xmm9, %xmm7                                  #138.5
+        movsd     48(%rsp), %xmm0                               #138.5[spill]
+        movaps    %xmm5, %xmm9                                  #138.5
+        addsd     %xmm2, %xmm0                                  #138.5
+        movaps    %xmm15, %xmm2                                 #138.5
+        subsd     224(%rsp), %xmm2                              #138.5[spill]
+        subsd     216(%rsp), %xmm9                              #138.5[spill]
+        subsd     120(%rsp), %xmm15                             #138.5[spill]
+        subsd     128(%rsp), %xmm5                              #138.5[spill]
+        movaps    %xmm2, %xmm10                                 #138.5
+        mulsd     %xmm2, %xmm10                                 #138.5
+        movsd     %xmm0, 48(%rsp)                               #138.5[spill]
+        movaps    %xmm9, %xmm0                                  #138.5
+        mulsd     %xmm9, %xmm0                                  #138.5
+        addsd     %xmm10, %xmm3                                 #138.5
+        pxor      %xmm10, %xmm10                                #138.5
+        addsd     %xmm0, %xmm3                                  #138.5
+        sqrtsd    %xmm3, %xmm10                                 #138.5
+        mulsd     %xmm10, %xmm3                                 #138.5
+        movaps    %xmm11, %xmm10                                #138.5
+        mulsd     %xmm12, %xmm11                                #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm0             #138.5
+        divsd     %xmm3, %xmm0                                  #138.5
+        mulsd     %xmm0, %xmm10                                 #138.5
+        mulsd     %xmm0, %xmm11                                 #138.5
+        movsd     72(%rsp), %xmm3                               #138.5[spill]
+        mulsd     %xmm3, %xmm10                                 #138.5
+        subsd     %xmm10, %xmm4                                 #138.5
+        movaps    %xmm2, %xmm10                                 #138.5
+        mulsd     %xmm0, %xmm10                                 #138.5
+        mulsd     %xmm12, %xmm2                                 #138.5
+        mulsd     %xmm3, %xmm10                                 #138.5
+        mulsd     %xmm0, %xmm2                                  #138.5
+        subsd     %xmm10, %xmm6                                 #138.5
+        movaps    %xmm9, %xmm10                                 #138.5
+        mulsd     %xmm0, %xmm10                                 #138.5
+        mulsd     %xmm12, %xmm9                                 #138.5
+        mulsd     %xmm3, %xmm10                                 #138.5
+        mulsd     %xmm0, %xmm9                                  #138.5
+        subsd     %xmm10, %xmm7                                 #138.5
+        movsd     40(%rsp), %xmm10                              #138.5[spill]
+        movaps    %xmm5, %xmm0                                  #138.5
+        mulsd     %xmm5, %xmm0                                  #138.5
+        addsd     %xmm11, %xmm10                                #138.5
+        movsd     8(%rsp), %xmm11                               #138.5[spill]
+        addsd     %xmm2, %xmm11                                 #138.5
+        movsd     16(%rsp), %xmm2                               #138.5[spill]
+        addsd     %xmm9, %xmm2                                  #138.5
+        movsd     %xmm2, 16(%rsp)                               #138.5[spill]
+        movaps    %xmm8, %xmm2                                  #138.5
+        movaps    %xmm15, %xmm9                                 #138.5
+        mulsd     %xmm8, %xmm2                                  #138.5
+        mulsd     %xmm15, %xmm9                                 #138.5
+        addsd     %xmm9, %xmm2                                  #138.5
+        pxor      %xmm9, %xmm9                                  #138.5
+        addsd     %xmm0, %xmm2                                  #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm0             #138.5
+        sqrtsd    %xmm2, %xmm9                                  #138.5
+        mulsd     %xmm9, %xmm2                                  #138.5
+        movaps    %xmm8, %xmm9                                  #138.5
+        mulsd     %xmm12, %xmm8                                 #138.5
+        divsd     %xmm2, %xmm0                                  #138.5
+        mulsd     %xmm0, %xmm9                                  #138.5
+        mulsd     %xmm0, %xmm8                                  #138.5
+        movsd     (%rsp), %xmm2                                 #138.5[spill]
+        mulsd     %xmm2, %xmm9                                  #138.5
+        subsd     %xmm9, %xmm4                                  #138.5
+        movsd     %xmm4, 288(%rsp)                              #138.5[spill]
+        movaps    %xmm15, %xmm4                                 #138.5
+        mulsd     %xmm0, %xmm4                                  #138.5
+        mulsd     %xmm12, %xmm15                                #138.5
+        mulsd     %xmm2, %xmm4                                  #138.5
+        mulsd     %xmm0, %xmm15                                 #138.5
+        subsd     %xmm4, %xmm6                                  #138.5
+        movsd     %xmm6, 96(%rsp)                               #138.5[spill]
+        movaps    %xmm5, %xmm6                                  #138.5
+        mulsd     %xmm0, %xmm6                                  #138.5
+        mulsd     %xmm12, %xmm5                                 #138.5
+        mulsd     %xmm2, %xmm6                                  #138.5
+        mulsd     %xmm0, %xmm5                                  #138.5
+        subsd     %xmm6, %xmm7                                  #138.5
+        movsd     %xmm7, 176(%rsp)                              #138.5[spill]
+        movsd     64(%rsp), %xmm7                               #138.5[spill]
+        movsd     200(%rsp), %xmm4                              #138.5[spill]
+        addsd     %xmm8, %xmm7                                  #138.5
+        movsd     24(%rsp), %xmm8                               #138.5[spill]
+        movaps    %xmm4, %xmm9                                  #138.5
+        movsd     %xmm7, 64(%rsp)                               #138.5[spill]
+        addsd     %xmm15, %xmm8                                 #138.5
+        subsd     232(%rsp), %xmm9                              #138.5[spill]
+        movsd     32(%rsp), %xmm15                              #138.5[spill]
+        movaps    %xmm9, %xmm0                                  #138.5
+        movsd     160(%rsp), %xmm7                              #138.5[spill]
+        addsd     %xmm5, %xmm15                                 #138.5
+        mulsd     %xmm9, %xmm0                                  #138.5
+        movsd     %xmm15, 32(%rsp)                              #138.5[spill]
+        movsd     272(%rsp), %xmm15                             #138.5[spill]
+        movsd     %xmm8, 24(%rsp)                               #138.5[spill]
+        movaps    %xmm15, %xmm6                                 #138.5
+        movaps    %xmm7, %xmm8                                  #138.5
+        subsd     %xmm13, %xmm6                                 #138.5
+        subsd     168(%rsp), %xmm8                              #138.5[spill]
+        movaps    %xmm6, %xmm13                                 #138.5
+        movaps    %xmm8, %xmm5                                  #138.5
+        mulsd     %xmm6, %xmm13                                 #138.5
+        mulsd     %xmm8, %xmm5                                  #138.5
+        movsd     280(%rsp), %xmm12                             #138.5[spill]
+        addsd     %xmm5, %xmm13                                 #138.5
+        pxor      %xmm5, %xmm5                                  #138.5
+        addsd     %xmm0, %xmm13                                 #138.5
+        sqrtsd    %xmm13, %xmm5                                 #138.5
+        mulsd     %xmm5, %xmm13                                 #138.5
+        movaps    %xmm8, %xmm0                                  #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm5             #138.5
+        divsd     %xmm13, %xmm5                                 #138.5
+        movaps    %xmm6, %xmm13                                 #138.5
+        mulsd     %xmm5, %xmm13                                 #138.5
+        mulsd     %xmm5, %xmm0                                  #138.5
+        mulsd     %xmm14, %xmm13                                #138.5
+        mulsd     %xmm14, %xmm0                                 #138.5
+        subsd     %xmm13, %xmm12                                #138.5
+        movsd     112(%rsp), %xmm13                             #138.5[spill]
+        subsd     %xmm0, %xmm13                                 #138.5
+        movaps    %xmm9, %xmm0                                  #138.5
+        mulsd     %xmm5, %xmm0                                  #138.5
+        mulsd     %xmm14, %xmm0                                 #138.5
+        movsd     104(%rsp), %xmm14                             #138.5[spill]
+        subsd     %xmm0, %xmm14                                 #138.5
+        movsd     184(%rsp), %xmm0                              #138.5[spill]
+        mulsd     %xmm0, %xmm6                                  #138.5
+        mulsd     %xmm0, %xmm9                                  #138.5
+        mulsd     %xmm0, %xmm8                                  #138.5
+        mulsd     %xmm5, %xmm6                                  #138.5
+        mulsd     %xmm5, %xmm9                                  #138.5
+        mulsd     %xmm5, %xmm8                                  #138.5
+        addsd     %xmm6, %xmm1                                  #138.5
+        movsd     48(%rsp), %xmm6                               #138.5[spill]
+        movaps    %xmm15, %xmm5                                 #138.5
+        movsd     %xmm1, 296(%rsp)                              #138.5[spill]
+        addsd     %xmm9, %xmm6                                  #138.5
+        subsd     208(%rsp), %xmm5                              #138.5[spill]
+        movsd     %xmm6, 48(%rsp)                               #138.5[spill]
+        movaps    %xmm7, %xmm6                                  #138.5
+        movsd     56(%rsp), %xmm1                               #138.5[spill]
+        movaps    %xmm5, %xmm9                                  #138.5
+        mulsd     %xmm5, %xmm9                                  #138.5
+        subsd     224(%rsp), %xmm6                              #138.5[spill]
+        addsd     %xmm8, %xmm1                                  #138.5
+        movsd     %xmm1, 56(%rsp)                               #138.5[spill]
+        movaps    %xmm4, %xmm1                                  #138.5
+        movaps    %xmm6, %xmm8                                  #138.5
+        subsd     216(%rsp), %xmm1                              #138.5[spill]
+        mulsd     %xmm6, %xmm8                                  #138.5
+        subsd     128(%rsp), %xmm4                              #138.5[spill]
+        addsd     %xmm8, %xmm9                                  #138.5
+        movaps    %xmm1, %xmm8                                  #138.5
+        mulsd     %xmm1, %xmm8                                  #138.5
+        addsd     %xmm8, %xmm9                                  #138.5
+        pxor      %xmm8, %xmm8                                  #138.5
+        sqrtsd    %xmm9, %xmm8                                  #138.5
+        mulsd     %xmm8, %xmm9                                  #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm8             #138.5
+        divsd     %xmm9, %xmm8                                  #138.5
+        movaps    %xmm5, %xmm9                                  #138.5
+        mulsd     %xmm8, %xmm9                                  #138.5
+        mulsd     %xmm0, %xmm5                                  #138.5
+        mulsd     %xmm3, %xmm9                                  #138.5
+        mulsd     %xmm8, %xmm5                                  #138.5
+        subsd     %xmm9, %xmm12                                 #138.5
+        addsd     %xmm5, %xmm10                                 #138.5
+        movaps    %xmm6, %xmm9                                  #138.5
+        mulsd     %xmm8, %xmm9                                  #138.5
+        mulsd     %xmm0, %xmm6                                  #138.5
+        mulsd     %xmm3, %xmm9                                  #138.5
+        mulsd     %xmm8, %xmm6                                  #138.5
+        subsd     %xmm9, %xmm13                                 #138.5
+        addsd     %xmm6, %xmm11                                 #138.5
+        movaps    %xmm1, %xmm9                                  #138.5
+        mulsd     %xmm8, %xmm9                                  #138.5
+        mulsd     %xmm0, %xmm1                                  #138.5
+        mulsd     %xmm3, %xmm9                                  #138.5
+        mulsd     %xmm8, %xmm1                                  #138.5
+        subsd     %xmm9, %xmm14                                 #138.5
+        movsd     136(%rsp), %xmm5                              #138.5[spill]
+        movsd     120(%rsp), %xmm9                              #138.5[spill]
+        subsd     %xmm5, %xmm15                                 #138.5
+        subsd     %xmm9, %xmm7                                  #138.5
+        movsd     16(%rsp), %xmm8                               #138.5[spill]
+        movaps    %xmm15, %xmm6                                 #138.5
+        mulsd     %xmm15, %xmm6                                 #138.5
+        addsd     %xmm1, %xmm8                                  #138.5
+        movaps    %xmm7, %xmm1                                  #138.5
+        mulsd     %xmm7, %xmm1                                  #138.5
+        addsd     %xmm1, %xmm6                                  #138.5
+        movaps    %xmm4, %xmm1                                  #138.5
+        mulsd     %xmm4, %xmm1                                  #138.5
+        addsd     %xmm1, %xmm6                                  #138.5
+        pxor      %xmm1, %xmm1                                  #138.5
+        sqrtsd    %xmm6, %xmm1                                  #138.5
+        mulsd     %xmm1, %xmm6                                  #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm1             #138.5
+        divsd     %xmm6, %xmm1                                  #138.5
+        movaps    %xmm15, %xmm6                                 #138.5
+        mulsd     %xmm1, %xmm6                                  #138.5
+        mulsd     %xmm0, %xmm15                                 #138.5
+        mulsd     %xmm2, %xmm6                                  #138.5
+        mulsd     %xmm1, %xmm15                                 #138.5
+        subsd     %xmm6, %xmm12                                 #138.5
+        movsd     %xmm12, 280(%rsp)                             #138.5[spill]
+        movaps    %xmm7, %xmm12                                 #138.5
+        mulsd     %xmm1, %xmm12                                 #138.5
+        mulsd     %xmm0, %xmm7                                  #138.5
+        mulsd     %xmm2, %xmm12                                 #138.5
+        mulsd     %xmm1, %xmm7                                  #138.5
+        subsd     %xmm12, %xmm13                                #138.5
+        movsd     %xmm13, 112(%rsp)                             #138.5[spill]
+        movaps    %xmm4, %xmm13                                 #138.5
+        mulsd     %xmm1, %xmm13                                 #138.5
+        mulsd     %xmm0, %xmm4                                  #138.5
+        mulsd     %xmm2, %xmm13                                 #138.5
+        mulsd     %xmm1, %xmm4                                  #138.5
+        subsd     %xmm13, %xmm14                                #138.5
+        movsd     %xmm14, 104(%rsp)                             #138.5[spill]
+        movsd     64(%rsp), %xmm14                              #138.5[spill]
+        movsd     24(%rsp), %xmm2                               #138.5[spill]
+        addsd     %xmm15, %xmm14                                #138.5
+        addsd     %xmm7, %xmm2                                  #138.5
+        movsd     %xmm14, 64(%rsp)                              #138.5[spill]
+        movsd     32(%rsp), %xmm0                               #138.5[spill]
+        movsd     264(%rsp), %xmm14                             #138.5[spill]
+        addsd     %xmm4, %xmm0                                  #138.5
+        movsd     168(%rsp), %xmm15                             #138.5[spill]
+        movaps    %xmm14, %xmm4                                 #138.5
+        movaps    %xmm15, %xmm7                                 #138.5
+        subsd     208(%rsp), %xmm4                              #138.5[spill]
+        subsd     224(%rsp), %xmm7                              #138.5[spill]
+        subsd     %xmm5, %xmm14                                 #138.5
+        subsd     %xmm9, %xmm15                                 #138.5
+        movsd     232(%rsp), %xmm12                             #138.5[spill]
+        movaps    %xmm7, %xmm1                                  #138.5
+        movaps    %xmm12, %xmm6                                 #138.5
+        movsd     %xmm0, 32(%rsp)                               #138.5[spill]
+        movaps    %xmm4, %xmm0                                  #138.5
+        mulsd     %xmm4, %xmm0                                  #138.5
+        subsd     216(%rsp), %xmm6                              #138.5[spill]
+        mulsd     %xmm7, %xmm1                                  #138.5
+        movaps    %xmm6, %xmm13                                 #138.5
+        addsd     %xmm1, %xmm0                                  #138.5
+        mulsd     %xmm6, %xmm13                                 #138.5
+        movsd     %xmm2, 24(%rsp)                               #138.5[spill]
+        pxor      %xmm2, %xmm2                                  #138.5
+        movsd     296(%rsp), %xmm1                              #138.5[spill]
+        addsd     %xmm13, %xmm0                                 #138.5
+        sqrtsd    %xmm0, %xmm2                                  #138.5
+        mulsd     %xmm2, %xmm0                                  #138.5
+        movaps    %xmm7, %xmm2                                  #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm13            #138.5
+        divsd     %xmm0, %xmm13                                 #138.5
+        movaps    %xmm4, %xmm0                                  #138.5
+        mulsd     %xmm13, %xmm0                                 #138.5
+        mulsd     %xmm13, %xmm2                                 #138.5
+        mulsd     %xmm3, %xmm0                                  #138.5
+        mulsd     %xmm3, %xmm2                                  #138.5
+        subsd     %xmm0, %xmm1                                  #138.5
+        movsd     56(%rsp), %xmm0                               #138.5[spill]
+        subsd     %xmm2, %xmm0                                  #138.5
+        movaps    %xmm6, %xmm2                                  #138.5
+        mulsd     %xmm13, %xmm2                                 #138.5
+        mulsd     %xmm3, %xmm2                                  #138.5
+        movsd     48(%rsp), %xmm3                               #138.5[spill]
+        subsd     %xmm2, %xmm3                                  #138.5
+        movsd     192(%rsp), %xmm2                              #138.5[spill]
+        mulsd     %xmm2, %xmm7                                  #138.5
+        mulsd     %xmm2, %xmm4                                  #138.5
+        mulsd     %xmm2, %xmm6                                  #138.5
+        mulsd     %xmm13, %xmm7                                 #138.5
+        mulsd     %xmm13, %xmm4                                 #138.5
+        mulsd     %xmm13, %xmm6                                 #138.5
+        addsd     %xmm7, %xmm11                                 #138.5
+        addsd     %xmm4, %xmm10                                 #138.5
+        addsd     %xmm6, %xmm8                                  #138.5
+        movsd     128(%rsp), %xmm7                              #138.5[spill]
+        movaps    %xmm14, %xmm6                                 #138.5
+        movaps    %xmm15, %xmm4                                 #138.5
+        subsd     %xmm7, %xmm12                                 #138.5
+        mulsd     %xmm14, %xmm6                                 #138.5
+        mulsd     %xmm15, %xmm4                                 #138.5
+        movaps    %xmm12, %xmm13                                #138.5
+        addsd     %xmm4, %xmm6                                  #138.5
+        mulsd     %xmm12, %xmm13                                #138.5
+        pxor      %xmm4, %xmm4                                  #138.5
+        addsd     %xmm13, %xmm6                                 #138.5
+        sqrtsd    %xmm6, %xmm4                                  #138.5
+        mulsd     %xmm4, %xmm6                                  #138.5
+        movaps    %xmm14, %xmm13                                #138.5
+        mulsd     %xmm2, %xmm14                                 #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm4             #138.5
+        divsd     %xmm6, %xmm4                                  #138.5
+        mulsd     %xmm4, %xmm13                                 #138.5
+        mulsd     %xmm4, %xmm14                                 #138.5
+        movsd     (%rsp), %xmm6                                 #138.5[spill]
+        mulsd     %xmm6, %xmm13                                 #138.5
+        subsd     %xmm13, %xmm1                                 #138.5
+        movaps    %xmm15, %xmm13                                #138.5
+        mulsd     %xmm4, %xmm13                                 #138.5
+        mulsd     %xmm2, %xmm15                                 #138.5
+        mulsd     %xmm6, %xmm13                                 #138.5
+        mulsd     %xmm4, %xmm15                                 #138.5
+        subsd     %xmm13, %xmm0                                 #138.5
+        movaps    %xmm12, %xmm13                                #138.5
+        mulsd     %xmm4, %xmm13                                 #138.5
+        mulsd     %xmm2, %xmm12                                 #138.5
+        mulsd     %xmm6, %xmm13                                 #138.5
+        mulsd     %xmm4, %xmm12                                 #138.5
+        subsd     %xmm13, %xmm3                                 #138.5
+        movsd     64(%rsp), %xmm13                              #138.5[spill]
+        movsd     256(%rsp), %xmm4                              #138.5[spill]
+        addsd     %xmm14, %xmm13                                #138.5
+        subsd     %xmm5, %xmm4                                  #138.5
+        movsd     24(%rsp), %xmm14                              #138.5[spill]
+        movsd     224(%rsp), %xmm5                              #138.5[spill]
+        addsd     %xmm15, %xmm14                                #138.5
+        movaps    %xmm5, %xmm15                                 #138.5
+        movsd     32(%rsp), %xmm2                               #138.5[spill]
+        subsd     %xmm9, %xmm15                                 #138.5
+        addsd     %xmm12, %xmm2                                 #138.5
+        movsd     216(%rsp), %xmm12                             #138.5[spill]
+        movaps    %xmm4, %xmm9                                  #138.5
+        mulsd     %xmm4, %xmm9                                  #138.5
+        subsd     %xmm7, %xmm12                                 #138.5
+        movaps    %xmm15, %xmm7                                 #138.5
+        mulsd     %xmm15, %xmm7                                 #138.5
+        addsd     %xmm7, %xmm9                                  #138.5
+        movaps    %xmm12, %xmm7                                 #138.5
+        mulsd     %xmm12, %xmm7                                 #138.5
+        addsd     %xmm7, %xmm9                                  #138.5
+        pxor      %xmm7, %xmm7                                  #138.5
+        sqrtsd    %xmm9, %xmm7                                  #138.5
+        mulsd     %xmm7, %xmm9                                  #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm7             #138.5
+        divsd     %xmm9, %xmm7                                  #138.5
+        movaps    %xmm4, %xmm9                                  #138.5
+        mulsd     %xmm7, %xmm9                                  #138.5
+        mulsd     %xmm6, %xmm9                                  #138.5
+        subsd     %xmm9, %xmm10                                 #138.5
+        movaps    %xmm15, %xmm9                                 #138.5
+        mulsd     %xmm7, %xmm9                                  #138.5
+        mulsd     %xmm6, %xmm9                                  #138.5
+        subsd     %xmm9, %xmm11                                 #138.5
+        movaps    %xmm12, %xmm9                                 #138.5
+        mulsd     %xmm7, %xmm9                                  #138.5
+        mulsd     %xmm6, %xmm9                                  #138.5
+        movsd     72(%rsp), %xmm6                               #138.5[spill]
+        subsd     %xmm9, %xmm8                                  #138.5
+        mulsd     %xmm6, %xmm4                                  #138.5
+        mulsd     %xmm6, %xmm12                                 #138.5
+        mulsd     %xmm6, %xmm15                                 #138.5
+        mulsd     %xmm7, %xmm4                                  #138.5
+        mulsd     %xmm7, %xmm12                                 #138.5
+        mulsd     %xmm7, %xmm15                                 #138.5
+        addsd     %xmm4, %xmm13                                 #138.5
+        addsd     %xmm12, %xmm2                                 #138.5
+        addsd     %xmm15, %xmm14                                #138.5
+        movsd     288(%rsp), %xmm4                              #138.5[spill]
+        movsd     96(%rsp), %xmm6                               #138.5[spill]
+        movsd     .L_2il0floatpacket.9(%rip), %xmm12            #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm7             #138.5
+        mulsd     %xmm4, %xmm12                                 #138.5
+        mulsd     %xmm6, %xmm7                                  #138.5
+        movsd     152(%rsp), %xmm15                             #138.5[spill]
+        movsd     144(%rsp), %xmm9                              #138.5[spill]
+        addsd     %xmm12, %xmm15                                #138.5
+        addsd     %xmm7, %xmm9                                  #138.5
+        movsd     176(%rsp), %xmm7                              #138.5[spill]
+        movsd     .L_2il0floatpacket.9(%rip), %xmm12            #138.5
+        mulsd     %xmm7, %xmm12                                 #138.5
+        movsd     %xmm9, 144(%rsp)                              #138.5[spill]
+        movsd     240(%rsp), %xmm9                              #138.5[spill]
+        movsd     %xmm15, 152(%rsp)                             #138.5[spill]
+        addsd     %xmm12, %xmm9                                 #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm15            #138.5
+        mulsd     280(%rsp), %xmm15                             #138.5[spill]
+        movsd     %xmm9, 240(%rsp)                              #138.5[spill]
+        movsd     80(%rsp), %xmm9                               #138.5[spill]
+        movsd     .L_2il0floatpacket.9(%rip), %xmm12            #138.5
+        addsd     %xmm15, %xmm9                                 #138.5
+        movsd     %xmm9, 80(%rsp)                               #138.5[spill]
+        movsd     %xmm9, 56+bodies(%rip)                        #138.5
+        movsd     112(%rsp), %xmm9                              #138.5[spill]
+        mulsd     %xmm9, %xmm12                                 #138.5
+        movsd     160(%rsp), %xmm15                             #138.5[spill]
+        movsd     %xmm11, 8(%rsp)                               #138.5[spill]
+        addsd     %xmm12, %xmm15                                #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm12            #138.5
+        mulsd     104(%rsp), %xmm12                             #138.5[spill]
+        movsd     %xmm15, 160(%rsp)                             #138.5[spill]
+        movsd     200(%rsp), %xmm15                             #138.5[spill]
+        movsd     %xmm8, 16(%rsp)                               #138.5[spill]
+        addsd     %xmm12, %xmm15                                #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm12            #138.5
+        mulsd     %xmm1, %xmm12                                 #138.5
+        movsd     %xmm15, 200(%rsp)                             #138.5[spill]
+        movsd     88(%rsp), %xmm15                              #138.5[spill]
+        addsd     %xmm12, %xmm15                                #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm12            #138.5
+        mulsd     %xmm0, %xmm12                                 #138.5
+        movsd     %xmm15, 88(%rsp)                              #138.5[spill]
+        movsd     %xmm15, 112+bodies(%rip)                      #138.5
+        movsd     168(%rsp), %xmm15                             #138.5[spill]
+        addsd     %xmm12, %xmm15                                #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm12            #138.5
+        mulsd     %xmm3, %xmm12                                 #138.5
+        movsd     %xmm15, 168(%rsp)                             #138.5[spill]
+        movsd     232(%rsp), %xmm15                             #138.5[spill]
+        addsd     %xmm12, %xmm15                                #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm12            #138.5
+        mulsd     %xmm10, %xmm12                                #138.5
+        movsd     %xmm15, 232(%rsp)                             #138.5[spill]
+        movsd     208(%rsp), %xmm15                             #138.5[spill]
+        addsd     %xmm12, %xmm15                                #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm12            #138.5
+        mulsd     %xmm11, %xmm12                                #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm11            #138.5
+        addsd     %xmm12, %xmm5                                 #138.5
+        mulsd     %xmm8, %xmm11                                 #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm8             #138.5
+        mulsd     %xmm13, %xmm8                                 #138.5
+        movsd     136(%rsp), %xmm12                             #138.5[spill]
+        movsd     %xmm5, 224(%rsp)                              #138.5[spill]
+        addsd     %xmm8, %xmm12                                 #138.5
+        movsd     216(%rsp), %xmm5                              #138.5[spill]
+        movsd     %xmm15, 208(%rsp)                             #138.5[spill]
+        addsd     %xmm11, %xmm5                                 #138.5
+        movsd     %xmm15, 168+bodies(%rip)                      #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm8             #138.5
+        movsd     .L_2il0floatpacket.9(%rip), %xmm15            #138.5
+        mulsd     %xmm2, %xmm8                                  #138.5
+        mulsd     %xmm14, %xmm15                                #138.5
+        movsd     %xmm5, 216(%rsp)                              #138.5[spill]
+        movsd     128(%rsp), %xmm11                             #138.5[spill]
+        movsd     120(%rsp), %xmm5                              #138.5[spill]
+        addsd     %xmm8, %xmm11                                 #138.5
+        addsd     %xmm15, %xmm5                                 #138.5
+        movsd     %xmm11, 128(%rsp)                             #138.5[spill]
+        movsd     %xmm12, 136(%rsp)                             #138.5[spill]
+        movsd     %xmm5, 120(%rsp)                              #138.5[spill]
+        movsd     104(%rsp), %xmm11                             #137.3[spill]
+        cmpl      $5000000, %eax                                #137.3
+        jae       ..B1.4        # Prob 3%                       #137.3
+                                # LOE rbx r12 r13 r14 r15 eax xmm0 xmm1 xmm2 xmm3 xmm4 xmm5 xmm6 xmm7 xmm9 xmm10 xmm11 xmm12 xmm13 xmm14
+..B1.9:                         # Preds ..B1.3
+                                # Execution count [4.10e+00]
+        movsd     56+bodies(%rip), %xmm5                        #136.21
+        movsd     112+bodies(%rip), %xmm8                       #136.21
+        movsd     168+bodies(%rip), %xmm12                      #136.21
+        movsd     %xmm5, 272(%rsp)                              #136.21[spill]
+        movsd     %xmm8, 264(%rsp)                              #136.21[spill]
+        movsd     %xmm12, 256(%rsp)                             #136.21[spill]
+        jmp       ..B1.3        # Prob 100%                     #136.21
+                                # LOE rbx r12 r13 r14 r15 eax xmm0 xmm1 xmm2 xmm3 xmm4 xmm6 xmm7 xmm9 xmm10 xmm11 xmm13 xmm14
+..B1.4:                         # Preds ..B1.3
+                                # Execution count [1.00e+00]
+        movsd     %xmm14, 24(%rsp)                              #[spill]
+        movl      $.L_2__STRING.0, %edi                         #139.3
+        movsd     128(%rsp), %xmm14                             #138.5[spill]
+        movl      $1, %eax                                      #139.3
+        movsd     %xmm2, 32(%rsp)                               #[spill]
+        movsd     %xmm14, 240+bodies(%rip)                      #138.5
+        movaps    %xmm2, %xmm15                                 #138.5
+        movsd     24(%rsp), %xmm14                              #138.5[spill]
+        movsd     %xmm13, 64(%rsp)                              #[spill]
+        movsd     %xmm15, 264+bodies(%rip)                      #138.5
+        movsd     %xmm14, 256+bodies(%rip)                      #138.5
+        movaps    %xmm13, %xmm15                                #138.5
+        movsd     16(%rsp), %xmm14                              #138.5[spill]
+        movsd     %xmm10, 40(%rsp)                              #[spill]
+        movsd     %xmm7, 176(%rsp)                              #[spill]
+        movsd     %xmm6, 96(%rsp)                               #[spill]
+        movsd     %xmm15, 248+bodies(%rip)                      #138.5
+        movsd     %xmm14, 208+bodies(%rip)                      #138.5
+        movaps    %xmm5, %xmm7                                  #138.5
+        movaps    %xmm12, %xmm6                                 #138.5
+        movsd     8(%rsp), %xmm15                               #138.5[spill]
+        movaps    %xmm10, %xmm14                                #138.5
+        movsd     %xmm3, 48(%rsp)                               #[spill]
+        movsd     %xmm0, 56(%rsp)                               #[spill]
+        movsd     216(%rsp), %xmm2                              #[spill]
+        movsd     %xmm7, 232+bodies(%rip)                       #138.5
+        movsd     %xmm6, 224+bodies(%rip)                       #138.5
+        movsd     %xmm15, 200+bodies(%rip)                      #138.5
+        movsd     %xmm14, 192+bodies(%rip)                      #138.5
+        movsd     144(%rsp), %xmm7                              #138.22[spill]
+        movsd     152(%rsp), %xmm6                              #138.22[spill]
+        movaps    %xmm3, %xmm15                                 #138.5
+        movaps    %xmm0, %xmm14                                 #138.5
+        movsd     %xmm2, 184+bodies(%rip)                       #138.5
+        movsd     160(%rsp), %xmm2                              #138.5[spill]
+        movsd     %xmm15, 152+bodies(%rip)                      #138.5
+        movaps    %xmm6, %xmm15                                 #139.21
+        movsd     %xmm14, 144+bodies(%rip)                      #138.5
+        movaps    %xmm7, %xmm14                                 #139.21
+        movsd     240(%rsp), %xmm10                             #[spill]
+        subsd     %xmm2, %xmm14                                 #139.21
+        subsd     80(%rsp), %xmm15                              #139.21[spill]
+        mulsd     %xmm14, %xmm14                                #139.21
+        mulsd     %xmm15, %xmm15                                #139.21
+        movsd     200(%rsp), %xmm0                              #[spill]
+        addsd     %xmm14, %xmm15                                #139.21
+        movsd     %xmm2, 64+bodies(%rip)                        #138.5
+        movaps    %xmm10, %xmm2                                 #139.21
+        movsd     %xmm11, 104(%rsp)                             #[spill]
+        movaps    %xmm6, %xmm14                                 #139.21
+        movsd     %xmm1, 296(%rsp)                              #[spill]
+        subsd     %xmm0, %xmm2                                  #139.21
+        mulsd     %xmm2, %xmm2                                  #139.21
+        movsd     %xmm1, 136+bodies(%rip)                       #138.5
+        addsd     %xmm2, %xmm15                                 #139.21
+        movaps    %xmm11, %xmm1                                 #138.5
+        movaps    %xmm7, %xmm2                                  #139.21
+        movsd     %xmm9, 112(%rsp)                              #[spill]
+        movsd     %xmm1, 96+bodies(%rip)                        #138.5
+        movaps    %xmm9, %xmm1                                  #138.5
+        movsd     %xmm1, 88+bodies(%rip)                        #138.5
+        movsd     96(%rsp), %xmm1                               #138.22[spill]
+        movsd     %xmm1, 32+bodies(%rip)                        #138.22
+        movsd     %xmm4, 24+bodies(%rip)                        #138.22
+        mulsd     %xmm4, %xmm4                                  #139.21
+        sqrtsd    %xmm15, %xmm15                                #139.21
+        mulsd     %xmm1, %xmm1                                  #139.21
+        movsd     280(%rsp), %xmm13                             #[spill]
+        addsd     %xmm1, %xmm4                                  #139.21
+        movsd     %xmm13, 80+bodies(%rip)                       #138.5
+        movsd     176(%rsp), %xmm13                             #138.22[spill]
+        movsd     %xmm13, 40+bodies(%rip)                       #138.22
+        mulsd     %xmm13, %xmm13                                #139.21
+        movsd     .L_2il0floatpacket.8(%rip), %xmm1             #139.21
+        addsd     %xmm13, %xmm4                                 #139.21
+        movsd     184(%rsp), %xmm13                             #139.21[spill]
+        divsd     %xmm15, %xmm13                                #139.21
+        movsd     %xmm0, 72+bodies(%rip)                        #138.5
+        movsd     168(%rsp), %xmm11                             #138.5[spill]
+        movsd     88(%rsp), %xmm0                               #139.21[spill]
+        subsd     %xmm11, %xmm2                                 #139.21
+        mulsd     %xmm1, %xmm4                                  #139.21
+        subsd     %xmm0, %xmm14                                 #139.21
+        mulsd     %xmm2, %xmm2                                  #139.21
+        subsd     %xmm13, %xmm4                                 #139.21
+        mulsd     %xmm14, %xmm14                                #139.21
+        movsd     232(%rsp), %xmm5                              #[spill]
+        movaps    %xmm10, %xmm13                                #139.21
+        movsd     192(%rsp), %xmm3                              #[spill]
+        subsd     %xmm5, %xmm13                                 #139.21
+        addsd     %xmm2, %xmm14                                 #139.21
+        mulsd     %xmm13, %xmm13                                #139.21
+        movsd     248(%rsp), %xmm8                              #[spill]
+        movaps    %xmm3, %xmm15                                 #139.21
+        mulsd     %xmm8, %xmm15                                 #139.21
+        addsd     %xmm13, %xmm14                                #139.21
+        mulsd     %xmm8, %xmm4                                  #139.21
+        sqrtsd    %xmm14, %xmm14                                #139.21
+        divsd     %xmm14, %xmm15                                #139.21
+        movsd     224(%rsp), %xmm9                              #[spill]
+        movaps    %xmm6, %xmm2                                  #139.21
+        movsd     208(%rsp), %xmm12                             #[spill]
+        movaps    %xmm10, %xmm14                                #139.21
+        movaps    %xmm8, %xmm13                                 #139.21
+        subsd     %xmm15, %xmm4                                 #139.21
+        mulsd     72(%rsp), %xmm13                              #139.21[spill]
+        subsd     %xmm12, %xmm2                                 #139.21
+        subsd     216(%rsp), %xmm14                             #139.21[spill]
+        mulsd     (%rsp), %xmm8                                 #139.21[spill]
+        mulsd     %xmm2, %xmm2                                  #139.21
+        mulsd     %xmm14, %xmm14                                #139.21
+        movaps    %xmm7, %xmm15                                 #139.21
+        movsd     %xmm7, 8+bodies(%rip)                         #138.22
+        subsd     %xmm9, %xmm15                                 #139.21
+        mulsd     %xmm15, %xmm15                                #139.21
+        movsd     %xmm6, bodies(%rip)                           #138.22
+        addsd     %xmm15, %xmm2                                 #139.21
+        movsd     128(%rsp), %xmm15                             #139.21[spill]
+        addsd     %xmm14, %xmm2                                 #139.21
+        sqrtsd    %xmm2, %xmm2                                  #139.21
+        divsd     %xmm2, %xmm13                                 #139.21
+        movsd     120(%rsp), %xmm14                             #139.21[spill]
+        subsd     %xmm13, %xmm4                                 #139.21
+        subsd     %xmm14, %xmm7                                 #139.21
+        movsd     136(%rsp), %xmm13                             #139.21[spill]
+        movsd     %xmm10, 16+bodies(%rip)                       #138.22
+        subsd     %xmm13, %xmm6                                 #139.21
+        mulsd     %xmm7, %xmm7                                  #139.21
+        subsd     %xmm15, %xmm10                                #139.21
+        mulsd     %xmm6, %xmm6                                  #139.21
+        mulsd     %xmm10, %xmm10                                #139.21
+        addsd     %xmm7, %xmm6                                  #139.21
+        movsd     80(%rsp), %xmm7                               #139.21[spill]
+        addsd     %xmm10, %xmm6                                 #139.21
+        sqrtsd    %xmm6, %xmm6                                  #139.21
+        divsd     %xmm6, %xmm8                                  #139.21
+        movsd     160(%rsp), %xmm10                             #139.21[spill]
+        movaps    %xmm7, %xmm6                                  #139.21
+        movsd     %xmm11, 120+bodies(%rip)                      #138.5
+        subsd     %xmm0, %xmm6                                  #139.21
+        subsd     %xmm8, %xmm4                                  #139.21
+        mulsd     %xmm6, %xmm6                                  #139.21
+        movaps    %xmm10, %xmm0                                 #139.21
+        movsd     200(%rsp), %xmm8                              #139.21[spill]
+        subsd     %xmm11, %xmm0                                 #139.21
+        movaps    %xmm8, %xmm11                                 #139.21
+        mulsd     %xmm0, %xmm0                                  #139.21
+        subsd     %xmm5, %xmm11                                 #139.21
+        mulsd     %xmm11, %xmm11                                #139.21
+        addsd     %xmm0, %xmm6                                  #139.21
+        movsd     %xmm5, 128+bodies(%rip)                       #138.5
+        addsd     %xmm11, %xmm6                                 #139.21
+        sqrtsd    %xmm6, %xmm6                                  #139.21
+        divsd     %xmm6, %xmm3                                  #139.21
+        movsd     280(%rsp), %xmm5                              #139.21[spill]
+        movaps    %xmm8, %xmm11                                 #139.21
+        movsd     112(%rsp), %xmm2                              #139.21[spill]
+        subsd     %xmm15, %xmm8                                 #139.21
+        mulsd     %xmm5, %xmm5                                  #139.21
+        mulsd     %xmm2, %xmm2                                  #139.21
+        mulsd     %xmm8, %xmm8                                  #139.21
+        addsd     %xmm2, %xmm5                                  #139.21
+        movsd     104(%rsp), %xmm2                              #139.21[spill]
+        mulsd     %xmm2, %xmm2                                  #139.21
+        movsd     216(%rsp), %xmm0                              #139.21[spill]
+        addsd     %xmm2, %xmm5                                  #139.21
+        subsd     %xmm0, %xmm11                                 #139.21
+        mulsd     %xmm1, %xmm5                                  #139.21
+        mulsd     %xmm11, %xmm11                                #139.21
+        subsd     %xmm3, %xmm5                                  #139.21
+        movsd     184(%rsp), %xmm3                              #139.21[spill]
+        movaps    %xmm7, %xmm2                                  #139.21
+        mulsd     %xmm3, %xmm5                                  #139.21
+        subsd     %xmm12, %xmm2                                 #139.21
+        subsd     %xmm13, %xmm7                                 #139.21
+        mulsd     %xmm2, %xmm2                                  #139.21
+        addsd     %xmm4, %xmm5                                  #139.21
+        mulsd     %xmm7, %xmm7                                  #139.21
+        movaps    %xmm10, %xmm4                                 #139.21
+        subsd     %xmm14, %xmm10                                #139.21
+        subsd     %xmm9, %xmm4                                  #139.21
+        mulsd     %xmm10, %xmm10                                #139.21
+        mulsd     %xmm4, %xmm4                                  #139.21
+        addsd     %xmm10, %xmm7                                 #139.21
+        addsd     %xmm4, %xmm2                                  #139.21
+        addsd     %xmm8, %xmm7                                  #139.21
+        addsd     %xmm11, %xmm2                                 #139.21
+        sqrtsd    %xmm7, %xmm7                                  #139.21
+        sqrtsd    %xmm2, %xmm2                                  #139.21
+        movsd     72(%rsp), %xmm6                               #139.21[spill]
+        mulsd     %xmm3, %xmm6                                  #139.21
+        divsd     %xmm2, %xmm6                                  #139.21
+        movsd     88(%rsp), %xmm8                               #139.21[spill]
+        subsd     %xmm6, %xmm5                                  #139.21
+        movsd     (%rsp), %xmm6                                 #139.21[spill]
+        movaps    %xmm8, %xmm10                                 #139.21
+        mulsd     %xmm6, %xmm3                                  #139.21
+        subsd     %xmm12, %xmm10                                #139.21
+        subsd     %xmm13, %xmm8                                 #139.21
+        subsd     %xmm13, %xmm12                                #139.21
+        divsd     %xmm7, %xmm3                                  #139.21
+        movsd     232(%rsp), %xmm4                              #139.21[spill]
+        subsd     %xmm3, %xmm5                                  #139.21
+        mulsd     %xmm10, %xmm10                                #139.21
+        mulsd     %xmm8, %xmm8                                  #139.21
+        mulsd     %xmm12, %xmm12                                #139.3
+        movsd     168(%rsp), %xmm3                              #139.21[spill]
+        movaps    %xmm4, %xmm2                                  #139.21
+        movaps    %xmm3, %xmm11                                 #139.21
+        subsd     %xmm0, %xmm2                                  #139.21
+        subsd     %xmm9, %xmm11                                 #139.21
+        subsd     %xmm14, %xmm3                                 #139.21
+        subsd     %xmm15, %xmm4                                 #139.21
+        mulsd     %xmm2, %xmm2                                  #139.21
+        mulsd     %xmm11, %xmm11                                #139.21
+        mulsd     %xmm3, %xmm3                                  #139.21
+        mulsd     %xmm4, %xmm4                                  #139.21
+        addsd     %xmm11, %xmm10                                #139.21
+        addsd     %xmm3, %xmm8                                  #139.21
+        addsd     %xmm2, %xmm10                                 #139.21
+        addsd     %xmm4, %xmm8                                  #139.21
+        pxor      %xmm2, %xmm2                                  #139.21
+        sqrtsd    %xmm10, %xmm2                                 #139.21
+        sqrtsd    %xmm8, %xmm8                                  #139.21
+        movsd     72(%rsp), %xmm10                              #139.21[spill]
+        movaps    %xmm10, %xmm11                                #139.21
+        divsd     %xmm2, %xmm11                                 #139.21
+        movsd     296(%rsp), %xmm7                              #139.21[spill]
+        movsd     56(%rsp), %xmm0                               #139.21[spill]
+        mulsd     %xmm7, %xmm7                                  #139.21
+        mulsd     %xmm0, %xmm0                                  #139.21
+        movsd     %xmm9, 176+bodies(%rip)                       #138.5
+        addsd     %xmm0, %xmm7                                  #139.21
+        subsd     %xmm14, %xmm9                                 #139.21
+        movsd     48(%rsp), %xmm0                               #139.21[spill]
+        mulsd     %xmm0, %xmm0                                  #139.21
+        mulsd     %xmm9, %xmm9                                  #139.3
+        addsd     %xmm0, %xmm7                                  #139.21
+        addsd     %xmm9, %xmm12                                 #139.3
+        mulsd     %xmm1, %xmm7                                  #139.21
+        movsd     192(%rsp), %xmm0                              #139.21[spill]
+        subsd     %xmm11, %xmm7                                 #139.21
+        mulsd     %xmm0, %xmm7                                  #139.21
+        mulsd     %xmm6, %xmm0                                  #139.21
+        addsd     %xmm5, %xmm7                                  #139.21
+        divsd     %xmm8, %xmm0                                  #139.21
+        movsd     216(%rsp), %xmm5                              #139.21[spill]
+        subsd     %xmm0, %xmm7                                  #139.21
+        subsd     %xmm15, %xmm5                                 #139.21
+        mulsd     %xmm5, %xmm5                                  #139.3
+        movaps    %xmm10, %xmm0                                 #139.3
+        movsd     64(%rsp), %xmm2                               #139.3[spill]
+        addsd     %xmm5, %xmm12                                 #139.3
+        mulsd     %xmm2, %xmm2                                  #139.3
+        sqrtsd    %xmm12, %xmm12                                #139.3
+        divsd     %xmm12, %xmm0                                 #139.3
+        movsd     24(%rsp), %xmm9                               #139.3[spill]
+        mulsd     %xmm9, %xmm9                                  #139.3
+        movsd     32(%rsp), %xmm12                              #139.3[spill]
+        addsd     %xmm9, %xmm2                                  #139.3
+        mulsd     %xmm12, %xmm12                                #139.3
+        xorps     .L_2il0floatpacket.10(%rip), %xmm0            #139.3
+        addsd     %xmm12, %xmm2                                 #139.3
+        mulsd     %xmm1, %xmm2                                  #139.3
+        mulsd     %xmm10, %xmm1                                 #139.3
+        addsd     %xmm2, %xmm0                                  #139.3
+        movsd     40(%rsp), %xmm3                               #139.3[spill]
+        movsd     8(%rsp), %xmm10                               #139.3[spill]
+        mulsd     %xmm3, %xmm3                                  #139.3
+        mulsd     %xmm10, %xmm10                                #139.3
+        mulsd     %xmm6, %xmm0                                  #139.3
+        addsd     %xmm10, %xmm3                                 #139.3
+        movsd     16(%rsp), %xmm6                               #139.3[spill]
+        mulsd     %xmm6, %xmm6                                  #139.3
+        addsd     %xmm6, %xmm3                                  #139.3
+        mulsd     %xmm3, %xmm1                                  #139.3
+        addsd     %xmm1, %xmm7                                  #139.3
+        addsd     %xmm7, %xmm0                                  #139.3
+..___tag_value_main.252:
+#       printf(const char *__restrict__, ...)
+        call      printf                                        #139.3
+..___tag_value_main.253:
+                                # LOE rbx r12 r13 r14 r15
+..B1.5:                         # Preds ..B1.4
+                                # Execution count [1.00e+00]
+        xorl      %eax, %eax                                    #140.10
+        movq      %rbp, %rsp                                    #140.10
+        popq      %rbp                                          #140.10
+	.cfi_def_cfa 7, 8
+	.cfi_restore 6
+        ret                                                     #140.10
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	main,@function
+	.size	main,.-main
+..LNmain.0:
+	.data
+# -- End  main
+	.text
+.L_2__routine_start_advance_1:
+# -- Begin  advance
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl advance
+# --- advance(int, struct planet *, double)
+advance:
+# parameter 1: %edi
+# parameter 2: %rsi
+# parameter 3: %xmm0
+..B2.1:                         # Preds ..B2.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_advance.257:
+..L258:
+                                                        #24.1
+        movl      %edi, %r9d                                    #24.1
+        movaps    %xmm0, %xmm7                                  #24.1
+        movq      %rsi, %r8                                     #28.27
+        xorl      %edi, %edi                                    #27.3
+        xorl      %r10d, %r10d                                  #28.27
+        testl     %r9d, %r9d                                    #27.19
+        jle       ..B2.17       # Prob 15%                      #27.19
+                                # LOE rbx rbp rsi r8 r10 r12 r13 r14 r15 edi r9d xmm7
+..B2.2:                         # Preds ..B2.1
+                                # Execution count [8.47e-01]
+        movaps    %xmm7, %xmm0                                  #23.6
+        unpcklpd  %xmm0, %xmm0                                  #23.6
+        movslq    %r9d, %r11                                    #29.5
+        movups    %xmm0, -24(%rsp)                              #23.6[spill]
+        movq      %rbx, -88(%rsp)                               #23.6[spill]
+        movq      %rbp, -80(%rsp)                               #23.6[spill]
+	.cfi_offset 3, -96
+	.cfi_offset 6, -88
+                                # LOE rsi r8 r10 r11 r12 r13 r14 r15 edi r9d xmm7
+..B2.3:                         # Preds ..B2.13 ..B2.2
+                                # Execution count [4.70e+00]
+        incl      %edi                                          #25.3
+        cmpl      %r9d, %edi                                    #29.25
+        jge       ..B2.13       # Prob 50%                      #29.25
+                                # LOE rsi r8 r10 r11 r12 r13 r14 r15 edi r9d xmm7
+..B2.4:                         # Preds ..B2.3
+                                # Execution count [4.23e+00]
+        movsd     (%r8), %xmm10                                 #31.19
+        lea       -1(%r10,%r11), %rcx                           #29.5
+        pxor      %xmm6, %xmm6                                  #36.7
+        lea       80(%r8), %rax                                 #31.19
+        movaps    %xmm6, %xmm1                                  #37.7
+        movsd     -72(%rax), %xmm9                              #32.19
+        movaps    %xmm1, %xmm5                                  #38.7
+        movsd     -64(%rax), %xmm8                              #33.19
+        movsd     -32(%rax), %xmm11                             #39.22
+        cmpq      $2, %rcx                                      #29.5
+        jl        ..B2.18       # Prob 10%                      #29.5
+                                # LOE rax rcx rsi r8 r10 r11 r12 r13 r14 r15 edi r9d xmm1 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11
+..B2.5:                         # Preds ..B2.4
+                                # Execution count [4.23e+00]
+        movl      %ecx, %edx                                    #29.5
+        xorl      %ebp, %ebp                                    #29.5
+        andl      $-2, %edx                                     #29.5
+        movaps    %xmm10, %xmm4                                 #31.19
+        movaps    %xmm9, %xmm3                                  #32.19
+        movaps    %xmm8, %xmm2                                  #33.19
+        movaps    %xmm11, %xmm0                                 #41.22
+        xorl      %ebx, %ebx                                    #29.5
+        movslq    %edx, %rdx                                    #29.5
+        unpcklpd  %xmm4, %xmm4                                  #31.19
+        unpcklpd  %xmm3, %xmm3                                  #32.19
+        unpcklpd  %xmm2, %xmm2                                  #33.19
+        unpcklpd  %xmm0, %xmm0                                  #41.22
+        movsd     %xmm11, -72(%rsp)                             #29.5[spill]
+        movsd     %xmm8, -64(%rsp)                              #29.5[spill]
+        movsd     %xmm9, -56(%rsp)                              #29.5[spill]
+        movsd     %xmm10, -48(%rsp)                             #29.5[spill]
+        movsd     %xmm7, -40(%rsp)                              #29.5[spill]
+                                # LOE rax rdx rcx rbx rbp rsi r8 r10 r11 r12 r13 r14 r15 edi r9d xmm0 xmm1 xmm2 xmm3 xmm4 xmm5 xmm6
+..B2.6:                         # Preds ..B2.6 ..B2.5
+                                # Execution count [2.35e+01]
+        movsd     56(%rbx,%r8), %xmm13                          #31.26
+        movaps    %xmm4, %xmm9                                  #31.26
+        movsd     64(%rbx,%r8), %xmm12                          #31.26
+        addq      $2, %rbp                                      #29.5
+        movhpd    112(%rbx,%r8), %xmm13                         #31.26
+        movhpd    120(%rbx,%r8), %xmm12                         #31.26
+        subpd     %xmm13, %xmm9                                 #31.26
+        movaps    %xmm3, %xmm13                                 #32.26
+        movaps    %xmm9, %xmm15                                 #34.35
+        subpd     %xmm12, %xmm13                                #32.26
+        mulpd     %xmm9, %xmm15                                 #34.35
+        movsd     72(%rbx,%r8), %xmm14                          #31.26
+        movaps    %xmm2, %xmm12                                 #33.26
+        movhpd    128(%rbx,%r8), %xmm14                         #31.26
+        subpd     %xmm14, %xmm12                                #33.26
+        movaps    %xmm13, %xmm14                                #34.45
+        mulpd     %xmm13, %xmm14                                #34.45
+        addpd     %xmm14, %xmm15                                #34.45
+        movaps    %xmm12, %xmm14                                #34.55
+        mulpd     %xmm12, %xmm14                                #34.55
+        addpd     %xmm14, %xmm15                                #34.55
+        sqrtpd    %xmm15, %xmm14                                #34.25
+        mulpd     %xmm15, %xmm14                                #35.48
+        movups    -24(%rsp), %xmm15                             #35.48[spill]
+        divpd     %xmm14, %xmm15                                #35.48
+        movaps    %xmm9, %xmm14                                 #36.21
+        mulpd     %xmm15, %xmm14                                #36.21
+        mulpd     %xmm0, %xmm9                                  #39.22
+        movsd     104(%rbx,%r8), %xmm11                         #31.26
+        movhpd    160(%rbx,%r8), %xmm11                         #31.26
+        mulpd     %xmm11, %xmm14                                #36.32
+        mulpd     %xmm15, %xmm9                                 #39.32
+        subpd     %xmm14, %xmm6                                 #36.7
+        movaps    %xmm13, %xmm14                                #37.21
+        mulpd     %xmm15, %xmm14                                #37.21
+        mulpd     %xmm0, %xmm13                                 #40.22
+        mulpd     %xmm11, %xmm14                                #37.32
+        mulpd     %xmm15, %xmm13                                #40.32
+        subpd     %xmm14, %xmm1                                 #37.7
+        movaps    %xmm12, %xmm14                                #38.21
+        mulpd     %xmm0, %xmm12                                 #41.22
+        mulpd     %xmm15, %xmm14                                #38.21
+        mulpd     %xmm12, %xmm15                                #41.32
+        mulpd     %xmm14, %xmm11                                #38.32
+        movsd     96(%rbx,%r8), %xmm10                          #31.26
+        movsd     88(%rbx,%r8), %xmm8                           #31.26
+        movsd     80(%rbx,%r8), %xmm7                           #31.26
+        movhpd    144(%rbx,%r8), %xmm8                          #31.26
+        movhpd    152(%rbx,%r8), %xmm10                         #31.26
+        movhpd    136(%rbx,%r8), %xmm7                          #31.26
+        addq      $112, %rbx                                    #29.5
+        addpd     %xmm9, %xmm7                                  #39.7
+        addpd     %xmm13, %xmm8                                 #40.7
+        addpd     %xmm15, %xmm10                                #41.7
+        subpd     %xmm11, %xmm5                                 #38.7
+        movsd     %xmm10, 16(%rax)                              #41.7
+        movhpd    %xmm10, 72(%rax)                              #41.7
+        movsd     %xmm8, 8(%rax)                                #41.7
+        movhpd    %xmm8, 64(%rax)                               #41.7
+        movsd     %xmm7, (%rax)                                 #41.7
+        movhpd    %xmm7, 56(%rax)                               #41.7
+        addq      $112, %rax                                    #29.5
+        cmpq      %rdx, %rbp                                    #29.5
+        jb        ..B2.6        # Prob 81%                      #29.5
+                                # LOE rax rdx rcx rbx rbp rsi r8 r10 r11 r12 r13 r14 r15 edi r9d xmm0 xmm1 xmm2 xmm3 xmm4 xmm5 xmm6
+..B2.7:                         # Preds ..B2.6
+                                # Execution count [4.23e+00]
+        movsd     -72(%rsp), %xmm11                             #[spill]
+        movsd     -64(%rsp), %xmm8                              #[spill]
+        movsd     -56(%rsp), %xmm9                              #[spill]
+        movsd     -48(%rsp), %xmm10                             #[spill]
+        movsd     -40(%rsp), %xmm7                              #[spill]
+                                # LOE rdx rcx rsi r8 r10 r11 r12 r13 r14 r15 edi r9d xmm1 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11
+..B2.8:                         # Preds ..B2.7 ..B2.18
+                                # Execution count [4.70e+00]
+        lea       (,%rdx,8), %rax                               #29.5
+        subq      %rdx, %rax                                    #29.5
+        lea       (%r8,%rax,8), %rax                            #32.19
+        cmpq      %rcx, %rdx                                    #29.5
+        jae       ..B2.12       # Prob 9%                       #29.5
+                                # LOE rax rdx rcx rsi r8 r10 r11 r12 r13 r14 r15 edi r9d xmm1 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11
+..B2.10:                        # Preds ..B2.8 ..B2.10
+                                # Execution count [2.35e+01]
+        movaps    %xmm10, %xmm4                                 #31.26
+        movaps    %xmm9, %xmm12                                 #32.26
+        movaps    %xmm8, %xmm3                                  #33.26
+        pxor      %xmm15, %xmm15                                #34.25
+        movaps    %xmm7, %xmm2                                  #35.48
+        incq      %rdx                                          #29.5
+        subsd     56(%rax), %xmm4                               #31.26
+        subsd     64(%rax), %xmm12                              #32.26
+        subsd     72(%rax), %xmm3                               #33.26
+        movaps    %xmm4, %xmm0                                  #34.35
+        movaps    %xmm12, %xmm13                                #34.45
+        mulsd     %xmm4, %xmm0                                  #34.35
+        movaps    %xmm3, %xmm14                                 #34.55
+        mulsd     %xmm12, %xmm13                                #34.45
+        mulsd     %xmm3, %xmm14                                 #34.55
+        addsd     %xmm13, %xmm0                                 #34.45
+        movaps    %xmm4, %xmm13                                 #36.21
+        addsd     %xmm14, %xmm0                                 #34.55
+        mulsd     %xmm11, %xmm4                                 #39.22
+        sqrtsd    %xmm0, %xmm15                                 #34.25
+        mulsd     %xmm15, %xmm0                                 #35.48
+        divsd     %xmm0, %xmm2                                  #35.48
+        mulsd     %xmm2, %xmm13                                 #36.21
+        mulsd     %xmm2, %xmm4                                  #39.32
+        movsd     104(%rax), %xmm0                              #36.21
+        mulsd     %xmm0, %xmm13                                 #36.32
+        movsd     24(%r8), %xmm14                               #36.7
+        movsd     32(%r8), %xmm15                               #37.7
+        subsd     %xmm13, %xmm14                                #36.7
+        movaps    %xmm12, %xmm13                                #37.21
+        mulsd     %xmm2, %xmm13                                 #37.21
+        mulsd     %xmm11, %xmm12                                #40.22
+        mulsd     %xmm0, %xmm13                                 #37.32
+        mulsd     %xmm2, %xmm12                                 #40.32
+        subsd     %xmm13, %xmm15                                #37.7
+        movaps    %xmm3, %xmm13                                 #38.21
+        mulsd     %xmm2, %xmm13                                 #38.21
+        mulsd     %xmm11, %xmm3                                 #41.22
+        mulsd     %xmm0, %xmm13                                 #38.32
+        mulsd     %xmm2, %xmm3                                  #41.32
+        movsd     40(%r8), %xmm0                                #38.7
+        movsd     %xmm14, 24(%r8)                               #36.7
+        subsd     %xmm13, %xmm0                                 #38.7
+        addsd     80(%rax), %xmm4                               #39.7
+        movsd     %xmm15, 32(%r8)                               #37.7
+        movsd     %xmm0, 40(%r8)                                #38.7
+        movsd     %xmm4, 80(%rax)                               #39.7
+        addsd     88(%rax), %xmm12                              #40.7
+        addsd     96(%rax), %xmm3                               #41.7
+        movsd     %xmm12, 88(%rax)                              #40.7
+        movsd     %xmm3, 96(%rax)                               #41.7
+        addq      $56, %rax                                     #29.5
+        cmpq      %rcx, %rdx                                    #29.5
+        jb        ..B2.10       # Prob 81%                      #29.5
+                                # LOE rax rdx rcx rsi r8 r10 r11 r12 r13 r14 r15 edi r9d xmm1 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11
+..B2.12:                        # Preds ..B2.10 ..B2.8
+                                # Execution count [4.23e+00]
+        movaps    %xmm5, %xmm0                                  #38.7
+        movaps    %xmm1, %xmm2                                  #37.7
+        movaps    %xmm6, %xmm3                                  #36.7
+        unpckhpd  %xmm5, %xmm0                                  #38.7
+        unpckhpd  %xmm1, %xmm2                                  #37.7
+        addsd     %xmm0, %xmm5                                  #38.7
+        addsd     %xmm2, %xmm1                                  #37.7
+        unpckhpd  %xmm6, %xmm3                                  #36.7
+        addsd     40(%r8), %xmm5                                #38.7
+        addsd     %xmm3, %xmm6                                  #36.7
+        addsd     32(%r8), %xmm1                                #37.7
+        movsd     %xmm5, 40(%r8)                                #38.7
+        movsd     %xmm1, 32(%r8)                                #37.7
+        addsd     24(%r8), %xmm6                                #36.7
+        movsd     %xmm6, 24(%r8)                                #36.7
+                                # LOE rsi r8 r10 r11 r12 r13 r14 r15 edi r9d xmm7
+..B2.13:                        # Preds ..B2.3 ..B2.12
+                                # Execution count [4.70e+00]
+        addq      $56, %r8                                      #25.3
+        decq      %r10                                          #25.3
+        cmpl      %r9d, %edi                                    #27.3
+        jb        ..B2.3        # Prob 82%                      #27.3
+                                # LOE rsi r8 r10 r11 r12 r13 r14 r15 edi r9d xmm7
+..B2.14:                        # Preds ..B2.13
+                                # Execution count [9.00e-01]
+        xorl      %edx, %edx                                    #44.8
+        movq      -88(%rsp), %rbx                               #[spill]
+	.cfi_restore 3
+        xorl      %eax, %eax                                    #44.8
+        movq      -80(%rsp), %rbp                               #[spill]
+	.cfi_restore 6
+	.cfi_offset 3, -96
+	.cfi_offset 6, -88
+        .align    16,0x90
+                                # LOE rax rdx rbx rbp rsi r11 r12 r13 r14 r15 xmm7
+..B2.15:                        # Preds ..B2.15 ..B2.14
+                                # Execution count [5.00e+00]
+        movsd     24(%rax,%rsi), %xmm0                          #46.18
+        incq      %rdx                                          #44.28
+        movsd     32(%rax,%rsi), %xmm1                          #47.18
+        movsd     40(%rax,%rsi), %xmm2                          #48.18
+        mulsd     %xmm7, %xmm0                                  #46.18
+        mulsd     %xmm7, %xmm1                                  #47.18
+        mulsd     %xmm7, %xmm2                                  #48.18
+        addsd     (%rax,%rsi), %xmm0                            #46.5
+        addsd     8(%rax,%rsi), %xmm1                           #47.5
+        addsd     16(%rax,%rsi), %xmm2                          #48.5
+        movsd     %xmm0, (%rax,%rsi)                            #46.5
+        movsd     %xmm1, 8(%rax,%rsi)                           #47.5
+        movsd     %xmm2, 16(%rax,%rsi)                          #48.5
+        addq      $56, %rax                                     #44.28
+        cmpq      %r11, %rdx                                    #44.19
+        jl        ..B2.15       # Prob 82%                      #44.19
+	.cfi_restore 3
+	.cfi_restore 6
+                                # LOE rax rdx rbx rbp rsi r11 r12 r13 r14 r15 xmm7
+..B2.17:                        # Preds ..B2.15 ..B2.1
+                                # Execution count [1.00e+00]
+        ret                                                     #50.1
+	.cfi_offset 3, -96
+	.cfi_offset 6, -88
+                                # LOE
+..B2.18:                        # Preds ..B2.4
+                                # Execution count [4.23e-01]: Infreq
+        xorl      %edx, %edx                                    #29.5
+        jmp       ..B2.8        # Prob 100%                     #29.5
+        .align    16,0x90
+                                # LOE rdx rcx rsi r8 r10 r11 r12 r13 r14 r15 edi r9d xmm1 xmm5 xmm6 xmm7 xmm8 xmm9 xmm10 xmm11
+	.cfi_endproc
+# mark_end;
+	.type	advance,@function
+	.size	advance,.-advance
+..LNadvance.1:
+	.data
+# -- End  advance
+	.text
+.L_2__routine_start_energy_2:
+# -- Begin  energy
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl energy
+# --- energy(int, struct planet *)
+energy:
+# parameter 1: %edi
+# parameter 2: %rsi
+..B3.1:                         # Preds ..B3.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_energy.286:
+..L287:
+                                                        #53.1
+        movq      %rsi, %r10                                    #53.1
+        xorl      %r8d, %r8d                                    #58.3
+        xorl      %r9d, %r9d                                    #59.27
+        pxor      %xmm0, %xmm0                                  #57.3
+        lea       56(%r10), %rsi                                #63.26
+        testl     %edi, %edi                                    #58.19
+        jle       ..B3.14       # Prob 9%                       #58.19
+                                # LOE rbx rbp rsi r9 r10 r12 r13 r14 r15 edi r8d xmm0
+..B3.2:                         # Preds ..B3.1
+                                # Execution count [9.00e-01]
+        movslq    %edi, %rcx                                    #61.5
+        movq      %r12, -16(%rsp)                               #61.5[spill]
+        movq      %r13, -24(%rsp)                               #61.5[spill]
+	.cfi_offset 12, -24
+	.cfi_offset 13, -32
+                                # LOE rcx rbx rbp rsi r9 r10 r14 r15 edi r8d xmm0
+..B3.3:                         # Preds ..B3.12 ..B3.2
+                                # Execution count [5.00e+00]
+        movsd     24(%r10), %xmm3                               #60.27
+        incl      %r8d                                          #55.3
+        movsd     32(%r10), %xmm1                               #60.43
+        mulsd     %xmm3, %xmm3                                  #60.35
+        mulsd     %xmm1, %xmm1                                  #60.51
+        movsd     40(%r10), %xmm2                               #60.59
+        addsd     %xmm1, %xmm3                                  #60.51
+        mulsd     %xmm2, %xmm2                                  #60.67
+        movsd     48(%r10), %xmm9                               #60.16
+        addsd     %xmm2, %xmm3                                  #60.67
+        movsd     .L_2il0floatpacket.8(%rip), %xmm4             #60.16
+        mulsd     %xmm9, %xmm4                                  #60.16
+        mulsd     %xmm3, %xmm4                                  #60.67
+        addsd     %xmm4, %xmm0                                  #60.5
+        cmpl      %edi, %r8d                                    #61.25
+        jge       ..B3.12       # Prob 50%                      #61.25
+                                # LOE rcx rbx rbp rsi r9 r10 r14 r15 edi r8d xmm0 xmm9
+..B3.4:                         # Preds ..B3.3
+                                # Execution count [4.50e+00]
+        movsd     (%r10), %xmm5                                 #63.19
+        lea       -1(%r9,%rcx), %rax                            #61.5
+        movsd     8(%r10), %xmm6                                #64.19
+        movsd     16(%r10), %xmm7                               #65.19
+        cmpq      $2, %rax                                      #61.5
+        jl        ..B3.15       # Prob 10%                      #61.5
+                                # LOE rax rcx rbx rbp rsi r9 r10 r14 r15 edi r8d xmm0 xmm5 xmm6 xmm7 xmm9
+..B3.5:                         # Preds ..B3.4
+                                # Execution count [4.50e+00]
+        movl      %eax, %edx                                    #61.5
+        xorl      %r12d, %r12d                                  #61.5
+        pxor      %xmm8, %xmm8                                  #57.3
+        movaps    %xmm5, %xmm3                                  #63.19
+        andl      $-2, %edx                                     #61.5
+        movsd     %xmm0, %xmm8                                  #57.3
+        movaps    %xmm6, %xmm2                                  #64.19
+        movaps    %xmm7, %xmm4                                  #65.19
+        movaps    %xmm9, %xmm0                                  #67.13
+        xorl      %r11d, %r11d                                  #61.5
+        movslq    %edx, %rdx                                    #61.5
+        unpcklpd  %xmm3, %xmm3                                  #63.19
+        unpcklpd  %xmm2, %xmm2                                  #64.19
+        unpcklpd  %xmm4, %xmm4                                  #65.19
+        unpcklpd  %xmm0, %xmm0                                  #67.13
+                                # LOE rax rdx rcx rbx rbp rsi r9 r10 r11 r12 r14 r15 edi r8d xmm0 xmm2 xmm3 xmm4 xmm5 xmm6 xmm7 xmm8 xmm9
+..B3.6:                         # Preds ..B3.6 ..B3.5
+                                # Execution count [2.50e+01]
+        movaps    %xmm3, %xmm15                                 #63.26
+        lea       (%rsi,%r11), %r13                             #63.26
+        movsd     8(%r13), %xmm11                               #63.26
+        movaps    %xmm2, %xmm13                                 #64.26
+        movsd     (%r13), %xmm10                                #63.26
+        movaps    %xmm4, %xmm14                                 #65.26
+        movhpd    64(%r13), %xmm11                              #63.26
+        addq      $2, %r12                                      #61.5
+        movhpd    56(%r13), %xmm10                              #63.26
+        addq      $112, %r11                                    #61.5
+        subpd     %xmm10, %xmm15                                #63.26
+        subpd     %xmm11, %xmm13                                #64.26
+        mulpd     %xmm15, %xmm15                                #66.35
+        mulpd     %xmm13, %xmm13                                #66.45
+        movsd     16(%r13), %xmm12                              #63.26
+        movhpd    72(%r13), %xmm12                              #63.26
+        subpd     %xmm12, %xmm14                                #65.26
+        addpd     %xmm13, %xmm15                                #66.45
+        mulpd     %xmm14, %xmm14                                #66.55
+        addpd     %xmm14, %xmm15                                #66.55
+        sqrtpd    %xmm15, %xmm10                                #67.35
+        movsd     48(%r13), %xmm1                               #63.26
+        movhpd    104(%r13), %xmm1                              #63.26
+        mulpd     %xmm0, %xmm1                                  #67.23
+        divpd     %xmm10, %xmm1                                 #67.35
+        subpd     %xmm1, %xmm8                                  #67.7
+        cmpq      %rdx, %r12                                    #61.5
+        jb        ..B3.6        # Prob 82%                      #61.5
+                                # LOE rax rdx rcx rbx rbp rsi r9 r10 r11 r12 r14 r15 edi r8d xmm0 xmm2 xmm3 xmm4 xmm5 xmm6 xmm7 xmm8 xmm9
+..B3.7:                         # Preds ..B3.6
+                                # Execution count [4.50e+00]
+        movaps    %xmm8, %xmm0                                  #57.3
+        unpckhpd  %xmm8, %xmm0                                  #57.3
+        addsd     %xmm0, %xmm8                                  #57.3
+        movaps    %xmm8, %xmm0                                  #57.3
+                                # LOE rax rdx rcx rbx rbp rsi r9 r10 r14 r15 edi r8d xmm0 xmm5 xmm6 xmm7 xmm9
+..B3.8:                         # Preds ..B3.7 ..B3.15
+                                # Execution count [5.00e+00]
+        lea       (,%rdx,8), %r11                               #61.5
+        subq      %rdx, %r11                                    #61.5
+        lea       (%r10,%r11,8), %r11                           #60.5
+        cmpq      %rax, %rdx                                    #61.5
+        jae       ..B3.12       # Prob 10%                      #61.5
+        .align    16,0x90
+                                # LOE rax rdx rcx rbx rbp rsi r9 r10 r11 r14 r15 edi r8d xmm0 xmm5 xmm6 xmm7 xmm9
+..B3.10:                        # Preds ..B3.8 ..B3.10
+                                # Execution count [2.50e+01]
+        movaps    %xmm5, %xmm3                                  #63.26
+        movaps    %xmm6, %xmm1                                  #64.26
+        movaps    %xmm7, %xmm2                                  #65.26
+        incq      %rdx                                          #61.5
+        movsd     104(%r11), %xmm4                              #67.23
+        mulsd     %xmm9, %xmm4                                  #67.23
+        subsd     56(%r11), %xmm3                               #63.26
+        subsd     64(%r11), %xmm1                               #64.26
+        subsd     72(%r11), %xmm2                               #65.26
+        mulsd     %xmm3, %xmm3                                  #66.35
+        mulsd     %xmm1, %xmm1                                  #66.45
+        mulsd     %xmm2, %xmm2                                  #66.55
+        addsd     %xmm1, %xmm3                                  #66.45
+        addq      $56, %r11                                     #61.5
+        addsd     %xmm2, %xmm3                                  #66.55
+        sqrtsd    %xmm3, %xmm3                                  #67.35
+        divsd     %xmm3, %xmm4                                  #67.35
+        subsd     %xmm4, %xmm0                                  #67.7
+        cmpq      %rax, %rdx                                    #61.5
+        jb        ..B3.10       # Prob 82%                      #61.5
+                                # LOE rax rdx rcx rbx rbp rsi r9 r10 r11 r14 r15 edi r8d xmm0 xmm5 xmm6 xmm7 xmm9
+..B3.12:                        # Preds ..B3.10 ..B3.8 ..B3.3
+                                # Execution count [5.00e+00]
+        addq      $56, %rsi                                     #55.3
+        addq      $56, %r10                                     #55.3
+        decq      %r9                                           #55.3
+        cmpl      %edi, %r8d                                    #58.3
+        jb        ..B3.3        # Prob 82%                      #58.3
+                                # LOE rcx rbx rbp rsi r9 r10 r14 r15 edi r8d xmm0
+..B3.13:                        # Preds ..B3.12
+                                # Execution count [9.00e-01]
+        movq      -16(%rsp), %r12                               #[spill]
+	.cfi_restore 12
+        movq      -24(%rsp), %r13                               #[spill]
+	.cfi_restore 13
+                                # LOE rbx rbp r12 r13 r14 r15 xmm0
+..B3.14:                        # Preds ..B3.13 ..B3.1
+                                # Execution count [1.00e+00]
+        ret                                                     #70.10
+	.cfi_offset 12, -24
+	.cfi_offset 13, -32
+                                # LOE
+..B3.15:                        # Preds ..B3.4
+                                # Execution count [4.50e-01]: Infreq
+        xorl      %edx, %edx                                    #61.5
+        jmp       ..B3.8        # Prob 100%                     #61.5
+        .align    16,0x90
+                                # LOE rax rdx rcx rbx rbp rsi r9 r10 r14 r15 edi r8d xmm0 xmm5 xmm6 xmm7 xmm9
+	.cfi_endproc
+# mark_end;
+	.type	energy,@function
+	.size	energy,.-energy
+..LNenergy.2:
+	.data
+# -- End  energy
+	.text
+.L_2__routine_start_offset_momentum_3:
+# -- Begin  offset_momentum
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl offset_momentum
+# --- offset_momentum(int, struct planet *)
+offset_momentum:
+# parameter 1: %edi
+# parameter 2: %rsi
+..B4.1:                         # Preds ..B4.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_offset_momentum.298:
+..L299:
+                                                        #74.1
+        pxor      %xmm1, %xmm1                                  #75.13
+        movaps    %xmm1, %xmm0                                  #75.23
+        movaps    %xmm0, %xmm2                                  #75.33
+        testl     %edi, %edi                                    #77.19
+        jle       ..B4.10       # Prob 50%                      #77.19
+                                # LOE rbx rbp rsi r12 r13 r14 r15 edi xmm0 xmm1 xmm2
+..B4.2:                         # Preds ..B4.1
+                                # Execution count [9.00e-01]
+        movslq    %edi, %rdx                                    #77.3
+        cmpq      $8, %rdx                                      #77.3
+        jl        ..B4.11       # Prob 10%                      #77.3
+                                # LOE rdx rbx rbp rsi r12 r13 r14 r15 edi xmm0 xmm1 xmm2
+..B4.3:                         # Preds ..B4.2
+                                # Execution count [9.00e-01]
+        andl      $-8, %edi                                     #77.3
+        xorl      %eax, %eax                                    #77.3
+        pxor      %xmm1, %xmm1                                  #75.13
+        movaps    %xmm1, %xmm0                                  #75.23
+        movslq    %edi, %rdi                                    #77.3
+        movaps    %xmm0, %xmm2                                  #75.33
+                                # LOE rax rdx rbx rbp rsi rdi r12 r13 r14 r15 xmm0 xmm1 xmm2
+..B4.4:                         # Preds ..B4.4 ..B4.3
+                                # Execution count [5.00e+00]
+        lea       (,%rax,8), %rcx                               #78.11
+        subq      %rax, %rcx                                    #78.11
+        lea       2(%rax), %r8                                  #78.11
+        lea       (,%r8,8), %r9                                 #78.11
+        subq      %r8, %r9                                      #78.11
+        lea       4(%rax), %r10                                 #78.11
+        lea       (,%r10,8), %r11                               #78.11
+        movsd     48(%rsi,%rcx,8), %xmm5                        #78.11
+        subq      %r10, %r11                                    #78.11
+        movsd     32(%rsi,%rcx,8), %xmm4                        #78.11
+        movhpd    88(%rsi,%rcx,8), %xmm4                        #78.11
+        movhpd    104(%rsi,%rcx,8), %xmm5                       #78.11
+        mulpd     %xmm5, %xmm4                                  #79.26
+        movsd     40(%rsi,%rcx,8), %xmm6                        #78.11
+        movsd     24(%rsi,%rcx,8), %xmm3                        #78.11
+        movsd     48(%rsi,%r9,8), %xmm7                         #78.11
+        movsd     32(%rsi,%r9,8), %xmm9                         #78.11
+        movhpd    96(%rsi,%rcx,8), %xmm6                        #78.11
+        movhpd    80(%rsi,%rcx,8), %xmm3                        #78.11
+        lea       6(%rax), %rcx                                 #78.11
+        movhpd    104(%rsi,%r9,8), %xmm7                        #78.11
+        lea       (,%rcx,8), %r8                                #78.11
+        movhpd    88(%rsi,%r9,8), %xmm9                         #78.11
+        subq      %rcx, %r8                                     #78.11
+        mulpd     %xmm5, %xmm3                                  #78.26
+        mulpd     %xmm5, %xmm6                                  #80.26
+        mulpd     %xmm7, %xmm9                                  #79.26
+        addpd     %xmm4, %xmm0                                  #79.5
+        addpd     %xmm3, %xmm1                                  #78.5
+        addpd     %xmm6, %xmm2                                  #80.5
+        addpd     %xmm0, %xmm9                                  #79.5
+        movsd     40(%rsi,%r9,8), %xmm10                        #78.11
+        addq      $8, %rax                                      #77.3
+        movsd     24(%rsi,%r9,8), %xmm8                         #78.11
+        movhpd    80(%rsi,%r9,8), %xmm8                         #78.11
+        movhpd    96(%rsi,%r9,8), %xmm10                        #78.11
+        mulpd     %xmm7, %xmm8                                  #78.26
+        mulpd     %xmm7, %xmm10                                 #80.26
+        addpd     %xmm1, %xmm8                                  #78.5
+        addpd     %xmm2, %xmm10                                 #80.5
+        movsd     48(%rsi,%r11,8), %xmm0                        #78.11
+        movsd     40(%rsi,%r11,8), %xmm14                       #78.11
+        movsd     32(%rsi,%r11,8), %xmm12                       #78.11
+        movsd     24(%rsi,%r11,8), %xmm11                       #78.11
+        movhpd    88(%rsi,%r11,8), %xmm12                       #78.11
+        movhpd    104(%rsi,%r11,8), %xmm0                       #78.11
+        movhpd    96(%rsi,%r11,8), %xmm14                       #78.11
+        movhpd    80(%rsi,%r11,8), %xmm11                       #78.11
+        mulpd     %xmm0, %xmm11                                 #78.26
+        mulpd     %xmm0, %xmm12                                 #79.26
+        mulpd     %xmm0, %xmm14                                 #80.26
+        addpd     %xmm8, %xmm11                                 #78.5
+        addpd     %xmm9, %xmm12                                 #79.5
+        addpd     %xmm10, %xmm14                                #80.5
+        movsd     48(%rsi,%r8,8), %xmm13                        #78.11
+        movsd     40(%rsi,%r8,8), %xmm2                         #78.11
+        movsd     32(%rsi,%r8,8), %xmm0                         #78.11
+        .byte     144                                           #78.11
+        movsd     24(%rsi,%r8,8), %xmm1                         #78.11
+        movhpd    88(%rsi,%r8,8), %xmm0                         #78.11
+        movhpd    104(%rsi,%r8,8), %xmm13                       #78.11
+        movhpd    96(%rsi,%r8,8), %xmm2                         #78.11
+        movhpd    80(%rsi,%r8,8), %xmm1                         #78.11
+        mulpd     %xmm13, %xmm1                                 #78.26
+        mulpd     %xmm13, %xmm0                                 #79.26
+        mulpd     %xmm13, %xmm2                                 #80.26
+        addpd     %xmm11, %xmm1                                 #78.5
+        addpd     %xmm12, %xmm0                                 #79.5
+        addpd     %xmm14, %xmm2                                 #80.5
+        cmpq      %rdi, %rax                                    #77.3
+        jb        ..B4.4        # Prob 82%                      #77.3
+                                # LOE rax rdx rbx rbp rsi rdi r12 r13 r14 r15 xmm0 xmm1 xmm2
+..B4.5:                         # Preds ..B4.4
+                                # Execution count [9.00e-01]
+        movaps    %xmm2, %xmm3                                  #75.33
+        movaps    %xmm0, %xmm4                                  #75.23
+        movaps    %xmm1, %xmm5                                  #75.13
+        unpckhpd  %xmm2, %xmm3                                  #75.33
+        unpckhpd  %xmm0, %xmm4                                  #75.23
+        addsd     %xmm3, %xmm2                                  #75.33
+        addsd     %xmm4, %xmm0                                  #75.23
+        unpckhpd  %xmm1, %xmm5                                  #75.13
+        addsd     %xmm5, %xmm1                                  #75.13
+                                # LOE rdx rbx rbp rsi rdi r12 r13 r14 r15 xmm0 xmm1 xmm2
+..B4.6:                         # Preds ..B4.5 ..B4.11
+                                # Execution count [1.00e+00]
+        lea       (,%rdi,8), %rax                               #77.3
+        subq      %rdi, %rax                                    #77.3
+        shlq      $3, %rax                                      #77.3
+        cmpq      %rdx, %rdi                                    #77.3
+        jae       ..B4.10       # Prob 9%                       #77.3
+                                # LOE rax rdx rbx rbp rsi rdi r12 r13 r14 r15 xmm0 xmm1 xmm2
+..B4.8:                         # Preds ..B4.6 ..B4.8
+                                # Execution count [5.00e+00]
+        movsd     48(%rax,%rsi), %xmm5                          #78.26
+        incq      %rdi                                          #77.3
+        movsd     24(%rax,%rsi), %xmm3                          #78.11
+        movsd     32(%rax,%rsi), %xmm4                          #79.11
+        movsd     40(%rax,%rsi), %xmm6                          #80.11
+        addq      $56, %rax                                     #77.3
+        mulsd     %xmm5, %xmm3                                  #78.26
+        mulsd     %xmm5, %xmm4                                  #79.26
+        mulsd     %xmm5, %xmm6                                  #80.26
+        addsd     %xmm3, %xmm1                                  #78.5
+        addsd     %xmm4, %xmm0                                  #79.5
+        addsd     %xmm6, %xmm2                                  #80.5
+        cmpq      %rdx, %rdi                                    #77.3
+        jb        ..B4.8        # Prob 82%                      #77.3
+                                # LOE rax rdx rbx rbp rsi rdi r12 r13 r14 r15 xmm0 xmm1 xmm2
+..B4.10:                        # Preds ..B4.8 ..B4.6 ..B4.1
+                                # Execution count [1.00e+00]
+        movsd     .L_2il0floatpacket.7(%rip), %xmm3             #82.25
+        xorps     .L_2il0floatpacket.10(%rip), %xmm1            #82.20
+        xorps     .L_2il0floatpacket.10(%rip), %xmm0            #83.20
+        xorps     .L_2il0floatpacket.10(%rip), %xmm2            #84.20
+        divsd     %xmm3, %xmm1                                  #82.25
+        divsd     %xmm3, %xmm0                                  #83.25
+        divsd     %xmm3, %xmm2                                  #84.25
+        movsd     %xmm1, 24(%rsi)                               #82.3
+        movsd     %xmm0, 32(%rsi)                               #83.3
+        movsd     %xmm2, 40(%rsi)                               #84.3
+        ret                                                     #85.1
+                                # LOE
+..B4.11:                        # Preds ..B4.2
+                                # Execution count [9.00e-02]: Infreq
+        xorl      %edi, %edi                                    #77.3
+        jmp       ..B4.6        # Prob 100%                     #77.3
+        .align    16,0x90
+                                # LOE rdx rbx rbp rsi rdi r12 r13 r14 r15 xmm0 xmm1 xmm2
+	.cfi_endproc
+# mark_end;
+	.type	offset_momentum,@function
+	.size	offset_momentum,.-offset_momentum
+..LNoffset_momentum.3:
+	.data
+# -- End  offset_momentum
+	.data
+	.align 32
+	.align 32
+	.globl bodies
+bodies:
+	.long	0x00000000,0x00000000
+	.long	0x00000000,0x00000000
+	.long	0x00000000,0x00000000
+	.long	0x00000000,0x00000000
+	.long	0x00000000,0x00000000
+	.long	0x00000000,0x00000000
+	.long	0xc9be45de,0x4043bd3c
+	.long	0x343cd92c,0x40135da0
+	.long	0xc01fdb7c,0xbff290ab
+	.long	0x6c25ebf0,0xbfba86f9
+	.long	0x9b93ccbc,0x3fe36706
+	.long	0xf57d949b,0x40067ef2
+	.long	0x9a5a0715,0xbf99d2d7
+	.long	0xd9ab33d8,0x3fa34c95
+	.long	0xc332ca67,0x4020afcd
+	.long	0x31de01b0,0x40107fcb
+	.long	0xe1eb467c,0xbfd9d353
+	.long	0xb8879442,0xbff02c21
+	.long	0xbf1f8f13,0x3ffd35e9
+	.long	0x5f1123b4,0x3f813c48
+	.long	0x0d07c637,0x3f871d49
+	.long	0xcea7d9cf,0x4029c9ea
+	.long	0xd626667e,0xc02e38e8
+	.long	0xbe257da0,0xbfcc9557
+	.long	0xa9911bef,0x3ff1531c
+	.long	0x3e54bbc5,0x3febcc7f
+	.long	0xfaf23e7c,0xbf862f6b
+	.long	0x9cf41eb3,0x3f5c3dd2
+	.long	0xa905572a,0x402ec267
+	.long	0x33c8a220,0xc039eb58
+	.long	0x93abe540,0x3fc6f1f3
+	.long	0x1659bc4a,0x3fef54b6
+	.long	0x31c4fba3,0x3fe307c6
+	.long	0x587665f6,0xbfa1cb88
+	.long	0x531799ac,0x3f60a8f3
+	.type	bodies,@object
+	.size	bodies,280
+	.section .rodata, "a"
+	.align 16
+	.align 16
+.L_2il0floatpacket.10:
+	.long	0x00000000,0x80000000,0x00000000,0x00000000
+	.type	.L_2il0floatpacket.10,@object
+	.size	.L_2il0floatpacket.10,16
+	.align 16
+.L_2il0floatpacket.12:
+	.long	0x00000000,0x3ff00000,0x00000000,0x3ff00000
+	.type	.L_2il0floatpacket.12,@object
+	.size	.L_2il0floatpacket.12,16
+	.align 8
+.L_2il0floatpacket.7:
+	.long	0xc9be45de,0x4043bd3c
+	.type	.L_2il0floatpacket.7,@object
+	.size	.L_2il0floatpacket.7,8
+	.align 8
+.L_2il0floatpacket.8:
+	.long	0x00000000,0x3fe00000
+	.type	.L_2il0floatpacket.8,@object
+	.size	.L_2il0floatpacket.8,8
+	.align 8
+.L_2il0floatpacket.9:
+	.long	0x47ae147b,0x3f847ae1
+	.type	.L_2il0floatpacket.9,@object
+	.size	.L_2il0floatpacket.9,8
+	.align 8
+.L_2il0floatpacket.11:
+	.long	0x00000000,0x3ff00000
+	.type	.L_2il0floatpacket.11,@object
+	.size	.L_2il0floatpacket.11,8
+	.section .rodata.str1.4, "aMS",@progbits,1
+	.align 4
+	.align 4
+.L_2__STRING.0:
+	.long	1715023397
+	.word	10
+	.type	.L_2__STRING.0,@object
+	.size	.L_2__STRING.0,6
+	.data
+	.section .note.GNU-stack, ""
+# End

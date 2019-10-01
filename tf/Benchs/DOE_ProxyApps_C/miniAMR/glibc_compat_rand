@@ -1,0 +1,162 @@
+# mark_description "Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.5.281 Build 20190815";
+# mark_description "-lm -S -c -o glibc_compat_rand";
+	.file "glibc_compat_rand.c"
+	.text
+..TXTST0:
+.L_2__routine_start_glibc_compat_rand_0:
+# -- Begin  glibc_compat_rand
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl glibc_compat_rand
+# --- glibc_compat_rand(void)
+glibc_compat_rand:
+..B1.1:                         # Preds ..B1.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_glibc_compat_rand.1:
+..L2:
+                                                          #25.29
+        movl      next(%rip), %esi                              #27.13
+        movslq    %esi, %rcx                                    #27.20
+        cmpl      $3, %esi                                      #27.20
+        jge       ..B1.3        # Prob 50%                      #27.20
+                                # LOE rcx rbx rbp r12 r13 r14 r15 esi
+..B1.2:                         # Preds ..B1.1
+                                # Execution count [5.00e-01]
+        lea       341(%rcx), %rax                               #27.46
+        jmp       ..B1.4        # Prob 100%                     #27.46
+                                # LOE rax rcx rbx rbp r12 r13 r14 r15 esi
+..B1.3:                         # Preds ..B1.1
+                                # Execution count [5.00e-01]
+        lea       -3(%rcx), %rax                                #27.59
+        cmpl      $31, %esi                                     #28.21
+        jge       ..B1.5        # Prob 50%                      #28.21
+                                # LOE rax rcx rbx rbp r12 r13 r14 r15 esi
+..B1.4:                         # Preds ..B1.2 ..B1.3
+                                # Execution count [5.00e-01]
+        lea       313(%rcx), %rdx                               #28.48
+        jmp       ..B1.6        # Prob 100%                     #28.48
+                                # LOE rax rdx rcx rbx rbp r12 r13 r14 r15 esi
+..B1.5:                         # Preds ..B1.3
+                                # Execution count [5.00e-01]
+        lea       -31(%rcx), %rdx                               #28.62
+                                # LOE rax rdx rcx rbx rbp r12 r13 r14 r15 esi
+..B1.6:                         # Preds ..B1.4 ..B1.5
+                                # Execution count [1.00e+00]
+        movl      table(,%rax,4), %eax                          #30.17
+        incl      %esi                                          #33.5
+        addl      table(,%rdx,4), %eax                          #30.29
+        movl      %eax, table(,%rcx,4)                          #30.3
+        cmpl      $344, %esi                                    #34.15
+        jge       ..B1.9        # Prob 0%                       #34.15
+                                # LOE rbx rbp r12 r13 r14 r15 eax esi
+..B1.7:                         # Preds ..B1.6
+                                # Execution count [9.95e-01]
+        movl      %esi, next(%rip)                              #33.5
+                                # LOE rbx rbp r12 r13 r14 r15 eax
+..B1.8:                         # Preds ..B1.9 ..B1.7
+                                # Execution count [1.00e+00]
+        shrl      $1, %eax                                      #31.35
+        ret                                                     #37.10
+                                # LOE
+..B1.9:                         # Preds ..B1.6
+                                # Execution count [4.73e-03]: Infreq
+        movl      $0, next(%rip)                                #35.5
+        jmp       ..B1.8        # Prob 100%                     #35.5
+        .align    16,0x90
+                                # LOE rbx rbp r12 r13 r14 r15 eax
+	.cfi_endproc
+# mark_end;
+	.type	glibc_compat_rand,@function
+	.size	glibc_compat_rand,.-glibc_compat_rand
+..LNglibc_compat_rand.0:
+	.data
+# -- End  glibc_compat_rand
+	.text
+.L_2__routine_start_glibc_compat_srand_1:
+# -- Begin  glibc_compat_srand
+	.text
+# mark_begin;
+       .align    16,0x90
+	.globl glibc_compat_srand
+# --- glibc_compat_srand(unsigned int)
+glibc_compat_srand:
+# parameter 1: %edi
+..B2.1:                         # Preds ..B2.0
+                                # Execution count [1.00e+00]
+	.cfi_startproc
+..___tag_value_glibc_compat_srand.4:
+..L5:
+                                                          #40.44
+        movl      $1, %eax                                      #42.5
+        testl     %edi, %edi                                    #42.5
+        cmove     %eax, %edi                                    #42.5
+        movl      $1, %esi                                      #42.5
+        movl      $2147483647, %ecx                             #47.40
+        movl      %edi, table(%rip)                             #44.3
+                                # LOE rcx rbx rbp rsi r12 r13 r14 r15
+..B2.2:                         # Preds ..B2.2 ..B2.1
+                                # Execution count [3.00e+01]
+        movl      -4+table(,%rsi,4), %edi                       #47.24
+        imulq     $16807, %rdi, %rax                            #47.24
+        cqto                                                    #47.40
+        idivq     %rcx                                          #47.40
+        testl     %edx, %edx                                    #49.7
+        lea       2147483647(%rdx), %r8d                        #49.7
+        cmovl     %r8d, %edx                                    #49.7
+        movl      %edx, table(,%rsi,4)                          #51.5
+        incq      %rsi                                          #46.27
+        cmpq      $31, %rsi                                     #46.23
+        jl        ..B2.2        # Prob 96%                      #46.23
+                                # LOE rcx rbx rbp rsi r12 r13 r14 r15
+..B2.3:                         # Preds ..B2.2
+                                # Execution count [1.00e+00]
+        movl      table(%rip), %eax                             #55.16
+        movl      4+table(%rip), %edx                           #55.16
+        movl      8+table(%rip), %ecx                           #55.16
+        movl      %eax, 124+table(%rip)                         #55.5
+        xorl      %eax, %eax                                    #56.3
+        movl      %edx, 128+table(%rip)                         #55.5
+        movl      %ecx, 132+table(%rip)                         #55.5
+                                # LOE rax rbx rbp r12 r13 r14 r15
+..B2.4:                         # Preds ..B2.4 ..B2.3
+                                # Execution count [1.55e+02]
+        movl      12+table(,%rax,8), %edx                       #57.16
+        movl      16+table(,%rax,8), %ecx                       #57.16
+        addl      124+table(,%rax,8), %edx                      #57.32
+        addl      128+table(,%rax,8), %ecx                      #57.32
+        movl      %edx, 136+table(,%rax,8)                      #57.5
+        movl      %ecx, 140+table(,%rax,8)                      #57.5
+        incq      %rax                                          #56.3
+        cmpq      $155, %rax                                    #56.3
+        jb        ..B2.4        # Prob 99%                      #56.3
+                                # LOE rax rbx rbp r12 r13 r14 r15
+..B2.5:                         # Preds ..B2.4
+                                # Execution count [1.00e+00]
+        movl      $0, next(%rip)                                #59.3
+        ret                                                     #60.1
+        .align    16,0x90
+                                # LOE
+	.cfi_endproc
+# mark_end;
+	.type	glibc_compat_srand,@function
+	.size	glibc_compat_srand,.-glibc_compat_srand
+..LNglibc_compat_srand.1:
+	.data
+# -- End  glibc_compat_srand
+	.bss
+	.align 32
+	.align 32
+table:
+	.type	table,@object
+	.size	table,1376
+	.space 1376	# pad
+	.align 4
+next:
+	.type	next,@object
+	.size	next,4
+	.space 4	# pad
+	.data
+	.section .note.GNU-stack, ""
+# End

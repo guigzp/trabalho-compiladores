@@ -1,0 +1,186 @@
+; ModuleID = 'util.c'
+source_filename = "util.c"
+target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
+target triple = "x86_64-pc-linux-gnu"
+
+%struct.block = type { i32, i32, i32, i32, i32, i32, i32, [6 x i32], [6 x i32], [6 x [2 x [2 x i32]]], [3 x i32], double**** }
+%struct.parent = type { i32, i32, i32, i32, i32, i32, [8 x i32], [8 x i32], [3 x i32] }
+%struct.sorted_block = type { i32, i32 }
+%struct.object = type { i32, i32, [3 x double], [3 x double], [3 x double], [3 x double], [3 x double], [3 x double], [3 x double] }
+
+@.str = private unnamed_addr constant [43 x i8] c"NULL pointer from malloc call in %s at %d\0A\00", align 1
+@counter_malloc = common global i32 0, align 4
+@size_malloc = common global double 0.000000e+00, align 8
+@blocks = common global %struct.block* null, align 8
+@parents = common global %struct.parent* null, align 8
+@sorted_list = common global %struct.sorted_block* null, align 8
+@sorted_index = common global i32* null, align 8
+@my_pe = common global i32 0, align 4
+@num_pes = common global i32 0, align 4
+@max_num_blocks = common global i32 0, align 4
+@target_active = common global i32 0, align 4
+@target_max = common global i32 0, align 4
+@target_min = common global i32 0, align 4
+@num_refine = common global i32 0, align 4
+@uniform_refine = common global i32 0, align 4
+@x_block_size = common global i32 0, align 4
+@y_block_size = common global i32 0, align 4
+@z_block_size = common global i32 0, align 4
+@num_vars = common global i32 0, align 4
+@comm_vars = common global i32 0, align 4
+@init_block_x = common global i32 0, align 4
+@init_block_y = common global i32 0, align 4
+@init_block_z = common global i32 0, align 4
+@reorder = common global i32 0, align 4
+@npx = common global i32 0, align 4
+@npy = common global i32 0, align 4
+@npz = common global i32 0, align 4
+@inbalance = common global i32 0, align 4
+@refine_freq = common global i32 0, align 4
+@report_diffusion = common global i32 0, align 4
+@checksum_freq = common global i32 0, align 4
+@stages_per_ts = common global i32 0, align 4
+@error_tol = common global i32 0, align 4
+@num_tsteps = common global i32 0, align 4
+@stencil = common global i32 0, align 4
+@report_perf = common global i32 0, align 4
+@plot_freq = common global i32 0, align 4
+@lb_opt = common global i32 0, align 4
+@block_change = common global i32 0, align 4
+@code = common global i32 0, align 4
+@permute = common global i32 0, align 4
+@nonblocking = common global i32 0, align 4
+@refine_ghost = common global i32 0, align 4
+@max_num_parents = common global i32 0, align 4
+@num_parents = common global i32 0, align 4
+@max_active_parent = common global i32 0, align 4
+@cur_max_level = common global i32 0, align 4
+@num_blocks = common global i32* null, align 8
+@block_start = common global i32* null, align 8
+@num_active = common global i32 0, align 4
+@max_active_block = common global i32 0, align 4
+@global_active = common global i32 0, align 4
+@x_block_half = common global i32 0, align 4
+@y_block_half = common global i32 0, align 4
+@z_block_half = common global i32 0, align 4
+@tol = common global double 0.000000e+00, align 8
+@grid_sum = common global double* null, align 8
+@p8 = common global i32* null, align 8
+@p2 = common global i32* null, align 8
+@mesh_size = common global [3 x i32] zeroinitializer, align 4
+@max_mesh_size = common global i32 0, align 4
+@from = common global i32* null, align 8
+@to = common global i32* null, align 8
+@msg_len = common global [3 x [4 x i32]] zeroinitializer, align 16
+@local_max_b = common global i32 0, align 4
+@global_max_b = common global i32 0, align 4
+@num_objects = common global i32 0, align 4
+@objects = common global %struct.object* null, align 8
+@average = common global [128 x double] zeroinitializer, align 16
+@stddev = common global [128 x double] zeroinitializer, align 16
+@minimum = common global [128 x double] zeroinitializer, align 16
+@maximum = common global [128 x double] zeroinitializer, align 16
+@timer_all = common global double 0.000000e+00, align 8
+@timer_comm_all = common global double 0.000000e+00, align 8
+@timer_comm_dir = common global [3 x double] zeroinitializer, align 16
+@timer_comm_same = common global [3 x double] zeroinitializer, align 16
+@timer_comm_diff = common global [3 x double] zeroinitializer, align 16
+@timer_comm_bc = common global [3 x double] zeroinitializer, align 16
+@timer_calc_all = common global double 0.000000e+00, align 8
+@timer_cs_all = common global double 0.000000e+00, align 8
+@timer_cs_calc = common global double 0.000000e+00, align 8
+@timer_refine_all = common global double 0.000000e+00, align 8
+@timer_refine_co = common global double 0.000000e+00, align 8
+@timer_refine_mr = common global double 0.000000e+00, align 8
+@timer_refine_sb = common global double 0.000000e+00, align 8
+@timer_refine_cc = common global double 0.000000e+00, align 8
+@timer_cb_all = common global double 0.000000e+00, align 8
+@timer_target_all = common global double 0.000000e+00, align 8
+@timer_target_rb = common global double 0.000000e+00, align 8
+@timer_target_dc = common global double 0.000000e+00, align 8
+@timer_target_cb = common global double 0.000000e+00, align 8
+@timer_target_ab = common global double 0.000000e+00, align 8
+@timer_target_da = common global double 0.000000e+00, align 8
+@timer_target_sb = common global double 0.000000e+00, align 8
+@timer_plot = common global double 0.000000e+00, align 8
+@total_blocks = common global i64 0, align 8
+@nb_min = common global i32 0, align 4
+@nb_max = common global i32 0, align 4
+@nrs = common global i32 0, align 4
+@nps = common global i32 0, align 4
+@num_refined = common global i32 0, align 4
+@num_reformed = common global i32 0, align 4
+@counter_bc = common global [3 x i32] zeroinitializer, align 4
+@counter_same = common global [3 x i32] zeroinitializer, align 4
+@counter_diff = common global [3 x i32] zeroinitializer, align 4
+@counter_malloc_init = common global i32 0, align 4
+@size_malloc_init = common global double 0.000000e+00, align 8
+@total_red = common global i32 0, align 4
+
+; Function Attrs: noinline nounwind uwtable
+define double @timer() #0 {
+  %1 = call i64 @clock() #4
+  %2 = sitofp i64 %1 to double
+  %3 = fdiv double %2, 1.000000e+06
+  ret double %3
+}
+
+; Function Attrs: nounwind
+declare i64 @clock() #1
+
+; Function Attrs: noinline nounwind uwtable
+define i8* @ma_malloc(i64, i8*, i32) #0 {
+  %4 = alloca i64, align 8
+  %5 = alloca i8*, align 8
+  %6 = alloca i32, align 4
+  %7 = alloca i8*, align 8
+  store i64 %0, i64* %4, align 8
+  store i8* %1, i8** %5, align 8
+  store i32 %2, i32* %6, align 4
+  %8 = load i64, i64* %4, align 8
+  %9 = call noalias i8* @malloc(i64 %8) #4
+  store i8* %9, i8** %7, align 8
+  %10 = load i8*, i8** %7, align 8
+  %11 = icmp eq i8* %10, null
+  br i1 %11, label %12, label %16
+
+; <label>:12:                                     ; preds = %3
+  %13 = load i8*, i8** %5, align 8
+  %14 = load i32, i32* %6, align 4
+  %15 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([43 x i8], [43 x i8]* @.str, i32 0, i32 0), i8* %13, i32 %14)
+  call void @exit(i32 -1) #5
+  unreachable
+
+; <label>:16:                                     ; preds = %3
+  %17 = load i32, i32* @counter_malloc, align 4
+  %18 = add nsw i32 %17, 1
+  store i32 %18, i32* @counter_malloc, align 4
+  %19 = load i64, i64* %4, align 8
+  %20 = uitofp i64 %19 to double
+  %21 = load double, double* @size_malloc, align 8
+  %22 = fadd double %21, %20
+  store double %22, double* @size_malloc, align 8
+  %23 = load i8*, i8** %7, align 8
+  ret i8* %23
+}
+
+; Function Attrs: nounwind
+declare noalias i8* @malloc(i64) #1
+
+declare i32 @printf(i8*, ...) #2
+
+; Function Attrs: noreturn nounwind
+declare void @exit(i32) #3
+
+attributes #0 = { noinline nounwind uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #1 = { nounwind "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #2 = { "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #3 = { noreturn nounwind "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #4 = { nounwind }
+attributes #5 = { noreturn nounwind }
+
+!llvm.module.flags = !{!0}
+!llvm.ident = !{!1}
+
+!0 = !{i32 1, !"wchar_size", i32 4}
+!1 = !{!"clang version 6.0.0-1ubuntu2 (tags/RELEASE_600/final)"}

@@ -23,7 +23,7 @@ function execute() {
     cmd="$TIMEOUT --signal=TERM ${RUNTIME} ./$exe $RUN_OPTIONS < $STDIN &> $STDOUT"
   fi
 
-  echo "$cmd"
+  # echo "$cmd"
   echo "cd $(pwd) && $cmd" >> /tmp/run.txt
   
 }

@@ -1,0 +1,4 @@
+Quantidade de Flags Originais:  4
+Quantidade de Flags do Conjunto de Otimização:  3
+Diferença:  1
+Flags do Conjunto de Otimização:  -targetlibinfo -tbaa -scoped-noalias
