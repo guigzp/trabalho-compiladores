@@ -3,11 +3,8 @@ import os
 
 # search_space = ['-targetlibinfo', ' -tti', ' -tbaa', ' -scoped-noalias', ' -assumption-cache-tracker', ' -profile-summary-info', ' -forceattrs', ' -inferattrs', ' -callsite-splitting', ' -ipsccp', ' -called-value-propagation', ' -globalopt', ' -domtree', ' -mem2reg', ' -deadargelim', ' -domtree', ' -basicaa', ' -aa', ' -loops', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -instcombine', ' -simplifycfg', ' -basiccg', ' -globals-aa', ' -prune-eh', ' -inline', ' -functionattrs', ' -argpromotion', ' -domtree', ' -sroa', ' -basicaa', ' -aa', ' -memoryssa', ' -early-cse-memssa', ' -speculative-execution', ' -domtree', ' -basicaa', ' -aa', ' -lazy-value-info', ' -jump-threading', ' -lazy-value-info', ' -correlated-propagation', ' -simplifycfg', ' -domtree', ' -basicaa', ' -aa', ' -loops', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -instcombine', ' -libcalls-shrinkwrap', ' -loops', ' -branch-prob', ' -block-freq', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -pgo-memop-opt', ' -domtree', ' -basicaa', ' -aa', ' -loops', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -tailcallelim', ' -simplifycfg', ' -reassociate', ' -domtree', ' -loops', ' -loop-simplify', ' -lcssa-verification', ' -lcssa', ' -basicaa', ' -aa', ' -scalar-evolution', ' -loop-rotate', ' -licm', ' -loop-unswitch', ' -simplifycfg', ' -domtree', ' -basicaa', ' -aa', ' -loops', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -instcombine', ' -loop-simplify', ' -lcssa-verification', ' -lcssa', ' -scalar-evolution', ' -indvars', ' -loop-idiom', ' -loop-deletion', ' -loop-unroll', ' -mldst-motion', ' -aa', ' -memdep', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -gvn', ' -basicaa', ' -aa', ' -memdep', ' -memcpyopt', ' -sccp', ' -domtree', ' -demanded-bits', ' -bdce', ' -basicaa', ' -aa', ' -loops', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -instcombine', ' -lazy-value-info', ' -jump-threading', ' -lazy-value-info', ' -correlated-propagation', ' -domtree', ' -basicaa', ' -aa', ' -memdep', ' -dse', ' -loops', ' -loop-simplify', ' -lcssa-verification', ' -lcssa', ' -aa', ' -scalar-evolution', ' -licm', ' -postdomtree', ' -adce', ' -simplifycfg', ' -domtree', ' -basicaa', ' -aa', ' -loops', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -instcombine', ' -barrier', ' -elim-avail-extern', ' -basiccg', ' -rpo-functionattrs', ' -globalopt', ' -globaldce', ' -basiccg', ' -globals-aa', ' -float2int', ' -domtree', ' -loops', ' -loop-simplify', ' -lcssa-verification', ' -lcssa', ' -basicaa', ' -aa', ' -scalar-evolution', ' -loop-rotate', ' -loop-accesses', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -loop-distribute', ' -branch-prob', ' -block-freq', ' -scalar-evolution', ' -basicaa', ' -aa', ' -loop-accesses', ' -demanded-bits', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -loop-vectorize', ' -loop-simplify', ' -scalar-evolution', ' -aa', ' -loop-accesses', ' -loop-load-elim', ' -basicaa', ' -aa', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -instcombine', ' -simplifycfg', ' -domtree', ' -loops', ' -scalar-evolution', ' -basicaa', ' -aa', ' -demanded-bits', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -slp-vectorizer', ' -opt-remark-emitter', ' -instcombine', ' -loop-simplify', ' -lcssa-verification', ' -lcssa', ' -scalar-evolution', ' -loop-unroll', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -instcombine', ' -loop-simplify', ' -lcssa-verification', ' -lcssa', ' -scalar-evolution', ' -licm', ' -alignment-from-assumptions', ' -strip-dead-prototypes', ' -globaldce', ' -constmerge', ' -domtree', ' -loops', ' -branch-prob', ' -block-freq', ' -loop-simplify', ' -lcssa-verification', ' -lcssa', ' -basicaa', ' -aa', ' -scalar-evolution', ' -branch-prob', ' -block-freq', ' -loop-sink', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -instsimplify', ' -div-rem-pairs', ' -simplifycfg', ' -verify']
 
-search_space = ['-targetlibinfo', ' -tti', ' -tbaa', ' -scoped-noalias']
+search_space = ['-targetlibinfo', ' -tti', ' -tbaa', ' -scoped-noalias', ' -opt-remark-emitter', ' -instcombine', ' -loop-simplify', ' -lcssa-verification', ' -lcssa', ' -scalar-evolution', ' -loop-unroll', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -instcombine', ' -loop-simplify', ' -lcssa-verification', ' -lcssa', ' -scalar-evolution', ' -licm', ' -alignment-from-assumptions', ' -strip-dead-prototypes', ' -globaldce', ' -constmerge', ' -domtree', ' -loops', ' -branch-prob', ' -block-freq', ' -loop-simplify', ' -lcssa-verification', ' -lcssa', ' -basicaa', ' -aa', ' -scalar-evolution', ' -branch-prob', ' -block-freq', ' -loop-sink', ' -lazy-branch-prob', ' -lazy-block-freq', ' -opt-remark-emitter', ' -instsimplify', ' -div-rem-pairs', ' -simplifycfg', ' -verify']
 
-size_search_space = len(search_space)
-
-baseline = [1 for _ in range(size_search_space)]
 
 
 
@@ -67,10 +64,17 @@ def ie_algorithm():
             cont += 1
     return flags, cont
 
-
+size_search_space = len(search_space)
+baseline = [1 for _ in range(size_search_space)]
+time_O3 = calculate_time('-O3')
+time_O3_flags = calculate_time(flags_baseline())
 flags, amount_flags = ie_algorithm()
+time_opt = calculate_time(flags_baseline())
 
 print('Quantidade de Flags Originais: ', size_search_space)
 print('Quantidade de Flags do Conjunto de Otimização: ', amount_flags)
 print('Diferença: ', size_search_space - amount_flags)
 print('Flags do Conjunto de Otimização: ', flags)
+print('Tempo de Execução com O3: ', time_O3)
+print('Tempo de Execução com as Flags do O3', time_O3_flags)
+print('Tempo de Execução comas Flags do Conjunto de Otimização: ', time_opt)

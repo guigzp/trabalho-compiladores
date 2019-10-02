@@ -1,4 +1,7 @@
-Quantidade de Flags Originais:  4
-Quantidade de Flags do Conjunto de Otimização:  3
-Diferença:  1
-Flags do Conjunto de Otimização:  -targetlibinfo -tbaa -scoped-noalias
+Quantidade de Flags Originais:  44
+Quantidade de Flags do Conjunto de Otimização:  20
+Diferença:  24
+Flags do Conjunto de Otimização:  -targetlibinfo -scoped-noalias -opt-remark-emitter -instcombine -scalar-evolution -lazy-branch-prob -licm -alignment-from-assumptions -globaldce -domtree -loops -branch-prob -block-freq -basicaa -aa -branch-prob -lazy-branch-prob -lazy-block-freq -instsimplify -div-rem-pairs
+Tempo de Execução com O3:  0.664
+Tempo de Execução com as Flags do O3 0.774
+Tempo de Execução comas Flags do Conjunto de Otimização:  0.719
