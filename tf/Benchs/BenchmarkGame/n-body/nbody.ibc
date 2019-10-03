@@ -9,465 +9,346 @@ target triple = "x86_64-pc-linux-gnu"
 @.str = private unnamed_addr constant [6 x i8] c"%.9f\0A\00", align 1
 
 ; Function Attrs: noinline nounwind uwtable
-define void @advance(i32, %struct.planet*, double) #0 {
-  %4 = alloca i32, align 4
-  %5 = alloca %struct.planet*, align 8
-  %6 = alloca double, align 8
-  %7 = alloca i32, align 4
-  %8 = alloca i32, align 4
-  %9 = alloca %struct.planet*, align 8
-  %10 = alloca %struct.planet*, align 8
-  %11 = alloca double, align 8
-  %12 = alloca double, align 8
-  %13 = alloca double, align 8
-  %14 = alloca double, align 8
-  %15 = alloca %struct.planet*, align 8
-  store i32 %0, i32* %4, align 4
-  store %struct.planet* %1, %struct.planet** %5, align 8
-  store double %2, double* %6, align 8
-  %16 = load i32, i32* %4, align 4
-  %17 = load %struct.planet*, %struct.planet** %5, align 8
-  %18 = load i32, i32* %4, align 4
-  %19 = load %struct.planet*, %struct.planet** %5, align 8
-  %20 = load double, double* %6, align 8
-  %.promoted14 = load i32, i32* %8, align 1
-  %.promoted16 = load %struct.planet*, %struct.planet** %10, align 1
-  %.promoted18 = load %struct.planet*, %struct.planet** %9, align 1
-  %.promoted20 = load double, double* %11, align 1
-  %.promoted22 = load double, double* %12, align 1
-  %.promoted24 = load double, double* %13, align 1
-  %.promoted26 = load double, double* %14, align 1
-  br label %21
+define void @advance(i32, %struct.planet*, double) local_unnamed_addr #0 {
+  %4 = icmp sgt i32 %0, 0
+  br i1 %4, label %.lr.ph10, label %._crit_edge
 
-; <label>:21:                                     ; preds = %105, %3
-  %.lcssa1327 = phi double [ %.promoted26, %3 ], [ %37, %105 ]
-  %.lcssa1125 = phi double [ %.promoted24, %3 ], [ %38, %105 ]
-  %.lcssa923 = phi double [ %.promoted22, %3 ], [ %39, %105 ]
-  %.lcssa721 = phi double [ %.promoted20, %3 ], [ %40, %105 ]
-  %22 = phi %struct.planet* [ %.promoted18, %3 ], [ %26, %105 ]
-  %.lcssa517 = phi %struct.planet* [ %.promoted16, %3 ], [ %41, %105 ]
-  %storemerge2.lcssa15 = phi i32 [ %.promoted14, %3 ], [ %storemerge2, %105 ]
-  %storemerge = phi i32 [ 0, %3 ], [ %106, %105 ]
-  %23 = icmp slt i32 %storemerge, %16
-  br i1 %23, label %24, label %107
+.lr.ph10:                                         ; preds = %3
+  %5 = sext i32 %0 to i64
+  %wide.trip.count16 = zext i32 %0 to i64
+  %.pre = zext i32 %0 to i64
+  %wide.trip.count16.le = zext i32 %0 to i64
+  br label %6
 
-; <label>:24:                                     ; preds = %21
-  %25 = sext i32 %storemerge to i64
-  %26 = getelementptr inbounds %struct.planet, %struct.planet* %17, i64 %25
-  %27 = getelementptr inbounds %struct.planet, %struct.planet* %26, i64 0, i32 0
-  %28 = getelementptr inbounds %struct.planet, %struct.planet* %26, i64 0, i32 1
-  %29 = getelementptr inbounds %struct.planet, %struct.planet* %26, i64 0, i32 2
-  %30 = getelementptr inbounds %struct.planet, %struct.planet* %26, i64 0, i32 3
-  %31 = getelementptr inbounds %struct.planet, %struct.planet* %26, i64 0, i32 4
-  %32 = getelementptr inbounds %struct.planet, %struct.planet* %26, i64 0, i32 5
-  %33 = getelementptr inbounds %struct.planet, %struct.planet* %26, i64 0, i32 6
-  %34 = getelementptr inbounds %struct.planet, %struct.planet* %26, i64 0, i32 6
-  %35 = getelementptr inbounds %struct.planet, %struct.planet* %26, i64 0, i32 6
-  br label %36
+; <label>:6:                                      ; preds = %._crit_edge7, %.lr.ph10
+  %indvars.iv18 = phi i64 [ 0, %.lr.ph10 ], [ %indvars.iv.next19, %._crit_edge7 ]
+  %indvars.iv12 = phi i64 [ 1, %.lr.ph10 ], [ %indvars.iv.next13, %._crit_edge7 ]
+  %indvars.iv.next19 = add nuw nsw i64 %indvars.iv18, 1
+  %7 = icmp slt i64 %indvars.iv.next19, %5
+  br i1 %7, label %.lr.ph6, label %._crit_edge7
 
-; <label>:36:                                     ; preds = %103, %24
-  %37 = phi double [ %.lcssa1327, %24 ], [ %66, %103 ]
-  %38 = phi double [ %.lcssa1125, %24 ], [ %57, %103 ]
-  %39 = phi double [ %.lcssa923, %24 ], [ %53, %103 ]
-  %40 = phi double [ %.lcssa721, %24 ], [ %49, %103 ]
-  %41 = phi %struct.planet* [ %.lcssa517, %24 ], [ %45, %103 ]
-  %storemerge2.in = phi i32 [ %storemerge, %24 ], [ %storemerge2, %103 ]
-  %storemerge2 = add nsw i32 %storemerge2.in, 1
-  %42 = icmp slt i32 %storemerge2, %18
-  br i1 %42, label %43, label %104
+.lr.ph6:                                          ; preds = %6
+  %8 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv18, i32 0
+  %9 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv18, i32 2
+  %10 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv18, i32 3
+  %11 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv18, i32 5
+  %12 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv18, i32 6
+  %13 = bitcast double* %8 to <2 x double>*
+  %14 = bitcast double* %10 to <2 x double>*
+  %15 = bitcast double* %10 to <2 x double>*
+  br label %16
 
-; <label>:43:                                     ; preds = %36
-  %44 = sext i32 %storemerge2 to i64
-  %45 = getelementptr inbounds %struct.planet, %struct.planet* %19, i64 %44
-  %46 = load double, double* %27, align 8
-  %47 = getelementptr inbounds %struct.planet, %struct.planet* %45, i64 0, i32 0
-  %48 = load double, double* %47, align 8
-  %49 = fsub double %46, %48
-  %50 = load double, double* %28, align 8
-  %51 = getelementptr inbounds %struct.planet, %struct.planet* %45, i64 0, i32 1
-  %52 = load double, double* %51, align 8
-  %53 = fsub double %50, %52
-  %54 = load double, double* %29, align 8
-  %55 = getelementptr inbounds %struct.planet, %struct.planet* %45, i64 0, i32 2
-  %56 = load double, double* %55, align 8
-  %57 = fsub double %54, %56
-  %58 = fmul double %49, %49
-  %59 = fmul double %53, %53
-  %60 = fadd double %58, %59
-  %61 = fmul double %57, %57
-  %62 = fadd double %60, %61
-  %63 = call double @sqrt(double %62) #3
-  %64 = fmul double %63, %63
-  %65 = fmul double %64, %63
-  %66 = fdiv double %20, %65
-  %67 = getelementptr inbounds %struct.planet, %struct.planet* %45, i64 0, i32 6
-  %68 = load double, double* %67, align 8
-  %69 = fmul double %49, %68
-  %70 = fmul double %69, %66
-  %71 = load double, double* %30, align 8
-  %72 = fsub double %71, %70
-  store double %72, double* %30, align 8
-  %73 = getelementptr inbounds %struct.planet, %struct.planet* %45, i64 0, i32 6
-  %74 = load double, double* %73, align 8
-  %75 = fmul double %53, %74
-  %76 = fmul double %75, %66
-  %77 = load double, double* %31, align 8
-  %78 = fsub double %77, %76
-  store double %78, double* %31, align 8
-  %79 = getelementptr inbounds %struct.planet, %struct.planet* %45, i64 0, i32 6
-  %80 = load double, double* %79, align 8
-  %81 = fmul double %57, %80
-  %82 = fmul double %81, %66
-  %83 = load double, double* %32, align 8
-  %84 = fsub double %83, %82
-  store double %84, double* %32, align 8
-  %85 = load double, double* %33, align 8
-  %86 = fmul double %49, %85
-  %87 = fmul double %86, %66
-  %88 = getelementptr inbounds %struct.planet, %struct.planet* %45, i64 0, i32 3
-  %89 = load double, double* %88, align 8
-  %90 = fadd double %89, %87
-  store double %90, double* %88, align 8
-  %91 = load double, double* %34, align 8
-  %92 = fmul double %53, %91
-  %93 = fmul double %92, %66
-  %94 = getelementptr inbounds %struct.planet, %struct.planet* %45, i64 0, i32 4
-  %95 = load double, double* %94, align 8
-  %96 = fadd double %95, %93
-  store double %96, double* %94, align 8
-  %97 = load double, double* %35, align 8
-  %98 = fmul double %57, %97
-  %99 = fmul double %98, %66
-  %100 = getelementptr inbounds %struct.planet, %struct.planet* %45, i64 0, i32 5
-  %101 = load double, double* %100, align 8
-  %102 = fadd double %101, %99
-  store double %102, double* %100, align 8
-  br label %103
+; <label>:16:                                     ; preds = %16, %.lr.ph6
+  %indvars.iv14 = phi i64 [ %indvars.iv12, %.lr.ph6 ], [ %indvars.iv.next15, %16 ]
+  %17 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv14, i32 0
+  %18 = load <2 x double>, <2 x double>* %13, align 8
+  %19 = bitcast double* %17 to <2 x double>*
+  %20 = load <2 x double>, <2 x double>* %19, align 8
+  %21 = fsub <2 x double> %18, %20
+  %22 = load double, double* %9, align 8
+  %23 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv14, i32 2
+  %24 = load double, double* %23, align 8
+  %25 = fsub double %22, %24
+  %26 = extractelement <2 x double> %21, i32 0
+  %27 = fmul double %26, %26
+  %28 = extractelement <2 x double> %21, i32 1
+  %29 = fmul double %28, %28
+  %30 = fadd double %27, %29
+  %31 = fmul double %25, %25
+  %32 = fadd double %30, %31
+  %33 = tail call double @sqrt(double %32) #3
+  %34 = fmul double %33, %33
+  %35 = fmul double %33, %34
+  %36 = fdiv double %2, %35
+  %37 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv14, i32 6
+  %38 = load double, double* %37, align 8
+  %39 = insertelement <2 x double> undef, double %38, i32 0
+  %40 = shufflevector <2 x double> %39, <2 x double> undef, <2 x i32> zeroinitializer
+  %41 = fmul <2 x double> %21, %40
+  %42 = insertelement <2 x double> undef, double %36, i32 0
+  %43 = shufflevector <2 x double> %42, <2 x double> undef, <2 x i32> zeroinitializer
+  %44 = fmul <2 x double> %41, %43
+  %45 = load <2 x double>, <2 x double>* %14, align 8
+  %46 = fsub <2 x double> %45, %44
+  store <2 x double> %46, <2 x double>* %15, align 8
+  %47 = fmul double %25, %38
+  %48 = fmul double %36, %47
+  %49 = load double, double* %11, align 8
+  %50 = fsub double %49, %48
+  store double %50, double* %11, align 8
+  %51 = load double, double* %12, align 8
+  %52 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv14, i32 3
+  %53 = insertelement <2 x double> undef, double %51, i32 0
+  %54 = shufflevector <2 x double> %53, <2 x double> undef, <2 x i32> zeroinitializer
+  %55 = fmul <2 x double> %21, %54
+  %56 = fmul <2 x double> %43, %55
+  %57 = bitcast double* %52 to <2 x double>*
+  %58 = load <2 x double>, <2 x double>* %57, align 8
+  %59 = fadd <2 x double> %58, %56
+  %60 = bitcast double* %52 to <2 x double>*
+  store <2 x double> %59, <2 x double>* %60, align 8
+  %61 = fmul double %25, %51
+  %62 = fmul double %36, %61
+  %63 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv14, i32 5
+  %64 = load double, double* %63, align 8
+  %65 = fadd double %64, %62
+  store double %65, double* %63, align 8
+  %indvars.iv.next15 = add nuw nsw i64 %indvars.iv14, 1
+  %exitcond17 = icmp eq i64 %indvars.iv.next15, %wide.trip.count16
+  br i1 %exitcond17, label %._crit_edge7, label %16
 
-; <label>:103:                                    ; preds = %43
-  br label %36
+._crit_edge7:                                     ; preds = %16, %6
+  %wide.trip.count20.pre-phi = phi i64 [ %.pre, %6 ], [ %wide.trip.count16.le, %16 ]
+  %indvars.iv.next13 = add nuw nsw i64 %indvars.iv12, 1
+  %exitcond21 = icmp eq i64 %indvars.iv.next19, %wide.trip.count20.pre-phi
+  br i1 %exitcond21, label %._crit_edge11, label %6
 
-; <label>:104:                                    ; preds = %36
-  br label %105
+._crit_edge11:                                    ; preds = %._crit_edge7
+  br i1 %4, label %.lr.ph, label %._crit_edge
 
-; <label>:105:                                    ; preds = %104
-  %106 = add nsw i32 %storemerge, 1
-  br label %21
+.lr.ph:                                           ; preds = %._crit_edge11
+  %66 = insertelement <2 x double> undef, double %2, i32 0
+  %67 = shufflevector <2 x double> %66, <2 x double> undef, <2 x i32> zeroinitializer
+  %wide.trip.count = zext i32 %0 to i64
+  br label %68
 
-; <label>:107:                                    ; preds = %21
-  store i32 %storemerge2.lcssa15, i32* %8, align 1
-  store %struct.planet* %.lcssa517, %struct.planet** %10, align 1
-  store %struct.planet* %22, %struct.planet** %9, align 1
-  store double %.lcssa721, double* %11, align 1
-  store double %.lcssa923, double* %12, align 1
-  store double %.lcssa1125, double* %13, align 1
-  store double %.lcssa1327, double* %14, align 1
-  store i32 %storemerge, i32* %7, align 4
-  %108 = load i32, i32* %4, align 4
-  %109 = load %struct.planet*, %struct.planet** %5, align 8
-  %110 = load double, double* %6, align 8
-  %111 = load double, double* %6, align 8
-  %112 = load double, double* %6, align 8
-  %.promoted = load %struct.planet*, %struct.planet** %15, align 1
-  br label %113
+; <label>:68:                                     ; preds = %68, %.lr.ph
+  %indvars.iv = phi i64 [ 0, %.lr.ph ], [ %indvars.iv.next, %68 ]
+  %69 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv, i32 3
+  %70 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv, i32 0
+  %71 = bitcast double* %69 to <2 x double>*
+  %72 = load <2 x double>, <2 x double>* %71, align 8
+  %73 = fmul <2 x double> %67, %72
+  %74 = bitcast double* %70 to <2 x double>*
+  %75 = load <2 x double>, <2 x double>* %74, align 8
+  %76 = fadd <2 x double> %75, %73
+  %77 = bitcast double* %70 to <2 x double>*
+  store <2 x double> %76, <2 x double>* %77, align 8
+  %78 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv, i32 5
+  %79 = load double, double* %78, align 8
+  %80 = fmul double %79, %2
+  %81 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv, i32 2
+  %82 = load double, double* %81, align 8
+  %83 = fadd double %82, %80
+  store double %83, double* %81, align 8
+  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
+  %exitcond = icmp eq i64 %indvars.iv.next, %wide.trip.count
+  br i1 %exitcond, label %._crit_edge, label %68
 
-; <label>:113:                                    ; preds = %137, %107
-  %114 = phi %struct.planet* [ %.promoted, %107 ], [ %118, %137 ]
-  %storemerge1 = phi i32 [ 0, %107 ], [ %138, %137 ]
-  %115 = icmp slt i32 %storemerge1, %108
-  br i1 %115, label %116, label %139
-
-; <label>:116:                                    ; preds = %113
-  %117 = sext i32 %storemerge1 to i64
-  %118 = getelementptr inbounds %struct.planet, %struct.planet* %109, i64 %117
-  %119 = getelementptr inbounds %struct.planet, %struct.planet* %109, i64 %117, i32 3
-  %120 = load double, double* %119, align 8
-  %121 = fmul double %110, %120
-  %122 = getelementptr inbounds %struct.planet, %struct.planet* %118, i64 0, i32 0
-  %123 = load double, double* %122, align 8
-  %124 = fadd double %123, %121
-  store double %124, double* %122, align 8
-  %125 = getelementptr inbounds %struct.planet, %struct.planet* %118, i64 0, i32 4
-  %126 = load double, double* %125, align 8
-  %127 = fmul double %111, %126
-  %128 = getelementptr inbounds %struct.planet, %struct.planet* %118, i64 0, i32 1
-  %129 = load double, double* %128, align 8
-  %130 = fadd double %129, %127
-  store double %130, double* %128, align 8
-  %131 = getelementptr inbounds %struct.planet, %struct.planet* %118, i64 0, i32 5
-  %132 = load double, double* %131, align 8
-  %133 = fmul double %112, %132
-  %134 = getelementptr inbounds %struct.planet, %struct.planet* %118, i64 0, i32 2
-  %135 = load double, double* %134, align 8
-  %136 = fadd double %135, %133
-  store double %136, double* %134, align 8
-  br label %137
-
-; <label>:137:                                    ; preds = %116
-  %138 = add nsw i32 %storemerge1, 1
-  br label %113
-
-; <label>:139:                                    ; preds = %113
-  store i32 %storemerge1, i32* %7, align 4
-  store %struct.planet* %114, %struct.planet** %15, align 1
+._crit_edge:                                      ; preds = %68, %3, %._crit_edge11
   ret void
 }
 
 ; Function Attrs: nounwind
-declare double @sqrt(double) #1
+declare double @sqrt(double) local_unnamed_addr #1
 
 ; Function Attrs: noinline nounwind uwtable
-define double @energy(i32, %struct.planet*) #0 {
-  %3 = alloca i32, align 4
-  %4 = alloca %struct.planet*, align 8
-  %5 = alloca double, align 8
-  %6 = alloca i32, align 4
-  %7 = alloca i32, align 4
-  %8 = alloca %struct.planet*, align 8
-  %9 = alloca %struct.planet*, align 8
-  %10 = alloca double, align 8
-  %11 = alloca double, align 8
-  %12 = alloca double, align 8
-  store i32 %0, i32* %3, align 4
-  store %struct.planet* %1, %struct.planet** %4, align 8
-  store double 0.000000e+00, double* %5, align 8
-  %13 = load i32, i32* %3, align 4
-  %14 = load %struct.planet*, %struct.planet** %4, align 8
-  %15 = load i32, i32* %3, align 4
-  %16 = load %struct.planet*, %struct.planet** %4, align 8
-  %.promoted10 = load i32, i32* %7, align 1
-  %.promoted12 = load %struct.planet*, %struct.planet** %9, align 1
-  %.promoted = load %struct.planet*, %struct.planet** %8, align 1
-  %.promoted15 = load double, double* %10, align 1
-  %.promoted17 = load double, double* %11, align 1
-  %.promoted19 = load double, double* %12, align 1
-  %.promoted21 = load double, double* %5, align 1
-  br label %17
+define double @energy(i32, %struct.planet* nocapture readonly) local_unnamed_addr #0 {
+  %3 = icmp sgt i32 %0, 0
+  br i1 %3, label %.lr.ph9, label %._crit_edge10
 
-; <label>:17:                                     ; preds = %81, %2
-  %.lcssa922 = phi double [ %.promoted21, %2 ], [ %46, %81 ]
-  %.lcssa720 = phi double [ %.promoted19, %2 ], [ %47, %81 ]
-  %.lcssa518 = phi double [ %.promoted17, %2 ], [ %48, %81 ]
-  %.lcssa316 = phi double [ %.promoted15, %2 ], [ %49, %81 ]
-  %18 = phi %struct.planet* [ %.promoted, %2 ], [ %22, %81 ]
-  %.lcssa13 = phi %struct.planet* [ %.promoted12, %2 ], [ %50, %81 ]
-  %storemerge1.lcssa11 = phi i32 [ %.promoted10, %2 ], [ %storemerge1, %81 ]
-  %storemerge = phi i32 [ 0, %2 ], [ %82, %81 ]
-  %19 = icmp slt i32 %storemerge, %13
-  br i1 %19, label %20, label %83
+.lr.ph9:                                          ; preds = %2
+  %4 = sext i32 %0 to i64
+  %wide.trip.count = zext i32 %0 to i64
+  %.pre = zext i32 %0 to i64
+  %wide.trip.count.le = zext i32 %0 to i64
+  br label %5
 
-; <label>:20:                                     ; preds = %17
-  %21 = sext i32 %storemerge to i64
-  %22 = getelementptr inbounds %struct.planet, %struct.planet* %14, i64 %21
-  %23 = getelementptr inbounds %struct.planet, %struct.planet* %14, i64 %21, i32 6
-  %24 = load double, double* %23, align 8
-  %25 = fmul double %24, 5.000000e-01
-  %26 = getelementptr inbounds %struct.planet, %struct.planet* %14, i64 %21, i32 3
-  %27 = load double, double* %26, align 8
-  %28 = fmul double %27, %27
-  %29 = getelementptr inbounds %struct.planet, %struct.planet* %22, i64 0, i32 4
-  %30 = load double, double* %29, align 8
-  %31 = fmul double %30, %30
-  %32 = fadd double %28, %31
-  %33 = getelementptr inbounds %struct.planet, %struct.planet* %22, i64 0, i32 5
-  %34 = load double, double* %33, align 8
-  %35 = getelementptr inbounds %struct.planet, %struct.planet* %22, i64 0, i32 5
+; <label>:5:                                      ; preds = %._crit_edge, %.lr.ph9
+  %indvars.iv14 = phi i64 [ 0, %.lr.ph9 ], [ %indvars.iv.next15, %._crit_edge ]
+  %indvars.iv = phi i64 [ 1, %.lr.ph9 ], [ %indvars.iv.next, %._crit_edge ]
+  %.026 = phi double [ 0.000000e+00, %.lr.ph9 ], [ %.1.lcssa, %._crit_edge ]
+  %6 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv14, i32 6
+  %7 = load double, double* %6, align 8
+  %8 = fmul double %7, 5.000000e-01
+  %9 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv14, i32 3
+  %10 = load double, double* %9, align 8
+  %11 = fmul double %10, %10
+  %12 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv14, i32 4
+  %13 = load double, double* %12, align 8
+  %14 = fmul double %13, %13
+  %15 = fadd double %11, %14
+  %16 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv14, i32 5
+  %17 = load double, double* %16, align 8
+  %18 = fmul double %17, %17
+  %19 = fadd double %15, %18
+  %20 = fmul double %8, %19
+  %21 = fadd double %.026, %20
+  %indvars.iv.next15 = add nuw nsw i64 %indvars.iv14, 1
+  %22 = icmp slt i64 %indvars.iv.next15, %4
+  br i1 %22, label %.lr.ph, label %._crit_edge
+
+.lr.ph:                                           ; preds = %5
+  %23 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv14, i32 0
+  %24 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv14, i32 1
+  %25 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv14, i32 2
+  br label %26
+
+; <label>:26:                                     ; preds = %26, %.lr.ph
+  %indvars.iv12 = phi i64 [ %indvars.iv, %.lr.ph ], [ %indvars.iv.next13, %26 ]
+  %.14 = phi double [ %21, %.lr.ph ], [ %54, %26 ]
+  %27 = load double, double* %23, align 8
+  %28 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv12, i32 0
+  %29 = load double, double* %28, align 8
+  %30 = load double, double* %24, align 8
+  %31 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv12, i32 1
+  %32 = load double, double* %31, align 8
+  %33 = fsub double %30, %32
+  %34 = load double, double* %25, align 8
+  %35 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv12, i32 2
   %36 = load double, double* %35, align 8
-  %37 = fmul double %34, %36
-  %38 = fadd double %32, %37
-  %39 = fmul double %25, %38
-  %40 = fadd double %.lcssa922, %39
-  %41 = getelementptr inbounds %struct.planet, %struct.planet* %22, i64 0, i32 0
-  %42 = getelementptr inbounds %struct.planet, %struct.planet* %22, i64 0, i32 1
-  %43 = getelementptr inbounds %struct.planet, %struct.planet* %22, i64 0, i32 2
-  %44 = getelementptr inbounds %struct.planet, %struct.planet* %22, i64 0, i32 6
-  br label %45
+  %37 = insertelement <2 x double> undef, double %27, i32 0
+  %38 = insertelement <2 x double> %37, double %34, i32 1
+  %39 = insertelement <2 x double> undef, double %29, i32 0
+  %40 = insertelement <2 x double> %39, double %36, i32 1
+  %41 = fsub <2 x double> %38, %40
+  %42 = fmul double %33, %33
+  %43 = fmul <2 x double> %41, %41
+  %44 = extractelement <2 x double> %43, i32 0
+  %45 = fadd double %44, %42
+  %46 = extractelement <2 x double> %43, i32 1
+  %47 = fadd double %45, %46
+  %48 = tail call double @sqrt(double %47) #3
+  %49 = load double, double* %6, align 8
+  %50 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv12, i32 6
+  %51 = load double, double* %50, align 8
+  %52 = fmul double %49, %51
+  %53 = fdiv double %52, %48
+  %54 = fsub double %.14, %53
+  %indvars.iv.next13 = add nuw nsw i64 %indvars.iv12, 1
+  %exitcond = icmp eq i64 %indvars.iv.next13, %wide.trip.count
+  br i1 %exitcond, label %._crit_edge, label %26
 
-; <label>:45:                                     ; preds = %79, %20
-  %46 = phi double [ %40, %20 ], [ %78, %79 ]
-  %47 = phi double [ %.lcssa720, %20 ], [ %72, %79 ]
-  %48 = phi double [ %.lcssa518, %20 ], [ %62, %79 ]
-  %49 = phi double [ %.lcssa316, %20 ], [ %58, %79 ]
-  %50 = phi %struct.planet* [ %.lcssa13, %20 ], [ %54, %79 ]
-  %storemerge1.in = phi i32 [ %storemerge, %20 ], [ %storemerge1, %79 ]
-  %storemerge1 = add nsw i32 %storemerge1.in, 1
-  %51 = icmp slt i32 %storemerge1, %15
-  br i1 %51, label %52, label %80
+._crit_edge:                                      ; preds = %26, %5
+  %wide.trip.count16.pre-phi = phi i64 [ %.pre, %5 ], [ %wide.trip.count.le, %26 ]
+  %.1.lcssa = phi double [ %21, %5 ], [ %54, %26 ]
+  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1
+  %exitcond17 = icmp eq i64 %indvars.iv.next15, %wide.trip.count16.pre-phi
+  br i1 %exitcond17, label %._crit_edge10, label %5
 
-; <label>:52:                                     ; preds = %45
-  %53 = sext i32 %storemerge1 to i64
-  %54 = getelementptr inbounds %struct.planet, %struct.planet* %16, i64 %53
-  %55 = load double, double* %41, align 8
-  %56 = getelementptr inbounds %struct.planet, %struct.planet* %54, i64 0, i32 0
-  %57 = load double, double* %56, align 8
-  %58 = fsub double %55, %57
-  %59 = load double, double* %42, align 8
-  %60 = getelementptr inbounds %struct.planet, %struct.planet* %54, i64 0, i32 1
-  %61 = load double, double* %60, align 8
-  %62 = fsub double %59, %61
-  %63 = load double, double* %43, align 8
-  %64 = getelementptr inbounds %struct.planet, %struct.planet* %54, i64 0, i32 2
-  %65 = load double, double* %64, align 8
-  %66 = fsub double %63, %65
-  %67 = fmul double %58, %58
-  %68 = fmul double %62, %62
-  %69 = fadd double %67, %68
-  %70 = fmul double %66, %66
-  %71 = fadd double %69, %70
-  %72 = call double @sqrt(double %71) #3
-  %73 = load double, double* %44, align 8
-  %74 = getelementptr inbounds %struct.planet, %struct.planet* %54, i64 0, i32 6
-  %75 = load double, double* %74, align 8
-  %76 = fmul double %73, %75
-  %77 = fdiv double %76, %72
-  %78 = fsub double %46, %77
-  br label %79
-
-; <label>:79:                                     ; preds = %52
-  br label %45
-
-; <label>:80:                                     ; preds = %45
-  br label %81
-
-; <label>:81:                                     ; preds = %80
-  %82 = add nsw i32 %storemerge, 1
-  br label %17
-
-; <label>:83:                                     ; preds = %17
-  store i32 %storemerge1.lcssa11, i32* %7, align 1
-  store %struct.planet* %.lcssa13, %struct.planet** %9, align 1
-  store %struct.planet* %18, %struct.planet** %8, align 1
-  store double %.lcssa316, double* %10, align 1
-  store double %.lcssa518, double* %11, align 1
-  store double %.lcssa720, double* %12, align 1
-  store double %.lcssa922, double* %5, align 1
-  store i32 %storemerge, i32* %6, align 4
-  %84 = load double, double* %5, align 8
-  ret double %84
+._crit_edge10:                                    ; preds = %._crit_edge, %2
+  %.02.lcssa = phi double [ 0.000000e+00, %2 ], [ %.1.lcssa, %._crit_edge ]
+  ret double %.02.lcssa
 }
 
-; Function Attrs: noinline nounwind uwtable
-define void @offset_momentum(i32, %struct.planet*) #0 {
-  %3 = alloca i32, align 4
-  %4 = alloca %struct.planet*, align 8
-  %5 = alloca double, align 8
-  %6 = alloca double, align 8
-  %7 = alloca double, align 8
-  %8 = alloca i32, align 4
-  store i32 %0, i32* %3, align 4
-  store %struct.planet* %1, %struct.planet** %4, align 8
-  store double 0.000000e+00, double* %5, align 8
-  store double 0.000000e+00, double* %6, align 8
-  store double 0.000000e+00, double* %7, align 8
-  %9 = load i32, i32* %3, align 4
-  %10 = load %struct.planet*, %struct.planet** %4, align 8
-  %11 = load %struct.planet*, %struct.planet** %4, align 8
-  %12 = load %struct.planet*, %struct.planet** %4, align 8
-  %.promoted = load double, double* %5, align 1
-  %.promoted1 = load double, double* %6, align 1
-  %.promoted3 = load double, double* %7, align 1
-  br label %13
+; Function Attrs: noinline norecurse nounwind uwtable
+define void @offset_momentum(i32, %struct.planet* nocapture) local_unnamed_addr #2 {
+  %3 = icmp sgt i32 %0, 0
+  br i1 %3, label %.lr.ph, label %._crit_edge
 
-; <label>:13:                                     ; preds = %43, %2
-  %14 = phi double [ %.promoted3, %2 ], [ %42, %43 ]
-  %15 = phi double [ %.promoted1, %2 ], [ %34, %43 ]
-  %16 = phi double [ %.promoted, %2 ], [ %26, %43 ]
-  %storemerge = phi i32 [ 0, %2 ], [ %44, %43 ]
-  %17 = icmp slt i32 %storemerge, %9
-  br i1 %17, label %18, label %45
+.lr.ph:                                           ; preds = %2
+  %4 = zext i32 %0 to i64
+  %xtraiter = and i64 %4, 1
+  %5 = icmp eq i32 %0, 1
+  br i1 %5, label %._crit_edge.loopexit.unr-lcssa, label %.lr.ph.new
 
-; <label>:18:                                     ; preds = %13
-  %19 = sext i32 %storemerge to i64
-  %20 = getelementptr inbounds %struct.planet, %struct.planet* %10, i64 %19, i32 3
-  %21 = load double, double* %20, align 8
-  %22 = sext i32 %storemerge to i64
-  %23 = getelementptr inbounds %struct.planet, %struct.planet* %10, i64 %22, i32 6
+.lr.ph.new:                                       ; preds = %.lr.ph
+  %unroll_iter = sub nsw i64 %4, %xtraiter
+  br label %6
+
+; <label>:6:                                      ; preds = %6, %.lr.ph.new
+  %indvars.iv = phi i64 [ 0, %.lr.ph.new ], [ %indvars.iv.next.1, %6 ]
+  %.016 = phi double [ 0.000000e+00, %.lr.ph.new ], [ %26, %6 ]
+  %7 = phi <2 x double> [ zeroinitializer, %.lr.ph.new ], [ %33, %6 ]
+  %niter = phi i64 [ %unroll_iter, %.lr.ph.new ], [ %niter.nsub.1, %6 ]
+  %8 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv, i32 5
+  %9 = load double, double* %8, align 8
+  %10 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv, i32 6
+  %11 = load double, double* %10, align 8
+  %12 = fmul double %9, %11
+  %13 = fadd double %.016, %12
+  %14 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv, i32 3
+  %15 = bitcast double* %14 to <2 x double>*
+  %16 = load <2 x double>, <2 x double>* %15, align 8
+  %17 = insertelement <2 x double> undef, double %11, i32 0
+  %18 = shufflevector <2 x double> %17, <2 x double> undef, <2 x i32> zeroinitializer
+  %19 = fmul <2 x double> %16, %18
+  %20 = fadd <2 x double> %7, %19
+  %indvars.iv.next = or i64 %indvars.iv, 1
+  %21 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv.next, i32 5
+  %22 = load double, double* %21, align 8
+  %23 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv.next, i32 6
   %24 = load double, double* %23, align 8
-  %25 = fmul double %21, %24
-  %26 = fadd double %16, %25
-  %27 = sext i32 %storemerge to i64
-  %28 = getelementptr inbounds %struct.planet, %struct.planet* %11, i64 %27, i32 4
-  %29 = load double, double* %28, align 8
-  %30 = sext i32 %storemerge to i64
-  %31 = getelementptr inbounds %struct.planet, %struct.planet* %11, i64 %30, i32 6
-  %32 = load double, double* %31, align 8
-  %33 = fmul double %29, %32
-  %34 = fadd double %15, %33
-  %35 = sext i32 %storemerge to i64
-  %36 = getelementptr inbounds %struct.planet, %struct.planet* %12, i64 %35, i32 5
-  %37 = load double, double* %36, align 8
-  %38 = sext i32 %storemerge to i64
-  %39 = getelementptr inbounds %struct.planet, %struct.planet* %12, i64 %38, i32 6
-  %40 = load double, double* %39, align 8
-  %41 = fmul double %37, %40
-  %42 = fadd double %14, %41
-  br label %43
+  %25 = fmul double %22, %24
+  %26 = fadd double %13, %25
+  %27 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv.next, i32 3
+  %28 = bitcast double* %27 to <2 x double>*
+  %29 = load <2 x double>, <2 x double>* %28, align 8
+  %30 = insertelement <2 x double> undef, double %24, i32 0
+  %31 = shufflevector <2 x double> %30, <2 x double> undef, <2 x i32> zeroinitializer
+  %32 = fmul <2 x double> %29, %31
+  %33 = fadd <2 x double> %20, %32
+  %indvars.iv.next.1 = add nuw nsw i64 %indvars.iv, 2
+  %niter.nsub.1 = add i64 %niter, -2
+  %niter.ncmp.1 = icmp eq i64 %niter.nsub.1, 0
+  br i1 %niter.ncmp.1, label %._crit_edge.loopexit.unr-lcssa, label %6
 
-; <label>:43:                                     ; preds = %18
-  %44 = add nsw i32 %storemerge, 1
-  br label %13
+._crit_edge.loopexit.unr-lcssa:                   ; preds = %6, %.lr.ph
+  %.lcssa16.ph = phi double [ undef, %.lr.ph ], [ %26, %6 ]
+  %.lcssa.ph = phi <2 x double> [ undef, %.lr.ph ], [ %33, %6 ]
+  %indvars.iv.unr = phi i64 [ 0, %.lr.ph ], [ %indvars.iv.next.1, %6 ]
+  %.016.unr = phi double [ 0.000000e+00, %.lr.ph ], [ %26, %6 ]
+  %.unr = phi <2 x double> [ zeroinitializer, %.lr.ph ], [ %33, %6 ]
+  %lcmp.mod = icmp eq i64 %xtraiter, 0
+  br i1 %lcmp.mod, label %._crit_edge, label %.epil.preheader
 
-; <label>:45:                                     ; preds = %13
-  store i32 %storemerge, i32* %8, align 4
-  store double %16, double* %5, align 1
-  store double %15, double* %6, align 1
-  store double %14, double* %7, align 1
-  %46 = load double, double* %5, align 8
-  %47 = fsub double -0.000000e+00, %46
-  %48 = fdiv double %47, 0x4043BD3CC9BE45DE
-  %49 = load %struct.planet*, %struct.planet** %4, align 8
-  %50 = getelementptr inbounds %struct.planet, %struct.planet* %49, i64 0, i32 3
-  store double %48, double* %50, align 8
-  %51 = load double, double* %6, align 8
-  %52 = fsub double -0.000000e+00, %51
+.epil.preheader:                                  ; preds = %._crit_edge.loopexit.unr-lcssa
+  %34 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv.unr, i32 6
+  %35 = load double, double* %34, align 8
+  %36 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv.unr, i32 3
+  %37 = bitcast double* %36 to <2 x double>*
+  %38 = load <2 x double>, <2 x double>* %37, align 8
+  %39 = insertelement <2 x double> undef, double %35, i32 0
+  %40 = shufflevector <2 x double> %39, <2 x double> undef, <2 x i32> zeroinitializer
+  %41 = fmul <2 x double> %38, %40
+  %42 = fadd <2 x double> %.unr, %41
+  %43 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 %indvars.iv.unr, i32 5
+  %44 = load double, double* %43, align 8
+  %45 = fmul double %44, %35
+  %46 = fadd double %.016.unr, %45
+  br label %._crit_edge
+
+._crit_edge:                                      ; preds = %.epil.preheader, %._crit_edge.loopexit.unr-lcssa, %2
+  %.01.lcssa = phi double [ 0.000000e+00, %2 ], [ %.lcssa16.ph, %._crit_edge.loopexit.unr-lcssa ], [ %46, %.epil.preheader ]
+  %47 = phi <2 x double> [ zeroinitializer, %2 ], [ %.lcssa.ph, %._crit_edge.loopexit.unr-lcssa ], [ %42, %.epil.preheader ]
+  %48 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 0, i32 3
+  %49 = fsub <2 x double> <double -0.000000e+00, double -0.000000e+00>, %47
+  %50 = fdiv <2 x double> %49, <double 0x4043BD3CC9BE45DE, double 0x4043BD3CC9BE45DE>
+  %51 = bitcast double* %48 to <2 x double>*
+  store <2 x double> %50, <2 x double>* %51, align 8
+  %52 = fsub double -0.000000e+00, %.01.lcssa
   %53 = fdiv double %52, 0x4043BD3CC9BE45DE
-  %54 = getelementptr inbounds %struct.planet, %struct.planet* %49, i64 0, i32 4
+  %54 = getelementptr inbounds %struct.planet, %struct.planet* %1, i64 0, i32 5
   store double %53, double* %54, align 8
-  %55 = load double, double* %7, align 8
-  %56 = fsub double -0.000000e+00, %55
-  %57 = fdiv double %56, 0x4043BD3CC9BE45DE
-  %58 = load %struct.planet*, %struct.planet** %4, align 8
-  %59 = getelementptr inbounds %struct.planet, %struct.planet* %58, i64 0, i32 5
-  store double %57, double* %59, align 8
   ret void
 }
 
 ; Function Attrs: noinline nounwind uwtable
-define i32 @main(i32, i8**) #0 {
-  %3 = alloca i32, align 4
-  %4 = alloca i32, align 4
-  store i32 5000000, i32* %3, align 4
-  call void @offset_momentum(i32 5, %struct.planet* getelementptr inbounds ([5 x %struct.planet], [5 x %struct.planet]* @bodies, i64 0, i64 0))
-  %5 = call double @energy(i32 5, %struct.planet* getelementptr inbounds ([5 x %struct.planet], [5 x %struct.planet]* @bodies, i64 0, i64 0))
-  %6 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @.str, i64 0, i64 0), double %5) #3
-  %7 = load i32, i32* %3, align 4
-  br label %8
+define i32 @main(i32, i8** nocapture readnone) local_unnamed_addr #0 {
+  tail call void @offset_momentum(i32 5, %struct.planet* getelementptr inbounds ([5 x %struct.planet], [5 x %struct.planet]* @bodies, i64 0, i64 0))
+  %3 = tail call double @energy(i32 5, %struct.planet* getelementptr inbounds ([5 x %struct.planet], [5 x %struct.planet]* @bodies, i64 0, i64 0))
+  %4 = tail call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @.str, i64 0, i64 0), double %3)
+  br label %5
 
-; <label>:8:                                      ; preds = %11, %2
-  %storemerge = phi i32 [ 1, %2 ], [ %12, %11 ]
-  %9 = icmp sgt i32 %storemerge, %7
-  br i1 %9, label %13, label %10
+; <label>:5:                                      ; preds = %5, %2
+  %.01 = phi i32 [ 1, %2 ], [ %6, %5 ]
+  tail call void @advance(i32 5, %struct.planet* getelementptr inbounds ([5 x %struct.planet], [5 x %struct.planet]* @bodies, i64 0, i64 0), double 1.000000e-02)
+  %6 = add nuw nsw i32 %.01, 1
+  %exitcond = icmp eq i32 %6, 5000001
+  br i1 %exitcond, label %7, label %5
 
-; <label>:10:                                     ; preds = %8
-  call void @advance(i32 5, %struct.planet* getelementptr inbounds ([5 x %struct.planet], [5 x %struct.planet]* @bodies, i64 0, i64 0), double 1.000000e-02)
-  br label %11
-
-; <label>:11:                                     ; preds = %10
-  %12 = add nsw i32 %storemerge, 1
-  br label %8
-
-; <label>:13:                                     ; preds = %8
-  store i32 %storemerge, i32* %4, align 4
-  %14 = call double @energy(i32 5, %struct.planet* getelementptr inbounds ([5 x %struct.planet], [5 x %struct.planet]* @bodies, i64 0, i64 0))
-  %15 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @.str, i64 0, i64 0), double %14) #3
+; <label>:7:                                      ; preds = %5
+  %8 = tail call double @energy(i32 5, %struct.planet* getelementptr inbounds ([5 x %struct.planet], [5 x %struct.planet]* @bodies, i64 0, i64 0))
+  %9 = tail call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @.str, i64 0, i64 0), double %8)
   ret i32 0
 }
 
-declare i32 @printf(i8*, ...) #2
+; Function Attrs: nounwind
+declare i32 @printf(i8* nocapture readonly, ...) local_unnamed_addr #1
 
 attributes #0 = { noinline nounwind uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
 attributes #1 = { nounwind "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #2 = { "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #2 = { noinline norecurse nounwind uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+fxsr,+mmx,+sse,+sse2,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
 attributes #3 = { nounwind }
 
 !llvm.ident = !{!0}
