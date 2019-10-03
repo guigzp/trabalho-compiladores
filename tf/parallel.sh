@@ -2,5 +2,6 @@
 
 if [[ $EXEC -eq 1 ]]; then
   # echo 'STARTING EXECUTION' ;
-  parallel --tty --verbose --joblog run.log  --jobs $JOBS < /tmp/run.txt ;
+  [[ -n $PATH_LOG ]] || PATH_LOG=run.log
+  parallel --tty --verbose --joblog logs/${PATH_LOG}  --jobs $JOBS < /tmp/run.txt ;
 fi
