@@ -128,7 +128,7 @@ for _ in range(3):
     time_O3 += calculate_time('-O3')
 for _ in range(3):
     time_O3_flags += calculate_time(flags_baseline())
-flags, amount_flags = be_algorithm()
+flags, amount_flags = ie_algorithm()
 for _ in range(3):
     time_opt += calculate_time(flags)
 
