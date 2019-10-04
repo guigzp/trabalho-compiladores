@@ -166,8 +166,8 @@ if [[ -n $SANITIZE && $SANITIZE -eq 1 ]]; then
   source "sanitize.sh"
 fi
 
-rm -f /tmp/run2.txt
-touch /tmp/run2.txt
+rm -f /tmp/run.txt
+touch /tmp/run.txt
 
 if [[ "$#" -ne 0 ]]; then
   # check if the input is a file

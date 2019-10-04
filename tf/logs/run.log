@@ -1,2 +1,2 @@
 Seq	Host	Starttime	JobRuntime	Send	Receive	Exitval	Signal	Command
-1	:	1570202606.138	     0.071	0	0	0	0	cd /home/guigzp/Computacao/Faculdade/Compiladores/trabalho2/tf/Benchs2/MiBench/network-dijkstra && timeout --signal=TERM 0 ./NO_SSA_network-dijkstra.exe  input.dat  < /dev/null &> /dev/null
+1	:	1570203854.202	     0.037	0	0	0	0	cd /home/guigzp/Computacao/Faculdade/Compiladores/trabalho/tf/Benchs2/MiBench/network-dijkstra && timeout --signal=TERM 0 ./NO_SSA_network-dijkstra.exe  input.dat  < /dev/null &> /dev/null
