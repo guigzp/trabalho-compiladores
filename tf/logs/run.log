@@ -1,2 +1,1 @@
 Seq	Host	Starttime	JobRuntime	Send	Receive	Exitval	Signal	Command
-1	:	1570077225.294	     1.255	0	0	0	0	cd /home/guigzp/Computacao/Faculdade/Compiladores/trabalho/tf/Benchs/BenchmarkGame/n-body && timeout --signal=TERM 0 ./NO_SSA_nbody.exe   < /dev/null &> /dev/null
