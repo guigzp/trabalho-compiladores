@@ -99,28 +99,6 @@ def ie_algorithm():
     return flags, cont
 
 
-def be_algorithm():
-    global baseline
-    cont = 0
-    baseline_time = calculate_time(flags_baseline())
-    rip_combinations = []
-    for x in range(size_search_space):
-        baseline[x] = 0
-        time = calculate_time(flags_baseline())
-        rip = (time - baseline_time) / baseline_time
-        rip_combinations.append([rip, x])
-        baseline[x] = 1
-    negative_rip = list(filter(lambda x: x[0] < 0, rip_combinations))
-    for i in negative_rip:
-        baseline[i[1]] = 0
-    flags = ''
-    for x in range(size_search_space):
-        if baseline[x] == 1:
-            flags += search_space[x]
-            cont += 1
-    return flags, cont
-
-
 time_O3 = 0
 time_O3_flags = 0
 time_opt = 0
