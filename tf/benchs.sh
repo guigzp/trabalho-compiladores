@@ -80,4 +80,4 @@ function cBench(){
 #   "Trimaran" "TSVC" "PAQ8p" "NPB-serial" "VersaBench" "FreeBench" "cBench"
 #   "MallocBench" "McCat" "Olden" "Prolangs-C")
 
-benchs=("McGill")
+benchs=("VersaBench")

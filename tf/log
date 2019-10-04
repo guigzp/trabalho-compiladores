@@ -1,0 +1,11 @@
+Quantidade de Flags Originais:  244
+Quantidade de Flags do Conjunto de Otimização:  6
+Diferença:  238
+Flags do Conjunto de Otimização:  -targetlibinfo -profile-summary-info -scalar-evolution -mldst-motion -basicaa -aa
+Tempo de Execução com O3:  0.8456666666666667
+Tempo de Execução com as Flags do O3 0.8846666666666666
+Tempo de Execução comas Flags do Conjunto de Otimização:  2.045
+Speedup em Relação ao O3:  0.4135289323553382
+Speedup em Relação às flags O3:  0.432599837000815
+Melhoria em Relação ao O3:  58.64710676446619
+Melhoria em Relação às flags O3:  56.740016299918494

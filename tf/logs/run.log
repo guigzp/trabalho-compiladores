@@ -1,1 +1,2 @@
 Seq	Host	Starttime	JobRuntime	Send	Receive	Exitval	Signal	Command
+1	:	1570198402.381	     0.918	0	0	0	0	cd /home/guigzp/Computacao/Faculdade/Compiladores/trabalho2/tf/Benchs/VersaBench/beamformer && timeout --signal=TERM 0 ./NO_SSA_beamformer.exe -i 140 < /dev/null &> /dev/null

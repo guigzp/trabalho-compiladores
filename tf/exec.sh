@@ -11,7 +11,7 @@ function execute() {
   if [[ $(pwd) =~ "cBench" ]]; then
     for i in $(seq 1 1); do # this must be changed
       cmd="./__run $i $exe_name"
-      echo "cd $(pwd) && $cmd" >> /tmp/run.txt
+      echo "cd $(pwd) && $cmd" >> /tmp/run2.txt
     done
     return
   fi
@@ -24,6 +24,6 @@ function execute() {
   fi
 
   # echo "$cmd"
-  echo "cd $(pwd) && $cmd" >> /tmp/run.txt
+  echo "cd $(pwd) && $cmd" >> /tmp/run2.txt
   
 }
